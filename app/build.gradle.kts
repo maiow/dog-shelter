@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.application)
     id(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -35,9 +36,15 @@ android {
 
 dependencies {
 
-    implementation (Dependence.Core.core)
-    implementation (Dependence.Core.appcompat)
-    implementation (Dependence.Core.material)
-    implementation (Dependence.Core.constraint)
+    implementation(project(":api"))
+
+    implementation(Dependence.Core.core)
+    implementation(Dependence.Core.appcompat)
+    implementation(Dependence.Core.material)
+    implementation(Dependence.Core.constraint)
+    implementation(Dependence.Core.fragmentKtx)
+    implementation(Dependence.Di.dagger)
+    implementation(Dependence.Di.kapt)
+
 
 }
