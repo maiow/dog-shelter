@@ -3,22 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity">
+    tools:context=".HomeFragment">
 
-<!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="35sp"
         android:gravity="center"
-        android:text="Activite"/>
--->
-
-<androidx.fragment.app.FragmentContainerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fragment_container_vie"
-    android:name="com.redpine.home.HomeFragment"
-    />
+        android:textSize="25sp"
+        android:text="Hello" />
 
 </FrameLayout>

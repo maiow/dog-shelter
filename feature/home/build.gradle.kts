@@ -1,6 +1,8 @@
+
 plugins {
     id(Plugins.library)
     id(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -18,11 +20,26 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
     dependencies {
 
+        implementation(project(":api"))
+        implementation(project(":core"))
+
         implementation(Dependence.Core.core)
         implementation(Dependence.Core.appcompat)
+        implementation(Dependence.Core.fragmentKtx)
+
+        implementation(Dependence.Di.dagger)
+        kapt(Dependence.Di.kapt)
     }
 
+}
+dependencies {
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 }

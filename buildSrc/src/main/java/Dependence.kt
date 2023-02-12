@@ -5,7 +5,7 @@ object Dependence {
         const val appcompat = "1.6.1"
         const val material = "1.8.0"
         const val constraint = "2.1.4"
-        const val dagger = "2.42"
+        const val dagger = "2.44.2"
     }
 
     object Core {
@@ -16,7 +16,7 @@ object Dependence {
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.2"
     }
 
-    object Di {
+    object  Di {
         const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
         const val kapt = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     }

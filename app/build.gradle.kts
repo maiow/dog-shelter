@@ -37,14 +37,17 @@ android {
 dependencies {
 
     implementation(project(":api"))
+    implementation(project(":feature:home"))
+    implementation(project(":core"))
 
     implementation(Dependence.Core.core)
     implementation(Dependence.Core.appcompat)
     implementation(Dependence.Core.material)
     implementation(Dependence.Core.constraint)
     implementation(Dependence.Core.fragmentKtx)
+
     implementation(Dependence.Di.dagger)
-    implementation(Dependence.Di.kapt)
+    kapt(Dependence.Di.kapt)
 
 
 }
