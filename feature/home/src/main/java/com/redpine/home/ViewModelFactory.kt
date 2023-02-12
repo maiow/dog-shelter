@@ -3,6 +3,7 @@ package com.redpine.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
+import com.redpine.home.presentation.HomeViewModel
 import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor(private val api: Api) : ViewModelProvider.Factory {
