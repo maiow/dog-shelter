@@ -1,4 +1,4 @@
-package com.redpine.home.presentation.onboarding
+package com.redpine.home.presentation.onboarding.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,16 +22,5 @@ class OnBoardingAdapter : RecyclerView.Adapter<OnBoardingViewHolder>() {
 
     override fun onBindViewHolder(holder: OnBoardingViewHolder, position: Int) {
         holder.bind(list[position])
-    }
-}
-
-class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: Onboarding) {
-
-        binding.image.setImageResource(item.resImgId)
-        binding.title.text = item.title
-        binding.test.text = item.description
-
     }
 }

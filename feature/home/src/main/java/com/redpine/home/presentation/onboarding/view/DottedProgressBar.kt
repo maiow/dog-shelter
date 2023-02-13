@@ -73,11 +73,6 @@ class DottedProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
         invalidate()
     }
 
-    fun setScrollProgress(position: Int, positionOffSet: Float) {
-        settings.toScrollIndicator(position, positionOffSet)
-        invalidate()
-    }
-
     fun getProgress() = progress
 
     fun setProgressSize(size: Int) {

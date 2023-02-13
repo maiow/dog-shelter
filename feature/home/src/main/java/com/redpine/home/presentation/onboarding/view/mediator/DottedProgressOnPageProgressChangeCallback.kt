@@ -24,12 +24,8 @@ class DottedProgressOnPageProgressChangeCallback(dottedProgressBar: DottedProgre
         scrollState = state
     }
 
-    override fun onPageScrolled(
-        position: Int,
-        positionOffset: Float,
-        positionOffsetPixels: Int,
-    ) {
+    override fun onPageSelected(position: Int) {
+        super.onPageSelected(position)
         progressRef.get()?.setProgress(position+1)
-        progressRef.get()?.setScrollProgress(position+1,positionOffset)
     }
 }

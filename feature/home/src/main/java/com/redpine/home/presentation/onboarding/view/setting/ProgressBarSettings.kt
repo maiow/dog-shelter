@@ -30,8 +30,10 @@ class ProgressBarSettings {
             else StatusDottedProgressBar.EMPTY
             listProgressBar
                 .add(
-                    UnitProgress(status,
-                    createDottedRect(dottedSize, i, padding, height, startDrawVertical))
+                    UnitProgress(
+                        status,
+                        createDottedRect(dottedSize, i, padding, height, startDrawVertical)
+                    )
                 )
         }
         return listProgressBar
@@ -45,23 +47,20 @@ class ProgressBarSettings {
         startDrawVertical: Int,
     ): RectF {
         val left = padding + dottedSize * position
-        return RectF(left,
+        return RectF(
+            left,
             startDrawVertical.toFloat(),
             left + dottedSize - padding - padding,
-            height + startDrawVertical.toFloat())
+            height + startDrawVertical.toFloat()
+        )
     }
 
     fun setProgress(progress: Int) {
         try {
-            if (listProgressBar[progress].status == StatusDottedProgressBar.EMPTY)
-                for (i in 0..progress)
-                    listProgressBar[i].status = StatusDottedProgressBar.FULL
-
-            if (listProgressBar[progress].status == StatusDottedProgressBar.FULL) {
-                for (i in progress..listProgressBar.size) {
-                    if (listProgressBar[i].status == StatusDottedProgressBar.EMPTY) break
-                    listProgressBar[i].status = StatusDottedProgressBar.EMPTY
-                }
+            listProgressBar.forEachIndexed { index, _ ->
+                if (index == progress - 1) listProgressBar[index].status =
+                    StatusDottedProgressBar.FULL
+                else listProgressBar[index].status = StatusDottedProgressBar.EMPTY
             }
         } catch (e: Exception) {
             Log.e("Kart", "${e.message}")
@@ -73,7 +72,7 @@ class ProgressBarSettings {
 
         val progress = (listProgressBar[position].rect.right - indicator.rect.left) * positionOffSet
 
-        indicator.rect.right = indicator.rect.left+progress
+        indicator.rect.right = indicator.rect.left + progress
     }
 
     private fun RectF.toRectF() = RectF(this)

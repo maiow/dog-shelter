@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.onboarding.OnboardingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <Button
+            android:id="@+id/next_button"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:text="Далее"
-            android:textColor="@color/red"
-            android:drawableTint="@color/red"
-            android:textAllCaps="false"
-            android:layout_marginHorizontal="43dp"
-            android:textSize="20sp"
-
-            android:layout_marginVertical="18dp"
-            android:fontFamily="@font/montserrat_regular"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="43dp"
+            android:layout_marginVertical="18dp"
+            android:drawableTint="@color/red"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Далее"
+            android:textAllCaps="false"
+            android:textColor="@color/red"
+            android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/skip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/red"
-            android:textSize="16sp"
+            android:layout_marginBottom="44dp"
             android:gravity="center"
             android:text="Пропустить"
-            android:layout_marginBottom="44dp"
+            android:textColor="@color/red"
+            android:textSize="16sp"
 
             />
 
     </LinearLayout>
 
-
-
     <com.redpine.home.presentation.onboarding.view.DottedProgressBar
         android:id="@+id/view_progress"
-        app:progress_empty_Color="@color/grey_main"
-        app:progress_full_Color="@color/red"
         android:layout_width="wrap_content"
-        android:layout_height="75dp"/>
+        android:layout_height="75dp"
+        app:progress_empty_Color="@color/grey_main"
+        app:progress_full_Color="@color/red" />
 
 </FrameLayout>
