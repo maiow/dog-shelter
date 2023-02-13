@@ -1,10 +1,9 @@
 package com.redpine.home.di
 
-import com.redpine.api.Api
-import com.redpine.home.ViewModelFactory
+import androidx.lifecycle.ViewModelProvider
+import com.redpine.core.base.DiComponent
 import com.redpine.home.di.module.Binds
 import com.redpine.home.di.module.RepositoryModule
-import com.redpine.home.presentation.HomeFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -17,8 +16,8 @@ import javax.inject.Singleton
     ]
 )
 @Singleton
-interface HomeComponent {
-    val viewModelFactory: ViewModelFactory
+interface HomeComponent : DiComponent {
+    override val viewModelFactory: ViewModelProvider.Factory
 
     @Component.Builder
     interface Builder {

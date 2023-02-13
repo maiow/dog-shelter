@@ -21,8 +21,10 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     protected abstract fun initBinding(inflater: LayoutInflater): B?
 
-    protected inline fun <reified T: ViewModel>getComponentViewModel(owner:ViewModelStoreOwner): T {
-        return ViewModelProvider(owner)[T::class.java]
+    protected inline fun <reified C : ComponentViewModel> initViewModelFactory(
+        owner: ViewModelStoreOwner
+    ) {
+        factory = ViewModelProvider(owner)[C::class.java].moduleComponent.viewModelFactory
     }
 
     inline fun <reified VM : ViewModel> initViewModel(): VM {

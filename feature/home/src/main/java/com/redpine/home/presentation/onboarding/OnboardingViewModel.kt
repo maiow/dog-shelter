@@ -5,7 +5,7 @@ import com.redpine.home.domain.OnboardingRepository
 import javax.inject.Inject
 
 class OnboardingViewModel @Inject constructor(
-    private val repository: OnboardingRepository,
+    repository: OnboardingRepository,
 ) : ViewModel() {
 
     val list = repository.getInfo()
