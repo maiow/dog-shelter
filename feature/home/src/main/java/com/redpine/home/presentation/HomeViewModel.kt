@@ -10,5 +10,4 @@ class HomeViewModel @Inject constructor(
 
     fun getText() = api.getInfo()
 
-
 }
