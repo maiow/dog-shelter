@@ -5,20 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
-<!--
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="35sp"
-        android:gravity="center"
-        android:text="Activite"/>
--->
-
 <androidx.fragment.app.FragmentContainerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_container_vie"
-    android:name="com.redpine.home.presentation.HomeFragment"
+    android:name="com.redpine.home.presentation.onboarding.OnboardingFragment"
     />
 
 </FrameLayout>

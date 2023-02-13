@@ -1,11 +1,28 @@
 package com.redpine.home.presentation.onboarding
 
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import com.redpine.core.base.BaseFragment
+import android.view.View
+import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentOnboardingBinding
+import com.redpine.home.presentation.onboarding.view.mediator.ProgressBarLayoutMediator
 
-class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
+class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
+
     override fun initBinding(inflater: LayoutInflater) = FragmentOnboardingBinding.inflate(inflater)
 
+    private val viewModel by lazy { initViewModel<OnboardingViewModel>() }
+
+    private val adapter by lazy { OnBoardingAdapter() }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter.setItems(viewModel.list)
+        binding.viewPager.adapter = adapter
+
+        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager).attach()
+    }
 
 }
