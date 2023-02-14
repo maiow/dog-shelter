@@ -2,6 +2,7 @@ plugins {
     id(Plugins.application)
     id(Plugins.android)
     id(Plugins.kapt)
+    id(Plugins.googleServices)
 }
 
 android {
@@ -45,6 +46,13 @@ dependencies {
     implementation(Dependence.Core.material)
     implementation(Dependence.Core.constraint)
     implementation(Dependence.Core.fragmentKtx)
+
+    implementation(Dependence.Firebase.googleServices)
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseAnalytics)
+    implementation(Dependence.Firebase.firebaseAuth)
+    //implementation(Dependence.Firebase.firebaseCore)
+    implementation(Dependence.Firebase.firebaseDatabase)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.kapt)
