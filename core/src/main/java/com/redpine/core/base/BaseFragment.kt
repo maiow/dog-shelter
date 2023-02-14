@@ -1,14 +1,13 @@
 package com.redpine.core.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
@@ -18,8 +17,11 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     protected abstract fun initBinding(inflater: LayoutInflater): B?
 
-    protected inline fun <reified T: ViewModel>getComponentViewModel(owner:ViewModelStoreOwner): T {
-        return ViewModelProvider(owner)[T::class.java]
+    abstract fun initViewModelFactory(): ViewModelProvider.Factory
+
+    inline fun <reified VM : ViewModel> initViewModel(): VM {
+        val viewModel by viewModels<VM>() { initViewModelFactory() }
+        return viewModel
     }
 
     override fun onCreateView(

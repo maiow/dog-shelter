@@ -32,6 +32,7 @@ android {
         implementation(Dependence.Core.core)
         implementation(Dependence.Core.appcompat)
         implementation(Dependence.Core.fragmentKtx)
+        implementation(Dependence.Core.material)
 
         implementation(Dependence.Di.dagger)
         kapt(Dependence.Di.kapt)

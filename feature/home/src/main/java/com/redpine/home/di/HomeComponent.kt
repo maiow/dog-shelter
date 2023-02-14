@@ -1,18 +1,23 @@
 package com.redpine.home.di
 
-import com.redpine.api.Api
-import com.redpine.home.HomeFragment
+import androidx.lifecycle.ViewModelProvider
+import com.redpine.core.base.DiComponent
+import com.redpine.home.di.module.Binds
+import com.redpine.home.di.module.RepositoryModule
 import dagger.Component
+import javax.inject.Singleton
 
 @Component(
     dependencies = [
         HomeDependencies::class
+    ], modules = [
+        RepositoryModule::class,
+        Binds::class
     ]
 )
-interface HomeComponent {
-    fun inject(homeFragment: HomeFragment)
-
-    val api: Api
+@Singleton
+interface HomeComponent : DiComponent {
+    override val viewModelFactory: ViewModelProvider.Factory
 
     @Component.Builder
     interface Builder {

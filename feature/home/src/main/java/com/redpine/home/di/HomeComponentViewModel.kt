@@ -1,10 +1,10 @@
 package com.redpine.home.di
 
-import androidx.lifecycle.ViewModel
+import com.redpine.core.base.ComponentViewModel
 
-class HomeComponentViewModel: ViewModel() {
+class HomeComponentViewModel: ComponentViewModel() {
 
-    val homeComponent = DaggerHomeComponent
+   override val moduleComponent = DaggerHomeComponent
         .builder()
         .dependencies(HomeDependenciesProvider.dependencies)
         .build()

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DottedProgressBar">
+
+        <attr name="progress_empty_Color" format="color" />
+        <attr name="progress_full_Color" format="color" />
+        <attr name="progress_size" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="progress_height" format="dimension" />
+
+    </declare-styleable>
+
+</resources>

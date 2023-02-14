@@ -1,4 +1,4 @@
-package com.redpine.home
+package com.redpine.home.presentation
 
 import androidx.lifecycle.ViewModel
 import com.redpine.api.Api
@@ -9,6 +9,5 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getText() = api.getInfo()
-
 
 }
