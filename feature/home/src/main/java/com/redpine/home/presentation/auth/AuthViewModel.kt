@@ -11,24 +11,28 @@ class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    private val _info = MutableStateFlow<String>("")
+    private val _info = MutableStateFlow("")
     val info = _info.asSharedFlow()
+
+
 
     fun getUser() = authRepository.getUser()
 
     fun createUser(email: String, password: String) =
         authRepository.createUser(email, password).addOnCompleteListener { task ->
-            _info.value = if (task.isSuccessful) { "успешная регистрация" }
-            else "что-то пошло не так "
+            _info.value = if (task.isSuccessful) {
+                "успешная регистрация"
+            } else "что-то пошло не так "
 
-            Log.e("Kart",task.result.user?.uid.toString())
         }
 
     fun authUser(email: String, password: String) =
         authRepository.authEmail(email, password).addOnCompleteListener { task ->
             _info.value = if (task.isSuccessful) "успешная авторизация"
             else "что-то пошло не так "
-            Log.e("Kart",task.result.user?.uid.toString())
+            Log.e("Kart", task.result.user?.uid.toString())
         }
+
+    fun emailVerified() = authRepository.userEmailVerified()
 
 }

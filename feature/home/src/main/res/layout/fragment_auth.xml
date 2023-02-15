@@ -30,4 +30,10 @@
         android:layout_height="wrap_content"
         android:text="авторизация"/>
 
+    <TextView
+        android:id="@+id/verified_text"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

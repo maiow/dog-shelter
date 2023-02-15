@@ -19,8 +19,6 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       Log.d ("Kart",viewModel.getUser()?.uid.toString())
-
         clickAuth()
 
         clickCreate()
@@ -35,12 +33,17 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
     private fun clickCreate() {
         binding.create.setOnClickListener {
             viewModel.createUser(binding.email.text.toString(), binding.password.text.toString())
+            binding.verifiedText.text = "Проверь почту"
         }
     }
 
     private fun clickAuth() {
         binding.auth.setOnClickListener {
             viewModel.authUser(binding.email.text.toString(), binding.password.text.toString())
+            Log.e("Kart","test =  ${viewModel.emailVerified()}")
+            binding.verifiedText.text = if (!viewModel.emailVerified())
+                "Вошли" else "Проверь почту"
         }
     }
+
 }

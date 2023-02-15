@@ -11,4 +11,6 @@ interface AuthRepository {
     fun getUser(): FirebaseUser?
 
     fun createUser(email: String, password: String): Task<AuthResult>
+
+   fun userEmailVerified():Boolean
 }
