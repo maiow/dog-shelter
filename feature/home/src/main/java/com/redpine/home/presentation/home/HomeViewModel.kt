@@ -1,4 +1,4 @@
-package com.redpine.home.presentation
+package com.redpine.home.presentation.home
 
 import androidx.lifecycle.ViewModel
 import com.redpine.api.Api

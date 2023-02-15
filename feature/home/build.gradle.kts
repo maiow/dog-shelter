@@ -3,6 +3,8 @@ plugins {
     id(Plugins.library)
     id(Plugins.android)
     id(Plugins.kapt)
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -43,4 +45,5 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("com.google.firebase:firebase-auth:21.1.0")
 }

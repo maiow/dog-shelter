@@ -15,15 +15,3 @@ object RepositoryModule {
     @Singleton
     fun providesOnboardingRepository() = OnboardingRepositoryImpl()
 }
-
-@Module
-interface Binds {
-
-    @dagger.Binds
-    fun bindsOnboardingRepository(repositoryImpl: OnboardingRepositoryImpl): OnboardingRepository
-
-    @dagger.Binds
-    fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
-
-
-}

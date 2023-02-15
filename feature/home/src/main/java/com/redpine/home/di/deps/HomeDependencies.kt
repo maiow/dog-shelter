@@ -1,4 +1,4 @@
-package com.redpine.home.di
+package com.redpine.home.di.deps
 
 import com.redpine.api.Api
 

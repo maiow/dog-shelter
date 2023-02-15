@@ -1,4 +1,4 @@
-package com.redpine.home.presentation
+package com.redpine.home.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

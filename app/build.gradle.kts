@@ -52,9 +52,10 @@ dependencies {
     implementation(Dependence.Firebase.firebaseAnalytics)
     implementation(Dependence.Firebase.firebaseAuth)
     //implementation(Dependence.Firebase.firebaseCore)
-    implementation(Dependence.Firebase.firebaseDatabase)
+    // implementation(Dependence.Firebase.firebaseDatabase)
 
     implementation(Dependence.Di.dagger)
+    implementation("com.google.firebase:firebase-database:20.0.4")
     kapt(Dependence.Di.kapt)
 
 
