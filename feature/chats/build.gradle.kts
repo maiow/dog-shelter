@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.library)
     id(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -19,10 +20,22 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     dependencies {
+
+        implementation(project(":api"))
+        implementation(project(":core"))
 
         implementation(Dependence.Core.core)
         implementation(Dependence.Core.appcompat)
+        implementation(Dependence.Core.fragmentKtx)
+        implementation(Dependence.Core.material)
+
+        implementation(Dependence.Di.dagger)
+        kapt(Dependence.Di.kapt)
     }
 
 }
