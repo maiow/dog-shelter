@@ -1,5 +1,6 @@
 package com.redpine.core.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,9 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         _binding = initBinding(inflater)
         return binding.root
     }
+
+    protected fun createSharedPreference(sharedName: String) =
+        requireContext().getSharedPreferences(sharedName, Context.MODE_PRIVATE)
 
     override fun onDestroyView() {
         super.onDestroyView()

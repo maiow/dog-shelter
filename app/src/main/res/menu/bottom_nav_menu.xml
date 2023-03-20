@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_nav_graph"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/favorites_nav_graph"
+        android:icon="@drawable/ic_favorites"
+        android:title="@string/title_favorites"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/chats_nav_graph"
+        android:icon="@drawable/ic_chats"
+        android:title="@string/title_chats"
+        app:showAsAction="ifRoom" />
+
+</menu>

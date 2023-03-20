@@ -8,6 +8,8 @@ object Dependence {
         const val dagger = "2.44.2"
         const val googleServices = "4.3.15"
         const val firebaseBom = "31.2.1"
+        const val nav_version = "2.5.3"
+
     }
 
     object Core {
@@ -16,6 +18,8 @@ object Dependence {
         const val material = "com.google.android.material:material:${Versions.material}"
         const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.2"
+        const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+        const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
     }
 
     object Di {

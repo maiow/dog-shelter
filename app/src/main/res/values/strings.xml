@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_home">Home</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_chats">Chats</string>
+
+    <!--string name="title_home">Главная</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_chats">Чаты</string-->
+</resources>

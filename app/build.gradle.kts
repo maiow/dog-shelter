@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -48,6 +51,8 @@ dependencies {
     implementation(Dependence.Core.material)
     implementation(Dependence.Core.constraint)
     implementation(Dependence.Core.fragmentKtx)
+    implementation(Dependence.Core.navigationFragment)
+    implementation(Dependence.Core.navigationUi)
 
     implementation(Dependence.Firebase.googleServices)
     implementation(platform(Dependence.Firebase.firebaseBom))

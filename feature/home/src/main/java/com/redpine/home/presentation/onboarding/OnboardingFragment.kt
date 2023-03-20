@@ -3,8 +3,9 @@ package com.redpine.home.presentation.onboarding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.redpine.home.HomeBaseFragment
+import com.redpine.home.R
 import com.redpine.home.databinding.FragmentOnboardingBinding
 import com.redpine.home.presentation.onboarding.adapter.OnBoardingAdapter
 import com.redpine.home.presentation.onboarding.view.mediator.ProgressBarLayoutMediator
@@ -30,7 +31,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private fun onClickSkipButton() {
         binding.skip.setOnClickListener {
-            Toast.makeText(requireContext(), "навигация", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
         }
     }
 
