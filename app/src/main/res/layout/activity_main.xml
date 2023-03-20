@@ -5,17 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_vie"
-        android:name="com.redpine.home.presentation.onboarding.OnboardingFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragment_container_view"-->
+<!--        android:name="com.redpine.home.presentation.onboarding.OnboardingFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
-    <!--androidx.fragment.app.FragmentContainerView
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/fragment_container_view"-->
+<!--        android:name="com.redpine.favorites.presentation.FavoritesFragment"-->
+<!--        tools:layout="@layout/fragment_favorites" />-->
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="com.redpine.chats.presentation.ChatsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_container_view"
-        android:name="com.redpine.favorites.presentation.FavoritesFragment"
-        tools:layout="@layout/fragment_favorites" /-->
+        tools:layout="@layout/fragment_chats"/>
 
 </FrameLayout>

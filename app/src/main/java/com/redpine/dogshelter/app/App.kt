@@ -1,6 +1,7 @@
 package com.redpine.dogshelter.app
 
 import android.app.Application
+import com.redpine.chats.di.ChatsDependenciesProvider
 import com.redpine.dogshelter.di.AppComponent
 import com.redpine.dogshelter.di.DaggerAppComponent
 import com.redpine.favorites.di.FavoritesDependenciesProvider
@@ -17,5 +18,6 @@ class App:Application() {
         appComponent = DaggerAppComponent.create()
         HomeDependenciesProvider.dependencies = appComponent
         FavoritesDependenciesProvider.dependencies = appComponent
+        ChatsDependenciesProvider.dependencies = appComponent
     }
 }

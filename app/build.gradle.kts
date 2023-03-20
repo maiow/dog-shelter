@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":feature:home"))
     implementation(project(":feature:favorites"))
+    implementation(project(":feature:chats"))
     implementation(project(":core"))
 
     implementation(Dependence.Core.core)
