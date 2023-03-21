@@ -29,4 +29,5 @@ dependencies {
     implementation(Dependence.Core.core)
     implementation(Dependence.Core.appcompat)
     implementation(Dependence.Core.fragmentKtx)
+    implementation(Dependence.Core.material)
 }

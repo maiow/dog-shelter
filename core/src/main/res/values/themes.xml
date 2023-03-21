@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.DogShelter" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="backgroundColor">@color/background</item>
+        <item name="colorOnSurface">@color/red</item>
+        <item name="colorOnSurfaceVariant">@color/grey_main</item>
+        <item name="colorSecondary">@color/green_solid</item>
+        <item name="colorSecondaryContainer">@color/mint_chats</item>
+        <item name="colorOnSecondaryContainer">@color/red</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="colorOnBackground">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/backgroundColor</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

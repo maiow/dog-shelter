@@ -3,4 +3,8 @@
 
     <string name="app_name">DogShelter</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_chats">Chats</string>
+
 </resources>
