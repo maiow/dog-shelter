@@ -18,10 +18,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
 
-    dependencies {
+dependencies {
 
-     implementation (Dependence.Core.core)
-     implementation (Dependence.Core.appcompat)
-    }
+    implementation (Dependence.Core.core)
+    implementation (Dependence.Core.appcompat)
 }

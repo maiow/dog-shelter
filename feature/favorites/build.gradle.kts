@@ -24,20 +24,19 @@ android {
         viewBinding = true
     }
 
-    dependencies {
+}
+dependencies {
 
-        implementation(project(":api"))
-        implementation(project(":core"))
+    implementation(project(":api"))
+    implementation(project(":core"))
 
-        implementation(Dependence.Core.core)
-        implementation(Dependence.Core.appcompat)
-        implementation(Dependence.Core.fragmentKtx)
-        implementation(Dependence.Core.material)
-        implementation(Dependence.Core.navigationFragment)
-        implementation(Dependence.Core.navigationUi)
+    implementation(Dependence.Core.core)
+    implementation(Dependence.Core.appcompat)
+    implementation(Dependence.Core.fragmentKtx)
+    implementation(Dependence.Core.material)
+    implementation(Dependence.Core.navigationFragment)
+    implementation(Dependence.Core.navigationUi)
 
-        implementation(Dependence.Di.dagger)
-        kapt(Dependence.Di.kapt)
-    }
-
+    implementation(Dependence.Di.dagger)
+    kapt(Dependence.Di.kapt)
 }
