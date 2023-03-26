@@ -21,5 +21,9 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="GreenButton" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:background">@drawable/green_button_gradient</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
 
 </resources>
