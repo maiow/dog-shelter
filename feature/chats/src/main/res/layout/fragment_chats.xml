@@ -23,7 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminate="true" />
+        android:indeterminate="false"
+        android:progress="75"/>
 
     <Button
         android:layout_width="wrap_content"

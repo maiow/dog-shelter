@@ -10,13 +10,14 @@
         <item name="colorOnSurface">@color/red</item>
         <item name="colorOnSurfaceVariant">@color/grey_main</item>
         <item name="colorSecondary">@color/green_solid</item>
-        <item name="colorSecondaryContainer">@color/mint_chats</item>
+        <item name="colorSecondaryContainer">@color/white</item>
         <item name="colorOnSecondaryContainer">@color/red</item>
-        <item name="elevationOverlayEnabled">false</item>
         <item name="colorOnBackground">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/backgroundColor</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton</item>
         <!-- Customize your theme here. -->
     </style>
 

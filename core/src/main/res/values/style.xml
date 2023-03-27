@@ -26,4 +26,9 @@
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
+    <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">16dp</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+    </style>
+
 </resources>

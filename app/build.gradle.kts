@@ -53,6 +53,7 @@ dependencies {
     implementation(Dependence.Core.fragmentKtx)
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.navigationUi)
+    implementation(Dependence.Core.splashScreen)
 
     implementation(Dependence.Firebase.googleServices)
     implementation(platform(Dependence.Firebase.firebaseBom))
