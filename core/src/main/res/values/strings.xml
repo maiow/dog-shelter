@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">DogShelter</string>
 
     <string name="title_home">Home</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_chats">Chats</string>
 
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
 </resources>

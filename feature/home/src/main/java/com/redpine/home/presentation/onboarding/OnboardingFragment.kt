@@ -1,5 +1,6 @@
 package com.redpine.home.presentation.onboarding
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,19 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
         onClickSkipButton()
 
+        hideNextButtonOnLowScreens()
+    }
+
+    private fun setAdapter() {
+        adapter.setItems(viewModel.list)
+        binding.viewPager.adapter = adapter
+        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager).attach()
+    }
+
+    private fun onClickNextButton() {
+        binding.nextButton.setOnClickListener {
+            binding.viewPager.currentItem++
+        }
     }
 
     private fun onClickSkipButton() {
@@ -35,16 +49,8 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         }
     }
 
-    private fun setAdapter(){
-        adapter.setItems(viewModel.list)
-        binding.viewPager.adapter = adapter
-        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager).attach()
+    private fun hideNextButtonOnLowScreens() {
+        if (Resources.getSystem().displayMetrics.heightPixels < 1500)
+            binding.nextButton.visibility = View.GONE
     }
-
-    private fun onClickNextButton(){
-        binding.nextButton.setOnClickListener {
-            binding.viewPager.currentItem ++
-        }
-    }
-
 }
