@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DogShelter</string>
+
+    <string name="title_home">Главная</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_chats">Чаты</string>
+
+    <string name="next">Далее</string>
+    <string name="skip">Пропустить</string>
+</resources>
