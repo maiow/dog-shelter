@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="filter">Filter</string>
+    <string name="gender">Gender</string>
+    <string name="girl">Girl</string>
+    <string name="any">Any</string>
+    <string name="boy">Boy</string>
+    <string name="age">Age</string>
+    <string name="size">Size</string>
+    <string name="small">small</string>
+    <string name="medium">medium</string>
+    <string name="big">big</string>
+    <string name="color">Color</string>
+    <string name="cb_white">White</string>
+    <string name="cb_ginger">Ginger</string>
+    <string name="cb_fawn">Fawn</string>
+    <string name="cb_grey">Grey</string>
+    <string name="cb_light">Light</string>
+    <string name="cb_dark">Dark</string>
+    <string name="character">Character</string>
+    <string name="active">Active</string>
+    <string name="calm">Calm</string>
+    <string name="gets_along_with">Gets along with</string>
+    <string name="kids">Kids</string>
+    <string name="dogs">Dogs</string>
+    <string name="cats">Cats</string>
+    <string name="apply">Apply</string>
+    <string name="clear">Clear</string>
+</resources>

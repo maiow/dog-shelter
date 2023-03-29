@@ -13,4 +13,12 @@
         android:textSize="25sp"
         android:text="Hello" />
 
+    <Button
+        android:id="@+id/filter_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Go to Filter Screen">
+    </Button>
+
 </FrameLayout>
