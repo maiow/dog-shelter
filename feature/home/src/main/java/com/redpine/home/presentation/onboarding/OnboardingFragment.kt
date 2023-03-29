@@ -1,6 +1,5 @@
 package com.redpine.home.presentation.onboarding
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +27,6 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
         onClickSkipButton()
 
-        hideNextButtonOnLowScreens()
     }
 
     private fun setAdapter() {
@@ -49,8 +47,4 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         }
     }
 
-    private fun hideNextButtonOnLowScreens() {
-        if (Resources.getSystem().displayMetrics.heightPixels < 1500)
-            binding.nextButton.visibility = View.GONE
-    }
 }

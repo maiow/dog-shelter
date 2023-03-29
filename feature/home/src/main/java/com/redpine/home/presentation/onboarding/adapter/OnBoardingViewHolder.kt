@@ -10,7 +10,7 @@ class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
 
         binding.image.setImageResource(item.resImgId)
         binding.title.text = item.title
-        binding.test.text = item.description
+        binding.text.text = item.description
 
     }
 }
