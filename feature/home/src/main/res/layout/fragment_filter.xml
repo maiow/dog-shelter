@@ -22,19 +22,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageButton
+                android:id="@+id/filter_close_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/white"
+                android:src="@drawable/ic_close"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/filter"
-                android:layout_marginTop="60dp"
                 android:textColor="@color/green_solid"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/gender"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/filter_close_btn" />
+
 
             <TextView
                 android:id="@+id/gender"
@@ -77,7 +89,7 @@
                         android:text="@string/girl"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:chipIcon="@drawable/gender_female"
+                        app:chipIcon="@drawable/ic_filter_gender_female"
                         app:chipIconSize="0dp"
                         app:layout_constraintEnd_toStartOf="@id/chip_any"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -100,7 +112,7 @@
                         android:text="@string/boy"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:chipIcon="@drawable/gender_male"
+                        app:chipIcon="@drawable/ic_filter_gender_male"
                         app:chipIconSize="0dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/chip_any" />
@@ -121,12 +133,11 @@
             <com.google.android.material.slider.RangeSlider
                 android:id="@+id/age_slider"
                 android:layout_width="match_parent"
+                style="@style/FilterSlider"
                 android:layout_height="wrap_content"
-                android:stepSize="1"
-                android:valueFrom="0"
-                android:valueTo="12"
                 app:layout_constraintTop_toBottomOf="@+id/age"
-                app:values="@array/initial_slider_values" />
+                app:values="@array/initial_slider_values"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/size"
@@ -321,7 +332,7 @@
     <Button
         android:id="@+id/apply_btn"
         style="@style/GreenButton"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="70dp"
@@ -337,7 +348,7 @@
     <Button
         android:id="@+id/clear_btn"
         style="@style/GreenButton"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:text="@string/clear"
         app:backgroundTint="@null"

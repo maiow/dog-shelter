@@ -47,4 +47,20 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="FilterSlider" parent="Widget.Material3.Slider">
+        <item name="android:stepSize">1</item>
+        <item name="android:valueFrom">0</item>
+        <item name="android:valueTo">12</item>
+        <item name="thumbColor">@color/grey_main</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="haloColor">@color/grey_inactive</item>
+        <item name="tickVisible">false</item>
+        <item name="trackColorInactive">@color/grey_inactive</item>
+        <item name="trackColorActive">@color/grey_main</item>
+        <item name="labelStyle">@style/FilterSliderLabel</item>
+    </style>
+
+    <style name="FilterSliderLabel" parent="Widget.Material3.Slider.Label">
+        <item name="backgroundTint">@color/grey_main</item>
+    </style>
 </resources>
