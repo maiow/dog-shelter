@@ -29,21 +29,21 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     }
 
-    private fun onClickSkipButton() {
-        binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
-        }
-    }
-
-    private fun setAdapter(){
+    private fun setAdapter() {
         adapter.setItems(viewModel.list)
         binding.viewPager.adapter = adapter
         ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager).attach()
     }
 
-    private fun onClickNextButton(){
+    private fun onClickNextButton() {
         binding.nextButton.setOnClickListener {
-            binding.viewPager.currentItem ++
+            binding.viewPager.currentItem++
+        }
+    }
+
+    private fun onClickSkipButton() {
+        binding.skip.setOnClickListener {
+            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
         }
     }
 
