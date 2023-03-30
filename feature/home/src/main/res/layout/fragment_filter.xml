@@ -3,36 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp">
+    android:layout_height="wrap_content">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbarSize="30dp"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbarTrackVertical="@color/grey_main"
-        app:layout_constraintBottom_toTopOf="@+id/apply_btn"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp">
 
             <ImageButton
                 android:id="@+id/filter_close_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="?attr/actionBarSize"
                 android:background="@color/white"
                 android:src="@drawable/ic_close"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/title"
@@ -130,11 +127,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gender_chips_scroll_view" />
 
+            <TextView
+                android:id="@+id/age_numbers_on_slider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="3-6 лет"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/age" />
+
             <com.google.android.material.slider.RangeSlider
                 android:id="@+id/age_slider"
-                android:layout_width="match_parent"
                 style="@style/FilterSlider"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/age"
                 app:values="@array/initial_slider_values"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -318,44 +329,50 @@
                 app:layout_constraintStart_toStartOf="@id/color"
                 app:layout_constraintTop_toBottomOf="@+id/cb_dogs" />
 
-            <androidx.constraintlayout.widget.Barrier
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="top"
-                tools:layout_editor_absoluteX="244dp"
-                tools:layout_editor_absoluteY="613dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
+    <FrameLayout
+        android:id="@+id/bottom_buttons_layer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="-20dp"
+        android:background="@drawable/layout_bg"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:stateListAnimator="@null"
+        android:translationZ="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/apply_btn"
         style="@style/GreenButton"
-        android:layout_width="140dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="70dp"
+        android:stateListAnimator="@null"
         android:text="@string/apply"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/clear_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nested_scroll_view">
+        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer">
 
     </Button>
 
     <Button
         android:id="@+id/clear_btn"
-        style="@style/GreenButton"
-        android:layout_width="140dp"
+        style="@style/WhiteButton"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
+        android:stateListAnimator="@null"
         android:text="@string/clear"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/apply_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/apply_btn"
-        app:layout_constraintTop_toTopOf="@id/apply_btn">
+        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer">
 
     </Button>
 

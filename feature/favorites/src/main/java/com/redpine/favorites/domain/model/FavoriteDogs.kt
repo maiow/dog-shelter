@@ -5,5 +5,7 @@ class FavoriteDogs(
     val name: String,
     val sex: String,
     val height: Int,
-    val age: Float //Float will be needed for 1.5 years or puppies <1 year old
+    val age: Float
+    //Float может быть нужен для 1,5 лет или щенков <1 года
+    //Но на слайдере на экране фильтров точно не будет месяцев, там возраст от 0 до 12 лет
 )

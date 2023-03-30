@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Title">
         <item name="android:fontFamily">@font/centurygothic</item>
@@ -28,8 +28,24 @@
     </style>
 
     <style name="GreenButton" parent="Widget.Material3.Button.ElevatedButton">
-        <item name="android:background">@drawable/green_button_gradient</item>
+        <item name="android:background">@drawable/green_gradient</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/centurygothic</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+        <item name="android:elevation">30dp</item>
+        <item name="android:translationZ">2dp</item>
+    </style>
+
+    <style name="WhiteButton" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:background">@drawable/green_outlined_btn</item>
+        <item name="android:textColor">@color/green_solid</item>
+        <item name="fontFamily">@font/centurygothic</item>
+        <item name="android:textSize">20sp</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+        <item name="android:elevation">30dp</item>
+        <item name="android:translationZ">2dp</item>
+
     </style>
 
     <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
@@ -51,6 +67,8 @@
         <item name="android:stepSize">1</item>
         <item name="android:valueFrom">0</item>
         <item name="android:valueTo">12</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
         <item name="thumbColor">@color/grey_main</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="haloColor">@color/grey_inactive</item>
