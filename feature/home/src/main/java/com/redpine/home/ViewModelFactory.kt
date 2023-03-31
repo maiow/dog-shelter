@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
 import com.redpine.home.domain.OnboardingRepository
-import com.redpine.home.presentation.HomeViewModel
+import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
 import javax.inject.Inject
 
