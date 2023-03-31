@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="40dp">
 
             <ImageButton
@@ -54,18 +54,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
-            <!--com.google.android.material.chip.ChipGroup
-                android:id="@+id/chips"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:chipSpacingHorizontal="12dp"
-                app:singleSelection="true"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                app:singleLine="true"-->
-
             <HorizontalScrollView
                 android:id="@+id/gender_chips_scroll_view"
                 android:layout_width="wrap_content"
@@ -74,49 +62,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gender">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <com.google.android.material.chip.ChipGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="16dp"
+                    app:singleLine="true"
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_girl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
+                        style="@style/Chip"
                         android:text="@string/girl"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:chipIcon="@drawable/ic_filter_gender_female"
-                        app:chipIconSize="0dp"
-                        app:layout_constraintEnd_toStartOf="@id/chip_any"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:chipIcon="@drawable/ic_filter_gender_female" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_any"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/any"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toStartOf="@id/chip_boy"
-                        app:layout_constraintStart_toEndOf="@id/chip_girl" />
+                        style="@style/Chip"
+                        android:text="@string/any" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_boy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        style="@style/Chip"
                         android:text="@string/boy"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:chipIcon="@drawable/ic_filter_gender_male"
-                        app:chipIconSize="0dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/chip_any" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        app:chipIcon="@drawable/ic_filter_gender_male" />
 
+                </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
-            <!--/com.google.android.material.chip.ChipGroup-->
+
 
             <TextView
                 android:id="@+id/age"
@@ -167,47 +139,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/size">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <com.google.android.material.chip.ChipGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="16dp"
+                    app:singleLine="true"
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="@string/small"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toStartOf="@id/chip_medium"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        style="@style/Chip"
+                        android:text="@string/small" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/medium"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toStartOf="@id/chip_boy"
-                        app:layout_constraintStart_toEndOf="@id/chip_girl" />
+                        style="@style/Chip"
+                        android:text="@string/medium" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/big"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/chip_medium" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        style="@style/Chip"
+                        android:text="@string/big" />
+
+                </com.google.android.material.chip.ChipGroup>
 
             </HorizontalScrollView>
 
             <TextView
-                android:id="@+id/color"
+                android:id="@+id/dog_color"
                 style="@style/FilterTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -217,26 +176,23 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cb_white"
-                app:layout_constraintStart_toStartOf="@id/color"
-                app:layout_constraintTop_toBottomOf="@+id/color" />
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/dog_color" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_ginger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cb_ginger"
-                app:layout_constraintStart_toStartOf="@id/color"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
                 app:layout_constraintTop_toBottomOf="@+id/cb_white" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_fawn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cb_fawn"
-                app:layout_constraintStart_toStartOf="@id/color"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
                 app:layout_constraintTop_toBottomOf="@+id/cb_ginger" />
 
             <Space
@@ -249,24 +205,21 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cb_grey"
                 app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toBottomOf="@+id/color" />
+                app:layout_constraintTop_toBottomOf="@+id/dog_color" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cb_light"
                 app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toBottomOf="@+id/cb_grey" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_dark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cb_dark"
                 app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toBottomOf="@+id/cb_light" />
@@ -282,16 +235,14 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_active"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/active"
                 app:layout_constraintStart_toStartOf="@id/character"
                 app:layout_constraintTop_toBottomOf="@+id/character" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_calm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/calm"
                 app:layout_constraintStart_toStartOf="@id/character"
                 app:layout_constraintTop_toBottomOf="@+id/cb_active" />
@@ -307,26 +258,23 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_kids"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/kids"
-                app:layout_constraintStart_toStartOf="@id/color"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
                 app:layout_constraintTop_toBottomOf="@+id/gets_along_with" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_dogs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/dogs"
-                app:layout_constraintStart_toStartOf="@id/color"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
                 app:layout_constraintTop_toBottomOf="@+id/cb_kids" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_cats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Checkbox"
                 android:text="@string/cats"
-                app:layout_constraintStart_toStartOf="@id/color"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
                 app:layout_constraintTop_toBottomOf="@+id/cb_dogs" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
