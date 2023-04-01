@@ -26,6 +26,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
                 android:src="@drawable/ic_close"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -65,6 +67,7 @@
                 <com.google.android.material.chip.ChipGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/gender_chips_group"
                     app:chipSpacingHorizontal="16dp"
                     app:singleLine="true"
                     app:singleSelection="true">
@@ -143,6 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipSpacingHorizontal="16dp"
+                    android:id="@+id/size_chips_group"
                     app:singleLine="true"
                     app:singleSelection="true">
 
@@ -312,11 +316,12 @@
 
     <Button
         android:id="@+id/clear_btn"
-        style="@style/WhiteButton"
+        style="@style/LightGreenButton"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:stateListAnimator="@null"
         android:text="@string/clear"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/apply_btn"

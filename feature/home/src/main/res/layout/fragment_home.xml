@@ -13,12 +13,15 @@
         android:textSize="25sp"
         android:text="Hello" />
 
-    <Button
+    <ImageButton
         android:id="@+id/filter_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Go to Filter Screen">
-    </Button>
+        android:layout_gravity="top|end"
+        android:src="@drawable/filter_button"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="ContentDescription">
+    </ImageButton>
 
 </FrameLayout>
