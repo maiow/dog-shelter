@@ -1,4 +1,4 @@
-package com.redpine.core.model
+package com.redpine.core.model.card
 
 data class News(
     val id: Int,
