@@ -15,33 +15,40 @@ import com.redpine.home.databinding.FragmentFilterBinding
 class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentFilterBinding.inflate(inflater)
-    // private val viewModel: FilterViewModel by lazy { initViewModel() }
+    private val viewModel: FilterViewModel by lazy { initViewModel() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // binding.test.text = viewModel.getText()
 
         setCloseButton()
+        setAgeSlider()
+        setApplyButton()
         setClearButton()
+    }
 
+    private fun setCloseButton() {
+        binding.filterCloseBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
 
-        var minAgeOnSlider = "0"
-        var maxAgeOnSlider = "7"
-
+    private fun setAgeSlider() {
         binding.ageSlider.addOnChangeListener { slider, _, _ ->
-            minAgeOnSlider = slider.values[0].toInt().toString()
-            maxAgeOnSlider = slider.values[1].toInt().toString()
+            viewModel.minAgeOnSlider = slider.values[0].toInt().toString()
+            viewModel.maxAgeOnSlider = slider.values[1].toInt().toString()
 
             //TODO: переписать на placeholder и с изменением год-года-лет
             binding.ageNumbersOnSlider.text =
                 buildString {
-                    append(minAgeOnSlider)
+                    append(viewModel.minAgeOnSlider)
                     append("-")
-                    append(maxAgeOnSlider)
+                    append(viewModel.maxAgeOnSlider)
                     append(" лет")
                 }
         }
+    }
 
+    private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
             //TODO: отправка собранных данных на сервер
 
@@ -56,17 +63,9 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             Log.i("RED", "genderChipsGroup.checkedChip = $selectedChipTextGender")
             Log.i("RED", "sizeChipsGroup.checkedChip = $selectedChipTextSize")
 
-            Log.i("RED", "minAgeOnSlider = $minAgeOnSlider")
-            Log.i("RED", "maxAgeOnSlider = $maxAgeOnSlider")
+            Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
+            Log.i("RED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
 
-        }
-
-
-    }
-
-    private fun setCloseButton() {
-        binding.filterCloseBtn.setOnClickListener {
-            findNavController().popBackStack()
         }
     }
 
