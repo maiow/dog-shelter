@@ -47,10 +47,10 @@
     <com.redpine.home.presentation.onboarding.view.DottedProgressBar
         android:id="@+id/view_progress"
         android:layout_width="wrap_content"
-        android:layout_height="75dp"
+        android:layout_height="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_pager"
         app:progress_empty_Color="@color/grey_main"
         app:progress_full_Color="@color/red" />
 
