@@ -36,5 +36,10 @@
         <item name="cornerRadius">16dp</item>
         <item name="strokeColor">?attr/colorPrimary</item>
     </style>
+    
+    <style name="AppSearchBar" parent="TextAppearance.Material3.SearchBar">
+        <item name="android:lines">2</item>
+        <item name="expandedHintEnabled">true</item>
+    </style>
 
 </resources>

@@ -24,4 +24,5 @@
             android:id="@+id/action_homeFragment_to_favoritesFragment"
             app:destination="@id/favorites_nav_graph" /-->
     </fragment>
+
 </navigation>
