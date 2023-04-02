@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
 import com.redpine.home.domain.OnboardingRepository
 import com.redpine.home.presentation.HomeViewModel
+import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
 import javax.inject.Inject
 
@@ -16,6 +17,7 @@ class ViewModelFactory @Inject constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         HomeViewModel::class.java -> HomeViewModel(api) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository) as T
+        FilterViewModel::class.java -> FilterViewModel(api) as T
         else -> throw IllegalAccessError("error create viewModel")
     }
 

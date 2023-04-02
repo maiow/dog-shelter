@@ -6,6 +6,7 @@
     <color name="mint_chats">#90CFC3</color>
     <color name="grey_main">#49454F</color>
     <color name="grey_dark">#333333</color>
+    <color name="grey_inactive">#4D470D21</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
 

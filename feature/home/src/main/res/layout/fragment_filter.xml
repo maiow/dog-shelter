@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:id="@+id/container_checkboxes"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="40dp">
+
+            <ImageButton
+                android:id="@+id/filter_close_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/filter"
+                android:textColor="@color/green_solid"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_close_btn" />
+
+
+            <TextView
+                android:id="@+id/gender"
+                style="@style/FilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <HorizontalScrollView
+                android:id="@+id/gender_chips_scroll_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gender">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gender_chips_group"
+                    app:chipSpacingHorizontal="16dp"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_girl"
+                        style="@style/Chip"
+                        android:text="@string/girl"
+                        app:chipIcon="@drawable/ic_filter_gender_female" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_any"
+                        style="@style/Chip"
+                        android:text="@string/any" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_boy"
+                        style="@style/Chip"
+                        android:text="@string/boy"
+                        app:chipIcon="@drawable/ic_filter_gender_male" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:id="@+id/age"
+                style="@style/FilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/age"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gender_chips_scroll_view" />
+
+            <TextView
+                android:id="@+id/age_numbers_on_slider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="3-6 лет"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/age" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/age_slider"
+                style="@style/FilterSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age"
+                app:values="@array/initial_slider_values"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/size"
+                style="@style/FilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/age_slider" />
+
+            <HorizontalScrollView
+                android:id="@+id/size_chips_scroll_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/size">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="16dp"
+                    android:id="@+id/size_chips_group"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_small"
+                        style="@style/Chip"
+                        android:text="@string/small" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_medium"
+                        style="@style/Chip"
+                        android:text="@string/medium" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_big"
+                        style="@style/Chip"
+                        android:text="@string/big" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/dog_color"
+                style="@style/FilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/size_chips_scroll_view" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_white"
+                style="@style/Checkbox"
+                android:text="@string/cb_white"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/dog_color" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_ginger"
+                style="@style/Checkbox"
+                android:text="@string/cb_ginger"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/cb_white" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_fawn"
+                style="@style/Checkbox"
+                android:text="@string/cb_fawn"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/cb_ginger" />
+
+            <Space
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_grey"
+                style="@style/Checkbox"
+                android:text="@string/cb_grey"
+                app:layout_constraintStart_toEndOf="@id/barrier"
+                app:layout_constraintTop_toBottomOf="@+id/dog_color" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_light"
+                style="@style/Checkbox"
+                android:text="@string/cb_light"
+                app:layout_constraintStart_toEndOf="@id/barrier"
+                app:layout_constraintTop_toBottomOf="@+id/cb_grey" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_dark"
+                style="@style/Checkbox"
+                android:text="@string/cb_dark"
+                app:layout_constraintStart_toEndOf="@id/barrier"
+                app:layout_constraintTop_toBottomOf="@+id/cb_light" />
+
+            <TextView
+                android:id="@+id/character"
+                style="@style/FilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cb_fawn" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_active"
+                style="@style/Checkbox"
+                android:text="@string/active"
+                app:layout_constraintStart_toStartOf="@id/character"
+                app:layout_constraintTop_toBottomOf="@+id/character" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_calm"
+                style="@style/Checkbox"
+                android:text="@string/calm"
+                app:layout_constraintStart_toStartOf="@id/character"
+                app:layout_constraintTop_toBottomOf="@+id/cb_active" />
+
+            <TextView
+                android:id="@+id/gets_along_with"
+                style="@style/FilterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gets_along_with"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cb_calm" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_kids"
+                style="@style/Checkbox"
+                android:text="@string/kids"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/gets_along_with" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_dogs"
+                style="@style/Checkbox"
+                android:text="@string/dogs"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/cb_kids" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cb_cats"
+                style="@style/Checkbox"
+                android:text="@string/cats"
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@+id/cb_dogs" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/bottom_buttons_layer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="-20dp"
+        android:background="@drawable/layout_bg"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:stateListAnimator="@null"
+        android:translationZ="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/apply_btn"
+        style="@style/GreenButton"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:stateListAnimator="@null"
+        android:text="@string/apply"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/clear_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer">
+
+    </Button>
+
+    <Button
+        android:id="@+id/clear_btn"
+        style="@style/LightGreenButton"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:stateListAnimator="@null"
+        android:text="@string/clear"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/apply_btn"
+        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer">
+
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
