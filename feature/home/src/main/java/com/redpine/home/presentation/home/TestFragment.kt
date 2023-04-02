@@ -15,9 +15,7 @@ class TestFragment: HomeBaseFragment<FragmentTestBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.test.text = viewModel.getText()
-        binding.filterButton.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
-        }
+
+
     }
 }

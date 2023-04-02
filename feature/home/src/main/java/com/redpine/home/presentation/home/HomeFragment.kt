@@ -49,5 +49,10 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             }
 
         })
+
+        binding.filterButton.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
+        }
+
     }
 }
