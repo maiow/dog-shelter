@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.CheckBox
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.redpine.home.HomeBaseFragment
@@ -20,9 +21,9 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         super.onViewCreated(view, savedInstanceState)
         // binding.test.text = viewModel.getText()
 
-        binding.filterCloseBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        setCloseButton()
+        setClearButton()
+
 
         var minAgeOnSlider = "0"
         var maxAgeOnSlider = "7"
@@ -31,6 +32,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             minAgeOnSlider = slider.values[0].toInt().toString()
             maxAgeOnSlider = slider.values[1].toInt().toString()
 
+            //TODO: переписать на placeholder и с изменением год-года-лет
             binding.ageNumbersOnSlider.text =
                 buildString {
                     append(minAgeOnSlider)
@@ -43,37 +45,45 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         binding.applyBtn.setOnClickListener {
             //TODO: отправка собранных данных на сервер
 
+            //TODO: собрать чекнутные чекбоксы
+
             val selectedChipTextGender =
                 binding.genderChipsGroup.findViewById<Chip>(binding.genderChipsGroup.checkedChipId).text.toString()
+
             val selectedChipTextSize =
                 binding.sizeChipsGroup.findViewById<Chip>(binding.sizeChipsGroup.checkedChipId).text.toString()
-            Log.i(
-                "RED",
-                "genderChipsGroup.checkedChip = $selectedChipTextGender"
-            )
-            Log.i(
-                "RED",
-                "sizeChipsGroup.checkedChip = $selectedChipTextSize"
-            )
+
+            Log.i("RED", "genderChipsGroup.checkedChip = $selectedChipTextGender")
+            Log.i("RED", "sizeChipsGroup.checkedChip = $selectedChipTextSize")
 
             Log.i("RED", "minAgeOnSlider = $minAgeOnSlider")
             Log.i("RED", "maxAgeOnSlider = $maxAgeOnSlider")
 
         }
 
+
+    }
+
+    private fun setCloseButton() {
+        binding.filterCloseBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setClearButton() {
         binding.clearBtn.setOnClickListener {
             binding.genderChipsGroup.clearCheck()
             binding.sizeChipsGroup.clearCheck()
 
             binding.ageSlider.values =
                 listOf(INITIAL_MIN_AGE_ON_SLIDER.toFloat(), INITIAL_MAX_AGE_ON_SLIDER.toFloat())
-            //TODO: сброс всех чекбоксов
 
-//            binding.dogColor.allViews.forEachIndexed { index, view ->
-//                if (index > 0)
-//                    view.
-//                    Log.i("RED", "$view = $index")
-//            }
+            var i = 0
+            while (i <= binding.containerCheckboxes.childCount) {
+                val checkView = binding.containerCheckboxes.getChildAt(i)
+                if (checkView is CheckBox) checkView.isChecked = false
+                i++
+            }
         }
     }
 }
