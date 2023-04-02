@@ -54,14 +54,24 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
             //TODO: собрать чекнутные чекбоксы
 
-            val selectedChipTextGender =
-                binding.genderChipsGroup.findViewById<Chip>(binding.genderChipsGroup.checkedChipId).text.toString()
+            viewModel.selectedGenderChip =
+                if ((binding.genderChipsGroup.findViewById<Chip>(
+                    binding.genderChipsGroup.checkedChipId)) != null)
+                    binding.genderChipsGroup.findViewById<Chip>(
+                        binding.genderChipsGroup.checkedChipId).text.toString()
+                else "пол не выбран"
 
-            val selectedChipTextSize =
-                binding.sizeChipsGroup.findViewById<Chip>(binding.sizeChipsGroup.checkedChipId).text.toString()
 
-            Log.i("RED", "genderChipsGroup.checkedChip = $selectedChipTextGender")
-            Log.i("RED", "sizeChipsGroup.checkedChip = $selectedChipTextSize")
+            viewModel.selectedSizeChip =
+                if ((binding.sizeChipsGroup.findViewById<Chip>(
+                        binding.sizeChipsGroup.checkedChipId)) != null)
+                    binding.sizeChipsGroup.findViewById<Chip>(
+                        binding.sizeChipsGroup.checkedChipId).text.toString()
+                else "размер не выбран"
+
+
+            Log.i("RED", "genderChipsGroup.checkedChip = ${viewModel.selectedGenderChip}}")
+            Log.i("RED", "sizeChipsGroup.checkedChip = ${viewModel.selectedSizeChip}")
 
             Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
             Log.i("RED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")

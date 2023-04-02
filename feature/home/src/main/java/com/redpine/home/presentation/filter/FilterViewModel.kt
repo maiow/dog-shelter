@@ -10,9 +10,14 @@ class FilterViewModel @Inject constructor(
     private val api: Api,
 ) : ViewModel() {
 
+    //TODO: отправка собранных данных на сервер
+
     //fun getText() = api.getInfo()
 
     var minAgeOnSlider = INITIAL_MIN_AGE_ON_SLIDER.toString()
     var maxAgeOnSlider = INITIAL_MAX_AGE_ON_SLIDER.toString()
+
+    var selectedSizeChip = ""
+    var selectedGenderChip = ""
 
 }
