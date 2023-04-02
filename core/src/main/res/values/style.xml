@@ -28,8 +28,13 @@
     </style>
 
     <style name="GreenButton" parent="Widget.Material3.Button.ElevatedButton">
-        <item name="android:background">@drawable/green_button_gradient</item>
+        <item name="android:background">@drawable/green_gradient</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/centurygothic</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+        <item name="android:elevation">30dp</item>
+        <item name="android:translationZ">2dp</item>
     </style>
 
     <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">

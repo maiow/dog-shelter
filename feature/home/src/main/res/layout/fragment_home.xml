@@ -6,15 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.HomeFragment">
 
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
-        android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_width="match_parent"
         app:iconifiedByDefault="false"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/round_corners_20alfa_btn"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/filter_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="Кого вы ищите?"/>
@@ -25,7 +26,6 @@
         android:layout_marginTop="32dp"
         android:id="@+id/recycler"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/search_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,5 +33,18 @@
         tools:listitem="@layout/item_container_view_holder"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <ImageButton
+        android:id="@+id/filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/filter_button"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription">
+    </ImageButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

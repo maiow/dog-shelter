@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <string name="New">Новые питомцы</string>
     <string name="Recent_seen">Недавно просмотренные</string>
     <string name="News">Новости</string>
+=======
+    <string name="filter">Фильтр</string>
+    <string name="gender">Пол</string>
+    <string name="girl">Девочка</string>
+    <string name="any">Любой</string>
+    <string name="boy">Мальчик</string>
+    <string name="age">Возраст</string>
+    <string name="size">Размер</string>
+    <string name="small">маленький</string>
+    <string name="medium">средний</string>
+    <string name="big">крупный</string>
+    <string name="color">Окрас</string>
+    <string name="cb_white">Белый</string>
+    <string name="cb_ginger">Рыжий</string>
+    <string name="cb_fawn">Палевый</string>
+    <string name="cb_grey">Серый</string>
+    <string name="cb_light">Светлый</string>
+    <string name="cb_dark">Тёмный</string>
+    <string name="character">Характер</string>
+    <string name="active">Активный</string>
+    <string name="calm">Спокойный</string>
+    <string name="gets_along_with">С кем ладит</string>
+    <string name="kids">С детьми</string>
+    <string name="dogs">С другими собаками</string>
+    <string name="cats">С кошками</string>
+    <string name="apply">Применить</string>
+    <string name="clear">Очистить</string>
+>>>>>>> main
 </resources>

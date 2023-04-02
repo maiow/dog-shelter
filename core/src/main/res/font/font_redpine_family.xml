@@ -14,4 +14,10 @@
         android:fontWeight="400"
         tools:targetApi="o" />
 
+    <font
+        android:font="@font/montserrat_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        tools:targetApi="o" />
+
 </font-family>
