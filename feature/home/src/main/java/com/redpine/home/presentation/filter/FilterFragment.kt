@@ -55,7 +55,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
     private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
-            //TODO: отправка собранных данных на сервер и навигация - куда?
+            //TODO: отправка собранных данных на сервер
 
             var i = 0
             while (i <= binding.containerCheckboxes.childCount) {
@@ -96,6 +96,13 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
             Log.i("RED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
 
+//            findNavController().navigate(R.id.action_filterFragment_to_dogsFoundFragment)
+
+            findNavController().navigate(
+                FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(
+                    "Любой - возраст 0-3 года"
+                )
+            )
         }
     }
 

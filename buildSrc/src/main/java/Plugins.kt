@@ -5,5 +5,6 @@ object Plugins {
     const val library = "com.android.library"
     const val kapt = "kotlin-kapt"
     const val googleServices = "com.google.gms.google-services"
+    const val safeArgs = "androidx.navigation.safeargs.kotlin"
 
 }
