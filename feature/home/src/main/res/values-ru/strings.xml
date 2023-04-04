@@ -31,5 +31,12 @@ HEAD
     <string name="cats">С кошками</string>
     <string name="apply">Применить</string>
     <string name="clear">Очистить</string>
+
+    <plurals name="age_data">
+        <item quantity="one">%1$s год</item>
+        <item quantity="few">%1$s года</item>
+        <item quantity="many">%1$s лет</item>
+        <item quantity="other">%1$s лет</item>
+    </plurals>
 >>>>>>> main
 </resources>

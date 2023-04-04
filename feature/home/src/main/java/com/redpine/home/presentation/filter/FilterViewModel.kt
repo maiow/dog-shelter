@@ -12,12 +12,18 @@ class FilterViewModel @Inject constructor(
 
     //TODO: отправка собранных данных на сервер
 
-    //fun getText() = api.getInfo()
+    //fun sendInfo() = api.sendInfo()
 
     var minAgeOnSlider = INITIAL_MIN_AGE_ON_SLIDER.toString()
     var maxAgeOnSlider = INITIAL_MAX_AGE_ON_SLIDER.toString()
 
-    var selectedSizeChip = ""
-    var selectedGenderChip = ""
+    var selectedGenderChip: String? = null
+    var selectedSizeChip: String? = null
+
+    /** отправляем на сервер список string выбранных чекбоксов
+     * или пустой список, если ничего не отмечено
+     * со string будет меньше ошибок при внесении изменений в чекбоксы, чем если перегонять в int*/
+
+    var selectedCheckboxes: MutableSet<String>? = mutableSetOf()
 
 }

@@ -31,5 +31,10 @@ HEAD
     <string name="cats">Cats</string>
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
+
+    <plurals name="age_data">
+        <item quantity="one">%1$s year</item>
+        <item quantity="other">%1$s years</item>
+    </plurals>
 >>>>>>> main
 </resources>

@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.INITIAL_MAX_AGE_ON_SLIDER
 import com.redpine.home.INITIAL_MIN_AGE_ON_SLIDER
+import com.redpine.home.R
 import com.redpine.home.databinding.FragmentFilterBinding
 
 class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
@@ -37,40 +38,59 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             viewModel.minAgeOnSlider = slider.values[0].toInt().toString()
             viewModel.maxAgeOnSlider = slider.values[1].toInt().toString()
 
-            //TODO: переписать на placeholder и с изменением год-года-лет
             binding.ageNumbersOnSlider.text =
                 buildString {
                     append(viewModel.minAgeOnSlider)
                     append("-")
-                    append(viewModel.maxAgeOnSlider)
-                    append(" лет")
+                    append(
+                        resources.getQuantityString(
+                            R.plurals.age_data,
+                            viewModel.maxAgeOnSlider.toInt(),
+                            viewModel.maxAgeOnSlider
+                        )
+                    )
                 }
         }
     }
 
     private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
-            //TODO: отправка собранных данных на сервер
+            //TODO: отправка собранных данных на сервер и навигация - куда?
 
-            //TODO: собрать чекнутные чекбоксы
+            var i = 0
+            while (i <= binding.containerCheckboxes.childCount) {
+                val checkView = binding.containerCheckboxes.getChildAt(i)
+                if (checkView is CheckBox) {
+                    if (checkView.isChecked)
+                        viewModel.selectedCheckboxes?.add(checkView.text.toString())
+                }
+                i++
+            }
 
             viewModel.selectedGenderChip =
                 if ((binding.genderChipsGroup.findViewById<Chip>(
-                    binding.genderChipsGroup.checkedChipId)) != null)
+                        binding.genderChipsGroup.checkedChipId
+                    )) != null
+                )
                     binding.genderChipsGroup.findViewById<Chip>(
-                        binding.genderChipsGroup.checkedChipId).text.toString()
-                else "пол не выбран"
+                        binding.genderChipsGroup.checkedChipId
+                    ).text.toString()
+                else null
 
 
             viewModel.selectedSizeChip =
                 if ((binding.sizeChipsGroup.findViewById<Chip>(
-                        binding.sizeChipsGroup.checkedChipId)) != null)
+                        binding.sizeChipsGroup.checkedChipId
+                    )) != null
+                )
                     binding.sizeChipsGroup.findViewById<Chip>(
-                        binding.sizeChipsGroup.checkedChipId).text.toString()
-                else "размер не выбран"
+                        binding.sizeChipsGroup.checkedChipId
+                    ).text.toString()
+                else null
 
+            Log.i("RED", "selected checkboxes = ${viewModel.selectedCheckboxes}")
 
-            Log.i("RED", "genderChipsGroup.checkedChip = ${viewModel.selectedGenderChip}}")
+            Log.i("RED", "genderChipsGroup.checkedChip = ${viewModel.selectedGenderChip}")
             Log.i("RED", "sizeChipsGroup.checkedChip = ${viewModel.selectedSizeChip}")
 
             Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
@@ -93,6 +113,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 if (checkView is CheckBox) checkView.isChecked = false
                 i++
             }
+            viewModel.selectedCheckboxes = mutableSetOf()
         }
     }
 }
