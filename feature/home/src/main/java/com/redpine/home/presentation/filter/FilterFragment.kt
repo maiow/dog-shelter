@@ -96,14 +96,28 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
             Log.i("RED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
 
-//            findNavController().navigate(R.id.action_filterFragment_to_dogsFoundFragment)
+            val filtersText = buildFiltersTextForNextScreen()
 
             findNavController().navigate(
-                FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(
-                    "Любой - возраст 0-3 года"
-                )
+                FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(filtersText)
             )
         }
+    }
+
+    private fun buildFiltersTextForNextScreen() = buildString {
+        append(viewModel.selectedGenderChip ?: getString(R.string.any_gender))
+        append(getString(R.string.size_for_found) + " ")
+        append(viewModel.selectedSizeChip ?: getString(R.string.any_for_found))
+        append(getString(R.string.age_for_found) + " ")
+        append(viewModel.minAgeOnSlider)
+        append("-")
+        append(
+            resources.getQuantityString(
+                R.plurals.age_data,
+                viewModel.maxAgeOnSlider.toInt(),
+                viewModel.maxAgeOnSlider
+            )
+        )
     }
 
     private fun setClearButton() {
