@@ -1,6 +1,7 @@
 package com.redpine.home.presentation.home
 
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.redpine.api.Api
 import com.redpine.core.model.card.*
 import com.redpine.home.R
@@ -26,9 +27,9 @@ class HomeViewModel @Inject constructor(
             listNews.add(  News(i, "title $i", "some string $i"))
         }
         return listOf(
-            HorizontalGrid(R.string.New, listNewDog,1),
-            HorizontalGrid(R.string.Recent_seen, listRecentSeenDog),
-            VerticalGrid(R.string.News, listNews,1),
+            HorizontalGrid(titleId = R.string.New, list = listNewDog, spanCount = 1),
+            HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog),
+            VerticalGrid(titleId = R.string.News, list = listNews, spanCount = 1),
         )
     }
 
@@ -37,17 +38,20 @@ class HomeViewModel @Inject constructor(
 interface HomeScreen {
     val titleId: Int
     val list: List<Item>
+    val orientation: Int
     val spanCount: Int
 }
 
 class HorizontalGrid(
     override val titleId: Int,
     override val list: List<Item>,
+    override val orientation: Int = RecyclerView.HORIZONTAL,
     override val spanCount:Int = 2
 ):HomeScreen
 
 class VerticalGrid(
     override val titleId: Int,
     override val list: List<Item>,
+    override val orientation: Int = RecyclerView.VERTICAL,
     override val spanCount:Int = 2
 ):HomeScreen

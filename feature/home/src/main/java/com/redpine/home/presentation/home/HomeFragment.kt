@@ -1,6 +1,8 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +43,14 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
         binding.filterButton.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
+        }
+
+        binding.btnVK.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/redpine")))
+        }
+
+        binding.btnTG.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/priutKS")))
         }
 
     }

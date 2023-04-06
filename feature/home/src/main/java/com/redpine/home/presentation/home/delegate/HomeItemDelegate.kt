@@ -12,8 +12,8 @@ fun newsDelegate() =
         NewsViewHolderBinding.inflate(inflater, root, false)
     }) {
         bind {
-            binding.newsTitle.text=item.title
-            binding.newsBodyPreview.text=item.body
+            binding.newsTitle.text = item.title
+            binding.newsBodyPreview.text = item.body
         }
     }
 

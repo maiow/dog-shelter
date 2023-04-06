@@ -13,7 +13,7 @@ fun horizontalGridDelegate() =
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
         bind {
-            binding.bind(item,RecyclerView.HORIZONTAL)
+            binding.bind(item)
         }
     }
 
@@ -22,20 +22,19 @@ fun verticalGridDelegate() =
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
         bind {
-            binding.bind(item,RecyclerView.VERTICAL)
+            binding.bind(item)
         }
     }
 
 
 fun ItemContainerViewHolderBinding.bind(
     item: HomeScreen,
-    orientation:Int,
 ) {
     val dogAdapter = OneListItemAdapter()
     recyclerView.adapter = dogAdapter
     dogAdapter.items = item.list
     itemTitle.text = itemTitle.context.getString(item.titleId)
-    recyclerView.layoutManager =  GridLayoutManager(
-        recyclerView.context, item.spanCount, orientation, false
+    recyclerView.layoutManager = GridLayoutManager(
+        recyclerView.context, item.spanCount, item.orientation, false
     )
 }

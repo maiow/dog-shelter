@@ -14,7 +14,8 @@ class HomeAdapter : ListDelegationAdapter<List<HomeScreen>>(
 class OneListItemAdapter : AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
 
     init {
-        delegatesManager.addDelegate(dogsDelegate())
+        delegatesManager
+            .addDelegate(dogsDelegate())
             .addDelegate(newsDelegate())
     }
 
