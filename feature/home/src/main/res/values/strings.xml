@@ -31,6 +31,10 @@ HEAD
     <string name="cats">Cats</string>
     <string name="apply">Apply</string>
     <string name="clear">Clear</string>
+    <string name="any_gender">Any gender</string>
+    <string name="size_for_found">\ • Size \</string>
+    <string name="any_for_found">\ any</string>
+    <string name="age_for_found">\ • age \</string>
 
     <plurals name="age_data">
         <item quantity="one">%1$s year</item>

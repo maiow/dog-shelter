@@ -55,7 +55,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
     private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
-            //TODO: отправка собранных данных на сервер и навигация - куда?
+            //TODO: отправка собранных данных на сервер
 
             var i = 0
             while (i <= binding.containerCheckboxes.childCount) {
@@ -96,7 +96,28 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
             Log.i("RED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
 
+            val filtersText = buildFiltersTextForNextScreen()
+
+            findNavController().navigate(
+                FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(filtersText)
+            )
         }
+    }
+
+    private fun buildFiltersTextForNextScreen() = buildString {
+        append(viewModel.selectedGenderChip ?: getString(R.string.any_gender))
+        append(getString(R.string.size_for_found) + " ")
+        append(viewModel.selectedSizeChip ?: getString(R.string.any_for_found))
+        append(getString(R.string.age_for_found) + " ")
+        append(viewModel.minAgeOnSlider)
+        append("-")
+        append(
+            resources.getQuantityString(
+                R.plurals.age_data,
+                viewModel.maxAgeOnSlider.toInt(),
+                viewModel.maxAgeOnSlider
+            )
+        )
     }
 
     private fun setClearButton() {

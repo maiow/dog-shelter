@@ -3,6 +3,7 @@ plugins {
     id(Plugins.library)
     id(Plugins.android)
     id(Plugins.kapt)
+    id(Plugins.safeArgs)
 }
 
 android {
