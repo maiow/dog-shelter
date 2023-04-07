@@ -1,12 +1,11 @@
 package com.redpine.home.presentation.home.delegate
 
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.redpine.home.databinding.ItemContainerViewHolderBinding
-import com.redpine.home.presentation.home.HomeScreen
-import com.redpine.home.presentation.home.HorizontalGrid
-import com.redpine.home.presentation.home.VerticalGrid
+import com.redpine.home.domain.model.homeScreen.HomeScreen
+import com.redpine.home.domain.model.homeScreen.HorizontalGrid
+import com.redpine.home.domain.model.homeScreen.VerticalGrid
 
 fun horizontalGridDelegate() =
     adapterDelegateViewBinding<HorizontalGrid, HomeScreen, ItemContainerViewHolderBinding>({ inflater, root ->

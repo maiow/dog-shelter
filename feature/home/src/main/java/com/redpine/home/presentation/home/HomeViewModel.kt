@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.redpine.api.Api
 import com.redpine.core.model.card.*
 import com.redpine.home.R
+import com.redpine.home.domain.model.homeScreen.HomeScreen
+import com.redpine.home.domain.model.homeScreen.HorizontalGrid
+import com.redpine.home.domain.model.homeScreen.VerticalGrid
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -35,23 +38,7 @@ class HomeViewModel @Inject constructor(
 
 }
 
-interface HomeScreen {
-    val titleId: Int
-    val list: List<Item>
-    val orientation: Int
-    val spanCount: Int
-}
 
-class HorizontalGrid(
-    override val titleId: Int,
-    override val list: List<Item>,
-    override val orientation: Int = RecyclerView.HORIZONTAL,
-    override val spanCount:Int = 2
-):HomeScreen
 
-class VerticalGrid(
-    override val titleId: Int,
-    override val list: List<Item>,
-    override val orientation: Int = RecyclerView.VERTICAL,
-    override val spanCount:Int = 2
-):HomeScreen
+
+

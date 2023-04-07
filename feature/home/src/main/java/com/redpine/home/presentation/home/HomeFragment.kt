@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
+import com.redpine.home.TG_URI
+import com.redpine.home.VK_URI
 import com.redpine.home.databinding.FragmentHomeBinding
 import com.redpine.home.presentation.home.delegate.HomeAdapter
 
@@ -46,12 +48,17 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         }
 
         binding.btnVK.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/redpine")))
+            onSocialClick(VK_URI)
         }
 
         binding.btnTG.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/priutKS")))
+            onSocialClick(TG_URI)
         }
+
+    }
+
+    private fun onSocialClick(uri: String){
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
 
     }
 }
