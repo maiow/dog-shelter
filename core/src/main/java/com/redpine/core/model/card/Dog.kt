@@ -5,6 +5,6 @@ class Dog(
     val name: String,
     val age: String,
     val testText:String,
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
     val isNew: Boolean,
 ) : Item

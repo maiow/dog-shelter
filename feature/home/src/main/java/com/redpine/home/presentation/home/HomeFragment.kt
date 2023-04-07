@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
+import com.redpine.core.model.card.Item
+import com.redpine.core.tools.ClickableView
 
 
 import com.redpine.home.HomeBaseFragment
@@ -23,7 +25,12 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by lazy { initViewModel() }
 
-    private val adapter by lazy { HomeAdapter() }
+    private val adapter by lazy { HomeAdapter { clickableView, item, position -> onItemClick(clickableView, item, position) } }
+
+    private fun onItemClick(clickableView: ClickableView, item: Item, position: Int) {
+        viewModel.onItemClick(clickableView, item)
+        adapter.notifyItemChanged(position)
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

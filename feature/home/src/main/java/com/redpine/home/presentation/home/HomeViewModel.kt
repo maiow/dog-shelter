@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.redpine.api.Api
 import com.redpine.core.model.card.*
+import com.redpine.core.tools.ClickableView
 import com.redpine.home.R
 import com.redpine.home.domain.model.homeScreen.HomeScreen
 import com.redpine.home.domain.model.homeScreen.HorizontalGrid
@@ -24,10 +25,28 @@ class HomeViewModel @Inject constructor(
         val listNewDog = mutableListOf<Item>()
         val listRecentSeenDog = mutableListOf<Item>()
         val listNews = mutableListOf<Item>()
-        for(i in 1..10){
-           listNewDog.add( Dog(i-1,"number $i", "age ${i+5} years","Новая Собака", Random.nextBoolean(),Random.nextBoolean()))
-           listRecentSeenDog.add(  Dog(i-1,"number $i", "age ${i+5} years","Какая-то Собака", Random.nextBoolean(),Random.nextBoolean()))
-            listNews.add(  News(i, "title $i", "some string $i"))
+        for (i in 1..10) {
+            listNewDog.add(
+                Dog(
+                    i - 1,
+                    "number $i",
+                    "age ${i + 5} years",
+                    "Новая Собака",
+                    Random.nextBoolean(),
+                    Random.nextBoolean()
+                )
+            )
+            listRecentSeenDog.add(
+                Dog(
+                    i - 1,
+                    "number $i",
+                    "age ${i + 5} years",
+                    "Какая-то Собака",
+                    Random.nextBoolean(),
+                    Random.nextBoolean()
+                )
+            )
+            listNews.add(News(i, "title $i", "some string $i"))
         }
         return listOf(
             HorizontalGrid(titleId = R.string.New, list = listNewDog, spanCount = 1),
@@ -36,7 +55,21 @@ class HomeViewModel @Inject constructor(
         )
     }
 
+    fun onItemClick(clickableView: ClickableView, item: Item) {
+        when (clickableView) {
+            ClickableView.FAVORITE -> addToFavorites(item)
+        }
+    }
+
+    private fun addToFavorites(item: Item) {
+        item as Dog
+        item.isFavorite = !item.isFavorite
+    }
+
+
 }
+
+
 
 
 
