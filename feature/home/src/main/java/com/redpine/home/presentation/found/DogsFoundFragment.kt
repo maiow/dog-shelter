@@ -18,13 +18,14 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
     private val adapter by lazy {
-        ListDelegationAdapter(dogsDelegate { clickableView, item, position ->
-            onItemClick(clickableView, item, position)
-        })
+        ListDelegationAdapter(
+            dogsDelegate { clickableView, item ->
+                onItemClick(clickableView, item)
+            })
     }
 
-    private fun onItemClick(clickableView: ClickableView, item: Item, position: Int) {
-
+    private fun onItemClick(clickableView: ClickableView, item: Item) {
+        viewModel.onItemClick(clickableView, item)
     }
 
     private val args by navArgs<DogsFoundFragmentArgs>()

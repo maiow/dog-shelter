@@ -1,5 +1,7 @@
 package com.redpine.home.presentation.home.delegate
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.redpine.core.databinding.DogViewHolderBinding
@@ -20,11 +22,15 @@ fun newsDelegate() =
         }
     }
 
-fun dogsDelegate(onItemClick: (ClickableView, Item, Int) -> Unit) =
+fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<Dog, Item, DogViewHolderBinding>({ inflater, root ->
         DogViewHolderBinding.inflate(inflater, root, false)
     }) {
-        binding.btnFavorite.setOnClickListener { onItemClick(ClickableView.FAVORITE, item, bindingAdapterPosition) }
+        binding.btnFavorite.setOnClickListener {
+            onItemClick(ClickableView.FAVORITE, item)
+            binding.btnFavorite.isSelected = item.isFavorite
+            Log.d(TAG, "dogsDelegate: ${item.isFavorite}")
+        }
         bind {
             binding.dogName.text = item.name
             binding.dogName.setCompoundDrawablesRelativeWithIntrinsicBounds(
@@ -32,7 +38,7 @@ fun dogsDelegate(onItemClick: (ClickableView, Item, Int) -> Unit) =
             )
             binding.dogAge.text = item.age
             binding.dogHeight.text = item.testText
-            binding.btnFavorite.isSelected = item.isFavorite
+//            binding.btnFavorite.isSelected = item.isFavorite
 
         }
     }

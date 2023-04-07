@@ -25,11 +25,14 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by lazy { initViewModel() }
 
-    private val adapter by lazy { HomeAdapter { clickableView, item, position -> onItemClick(clickableView, item, position) } }
+    private val adapter by lazy {
+        HomeAdapter { clickableView, item ->
+            onItemClick(clickableView, item)
+        }
+    }
 
-    private fun onItemClick(clickableView: ClickableView, item: Item, position: Int) {
+    private fun onItemClick(clickableView: ClickableView, item: Item) {
         viewModel.onItemClick(clickableView, item)
-        adapter.notifyItemChanged(position)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -39,7 +42,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         binding.recycler.adapter = adapter
         adapter.items = viewModel.createHomeScreen()
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -50,7 +53,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
         })
 
-        binding.filterButton.setOnClickListener{
+        binding.filterButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
         }
 
@@ -64,7 +67,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     }
 
-    private fun onSocialClick(uri: String){
+    private fun onSocialClick(uri: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
 
     }

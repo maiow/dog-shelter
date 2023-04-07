@@ -9,7 +9,7 @@ import com.redpine.home.domain.model.homeScreen.HomeScreen
 import com.redpine.home.domain.model.homeScreen.HorizontalGrid
 import com.redpine.home.domain.model.homeScreen.VerticalGrid
 
-fun horizontalGridDelegate(onItemClick:(ClickableView, Item, Int) -> Unit) =
+fun horizontalGridDelegate(onItemClick:(ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<HorizontalGrid, HomeScreen, ItemContainerViewHolderBinding>({ inflater, root ->
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -18,7 +18,7 @@ fun horizontalGridDelegate(onItemClick:(ClickableView, Item, Int) -> Unit) =
         }
     }
 
-fun verticalGridDelegate(onItemClick:(ClickableView, Item, Int) -> Unit) =
+fun verticalGridDelegate(onItemClick:(ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<VerticalGrid, HomeScreen, ItemContainerViewHolderBinding>({ inflater, root ->
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -30,7 +30,7 @@ fun verticalGridDelegate(onItemClick:(ClickableView, Item, Int) -> Unit) =
 
 fun ItemContainerViewHolderBinding.bind(
     item: HomeScreen,
-    onItemClick:(ClickableView, Item, Int) -> Unit
+    onItemClick:(ClickableView, Item) -> Unit
 ) {
     val dogAdapter = OneListItemAdapter(onItemClick)
     recyclerView.adapter = dogAdapter
