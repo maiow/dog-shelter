@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/mint_chats" />
+    <corners android:radius="12dp" />
+    <padding
+        android:bottom="4dp"
+        android:left="16dp"
+        android:right="16dp"
+        android:top="4dp" />
+</shape>
