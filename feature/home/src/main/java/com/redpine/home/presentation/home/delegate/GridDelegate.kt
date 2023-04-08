@@ -4,12 +4,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
+import com.redpine.core.tools.MarginItemDecoration
+import com.redpine.home.R
 import com.redpine.home.databinding.ItemContainerViewHolderBinding
 import com.redpine.home.domain.model.homeScreen.HomeScreen
 import com.redpine.home.domain.model.homeScreen.HorizontalGrid
 import com.redpine.home.domain.model.homeScreen.VerticalGrid
 
-fun horizontalGridDelegate(onItemClick:(ClickableView, Item) -> Unit) =
+fun horizontalGridDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<HorizontalGrid, HomeScreen, ItemContainerViewHolderBinding>({ inflater, root ->
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -18,7 +20,7 @@ fun horizontalGridDelegate(onItemClick:(ClickableView, Item) -> Unit) =
         }
     }
 
-fun verticalGridDelegate(onItemClick:(ClickableView, Item) -> Unit) =
+fun verticalGridDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<VerticalGrid, HomeScreen, ItemContainerViewHolderBinding>({ inflater, root ->
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -30,7 +32,7 @@ fun verticalGridDelegate(onItemClick:(ClickableView, Item) -> Unit) =
 
 fun ItemContainerViewHolderBinding.bind(
     item: HomeScreen,
-    onItemClick:(ClickableView, Item) -> Unit
+    onItemClick: (ClickableView, Item) -> Unit
 ) {
     val dogAdapter = OneListItemAdapter(onItemClick)
     recyclerView.adapter = dogAdapter
@@ -39,4 +41,14 @@ fun ItemContainerViewHolderBinding.bind(
     recyclerView.layoutManager = GridLayoutManager(
         recyclerView.context, item.spanCount, item.orientation, false
     )
+//    recyclerView.addItemDecoration(
+//        MarginItemDecoration(
+//            recyclerView.context.resources.getDimensionPixelSize(
+//                com.redpine.core.R.dimen.item_margin_horizontal
+//            ),
+//            recyclerView.context.resources.getDimensionPixelSize(
+//                com.redpine.core.R.dimen.item_margin_vertical
+//            )
+//        )
+//    )
 }

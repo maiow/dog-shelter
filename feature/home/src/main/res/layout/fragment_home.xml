@@ -51,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                tools:listitem="@layout/item_container_view_holder"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
@@ -73,7 +74,7 @@
                     android:layout_gravity="start"
                     android:src="@drawable/socials_vk" />
 
-                <Space
+                <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />

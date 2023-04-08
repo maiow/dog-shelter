@@ -28,17 +28,20 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     }) {
         binding.btnFavorite.setOnClickListener {
             onItemClick(ClickableView.FAVORITE, item)
-            binding.btnFavorite.isSelected = item.isFavorite
-            Log.d(TAG, "dogsDelegate: ${item.isFavorite}")
+
+//            binding.btnFavorite.isSelected = item.isFavorite
+
         }
         bind {
+            absoluteAdapterPosition
             binding.dogName.text = item.name
             binding.dogName.setCompoundDrawablesRelativeWithIntrinsicBounds(
                 0, 0, com.redpine.core.R.drawable.ic_filter_gender_male, 0
             )
             binding.dogAge.text = item.age
             binding.dogHeight.text = item.testText
-//            binding.btnFavorite.isSelected = item.isFavorite
+            binding.btnFavorite.isSelected = item.isFavorite
+            Log.d(TAG, "dogsDelegate: ${item.isFavorite}")
 
         }
     }

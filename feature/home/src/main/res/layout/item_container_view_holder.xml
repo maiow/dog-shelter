@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="16dp"
     android:layout_marginBottom="20dp">
 
     <TextView
@@ -11,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnAll"
         app:layout_constraintBottom_toBottomOf="@id/btnAll"/>
@@ -27,14 +27,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/itemTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/news_view_holder"
-        app:spanCount="1"
+        tools:listitem="@layout/dog_view_holder"
+        android:orientation="horizontal"
+        app:spanCount="2"
         app:layout_constrainedWidth="true"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
