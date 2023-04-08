@@ -53,5 +53,9 @@
         android:id="@+id/petsCardFragment"
         android:name="com.redpine.home.presentation.pets_card.PetsCardFragment"
         android:label="fragment_pets_card"
-        tools:layout="@layout/fragment_pets_card" />
+        tools:layout="@layout/fragment_pets_card" >
+    <argument
+        android:name="dogId"
+        app:argType="integer" />
+    </fragment>
 </navigation>

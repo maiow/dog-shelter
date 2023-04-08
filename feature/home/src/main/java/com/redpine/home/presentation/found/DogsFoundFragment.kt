@@ -47,7 +47,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     private fun onClick(query: Query, clickableView: ClickableView) {
         when (clickableView) {
             ClickableView.DOG -> findNavController()
-                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment())
+                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(query.id))
             else -> {}
         }
     }

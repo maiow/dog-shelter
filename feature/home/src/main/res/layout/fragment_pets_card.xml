@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
     tools:context=".presentation.pets_card.PetsCardFragment">
 
     <TextView
@@ -14,7 +13,6 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="Викки"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/dog_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +21,7 @@
         android:id="@+id/back_button"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="21dp"
         android:layout_marginBottom="8dp"
         android:background="?attr/backgroundColor"
         android:clickable="true"
@@ -37,7 +35,7 @@
         android:id="@+id/like_button"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="21dp"
         android:background="?attr/backgroundColor"
         android:clickable="true"
         android:focusable="true"
@@ -47,28 +45,33 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
-    <ImageView
-        android:id="@+id/dog_photo"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="16dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogs_name"
-        tools:ignore="ContentDescription"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/dog_photo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constrainedHeight="true"
+        >
+        <!--app:layout_constrainedHeight="true"-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/dog_photo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/dog1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/gender_image"
@@ -80,7 +83,7 @@
                 android:src="@drawable/ic_filter_gender_female"
                 app:layout_constraintEnd_toStartOf="@+id/age"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dog_photo"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -97,7 +100,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/height"
                 app:layout_constraintStart_toEndOf="@id/gender_image"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/dog_photo" />
 
             <TextView
                 android:id="@+id/height"
@@ -114,7 +117,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/color"
                 app:layout_constraintStart_toEndOf="@id/age"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/dog_photo" />
 
             <TextView
                 android:id="@+id/color"
@@ -131,7 +134,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/height"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/dog_photo" />
 
             <TextView
                 android:id="@+id/gets_along_cats"
@@ -168,45 +171,59 @@
                 app:layout_constraintTop_toBottomOf="@+id/gender_image" />
 
             <TextView
+                android:id="@+id/title_story"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/title_story"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:text="История:"
+                android:text="@string/story"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/gets_along_cats"
                 app:layout_constraintTop_toBottomOf="@+id/gets_along_cats" />
 
             <TextView
+                android:id="@+id/story"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/layout_bg"
                 android:padding="16dp"
-                android:text="Рыжая красотка Викки ищет дом. Открытая, ласковая, послушная девочка с чувством собственного достоинства. С такой собакой сложно остаться незамеченным, и вы не один раз услышите: «А что это за порода такая?» Викки отлично гуляет, слушается на ура, быстро адаптируется к новому и всегда готова завести друзей. Молодая (и душой и телом) и игривая, любит побегать за мячиком или погрызть палочку.
-        \nВикки очень верная и быстро привыкает к человеку. С ней очень комфортно и легко. Подойдёт в любую семью — с детьми, второй собакой или одинокому человеку: проблем с поведением нет, есть только больше количество положительных эмоций от общения с ней."
+                android:text="@string/test_text"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_story"
-                app:layout_constraintBottom_toTopOf="@+id/curator_button"/>
+                app:layout_constraintTop_toBottomOf="@+id/title_story" />
 
             <Button
                 android:id="@+id/curator_button"
-                android:layout_width="wrap_content"
+                style="@style/GreenOutlinedButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/green_gradient"
-                android:text="Связаться с куратором"
+                android:paddingHorizontal="34dp"
+                android:drawableEnd="@drawable/ic_chat_btn"
+                android:text="@string/contact_handler"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/story" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/share_button"
+                style="@style/GreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:paddingHorizontal="40dp"
+                android:drawableStart="@drawable/ic_share"
+                android:text="@string/share_profile"
+                app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/curator_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

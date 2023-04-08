@@ -11,6 +11,20 @@
         <item name="android:translationZ">2dp</item>
     </style>
 
+    <style name="GreenOutlinedButton" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:textColor">@color/green_solid</item>
+        <item name="fontFamily">@font/centurygothic</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/green_solid</item>
+        <item name="android:textSize">20sp</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginBottom">32dp</item>
+        <item name="cornerRadius">16dp</item>
+    </style>
+
     <style name="FilterTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
