@@ -1,8 +1,10 @@
 package com.redpine.home.presentation.home
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
@@ -34,6 +36,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
         viewModel.onItemClick(clickableView, item)
+        adapter.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,6 +50,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.data.collect{ data ->
+                Log.d(TAG, "observeData: ")
                 adapter.items = data
             }
         }

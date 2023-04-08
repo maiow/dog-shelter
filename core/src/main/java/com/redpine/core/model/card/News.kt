@@ -5,4 +5,6 @@ data class News(
     val title: String,
     val body: String,
 //    val preview: String,
-) : Item
+) : Item{
+    override var isFavorite: Boolean = false
+}

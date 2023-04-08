@@ -1,5 +1,7 @@
 package com.redpine.home.presentation.home
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
@@ -39,14 +41,27 @@ class HomeViewModel @Inject constructor(
 
     fun onItemClick(clickableView: ClickableView, item: Item) {
         when (clickableView) {
-            ClickableView.FAVORITE -> addToFavorites(item)
+            ClickableView.FAVORITE -> {
+                addToFavorites((item as Dog), ClickableView.FAVORITE.itemPosition, ClickableView.FAVORITE.listPosition)
+                Log.d(TAG, "item: ${ClickableView.FAVORITE.itemPosition}")
+                Log.d(TAG, "list: ${ClickableView.FAVORITE.listPosition}")
+            }
         }
     }
 
-    private fun addToFavorites(item: Item) {
-        /**воткнуть корутину*/
-            item as Dog
-            item.isFavorite = !item.isFavorite
+    private fun addToFavorites(item: Dog, itemPosition: Int, listPosition: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+//            _data.value[listPosition].list[itemPosition].isFavorite = !item.isFavorite
+            val newData = _data.value[listPosition].list.toMutableList()
+            newData.removeAt(itemPosition)
+            Log.d(TAG, "addToFavorites: ${newData.size}")
+            _data.value[listPosition].list = newData.toList()
+
+//            item as Dog
+//            item.isFavorite = !item.isFavorite
+
+        }
+
     }
 }
 

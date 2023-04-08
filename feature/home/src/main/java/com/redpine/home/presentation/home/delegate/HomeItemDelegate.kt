@@ -27,10 +27,11 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
         DogViewHolderBinding.inflate(inflater, root, false)
     }) {
         binding.btnFavorite.setOnClickListener {
+            ClickableView.FAVORITE.itemPosition = bindingAdapterPosition
             onItemClick(ClickableView.FAVORITE, item)
             /**переделать как-то*/
-            binding.btnFavorite.isSelected = item.isFavorite
-            Log.d(TAG, "dogsDelegate: ${item.isFavorite}")
+//            binding.btnFavorite.isSelected = item.isFavorite
+            Log.d(TAG, "bindingPosition: ${item.isFavorite}")
         }
         bind {
             binding.btnFavorite.isSelected = item.isFavorite

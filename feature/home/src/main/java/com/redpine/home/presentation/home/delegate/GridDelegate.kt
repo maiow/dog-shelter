@@ -1,5 +1,7 @@
 package com.redpine.home.presentation.home.delegate
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.redpine.core.model.card.Item
@@ -16,7 +18,9 @@ fun horizontalGridDelegate(onItemClick: (ClickableView, Item) -> Unit) =
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
     }) {
         bind {
-            binding.bind(item, onItemClick)
+            binding.bind(item){clickableView, item ->
+                clickableView.listPosition = bindingAdapterPosition
+                onItemClick(clickableView, item) }
         }
     }
 
@@ -41,14 +45,4 @@ fun ItemContainerViewHolderBinding.bind(
     recyclerView.layoutManager = GridLayoutManager(
         recyclerView.context, item.spanCount, item.orientation, false
     )
-//    recyclerView.addItemDecoration(
-//        MarginItemDecoration(
-//            recyclerView.context.resources.getDimensionPixelSize(
-//                com.redpine.core.R.dimen.item_margin_horizontal
-//            ),
-//            recyclerView.context.resources.getDimensionPixelSize(
-//                com.redpine.core.R.dimen.item_margin_vertical
-//            )
-//        )
-//    )
 }
