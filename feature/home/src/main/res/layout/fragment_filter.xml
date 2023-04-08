@@ -8,7 +8,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:id="@+id/container_checkboxes"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="80dp">
 
             <ImageButton
                 android:id="@+id/filter_close_btn"
