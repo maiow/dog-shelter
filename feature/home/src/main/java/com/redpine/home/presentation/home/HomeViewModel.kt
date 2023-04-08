@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
@@ -43,10 +44,9 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun addToFavorites(item: Item) {
-        viewModelScope.launch(Dispatchers.IO) {
+        /**воткнуть корутину*/
             item as Dog
             item.isFavorite = !item.isFavorite
-        }
     }
 }
 
