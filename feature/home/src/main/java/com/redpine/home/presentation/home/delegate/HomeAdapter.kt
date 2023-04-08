@@ -5,6 +5,8 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.redpine.core.model.card.Item
 import com.redpine.home.presentation.home.HomeScreen
 import com.redpine.home.presentation.home.ItemDiffUtil
+import com.redpine.home.presentation.tools.ClickableView
+import com.redpine.home.presentation.tools.Query
 
 class HomeAdapter : ListDelegationAdapter<List<HomeScreen>>(
     verticalGridDelegate(),
@@ -14,7 +16,7 @@ class HomeAdapter : ListDelegationAdapter<List<HomeScreen>>(
 class OneListItemAdapter : AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
 
     init {
-        delegatesManager.addDelegate(dogsDelegate())
+        delegatesManager.addDelegate(dogsDelegate { query: Query, view: ClickableView -> Unit })
             .addDelegate(newsDelegate())
     }
 
