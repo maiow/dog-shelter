@@ -8,10 +8,10 @@ object Data {
      * Mix of images with varying aspect ratios
      */
     val images = listOf(
-        Image(R.drawable.start_png_1, 250, 250),
-        Image(R.drawable.start_png_1, 250, 250),
-        Image(R.drawable.start_png_1, 250, 250),
-        Image(R.drawable.start_png_1, 250, 250),
+        Image(com.redpine.core.R.drawable.dog2, 250, 250),
+        Image(R.drawable.start_png_2, 250, 250),
+        Image(R.drawable.start_png_3, 250, 250),
+        Image(com.redpine.core.R.drawable.dog2, 250, 250),
         Image(R.drawable.start_png_1, 250, 250),
     )
 }

@@ -4,19 +4,13 @@ import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.annotation.Px
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.bumptech.glide.Glide
 import com.redpine.home.Data
 import com.redpine.home.HomeBaseFragment
@@ -24,7 +18,6 @@ import com.redpine.home.Image
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentPetsCardBinding
 import com.redpine.home.databinding.ItemGridImageBinding
-import com.redpine.home.presentation.home.delegate.HomeAdapter
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
@@ -95,11 +88,29 @@ class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
     ) {
 
         val itemPosition = parent.getChildAdapterPosition(view)
-        if (itemPosition == 0) outRect.left = innerSpacing
-        outRect.right = if (state.itemCount == itemPosition) innerSpacing  else innerSpacing
+        if (itemPosition == 0) outRect.left = innerSpacing * 4
+        outRect.right = if (state.itemCount - 1 == itemPosition) innerSpacing * 4 else innerSpacing
 
-
+//        outRect.left = if (itemPosition == 0) 0 else innerSpacing / 2
+//        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing / 2
+//
+//        Log.i("RED", "leftRect = ${outRect.left}")
+//
+//        val spacingPixelSize: Int =
+//            parent.context.resources.getDimensionPixelSize(R.dimen.carousel_spacing)
+//
+//            when (itemPosition) {
+//                0 ->
+//                    outRect.set(getOffsetPixelSize(parent, view), 0, spacingPixelSize / 2, 0)
+//                parent.adapter!!.itemCount - 1 ->
+//                    outRect.set(spacingPixelSize / 2, 0, getOffsetPixelSize(parent, view), 0)
+//                else ->
+//                    outRect.set(spacingPixelSize / 2, 0, spacingPixelSize / 2, 0)
     }
+//    private fun getOffsetPixelSize(parent: RecyclerView, view: View): Int {
+//        val orientationHelper = OrientationHelper.createVerticalHelper(parent.layoutManager)
+//        return (orientationHelper.totalSpace - view.layoutParams.width) / 4
+//    }
 }
 
 internal class CarouselAdapter(private val images: List<Image>) :
@@ -134,5 +145,4 @@ internal class CarouselAdapter(private val images: List<Image>) :
             }
         }
     }
-
 }
