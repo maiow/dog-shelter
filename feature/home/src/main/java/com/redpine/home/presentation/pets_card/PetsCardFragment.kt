@@ -8,30 +8,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.Px
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.bumptech.glide.Glide
 import com.redpine.home.Data
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.Image
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentPetsCardBinding
-import com.redpine.home.presentation.home.delegate.HomeAdapter
+import com.redpine.home.databinding.ItemGridImageBinding
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
     private val viewModel: PetsCardViewModel by lazy { initViewModel() }
 
-    private lateinit var adapter: CarouselAdapter
-    private lateinit var layoutManager: LayoutManager
+    private val adapter by lazy { CarouselAdapter(Data.images) }
     private val args by navArgs<PetsCardFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,29 +37,15 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         setShareButton(args.dogId)
         setCuratorButton(args.dogId)
 
-        val images: ArrayList<Image> = ArrayList(Data.images)
+        binding.dogPhoto.adapter = adapter
 
-        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        adapter = CarouselAdapter(images)
-
-       // PagerSnapHelper().attachToRecyclerView(binding.dogPhoto)
-
-        binding.dogPhoto.layoutManager = layoutManager
-            binding.dogPhoto.adapter = adapter
-
-        val spacing = resources.getDimensionPixelSize(R.dimen.carousel_spacing)
-        binding.dogPhoto.addItemDecoration(LinearHorizontalSpacingDecoration(spacing))
-
-     /*   with(binding.dogPhoto) {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = CarouselAdapter(images)
-            Log.i("RED", "adapter is $adapter")
-
-            //val spacing = resources.getDimensionPixelSize(R.dimen.carousel_spacing)
-            //addItemDecoration(LinearHorizontalSpacingDecoration(spacing))
-        }*/
-
+        binding.dogPhoto
+            .addItemDecoration(
+                LinearHorizontalSpacingDecoration(
+                    resources.getDimensionPixelSize(R.dimen.carousel_spacing)
+                )
+            )
+        PagerSnapHelper().attachToRecyclerView(binding.dogPhoto)
 
     }
 
@@ -101,7 +83,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     }
 }
 
-class LinearHorizontalSpacingDecoration(@Px private val innerSpacing: Int) :
+class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
     RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -110,14 +92,14 @@ class LinearHorizontalSpacingDecoration(@Px private val innerSpacing: Int) :
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-         super.getItemOffsets(outRect, view, parent, state)
-
 
         val itemPosition = parent.getChildAdapterPosition(view)
-        Log.i("RED", "innerSpacing = $innerSpacing")
 
-        outRect.left = if (itemPosition == 0) 0 else innerSpacing / 2
-        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing / 2
+        if (itemPosition == 0) outRect.left = innerSpacing
+        outRect.right = if (state.itemCount == itemPosition) innerSpacing  else innerSpacing
+
+        //outRect.left = if (itemPosition == 0) 0 else innerSpacing / 2
+        //outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing / 2
 
         Log.i("RED", "leftRect = ${outRect.left}")
 
@@ -142,24 +124,36 @@ private fun getOffsetPixelSize(parent: RecyclerView, view: View): Int {
 
 
 internal class CarouselAdapter(private val images: List<Image>) :
-    RecyclerView.Adapter<CarouselAdapter.VH>() {
+    RecyclerView.Adapter<CarouselAdapter.DogGalleryViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(ImageView(parent.context).apply {
-            layoutParams = RecyclerView.LayoutParams(
-                RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.MATCH_PARENT
-            )
-        })
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogGalleryViewHolder {
+        return DogGalleryViewHolder.create(parent)
     }
 
-    override fun onBindViewHolder(vh: VH, position: Int) {
-        val image = images[position]
-
-        Glide.with(vh.imageView).load(image.url).into(vh.imageView)
+    override fun onBindViewHolder(holder: DogGalleryViewHolder, position: Int) {
+        holder.bind(images[position])
     }
 
     override fun getItemCount(): Int = images.size
 
-    class VH(val imageView: ImageView) : RecyclerView.ViewHolder(imageView)
+    class DogGalleryViewHolder(private val binding: ItemGridImageBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: Image) {
+            Glide.with(binding.root).load(item.url).into(binding.image)
+        }
+
+        companion object {
+            fun create(parent: ViewGroup): DogGalleryViewHolder {
+                return DogGalleryViewHolder(
+                    ItemGridImageBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+        }
+    }
 }
+
