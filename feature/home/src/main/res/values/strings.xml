@@ -35,6 +35,9 @@ HEAD
     <string name="size_for_found">\ • Size \</string>
     <string name="any_for_found">\ any</string>
     <string name="age_for_found">\ • age \</string>
+    <string name="e_mail">e-mail</string>
+    <string name="password">Password</string>
+    <string name="auth_button">Авторизоватся</string>
 
     <plurals name="age_data">
         <item quantity="one">%1$s year</item>

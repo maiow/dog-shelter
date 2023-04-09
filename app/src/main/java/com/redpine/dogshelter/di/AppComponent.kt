@@ -3,7 +3,7 @@ package com.redpine.dogshelter.di
 import com.redpine.api.Api
 import com.redpine.chats.di.ChatsDependencies
 import com.redpine.favorites.di.FavoritesDependencies
-import com.redpine.home.di.HomeDependencies
+import com.redpine.home.di.deps.HomeDependencies
 import dagger.Component
 import javax.inject.Singleton
 

@@ -27,12 +27,12 @@ android {
 
 }
 dependencies {
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
-    implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
-    implementation("androidx.paging:paging-runtime:3.1.1")
+
+    implementation("com.google.firebase:firebase-auth:21.2.0")
+
     implementation(project(":api"))
     implementation(project(":core"))
 

@@ -1,9 +1,12 @@
-package com.redpine.home.di
+package com.redpine.home.di.component
 
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.core.base.DiComponent
+import com.redpine.home.di.deps.HomeDependencies
 import com.redpine.home.di.module.Binds
+import com.redpine.home.di.module.FireBaseModule
 import com.redpine.home.di.module.RepositoryModule
+import com.redpine.home.di.module.UseCaseModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,7 +15,9 @@ import javax.inject.Singleton
         HomeDependencies::class
     ], modules = [
         RepositoryModule::class,
-        Binds::class
+        Binds::class,
+        FireBaseModule::class,
+        UseCaseModule::class
     ]
 )
 @Singleton
