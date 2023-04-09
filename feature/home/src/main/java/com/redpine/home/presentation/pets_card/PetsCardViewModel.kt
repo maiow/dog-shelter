@@ -12,4 +12,6 @@ class PetsCardViewModel @Inject constructor(
     fun getCuratorNumber(dogId: Int) = "+79167777777"
 
     fun getDogLink(dogId: Int) = "1-848899393821-valli"
+
+    fun getDogName(dogId: Int) = "Викки"
 }

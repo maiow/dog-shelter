@@ -61,8 +61,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/dog_photo"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_grid_image"
+                tools:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription">
 
-            <ImageView
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <!--ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/dog_photo"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
@@ -71,7 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription" /-->
 
             <ImageView
                 android:id="@+id/gender_image"

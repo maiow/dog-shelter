@@ -10,6 +10,7 @@ object Dependence {
         const val firebaseBom = "31.2.1"
         const val nav_version = "2.5.3"
         const val splashScreen_version = "1.0.0"
+        const val glide_version = "4.15.1"
 
     }
 
@@ -22,6 +23,7 @@ object Dependence {
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
         const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen_version}"
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
     }
 
     object Di {
