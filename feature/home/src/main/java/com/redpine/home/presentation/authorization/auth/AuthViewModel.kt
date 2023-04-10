@@ -2,6 +2,7 @@ package com.redpine.home.presentation.authorization.auth
 
 import android.util.Log
 import com.redpine.core.base.BaseViewModel
+import com.redpine.core.domain.TokenProvider
 import com.redpine.core.extensions.emailValidation
 import com.redpine.core.state.LoadState
 import com.redpine.home.domain.usecase.AuthUseCase
@@ -10,6 +11,7 @@ import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
     private val authUseCase: AuthUseCase,
+    private val tokenProvider: TokenProvider,
 ) : BaseViewModel() {
 
     private var isEmailValidation = false
@@ -17,7 +19,9 @@ class AuthViewModel @Inject constructor(
 
     fun startAuth(email: String, password: String) =
         scopeAction {
-            Log.e("kart", authUseCase.authEmail(email, password).toString())
+            val token = authUseCase.authEmail(email, password).toString()
+            tokenProvider.putToken(token)
+            Log.e("kart", "$token = ${tokenProvider.getToken()}")
         }
 
     fun validation(text: String, type: TypeAuthListener) {

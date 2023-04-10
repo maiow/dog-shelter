@@ -3,6 +3,7 @@ package com.redpine.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
+import com.redpine.core.domain.TokenProvider
 import com.redpine.home.domain.repository.OnBoardingRepository
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.usecase.RegistrationUseCase
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class ViewModelFactory @Inject constructor(
     private val api: Api,
     private val onBoardingRepository: OnBoardingRepository,
+    private val tokenProvider: TokenProvider,
     private val authUseCase: AuthUseCase,
     private val registrationUseCase: RegistrationUseCase,
     private val resetPasswordUseCase: ResetPasswordUseCase,
@@ -29,7 +31,7 @@ class ViewModelFactory @Inject constructor(
         OnboardingViewModel::class.java -> OnboardingViewModel(onBoardingRepository) as T
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
-        AuthViewModel::class.java -> AuthViewModel(authUseCase) as T
+        AuthViewModel::class.java -> AuthViewModel(authUseCase,tokenProvider) as T
         RegistrationViewModel::class.java -> RegistrationViewModel(registrationUseCase) as T
         ResetPasswordViewModel::class.java -> ResetPasswordViewModel(resetPasswordUseCase) as T
         else -> throw IllegalAccessError("error create viewModel")
