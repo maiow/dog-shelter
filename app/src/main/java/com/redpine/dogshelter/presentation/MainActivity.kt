@@ -39,8 +39,14 @@ class MainActivity : AppCompatActivity() {
 
         //TODO: добавить сюда авторизационный экран, когда будет готов:
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == com.redpine.home.R.id.onboardingFragment ||
-                destination.id == com.redpine.home.R.id.filterFragment)//|| destination.id == com.redpine.home.R.id.authFragment)
+            if (destination.id == com.redpine.home.R.id.onboardingFragment
+                || destination.id == com.redpine.home.R.id.authFragment
+                || destination.id == com.redpine.home.R.id.registrationFragment
+                || destination.id == com.redpine.home.R.id.resetPasswordFragment
+                || destination.id == com.redpine.home.R.id.authMessageFragment
+            )
+
+            //|| destination.id == com.redpine.home.R.id.authFragment)
                 navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE
         }
