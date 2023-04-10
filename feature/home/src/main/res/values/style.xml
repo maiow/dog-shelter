@@ -81,4 +81,9 @@
         <item name="buttonIconTint">@drawable/ic_checked</item-->
 
     </style>
+
+    <style name="roundedCornersImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
 </resources>

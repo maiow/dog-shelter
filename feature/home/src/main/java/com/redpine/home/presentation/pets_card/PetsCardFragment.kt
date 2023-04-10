@@ -44,7 +44,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
                 )
             )
         PagerSnapHelper().attachToRecyclerView(binding.dogPhoto)
-
     }
 
     private fun setCloseButton() = binding.backButton.setOnClickListener {
@@ -88,8 +87,8 @@ class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
     ) {
 
         val itemPosition = parent.getChildAdapterPosition(view)
-        if (itemPosition == 0) outRect.left = innerSpacing * 4
-        outRect.right = if (state.itemCount - 1 == itemPosition) innerSpacing * 4 else innerSpacing
+        if (itemPosition == 0) outRect.left = 0 else innerSpacing/2
+        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing/2
 
 //        outRect.left = if (itemPosition == 0) 0 else innerSpacing / 2
 //        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing / 2
@@ -116,13 +115,13 @@ class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
 internal class CarouselAdapter(private val images: List<Image>) :
     RecyclerView.Adapter<CarouselAdapter.DogGalleryViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogGalleryViewHolder {
-        return DogGalleryViewHolder.create(parent)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        DogGalleryViewHolder(ItemGridImageBinding.inflate(LayoutInflater.from(parent.context),
+                parent,false))
 
-    override fun onBindViewHolder(holder: DogGalleryViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: DogGalleryViewHolder, position: Int) =
         holder.bind(images[position])
-    }
 
     override fun getItemCount(): Int = images.size
 
@@ -130,19 +129,8 @@ internal class CarouselAdapter(private val images: List<Image>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Image) {
-            Glide.with(binding.root).load(item.url).into(binding.image)
-        }
+            Glide.with(binding.root).load(item.url).centerCrop().into(binding.image)
 
-        companion object {
-            fun create(parent: ViewGroup): DogGalleryViewHolder {
-                return DogGalleryViewHolder(
-                    ItemGridImageBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-            }
         }
     }
 }
