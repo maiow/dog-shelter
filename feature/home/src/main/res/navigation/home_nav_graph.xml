@@ -53,6 +53,12 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/home_nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_authFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"

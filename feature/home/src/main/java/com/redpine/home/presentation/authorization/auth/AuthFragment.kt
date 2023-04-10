@@ -27,23 +27,15 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
 
         onClickAuthButton()
 
-/*        binding.resetPasswordButton.setOnClickListener {
-            findNavController().navigate(AuthFragmentDirections)
-        }
-
-        binding.registrationButton.setOnClickListener {
-            findNavController().navigate(AuthFragmentDirections)
-        }*/
-
-/*        onClickNavigationButton(
+        onClickNavigationButton(
             binding.resetPasswordButton,
-            AuthFragmentDirections.actionAuthFragmentToResetPasswordFragment2(),
+            AuthFragmentDirections.actionAuthFragmentToResetPasswordFragment(),
         )
 
         onClickNavigationButton(
             binding.registrationButton,
-            AuthFragmentDirections.actionAuthFragmentToRegistrationFragment(binding.editEmail.toString()),
-        )*/
+            AuthFragmentDirections.actionAuthFragmentToRegistrationFragment(binding.editEmail.text.toString())
+        )
 
         flowObserver(viewModel.loadState) { loadState -> loadStateListener(loadState) }
 
