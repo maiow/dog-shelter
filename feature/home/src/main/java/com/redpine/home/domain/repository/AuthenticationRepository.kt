@@ -8,10 +8,9 @@ interface AuthenticationRepository {
 
     fun authEmail(email: String, password: String): Task<AuthResult>
 
-    fun getUser(): FirebaseUser?
-
     fun createUser(email: String, password: String): Task<AuthResult>
 
-    fun userEmailVerified(): Boolean
+    fun resetPassword(email: String): Task<Void>
+
 }
 

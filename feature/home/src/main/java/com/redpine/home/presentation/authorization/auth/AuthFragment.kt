@@ -1,16 +1,16 @@
 package com.redpine.home.presentation.authorization.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.core.widget.doOnTextChanged
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputEditText
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
+import com.redpine.home.R
 import com.redpine.home.databinding.FragmentAuthBinding
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
@@ -27,17 +27,23 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
 
         onClickAuthButton()
 
-        onClickNavigationButton(
+/*        binding.resetPasswordButton.setOnClickListener {
+            findNavController().navigate(AuthFragmentDirections)
+        }
+
+        binding.registrationButton.setOnClickListener {
+            findNavController().navigate(AuthFragmentDirections)
+        }*/
+
+/*        onClickNavigationButton(
             binding.resetPasswordButton,
-            AuthFragmentDirections
-                .actionAuthFragmentToResetPasswordFragment(binding.editEmail.toString()),
+            AuthFragmentDirections.actionAuthFragmentToResetPasswordFragment2(),
         )
 
         onClickNavigationButton(
             binding.registrationButton,
-            AuthFragmentDirections
-                .actionAuthFragmentToRegistrationFragment(binding.editEmail.toString()),
-        )
+            AuthFragmentDirections.actionAuthFragmentToRegistrationFragment(binding.editEmail.toString()),
+        )*/
 
         flowObserver(viewModel.loadState) { loadState -> loadStateListener(loadState) }
 

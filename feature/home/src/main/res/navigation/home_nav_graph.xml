@@ -49,12 +49,6 @@
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
-            android:id="@+id/action_authFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
-        <action
-            android:id="@+id/action_authFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
-        <action
             android:id="@+id/action_authFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/home_nav_graph"
@@ -79,9 +73,6 @@
         android:name="com.redpine.home.presentation.authorization.resetpassword.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
-        <argument
-            android:name="email"
-            app:argType="string" />
         <action
             android:id="@+id/action_resetPasswordFragment_to_authMessageFragment"
             app:destination="@id/authMessageFragment"
