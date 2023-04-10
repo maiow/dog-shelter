@@ -35,9 +35,21 @@ HEAD
     <string name="size_for_found">\ • Size \</string>
     <string name="any_for_found">\ any</string>
     <string name="age_for_found">\ • age \</string>
+
     <string name="e_mail">e-mail</string>
     <string name="password">Password</string>
     <string name="auth_button">Авторизоватся</string>
+    <string name="registration_button">Зарегестрироваться</string>
+
+    <string name="password_helper">* Пароль должен:\n
+        - состоять из цифр и латинских букв;\n
+        - быть не короче 8-ми символов;\n
+        - содержать хотя бы 1 заглавную букву;\n
+        - содержать хотя бы 1 строчную букву;\n
+        - содержать хотя бы 1 цифру;</string>
+    <string name="reset_password_message">Забыли пароль?</string>
+    <string name="error_auth_message">*Не возможно войти с предоставленными данными</string>
+    <string name="error_internet_message">*Проверьте состояние сети</string>
 
     <plurals name="age_data">
         <item quantity="one">%1$s year</item>

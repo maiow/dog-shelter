@@ -1,9 +1,9 @@
-
 plugins {
     id(Plugins.library)
     id(Plugins.android)
     id(Plugins.kapt)
     id(Plugins.safeArgs)
+
 }
 
 android {
@@ -44,5 +44,6 @@ dependencies {
     implementation(Dependence.Core.navigationUi)
 
     implementation(Dependence.Di.dagger)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Dependence.Di.kapt)
 }

@@ -1,5 +1,10 @@
 package com.redpine.core.state
 
 enum class LoadState {
-    LOADING, SUCCESS, ERROR, //NO_RESULT
+    START,
+    LOADING,
+    SUCCESS,
+    ERROR_NETWORK,
+    ERROR_AUTH,
+    ENABLE_BUTTON
 }

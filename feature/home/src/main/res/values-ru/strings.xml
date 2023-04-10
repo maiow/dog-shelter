@@ -42,5 +42,6 @@ HEAD
         <item quantity="many">%1$s лет</item>
         <item quantity="other">%1$s лет</item>
     </plurals>
+
 >>>>>>> main
 </resources>

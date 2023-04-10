@@ -3,6 +3,7 @@ package com.redpine.core.base
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.redpine.core.state.LoadState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -14,12 +15,14 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val _loadState = MutableStateFlow(LoadState.LOADING)
+    protected val _loadState = MutableStateFlow(LoadState.START)
     val loadState = _loadState.asStateFlow()
 
     protected val handler = CoroutineExceptionHandler { _, e ->
-        Log.e("Kart", "${e.message} $e")
-        _loadState.value = LoadState.ERROR
+        Log.e("Kart", "${e.message} ${e}")
+        _loadState.value = if (e is FirebaseAuthInvalidCredentialsException)
+            LoadState.ERROR_AUTH
+        else LoadState.ERROR_NETWORK
     }
 
     protected fun scopeAction(

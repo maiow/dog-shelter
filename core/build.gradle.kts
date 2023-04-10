@@ -33,4 +33,6 @@ dependencies {
     implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
     implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
     implementation("androidx.paging:paging-runtime:3.1.1")
+
+    implementation("com.google.firebase:firebase-auth:21.2.0")
 }

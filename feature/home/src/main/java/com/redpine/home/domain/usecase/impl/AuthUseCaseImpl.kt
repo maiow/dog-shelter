@@ -1,5 +1,6 @@
 package com.redpine.home.domain.usecase.impl
 
+import com.google.firebase.FirebaseNetworkException
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.repository.AuthenticationRepository
 import kotlinx.coroutines.tasks.await

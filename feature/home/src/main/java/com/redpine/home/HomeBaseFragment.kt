@@ -13,5 +13,4 @@ abstract class HomeBaseFragment<B : ViewBinding> : BaseFragment<B>() {
             .moduleComponent
             .viewModelFactory
 
-
 }
