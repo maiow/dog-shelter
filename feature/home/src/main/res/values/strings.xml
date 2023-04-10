@@ -37,7 +37,8 @@ HEAD
     <string name="age_for_found">\ • age \</string>
 
     <string name="e_mail">e-mail</string>
-    <string name="password">Password</string>
+    <string name="password">Пароль</string>
+    <string name="repeate_password">Повторить пароль</string>
     <string name="auth_button">Авторизоватся</string>
     <string name="registration_button">Зарегестрироваться</string>
 
@@ -49,7 +50,9 @@ HEAD
         - содержать хотя бы 1 цифру;</string>
     <string name="reset_password_message">Забыли пароль?</string>
     <string name="error_auth_message">*Не возможно войти с предоставленными данными</string>
+    <string name="error_registration_message">*Не возможно зарегистрироваться с предоставленными данными</string>
     <string name="error_internet_message">*Проверьте состояние сети</string>
+    <string name="message_auth">На указвнную почту отправлено сообщение. Пройдите по ссылке из письма и авторизуйтесь снова</string>
 
     <plurals name="age_data">
         <item quantity="one">%1$s year</item>

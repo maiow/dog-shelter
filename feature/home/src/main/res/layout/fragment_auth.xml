@@ -28,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="16dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle">
 
@@ -35,7 +36,6 @@
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -7,6 +7,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.redpine.dogshelter.R
 import com.redpine.dogshelter.databinding.ActivityMainBinding
 
@@ -26,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val navView: BottomNavigationView = binding.bottomNavView
+
+
+        // ...
+// Initialize Firebase Auth
+        var auth: FirebaseAuth = Firebase.auth
 
         navView.setupWithNavController(navController)
 

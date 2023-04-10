@@ -68,6 +68,11 @@
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_registrationFragment_to_authMessageFragment"
+            app:destination="@id/authMessageFragment"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -77,5 +82,15 @@
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_authMessageFragment"
+            app:destination="@id/authMessageFragment"
+            app:popUpTo="@id/resetPasswordFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/authMessageFragment"
+        android:name="com.redpine.home.presentation.authorization.message.AuthMessageFragment"
+        android:label="fragment_auth_message"
+        tools:layout="@layout/fragment_auth_message" />
 </navigation>

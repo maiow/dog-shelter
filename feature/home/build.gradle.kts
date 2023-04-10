@@ -31,8 +31,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
 
-    implementation("com.google.firebase:firebase-auth:21.2.0")
-
     implementation(project(":api"))
     implementation(project(":core"))
 
@@ -44,6 +42,9 @@ dependencies {
     implementation(Dependence.Core.navigationUi)
 
     implementation(Dependence.Di.dagger)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+
+    implementation(Dependence.Firebase.googleServices)
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseAuth)
     kapt(Dependence.Di.kapt)
 }

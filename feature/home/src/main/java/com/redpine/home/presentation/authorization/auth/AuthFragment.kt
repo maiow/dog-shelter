@@ -8,6 +8,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
+import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentAuthBinding
@@ -22,8 +23,7 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textChangeListener(binding.editEmail, TypeAuthListener.EMAIL)
-        textChangeListener(binding.editPassword, TypeAuthListener.PASSWORD)
+        validationButton()
 
         onClickAuthButton()
 
@@ -43,10 +43,14 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
 
     }
 
-    private fun textChangeListener(edittext: TextInputEditText, type: TypeAuthListener) =
-        edittext.doOnTextChanged { text, _, _, _ ->
-            viewModel.validation(text.toString(), type)
+    private fun validationButton() {
+        binding.editEmail.onTextChanged { email ->
+            viewModel.validation(email, TypeAuthListener.EMAIL)
         }
+        binding.editPassword.onTextChanged { email ->
+            viewModel.validation(email, TypeAuthListener.PASSWORD)
+        }
+    }
 
     private fun onClickAuthButton() = binding.authButton.setOnClickListener {
         viewModel.startAuth(binding.editEmail.text.toString(), binding.editPassword.text.toString())

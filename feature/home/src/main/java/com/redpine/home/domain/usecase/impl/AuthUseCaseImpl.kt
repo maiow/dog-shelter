@@ -1,18 +1,18 @@
 package com.redpine.home.domain.usecase.impl
 
-import com.google.firebase.FirebaseNetworkException
-import com.redpine.home.domain.usecase.AuthUseCase
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.redpine.home.domain.repository.AuthenticationRepository
+import com.redpine.home.domain.usecase.AuthUseCase
 import kotlinx.coroutines.tasks.await
 
 class AuthUseCaseImpl(private val authRepository: AuthenticationRepository) : AuthUseCase {
 
-    override suspend fun authEmail(email: String, password: String): String? {
+    override suspend fun authEmail(email: String, password: String): String {
 
-        val token = authRepository.authEmail(email, password).await().user?.uid
+        val user = authRepository.authEmail(email, password).await().user
 
-        return if (authRepository.userEmailVerified()) token
-        else null
+        return if (user?.isEmailVerified == true) user.uid
+        else throw FirebaseAuthInvalidCredentialsException("403","noEmailVerifications")
 
     }
 }
