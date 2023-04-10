@@ -1,17 +1,13 @@
 package com.redpine.home.presentation.authorization.registration
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentRegistrationBinding
-import com.redpine.home.presentation.authorization.auth.AuthFragmentDirections
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
 class RegistrationFragment : HomeBaseFragment<FragmentRegistrationBinding>() {
@@ -47,10 +43,6 @@ class RegistrationFragment : HomeBaseFragment<FragmentRegistrationBinding>() {
         binding.errorInternetMessage.isVisible = loadState == LoadState.ERROR_NETWORK
         if (loadState == LoadState.SUCCESS)
             navigate(RegistrationFragmentDirections.actionRegistrationFragmentToAuthMessageFragment())
-    }
-
-    private fun navigate(direction: NavDirections) {
-           findNavController().navigate(direction)
     }
 
     private fun validationButton() {

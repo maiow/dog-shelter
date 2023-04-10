@@ -15,7 +15,6 @@ class AuthViewModel @Inject constructor(
     private var isEmailValidation = false
     private var isPasswordValidation = false
 
-
     fun startAuth(email: String, password: String) =
         scopeAction {
             Log.e("kart", authUseCase.authEmail(email, password).toString())
@@ -39,5 +38,4 @@ class AuthViewModel @Inject constructor(
     private fun passwordValidation(password: String) {
         isPasswordValidation = password.length >= 8
     }
-
 }

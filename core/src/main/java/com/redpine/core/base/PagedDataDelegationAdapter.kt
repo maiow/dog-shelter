@@ -1,3 +1,4 @@
+/*
 package com.redpine.core.base
 
 import android.view.ViewGroup
@@ -78,4 +79,4 @@ abstract class PagedDataDelegationAdapter<T:Any > : PagingDataAdapter<T, Recycle
     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
         delegatesManager.onViewDetachedFromWindow(holder)
     }
-}
+}*/

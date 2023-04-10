@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -36,6 +38,10 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     ): View? {
         _binding = initBinding(inflater)
         return binding.root
+    }
+
+    protected fun navigate(direction: NavDirections) {
+        findNavController().navigate(direction)
     }
 
 

@@ -1,16 +1,13 @@
 package com.redpine.home.presentation.authorization.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
-import com.redpine.home.R
 import com.redpine.home.databinding.FragmentAuthBinding
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
@@ -58,10 +55,6 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
         button.setOnClickListener {
             navigate(direction)
         }
-
-    private fun navigate(direction: NavDirections) {
-        findNavController().navigate(direction)
-    }
 
     private fun loadStateListener(loadState: LoadState) {
         binding.authButton.isEnabled = loadState == LoadState.ENABLE_BUTTON

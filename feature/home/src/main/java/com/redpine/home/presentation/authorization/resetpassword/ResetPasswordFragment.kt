@@ -43,8 +43,4 @@ class ResetPasswordFragment : HomeBaseFragment<FragmentResetPasswordBinding>() {
         if (loadState == LoadState.SUCCESS)
             navigate(ResetPasswordFragmentDirections.actionResetPasswordFragmentToAuthMessageFragment())
     }
-
-    private fun navigate(direction: NavDirections) {
-        findNavController().navigate(direction)
-    }
 }

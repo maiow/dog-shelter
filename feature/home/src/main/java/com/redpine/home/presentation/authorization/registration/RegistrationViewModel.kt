@@ -1,8 +1,5 @@
 package com.redpine.home.presentation.authorization.registration
 
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.util.Log
-import androidx.lifecycle.ViewModel
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.extensions.emailValidation
 import com.redpine.core.extensions.passwordValidation
@@ -45,5 +42,4 @@ class RegistrationViewModel @Inject constructor(
         this.repeatPassword = repeatPassword
         isPasswordValidation = password.passwordValidation() && password == repeatPassword
     }
-
 }
