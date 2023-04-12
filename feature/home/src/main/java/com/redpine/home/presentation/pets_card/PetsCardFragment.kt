@@ -87,8 +87,11 @@ class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
     ) {
 
         val itemPosition = parent.getChildAdapterPosition(view)
-        if (itemPosition == 0) outRect.left = 0 else innerSpacing/2
-        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing/2
+//        if (itemPosition == 0) outRect.left = 0 else innerSpacing/2
+//        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing/2
+        outRect.left = innerSpacing/2
+        outRect.right = innerSpacing/2
+
 
 //        outRect.left = if (itemPosition == 0) 0 else innerSpacing / 2
 //        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing / 2
