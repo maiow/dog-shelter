@@ -1,10 +1,10 @@
 package com.redpine.core.model.card
 
-class Dog(
-    val id: Int,
+data class Dog(
+    override val id: Int,
     val name: String,
     val age: String,
     val testText:String,
-    val isFavorite: Boolean,
+    override var isFavorite: Boolean,
     val isNew: Boolean,
 ) : Item

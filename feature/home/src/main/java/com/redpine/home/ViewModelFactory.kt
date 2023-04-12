@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
 import com.redpine.home.domain.OnboardingRepository
+import com.redpine.home.domain.Repository
 import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.found.DogsFoundViewModel
@@ -15,9 +16,10 @@ import javax.inject.Inject
 class ViewModelFactory @Inject constructor(
     private val api: Api,
     private val onboardingRepository: OnboardingRepository,
+    private val repository: Repository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
-        HomeViewModel::class.java -> HomeViewModel(api) as T
+        HomeViewModel::class.java -> HomeViewModel(repository) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository) as T
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T

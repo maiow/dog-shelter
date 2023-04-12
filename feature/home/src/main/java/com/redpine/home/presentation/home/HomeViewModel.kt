@@ -1,53 +1,73 @@
 package com.redpine.home.presentation.home
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
 import com.redpine.api.Api
 import com.redpine.core.model.card.*
+import com.redpine.core.tools.ClickableView
 import com.redpine.home.R
+import com.redpine.home.domain.Repository
+import com.redpine.home.domain.model.homeScreen.HomeScreen
+import com.redpine.home.domain.model.homeScreen.HorizontalGrid
+import com.redpine.home.domain.model.homeScreen.VerticalGrid
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
 
 class HomeViewModel @Inject constructor(
-    private val api: Api,
+    private val repository: Repository,
 ) : ViewModel() {
 
+    private val _data = MutableStateFlow<List<HomeScreen>>(emptyList())
+    val data = _data.asStateFlow()
 
     init {
         createHomeScreen()
     }
 
-    fun createHomeScreen(): List<HomeScreen> {
-        val listNewDog = mutableListOf<Item>()
-        val listRecentSeenDog = mutableListOf<Item>()
-        val listNews = mutableListOf<Item>()
-        for(i in 1..10){
-           listNewDog.add( Dog(i-1,"number $i", "age ${i+5} years","Новая Собака", Random.nextBoolean(),Random.nextBoolean()))
-           listRecentSeenDog.add(  Dog(i-1,"number $i", "age ${i+5} years","Какая-то Собака", Random.nextBoolean(),Random.nextBoolean()))
-            listNews.add(  News(i, "title $i", "some string $i"))
+    private fun createHomeScreen() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _data.value = repository.getItems()
         }
-        return listOf(
-            HorizontalGrid(R.string.New, listNewDog,1),
-            HorizontalGrid(R.string.Recent_seen, listRecentSeenDog),
-            VerticalGrid(R.string.News, listNews,1),
-        )
     }
 
+    fun onItemClick(clickableView: ClickableView, item: Item) {
+        when (clickableView) {
+            ClickableView.FAVORITE -> {
+                addToFavorites(
+                    (item as Dog),
+                    ClickableView.FAVORITE.itemPosition,
+                    ClickableView.FAVORITE.listPosition
+                )
+                Log.d(TAG, "item: ${ClickableView.FAVORITE.itemPosition}")
+                Log.d(TAG, "list: ${ClickableView.FAVORITE.listPosition}")
+            }
+        }
+    }
+
+    private fun addToFavorites(item: Dog, itemPosition: Int, listPosition: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val newData = _data.value.toMutableList()
+            val newList = newData[listPosition].list.toMutableList() as MutableList<Dog>
+            newList[itemPosition] =
+                newList[itemPosition].copy(isFavorite = !newList[itemPosition].isFavorite)
+            newData[listPosition] = (newData[listPosition] as HorizontalGrid).copy(list = newList)
+            _data.value = newData
+        }
+    }
 }
 
-interface HomeScreen {
-    val titleId: Int
-    val list: List<Item>
-    val spanCount: Int
-}
 
-class HorizontalGrid(
-    override val titleId: Int,
-    override val list: List<Item>,
-    override val spanCount:Int = 2
-):HomeScreen
 
-class VerticalGrid(
-    override val titleId: Int,
-    override val list: List<Item>,
-    override val spanCount:Int = 2
-):HomeScreen
+
+
+
+

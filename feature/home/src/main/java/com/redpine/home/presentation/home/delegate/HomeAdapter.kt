@@ -1,23 +1,28 @@
 package com.redpine.home.presentation.home.delegate
 
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.redpine.core.model.card.Item
-import com.redpine.home.presentation.home.HomeScreen
+import com.redpine.core.tools.ClickableView
+import com.redpine.home.domain.model.homeScreen.HomeScreen
+import com.redpine.home.presentation.home.HomeScreenDiffUtil
 import com.redpine.home.presentation.home.ItemDiffUtil
-import com.redpine.home.presentation.tools.ClickableView
-import com.redpine.home.presentation.tools.Query
 
-class HomeAdapter : ListDelegationAdapter<List<HomeScreen>>(
-    verticalGridDelegate(),
-    horizontalGridDelegate(),
-)
-
-class OneListItemAdapter : AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
+class HomeAdapter(onItemClick: (ClickableView, Item) -> Unit) :
+    AsyncListDifferDelegationAdapter<HomeScreen>(HomeScreenDiffUtil()) {
 
     init {
-        delegatesManager.addDelegate(dogsDelegate { query: Query, view: ClickableView -> Unit })
+        delegatesManager
+            .addDelegate(verticalGridDelegate(onItemClick))
+            .addDelegate(horizontalGridDelegate(onItemClick))
+    }
+}
+
+class OneListItemAdapter(onItemClick: (ClickableView, Item) -> Unit) :
+    AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
+
+    init {
+        delegatesManager
+            .addDelegate(dogsDelegate(onItemClick))
             .addDelegate(newsDelegate())
     }
-
 }

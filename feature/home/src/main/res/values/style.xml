@@ -86,4 +86,19 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">20dp</item>
     </style>
+
+    <style name="AppImageButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@color/background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ItemContainerTitle" parent="FilterTitle">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>
