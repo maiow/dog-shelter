@@ -33,7 +33,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
-        viewModel.onItemClick(clickableView, item)
+        viewModel.onItemClick(clickableView, item, this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

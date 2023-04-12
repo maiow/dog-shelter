@@ -4,9 +4,11 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
+import com.redpine.home.R
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.homeScreen.HomeScreen
 import com.redpine.home.domain.model.homeScreen.HorizontalGrid
@@ -33,7 +35,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun onItemClick(clickableView: ClickableView, item: Item) {
+    fun onItemClick(clickableView: ClickableView, item: Item, fragment: HomeFragment) {
         when (clickableView) {
             ClickableView.FAVORITE -> {
                 addToFavorites(
@@ -44,6 +46,8 @@ class HomeViewModel @Inject constructor(
                 Log.d(TAG, "item: ${ClickableView.FAVORITE.itemPosition}")
                 Log.d(TAG, "list: ${ClickableView.FAVORITE.listPosition}")
             }
+            ClickableView.DOG -> fragment.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item.id))
             else -> {}
         }
     }

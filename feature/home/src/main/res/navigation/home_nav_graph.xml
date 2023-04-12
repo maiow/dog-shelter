@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_petsCardFragment"
+            app:destination="@id/petsCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
