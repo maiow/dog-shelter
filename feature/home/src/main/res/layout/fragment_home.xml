@@ -11,8 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="14dp"
+        app:queryBackground="@android:color/transparent"
         android:background="@drawable/round_corners_20alfa_btn"
         app:iconifiedByDefault="false"
         app:layout_constrainedWidth="true"
@@ -51,11 +52,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                tools:itemCount="1"
                 tools:listitem="@layout/item_container_view_holder"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
                 android:id="@+id/textSocial"
+                style="@style/ItemContainerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

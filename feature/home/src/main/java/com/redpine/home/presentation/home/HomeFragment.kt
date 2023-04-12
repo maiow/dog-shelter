@@ -36,7 +36,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
         viewModel.onItemClick(clickableView, item)
-        adapter.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

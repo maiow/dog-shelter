@@ -1,6 +1,6 @@
 package com.redpine.core.model.card
 
-class Dog(
+data class Dog(
     override val id: Int,
     val name: String,
     val age: String,

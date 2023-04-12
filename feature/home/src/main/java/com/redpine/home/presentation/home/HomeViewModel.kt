@@ -42,7 +42,11 @@ class HomeViewModel @Inject constructor(
     fun onItemClick(clickableView: ClickableView, item: Item) {
         when (clickableView) {
             ClickableView.FAVORITE -> {
-                addToFavorites((item as Dog), ClickableView.FAVORITE.itemPosition, ClickableView.FAVORITE.listPosition)
+                addToFavorites(
+                    (item as Dog),
+                    ClickableView.FAVORITE.itemPosition,
+                    ClickableView.FAVORITE.listPosition
+                )
                 Log.d(TAG, "item: ${ClickableView.FAVORITE.itemPosition}")
                 Log.d(TAG, "list: ${ClickableView.FAVORITE.listPosition}")
             }
@@ -51,17 +55,13 @@ class HomeViewModel @Inject constructor(
 
     private fun addToFavorites(item: Dog, itemPosition: Int, listPosition: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-//            _data.value[listPosition].list[itemPosition].isFavorite = !item.isFavorite
-            val newData = _data.value[listPosition].list.toMutableList()
-            newData.removeAt(itemPosition)
-            Log.d(TAG, "addToFavorites: ${newData.size}")
-            _data.value[listPosition].list = newData.toList()
-
-//            item as Dog
-//            item.isFavorite = !item.isFavorite
-
+            val newData = _data.value.toMutableList()
+            val newList = newData[listPosition].list.toMutableList() as MutableList<Dog>
+            newList[itemPosition] =
+                newList[itemPosition].copy(isFavorite = !newList[itemPosition].isFavorite)
+            newData[listPosition] = (newData[listPosition] as HorizontalGrid).copy(list = newList)
+            _data.value = newData
         }
-
     }
 }
 

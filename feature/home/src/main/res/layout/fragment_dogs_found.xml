@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="14dp"
         android:background="@drawable/round_corners_20alfa_btn"
         app:layout_constrainedWidth="true"
@@ -38,9 +38,8 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/FilterTitle"
+        style="@style/ItemContainerTitle"
         android:layout_marginTop="32dp"
-        android:textSize="18sp"
         android:text="Найдено 100 питомцев"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_params_view" />
