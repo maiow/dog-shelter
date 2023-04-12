@@ -12,27 +12,25 @@ import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentDogsFoundBinding
 import com.redpine.home.presentation.home.delegate.dogsDelegate
-import com.redpine.home.presentation.tools.ClickableView
-import com.redpine.home.presentation.tools.Query
 
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
+
+    //    private val adapter by lazy {
+//        ListDelegationAdapter(dogsDelegate { query: Query, clickableView: ClickableView ->
+//            onClick(query, clickableView)
+//        })
+//    }
     private val adapter by lazy {
-        ListDelegationAdapter(dogsDelegate { query: Query, clickableView: ClickableView ->
-            onClick(query, clickableView)
+        ListDelegationAdapter(dogsDelegate { clickableView, item ->
+            onItemClick(clickableView, item)
         })
-    }
-    private val adapter by lazy {
-        ListDelegationAdapter(
-            dogsDelegate { clickableView, item ->
-                onItemClick(clickableView, item)
-            })
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
-        viewModel.onItemClick(clickableView, item)
+        viewModel.onItemClick(clickableView, item, this)
     }
 
     private val args by navArgs<DogsFoundFragmentArgs>()
@@ -57,11 +55,19 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun onClick(query: Query, clickableView: ClickableView) {
-        when (clickableView) {
-            ClickableView.DOG -> findNavController()
-                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(query.id))
-            else -> {}
-        }
-    }
+//    private fun onClick(query: Query, clickableView: ClickableView) {
+//        when (clickableView) {
+//            ClickableView.DOG -> findNavController()
+//                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(query.id))
+//            else -> {}
+//        }
+//    }
+
+//    private fun onClick(item: Item, clickableView: ClickableView) {
+//        when (clickableView) {
+//            ClickableView.DOG -> findNavController()
+//                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(item.id))
+//            else -> {}
+//        }
+//    }
 }

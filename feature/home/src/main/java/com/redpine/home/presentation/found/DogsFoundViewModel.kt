@@ -1,6 +1,7 @@
 package com.redpine.home.presentation.found
 
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import com.redpine.api.Api
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
@@ -25,9 +26,12 @@ class DogsFoundViewModel(api: Api) : ViewModel() {
 
     val foundDogList = _foundDogList.toList()
 
-    fun onItemClick(clickableView: ClickableView, item: Item) {
+    fun onItemClick(clickableView: ClickableView, item: Item, fragment: DogsFoundFragment) {
         when (clickableView) {
             ClickableView.FAVORITE -> addToFavorites(item)
+            ClickableView.DOG -> fragment.findNavController()
+                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(item.id))
+            else -> {}
         }
     }
 

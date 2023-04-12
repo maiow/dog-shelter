@@ -2,17 +2,13 @@ package com.redpine.home.presentation.home.delegate
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.appcompat.content.res.AppCompatResources
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.redpine.core.databinding.DogViewHolderBinding
 import com.redpine.core.databinding.NewsViewHolderBinding
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
-import com.redpine.home.presentation.tools.ClickableView
-import com.redpine.home.presentation.tools.Query
 import com.redpine.core.tools.ClickableView
-import com.redpine.home.R
 
 fun newsDelegate() =
     adapterDelegateViewBinding<News, Item, NewsViewHolderBinding>({ inflater, root ->
@@ -24,8 +20,7 @@ fun newsDelegate() =
         }
     }
 
-fun dogsDelegate(onClick: (query: Query, clickableView: ClickableView, Item) -> Unit) =
-fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
+fun dogsDelegate(onItemClick: (/*Query, */ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<Dog, Item, DogViewHolderBinding>({ inflater, root ->
         DogViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -45,8 +40,8 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
             binding.dogAge.text = item.age
             binding.dogHeight.text = item.testText
 
-            binding.dogCard.setOnClickListener{
-                onClick(Query(id = item.id), ClickableView.DOG)
+            binding.dogCard.setOnClickListener {
+                onItemClick(/*Query(id = item.id), */ClickableView.DOG, item)
             }
         }
     }

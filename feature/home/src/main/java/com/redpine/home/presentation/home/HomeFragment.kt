@@ -12,14 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
-
-
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
-import com.redpine.home.TG_URI
-import com.redpine.home.VK_URI
 import com.redpine.home.databinding.FragmentHomeBinding
 import com.redpine.home.presentation.home.delegate.HomeAdapter
+import com.redpine.home.presentation.tools.TG_URI
+import com.redpine.home.presentation.tools.VK_URI
 import kotlinx.coroutines.launch
 
 class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
