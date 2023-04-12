@@ -45,5 +45,18 @@
         android:name="filters"
         android:defaultValue="Девочка"
         app:argType="string" />
+        <action
+            android:id="@+id/action_dogsFoundFragment_to_petsCardFragment"
+            app:destination="@id/petsCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/petsCardFragment"
+        android:name="com.redpine.home.presentation.pets_card.PetsCardFragment"
+        android:label="fragment_pets_card"
+        tools:layout="@layout/fragment_pets_card" >
+    <argument
+        android:name="dogId"
+        android:defaultValue="1"
+        app:argType="integer" />
     </fragment>
 </navigation>

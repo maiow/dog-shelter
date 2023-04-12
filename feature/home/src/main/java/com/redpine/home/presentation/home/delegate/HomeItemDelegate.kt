@@ -6,6 +6,8 @@ import com.redpine.core.databinding.NewsViewHolderBinding
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
+import com.redpine.home.presentation.tools.ClickableView
+import com.redpine.home.presentation.tools.Query
 
 fun newsDelegate() =
     adapterDelegateViewBinding<News, Item, NewsViewHolderBinding>({ inflater, root ->
@@ -17,7 +19,7 @@ fun newsDelegate() =
         }
     }
 
-fun dogsDelegate() =
+fun dogsDelegate(onClick: (query: Query, clickableView: ClickableView) -> Unit) =
     adapterDelegateViewBinding<Dog, Item, DogViewHolderBinding>({ inflater, root ->
         DogViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -25,5 +27,9 @@ fun dogsDelegate() =
             binding.dogName.text = item.name
             binding.dogAge.text = item.age
             binding.dogHeight.text = item.testText
+
+            binding.dogCard.setOnClickListener{
+                onClick(Query(id = item.id), ClickableView.DOG)
+            }
         }
     }

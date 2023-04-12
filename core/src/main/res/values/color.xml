@@ -9,6 +9,9 @@
     <color name="grey_inactive">#4D470D21</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    <color name="blue">#90B8CF</color>
+    <color name="cream">#DFD2A3</color>
+    <color name="lilac">#C3B1EC</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

@@ -4,6 +4,7 @@ plugins {
     id(Plugins.android)
     id(Plugins.kapt)
     id(Plugins.safeArgs)
+    id(Plugins.parselize)
 }
 
 android {
@@ -42,6 +43,7 @@ dependencies {
     implementation(Dependence.Core.material)
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.navigationUi)
+    implementation(Dependence.Core.glide)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.kapt)

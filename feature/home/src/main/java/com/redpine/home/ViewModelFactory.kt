@@ -8,6 +8,7 @@ import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.found.DogsFoundViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
+import com.redpine.home.presentation.pets_card.PetsCardViewModel
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
@@ -20,7 +21,8 @@ class ViewModelFactory @Inject constructor(
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository) as T
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
-        else -> throw IllegalAccessError("error create viewModel")
+        PetsCardViewModel::class.java -> PetsCardViewModel(api) as T
+        else -> throw IllegalAccessError("ViewModel creating error")
     }
 
 

@@ -10,12 +10,18 @@ import com.redpine.core.model.card.Dog
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentDogsFoundBinding
 import com.redpine.home.presentation.home.delegate.dogsDelegate
+import com.redpine.home.presentation.tools.ClickableView
+import com.redpine.home.presentation.tools.Query
 
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
-    private val adapter by lazy { ListDelegationAdapter(dogsDelegate()) }
+    private val adapter by lazy {
+        ListDelegationAdapter(dogsDelegate { query: Query, clickableView: ClickableView ->
+            onClick(query, clickableView)
+        })
+    }
     private val args by navArgs<DogsFoundFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,7 +30,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         setFilterText(args.filters)
         loadContent(viewModel.foundDogList)
 
-        binding.filterButton.setOnClickListener{
+        binding.filterButton.setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -36,5 +42,13 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     private fun loadContent(data: List<Dog>) {
         adapter.items = data
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun onClick(query: Query, clickableView: ClickableView) {
+        when (clickableView) {
+            ClickableView.DOG -> findNavController()
+                .navigate(DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(query.id))
+            else -> {}
+        }
     }
 }
