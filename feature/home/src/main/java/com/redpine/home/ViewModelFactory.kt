@@ -8,6 +8,7 @@ import com.redpine.home.domain.Repository
 import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.found.DogsFoundViewModel
+import com.redpine.home.presentation.news.NewsListViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
 import com.redpine.home.presentation.pets_card.PetsCardViewModel
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class ViewModelFactory @Inject constructor(
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
         PetsCardViewModel::class.java -> PetsCardViewModel(api) as T
+        NewsListViewModel::class.java -> NewsListViewModel(repository) as T
         else -> throw IllegalAccessError("ViewModel creating error")
     }
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".presentation.found.DogsFoundFragment">
 
     <TextView
@@ -23,13 +22,9 @@
         android:gravity="center"/>
 
     <ImageButton
+        style="@style/AppImageButton"
         android:id="@+id/filter_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:background="?attr/backgroundColor"
-        android:clickable="true"
-        android:focusable="true"
         android:src="@drawable/filter_button"
         app:layout_constraintBottom_toBottomOf="@+id/search_params_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,14 +35,16 @@
         android:id="@+id/title"
         style="@style/ItemContainerTitle"
         android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
         android:text="Найдено 100 питомцев"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_params_view" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="6dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

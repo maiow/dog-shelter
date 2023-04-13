@@ -10,7 +10,7 @@ import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
 import com.redpine.core.tools.ClickableView
 
-fun newsDelegate() =
+fun newsDelegate(onItemClick: (/*Query, */ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<News, Item, NewsViewHolderBinding>({ inflater, root ->
         NewsViewHolderBinding.inflate(inflater, root, false)
     }) {

@@ -1,38 +1,39 @@
-package com.redpine.home.presentation.home
+package com.redpine.home.presentation.news
 
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
-import com.redpine.home.databinding.FragmentHomeBinding
-import com.redpine.home.domain.model.homeScreen.HomeScreen
-import com.redpine.home.presentation.home.delegate.HomeAdapter
+import com.redpine.home.databinding.FragmentNewsListBinding
+import com.redpine.home.presentation.home.HomeViewModel
+import com.redpine.home.presentation.home.delegate.newsDelegate
 import com.redpine.home.presentation.tools.TG_URI
 import com.redpine.home.presentation.tools.VK_URI
 import kotlinx.coroutines.launch
 
-class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
+class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
-    private val viewModel: HomeViewModel by lazy { initViewModel() }
-    private val adapter by lazy { HomeAdapter (::onItemClick, ::onContainerAllButtonClick) }
-
-    private fun onContainerAllButtonClick(clickableView: ClickableView) {
-        viewModel.onAllButtonClick(clickableView, this)
-    }
+    override fun initBinding(inflater: LayoutInflater) = FragmentNewsListBinding.inflate(inflater)
+    private val viewModel: NewsListViewModel by lazy { initViewModel() }
+    private val adapter by lazy { ListDelegationAdapter(newsDelegate(::onItemClick)) }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
-        viewModel.onItemClick(clickableView, item, this)
+        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,8 +47,9 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.data.collect{ data ->
-                Log.d(TAG, "observeData: ")
                 adapter.items = data
+                adapter.notifyDataSetChanged()
+                Log.d(ContentValues.TAG, "fragment: $data")
             }
         }
     }
@@ -58,11 +60,12 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun setUserInterface() {
         setSearch()
-        binding.filterButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
-        }
-        binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
-        binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }
+//        binding.filterButton.setOnClickListener {
+//            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
+//        }
+//        binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
+//        binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }
+
     }
 
     private fun onSocialClick(uri: String) {
@@ -80,4 +83,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             }
         })
     }
+
+
 }

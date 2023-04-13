@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.news.NewsListFragment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="16dp"
+        app:queryBackground="@android:color/transparent"
+        android:background="@drawable/round_corners_20alfa_btn"
+        app:iconifiedByDefault="false"
+        app:queryHint="Что вы ищете?" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/FilterTitle"
+        android:layout_marginTop="32dp"
+        android:text="Новости" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="6dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:listitem="@layout/news_view_holder"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+</LinearLayout>

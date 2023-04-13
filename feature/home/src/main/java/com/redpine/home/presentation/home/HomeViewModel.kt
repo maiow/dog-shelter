@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
+import com.redpine.core.tools.DOG_CONTAINER
+import com.redpine.core.tools.NEWS_CONTAINER
 import com.redpine.home.R
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.homeScreen.HomeScreen
@@ -60,6 +62,14 @@ class HomeViewModel @Inject constructor(
                 newList[itemPosition].copy(isFavorite = !newList[itemPosition].isFavorite)
             newData[listPosition] = (newData[listPosition] as HorizontalGrid).copy(list = newList)
             _data.value = newData
+        }
+    }
+
+    fun onAllButtonClick(clickableView: ClickableView, fragment: HomeFragment) {
+        Log.d(TAG, "onAllButtonClick: ${clickableView.container}")
+        when(clickableView.container){
+            DOG_CONTAINER -> fragment.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
+            NEWS_CONTAINER -> fragment.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
         }
     }
 }

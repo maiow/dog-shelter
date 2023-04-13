@@ -7,13 +7,16 @@ import com.redpine.home.domain.model.homeScreen.HomeScreen
 import com.redpine.home.presentation.home.HomeScreenDiffUtil
 import com.redpine.home.presentation.home.ItemDiffUtil
 
-class HomeAdapter(onItemClick: (ClickableView, Item) -> Unit) :
+class HomeAdapter(
+    onItemClick: (ClickableView, Item) -> Unit,
+    onContainerAllButtonClick: (ClickableView) -> Unit
+) :
     AsyncListDifferDelegationAdapter<HomeScreen>(HomeScreenDiffUtil()) {
 
     init {
         delegatesManager
-            .addDelegate(verticalGridDelegate(onItemClick))
-            .addDelegate(horizontalGridDelegate(onItemClick))
+            .addDelegate(verticalGridDelegate(onItemClick, onContainerAllButtonClick))
+            .addDelegate(horizontalGridDelegate(onItemClick, onContainerAllButtonClick))
     }
 }
 
@@ -23,6 +26,6 @@ class OneListItemAdapter(onItemClick: (ClickableView, Item) -> Unit) :
     init {
         delegatesManager
             .addDelegate(dogsDelegate(onItemClick))
-            .addDelegate(newsDelegate())
+            .addDelegate(newsDelegate(onItemClick))
     }
 }

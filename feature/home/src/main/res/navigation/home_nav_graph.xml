@@ -29,6 +29,12 @@
         <action
             android:id="@+id/action_homeFragment_to_petsCardFragment"
             app:destination="@id/petsCardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dogsFoundFragment"
+            app:destination="@id/dogsFoundFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -62,4 +68,9 @@
         android:defaultValue="1"
         app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="com.redpine.home.presentation.news.NewsListFragment"
+        android:label="fragment_news_list"
+        tools:layout="@layout/fragment_news_list" />
 </navigation>
