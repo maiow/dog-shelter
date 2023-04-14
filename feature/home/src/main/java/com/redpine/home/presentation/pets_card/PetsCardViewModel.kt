@@ -14,4 +14,12 @@ class PetsCardViewModel @Inject constructor(
     fun getDogLink(dogId: Int) = "1-848899393821-valli"
 
     fun getDogName(dogId: Int) = "Викки"
+
+//    fun getUrls() {
+//        firebaseStorage.ref('image.jpg').getDownloadURL()
+//            .then((url) => {
+//                Log.i("RED", "first url = $it")
+//            })
+//        )
+//    }
 }

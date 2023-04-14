@@ -2,6 +2,7 @@ package com.redpine.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.storage.FirebaseStorage
 import com.redpine.api.Api
 import com.redpine.home.domain.OnboardingRepository
 import com.redpine.home.domain.Repository
@@ -17,7 +18,8 @@ import javax.inject.Inject
 class ViewModelFactory @Inject constructor(
     private val api: Api,
     private val onboardingRepository: OnboardingRepository,
-    private val repository: Repository
+    private val repository: Repository,
+    private val firebaseStorage: FirebaseStorage
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         HomeViewModel::class.java -> HomeViewModel(repository) as T
