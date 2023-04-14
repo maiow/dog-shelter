@@ -10,7 +10,6 @@ import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.core.tools.DOG_CONTAINER
 import com.redpine.core.tools.NEWS_CONTAINER
-import com.redpine.home.R
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.homeScreen.HomeScreen
 import com.redpine.home.domain.model.homeScreen.HorizontalGrid
@@ -41,15 +40,15 @@ class HomeViewModel @Inject constructor(
         when (clickableView) {
             ClickableView.FAVORITE -> {
                 addToFavorites(
-                    (item as Dog),
-                    ClickableView.FAVORITE.itemPosition,
-                    ClickableView.FAVORITE.listPosition
+                    (item as Dog), ClickableView.FAVORITE.itemPosition, ClickableView.FAVORITE.listPosition
                 )
                 Log.d(TAG, "item: ${ClickableView.FAVORITE.itemPosition}")
                 Log.d(TAG, "list: ${ClickableView.FAVORITE.listPosition}")
             }
             ClickableView.DOG -> fragment.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item.id))
+            ClickableView.NEWS -> fragment.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item.id))
             else -> {}
         }
     }
@@ -67,9 +66,11 @@ class HomeViewModel @Inject constructor(
 
     fun onAllButtonClick(clickableView: ClickableView, fragment: HomeFragment) {
         Log.d(TAG, "onAllButtonClick: ${clickableView.container}")
-        when(clickableView.container){
-            DOG_CONTAINER -> fragment.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
-            NEWS_CONTAINER -> fragment.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
+        when (clickableView.container) {
+            DOG_CONTAINER -> fragment.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
+            NEWS_CONTAINER -> fragment.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
         }
     }
 }
