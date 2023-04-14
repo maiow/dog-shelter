@@ -31,6 +31,6 @@ dependencies {
     implementation(Dependence.Core.fragmentKtx)
     implementation(Dependence.Core.material)
     implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
-    implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
-    implementation("androidx.paging:paging-runtime:3.1.1")
+    //implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
+    //implementation("androidx.paging:paging-runtime:3.1.1")
 }

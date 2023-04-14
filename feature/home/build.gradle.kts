@@ -46,7 +46,8 @@ dependencies {
 
     implementation(Dependence.Firebase.googleServices)
     implementation(platform(Dependence.Firebase.firebaseBom))
-    implementation(Dependence.Firebase.firebaseStorage)
+    implementation(Dependence.Firebase.firebaseAuth)
+    implementation(Dependence.Firebase.firebaseDatabase)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.kapt)
