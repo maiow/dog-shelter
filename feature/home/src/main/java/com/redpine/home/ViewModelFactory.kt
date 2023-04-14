@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
 import com.redpine.home.domain.OnboardingRepository
 import com.redpine.home.domain.Repository
-import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.found.DogsFoundViewModel
+import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.news.NewsListViewModel
+import com.redpine.home.presentation.news.SingleNewsViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
 import com.redpine.home.presentation.pets_card.PetsCardViewModel
 import javax.inject.Inject
@@ -26,6 +27,7 @@ class ViewModelFactory @Inject constructor(
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
         PetsCardViewModel::class.java -> PetsCardViewModel(api) as T
         NewsListViewModel::class.java -> NewsListViewModel(repository) as T
+        SingleNewsViewModel::class.java -> SingleNewsViewModel(repository) as T
         else -> throw IllegalAccessError("ViewModel creating error")
     }
 

@@ -14,6 +14,9 @@ fun newsDelegate(onItemClick: (/*Query, */ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<News, Item, NewsViewHolderBinding>({ inflater, root ->
         NewsViewHolderBinding.inflate(inflater, root, false)
     }) {
+        binding.root.setOnClickListener {
+            onItemClick(ClickableView.NEWS, item)
+        }
         bind {
             binding.newsTitle.text = item.title
             binding.newsBodyPreview.text = item.body
