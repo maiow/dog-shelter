@@ -16,11 +16,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -29,11 +29,10 @@ android {
 }
 dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
-    implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
-    implementation("androidx.paging:paging-runtime:3.1.1")
+
     implementation(project(":api"))
     implementation(project(":core"))
 
@@ -44,6 +43,10 @@ dependencies {
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.navigationUi)
     implementation(Dependence.Core.glide)
+
+    implementation(Dependence.Firebase.googleServices)
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseStorage)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.kapt)
