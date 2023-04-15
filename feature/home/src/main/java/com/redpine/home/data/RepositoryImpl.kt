@@ -1,10 +1,9 @@
 package com.redpine.home.data
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
+import com.redpine.home.Data
 import com.redpine.home.R
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.homeScreen.HomeScreen
@@ -41,7 +40,7 @@ class RepositoryImpl:Repository {
                     Random.nextBoolean()
                 )
             )
-            listNews.add(News(i, "title $i", "some string $i"))
+            listNews.add(News(i, "title $i", "some string $i", Data.images.shuffled().first().url))
         }
         return listOf(
             HorizontalGrid(titleId = R.string.New, list = listNewDog, spanCount = 1),
@@ -53,7 +52,7 @@ class RepositoryImpl:Repository {
     override suspend fun getNewsList(): List<News>{
         val listNews = mutableListOf<News>()
         for (i in 1..20) {
-            listNews.add(News(i, "title $i", "some string $i"))
+            listNews.add(News(i, "title $i", "some string $i", Data.images.shuffled().first().url))
         }
         return listNews.toList()
     }

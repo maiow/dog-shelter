@@ -9,18 +9,20 @@ import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
 import com.redpine.core.tools.ClickableView
+import com.redpine.core.tools.loadImage
 
-fun newsDelegate(onItemClick: (/*Query, */ClickableView, Item) -> Unit) =
+fun newsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<News, Item, NewsViewHolderBinding>({ inflater, root ->
         NewsViewHolderBinding.inflate(inflater, root, false)
     }) {
         bind {
             binding.newsTitle.text = item.title
             binding.newsBodyPreview.text = item.body
+            binding.newsPreview.loadImage(item.imageUrl)
         }
     }
 
-fun dogsDelegate(onItemClick: (/*Query, */ClickableView, Item) -> Unit) =
+fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     adapterDelegateViewBinding<Dog, Item, DogViewHolderBinding>({ inflater, root ->
         DogViewHolderBinding.inflate(inflater, root, false)
     }) {
@@ -41,7 +43,7 @@ fun dogsDelegate(onItemClick: (/*Query, */ClickableView, Item) -> Unit) =
             binding.dogHeight.text = item.testText
 
             binding.dogCard.setOnClickListener {
-                onItemClick(/*Query(id = item.id), */ClickableView.DOG, item)
+                onItemClick(ClickableView.DOG, item)
             }
         }
     }
