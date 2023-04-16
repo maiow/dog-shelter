@@ -62,10 +62,13 @@ class RepositoryImpl : Repository {
     override suspend fun getNewsList(count: Int): List<News> {
         val listNews = mutableListOf<News>()
         for (i in 1..count) {
-            listNews.add(News(i, "title $i", "some string $i", Data.images.shuffled().first().url))
+            listNews.add(News(i, "title $i", "some string $i",
+                Data.images.shuffled().first().url))
         }
         return listNews.toList()
     }
 
-    override suspend fun getSingleNews(id: Int): News = News(id, "Новостей нет", "Лень рисовать пока что")
+    override suspend fun getSingleNews(id: Int): News =
+        News(id, "Новостей нет", "Лень рисовать пока что",
+            Data.images.shuffled().first().url)
 }
