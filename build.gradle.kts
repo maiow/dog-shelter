@@ -29,3 +29,7 @@ tasks.withType<DependencyUpdatesTask> {
         isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
 }
+
+tasks.register<Delete>("clean"){
+    delete(rootProject.buildDir)
+}
