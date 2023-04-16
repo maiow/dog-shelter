@@ -1,39 +1,26 @@
 object Dependence {
 
-    private object Versions {
-        const val core = "1.9.0"
-        const val appcompat = "1.6.1"
-        const val material = "1.8.0"
-        const val constraint = "2.1.4"
-        const val dagger = "2.44.2"
-        const val googleServices = "4.3.15"
-        const val firebaseBom = "31.2.1"
-        const val nav_version = "2.5.3"
-        const val splashScreen_version = "1.0.0"
-        const val glide_version = "4.15.1"
-
-    }
-
     object Core {
-        const val core = "androidx.core:core-ktx:${Versions.core}"
-        const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
-        const val material = "com.google.android.material:material:${Versions.material}"
-        const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.2"
-        const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
-        const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
-        const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen_version}"
-        const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+        const val core = "androidx.core:core-ktx:1.9.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.6.1"
+        const val material = "com.google.android.material:material:1.8.0"
+        const val constraint = "androidx.constraintlayout:constraintlayout:2.1.4"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.6"
+        const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:2.5.3"
+        const val navigationUi = "androidx.navigation:navigation-ui-ktx:2.5.3"
+        const val splashScreen = "androidx.core:core-splashscreen:1.0.0"
+        const val glide = "com.github.bumptech.glide:glide:4.15.1"
+        const val adapterDelegates = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2"
     }
 
     object Di {
-        const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-        const val kapt = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+        const val dagger = "com.google.dagger:dagger:2.45"
+        const val kapt = "com.google.dagger:dagger-compiler:2.45"
     }
 
     object Firebase {
-        const val googleServices = "com.google.gms:google-services:${Versions.googleServices}"
-        const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
+        const val googleServices = "com.google.gms:google-services:4.3.15"
+        const val firebaseBom = "com.google.firebase:firebase-bom:31.5.0"
         const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
         const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
         const val firebaseDatabase = "com.google.firebase:firebase-database-ktx" //Realtime Database

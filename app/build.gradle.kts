@@ -25,6 +25,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
+//        debug {
+//            isMinifyEnabled = false
+//            applicationIdSuffix = ".beta"
+//        }
     }
     compileOptions {
         sourceCompatibility = Config.javaVersion

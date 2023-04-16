@@ -31,7 +31,6 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
 
     implementation(project(":api"))
     implementation(project(":core"))
@@ -43,6 +42,7 @@ dependencies {
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.navigationUi)
     implementation(Dependence.Core.glide)
+    implementation(Dependence.Core.adapterDelegates)
 
     implementation(Dependence.Firebase.googleServices)
     implementation(platform(Dependence.Firebase.firebaseBom))
