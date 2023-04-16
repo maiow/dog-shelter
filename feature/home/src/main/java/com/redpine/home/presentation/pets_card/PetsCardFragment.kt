@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.redpine.core.tools.loadImage
 import com.redpine.home.Data
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.Image
@@ -131,9 +131,6 @@ internal class CarouselAdapter(private val images: List<Image>) :
     class DogGalleryViewHolder(private val binding: ItemGridImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Image) {
-            Glide.with(binding.root).load(item.url).centerCrop().into(binding.image)
-
-        }
+        fun bind(item: Image) = binding.image.loadImage(item.url)
     }
 }

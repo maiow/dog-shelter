@@ -18,7 +18,7 @@ import javax.inject.Inject
 class ViewModelFactory @Inject constructor(
     private val api: Api,
     private val onboardingRepository: OnboardingRepository,
-    private val repository: Repository
+    private val repository: Repository,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         HomeViewModel::class.java -> HomeViewModel(repository) as T

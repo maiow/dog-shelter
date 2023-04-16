@@ -2,6 +2,7 @@ package com.redpine.home.data
 
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.News
+import com.redpine.home.Data
 import com.redpine.home.R
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.homeScreen.HomeScreen
@@ -49,7 +50,7 @@ class RepositoryImpl : Repository {
                     i - 1,
                     "number $i",
                     "age ${i + 5} years",
-                    "Новая Собака",
+                    "Какая-то Собака",
                     Random.nextBoolean(),
                     Random.nextBoolean()
                 )
@@ -61,7 +62,7 @@ class RepositoryImpl : Repository {
     override suspend fun getNewsList(count: Int): List<News> {
         val listNews = mutableListOf<News>()
         for (i in 1..count) {
-            listNews.add(News(i, "title $i", "some string $i"))
+            listNews.add(News(i, "title $i", "some string $i", Data.images.shuffled().first().url))
         }
         return listNews.toList()
     }
