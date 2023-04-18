@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class FireBaseModule {
+class FirebaseModule {
 
     @Provides
     fun providesFireBase() = Firebase.auth

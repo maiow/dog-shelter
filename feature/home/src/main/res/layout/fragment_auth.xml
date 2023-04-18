@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context=".presentation.authorization.auth.AuthFragment">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,5 +99,10 @@
         android:layout_marginHorizontal="16dp"
         android:layout_gravity="center"
         android:text="@string/registration_button" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"/>
 
 </LinearLayout>

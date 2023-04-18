@@ -33,5 +33,6 @@ dependencies {
     implementation(Dependence.Core.navigationFragment)
     implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2")
 
-    implementation("com.google.firebase:firebase-auth:21.2.0")
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseAuth)
 }

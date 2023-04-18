@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="16dp"
-        android:hint="@string/repeate_password"
+        android:hint="@string/repeat_password"
         app:helperText="@string/password_helper"
         app:endIconMode="password_toggle">
 
