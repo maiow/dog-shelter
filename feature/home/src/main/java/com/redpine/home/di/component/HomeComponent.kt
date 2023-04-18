@@ -1,4 +1,4 @@
-package com.redpine.home.di
+package com.redpine.home.di.component
 
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.core.base.DiComponent

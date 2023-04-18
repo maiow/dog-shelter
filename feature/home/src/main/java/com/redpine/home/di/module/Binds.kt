@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.home.ViewModelFactory
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.OnboardingRepositoryImpl
-import com.redpine.home.domain.repository.OnBoardingRepository
+import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
 import com.redpine.home.domain.repository.AuthenticationRepository
@@ -12,9 +12,7 @@ import com.redpine.home.domain.usecase.RegistrationUseCase
 import com.redpine.home.domain.usecase.ResetPasswordUseCase
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
-import com.redpine.home.data.OnboardingRepositoryImpl
-import com.redpine.home.data.RepositoryImpl
-import com.redpine.home.domain.OnboardingRepository
+import com.redpine.home.data.repository.RepositoryImpl
 import com.redpine.home.domain.Repository
 import dagger.Module
 
@@ -22,7 +20,7 @@ import dagger.Module
 interface Binds {
 
     @dagger.Binds
-    fun bindsOnBoardingRepository(repositoryImpl: OnboardingRepositoryImpl): OnBoardingRepository
+    fun bindsOnboardingRepository(repositoryImpl: OnboardingRepositoryImpl): OnboardingRepository
 
     @dagger.Binds
     fun bindsAuthenticationRepository(repositoryImpl: AuthenticationRepositoryImpl): AuthenticationRepository

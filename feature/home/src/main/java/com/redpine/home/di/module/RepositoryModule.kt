@@ -3,8 +3,7 @@ package com.redpine.home.di.module
 import com.google.firebase.auth.FirebaseAuth
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.OnboardingRepositoryImpl
-import com.redpine.home.data.OnboardingRepositoryImpl
-import com.redpine.home.data.RepositoryImpl
+import com.redpine.home.data.repository.RepositoryImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -14,7 +13,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesOnBoardingRepository() = OnboardingRepositoryImpl()
+    fun providesOnboardingRepository() = OnboardingRepositoryImpl()
 
     @Provides
     @Singleton

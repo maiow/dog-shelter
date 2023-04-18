@@ -3,7 +3,7 @@ package com.redpine.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
-import com.redpine.home.domain.OnboardingRepository
+import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.Repository
 import com.redpine.core.domain.TokenProvider
 import com.redpine.home.domain.usecase.AuthUseCase
@@ -15,7 +15,6 @@ import com.redpine.home.presentation.authorization.resetpassword.ResetPasswordVi
 import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.found.DogsFoundViewModel
-import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.news.NewsListViewModel
 import com.redpine.home.presentation.news.SingleNewsViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
@@ -35,7 +34,6 @@ class ViewModelFactory @Inject constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         HomeViewModel::class.java -> HomeViewModel(repository) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository) as T
-        HomeViewModel::class.java -> HomeViewModel(api) as T
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
         PetsCardViewModel::class.java -> PetsCardViewModel(api) as T

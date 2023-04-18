@@ -1,10 +1,10 @@
 package com.redpine.home.data.repository
 
 import com.redpine.home.R
-import com.redpine.home.domain.repository.OnBoardingRepository
+import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.model.Onboarding
 
-class OnboardingRepositoryImpl : OnBoardingRepository {
+class OnboardingRepositoryImpl : OnboardingRepository {
 
     private val list = listOf<Onboarding>(
         Onboarding(

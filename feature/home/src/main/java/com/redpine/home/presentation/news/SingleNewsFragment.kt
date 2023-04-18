@@ -57,7 +57,7 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
                             binding.newsTitle.isVisible = false
                         }
 
-                        LoadState.ERROR -> {
+                        LoadState.ERROR_NETWORK -> {
                             binding.progressBar.isVisible = false
                             binding.newsBody.isVisible = false
                             binding.newsTitle.isVisible = false
@@ -70,6 +70,7 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
                             binding.newsBody.isVisible = true
                             binding.newsTitle.isVisible = true
                         }
+                        else->{}
 
                     }
                 }

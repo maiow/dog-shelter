@@ -1,6 +1,5 @@
-package com.redpine.home.data
+package com.redpine.home.data.repository
 
-import android.util.Log
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.redpine.core.model.Response

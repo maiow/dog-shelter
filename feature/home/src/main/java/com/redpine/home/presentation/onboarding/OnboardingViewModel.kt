@@ -1,11 +1,11 @@
 package com.redpine.home.presentation.onboarding
 
 import androidx.lifecycle.ViewModel
-import com.redpine.home.domain.repository.OnBoardingRepository
+import com.redpine.home.domain.repository.OnboardingRepository
 import javax.inject.Inject
 
 class OnboardingViewModel @Inject constructor(
-    repository: OnBoardingRepository,
+    repository: OnboardingRepository,
 ) : ViewModel() {
 
     val list = repository.getInfo()
