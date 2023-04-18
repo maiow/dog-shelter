@@ -41,11 +41,31 @@ HEAD
     <string name="story">История:</string>
     <string name="share">Поделиться</string>
 
+    <string name="password">Пароль</string>
+    <string name="repeat_password">Повторить пароль</string>
+    <string name="auth_button">Войти</string>
+    <string name="registration_button">Зарегестрироваться</string>
+
+    <string name="password_helper">* Пароль должен:\n
+        - состоять из цифр и латинских букв;\n
+        - быть не короче 8-ми символов;\n
+        - содержать хотя бы 1 заглавную букву;\n
+        - содержать хотя бы 1 строчную букву;\n
+        - содержать хотя бы 1 цифру;</string>
+    <string name="reset_password_message">Забыли пароль?</string>
+    <string name="error_auth_message">*Невозможно войти с предоставленными данными</string>
+    <string name="error_reset_password_message">*Email не зарегестрирован</string>
+    <string name="error_registration_message">*Невозможно зарегистрироваться с предоставленными данными</string>
+    <string name="error_internet_message">*Проверьте состояние сети</string>
+    <string name="message_auth">На указвнную почту отправлено сообщение. Пройдите по ссылке из письма и авторизуйтесь снова</string>
+    <string name="reset_password">Сбросить</string>
+
     <plurals name="age_data">
         <item quantity="one">%1$s год</item>
         <item quantity="few">%1$s года</item>
         <item quantity="many">%1$s лет</item>
         <item quantity="other">%1$s лет</item>
     </plurals>
+
 >>>>>>> main
 </resources>

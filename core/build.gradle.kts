@@ -30,11 +30,15 @@ dependencies {
     implementation(Dependence.Core.appcompat)
     implementation(Dependence.Core.fragmentKtx)
     implementation(Dependence.Core.material)
+    implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.glide)
     implementation(Dependence.Core.adapterDelegates)
 
     implementation(platform(Dependence.Firebase.firebaseBom))
     implementation(Dependence.Firebase.firebaseDatabase)
+    implementation(Dependence.Firebase.firebaseAuth)
     //implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
     //implementation("androidx.paging:paging-runtime:3.1.1")
+
+
 }

@@ -21,18 +21,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
 
         val navView: BottomNavigationView = binding.bottomNavView
-
         navView.setupWithNavController(navController)
 
-        //TODO: добавить сюда авторизационный экран, когда будет готов:
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == com.redpine.home.R.id.onboardingFragment ||
-                destination.id == com.redpine.home.R.id.filterFragment)//|| destination.id == com.redpine.home.R.id.authFragment)
+            if (destination.id == com.redpine.home.R.id.onboardingFragment
+                || destination.id == com.redpine.home.R.id.authFragment
+                || destination.id == com.redpine.home.R.id.registrationFragment
+                || destination.id == com.redpine.home.R.id.resetPasswordFragment
+                || destination.id == com.redpine.home.R.id.authMessageFragment
+            )
                 navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE
         }
