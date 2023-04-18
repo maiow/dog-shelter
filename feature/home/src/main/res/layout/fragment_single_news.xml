@@ -15,6 +15,13 @@
         android:layout_gravity="center_horizontal"
         android:textSize="36sp"/>
 
+    <ImageView
+        android:id="@+id/newsPreview"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:adjustViewBounds="true"
+        tools:srcCompat="@drawable/news_card" />
+
     <TextView
         android:id="@+id/newsBody"
         android:layout_width="wrap_content"

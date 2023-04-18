@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.redpine.core.state.LoadState
+import com.redpine.core.tools.loadImage
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentSingleNewsBinding
 import kotlinx.coroutines.launch
@@ -33,40 +34,45 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
         viewModel.getSingleNews(newsId)
         viewLifecycleOwner.lifecycleScope.launch {
             Log.d(TAG, "observeNews: ")
-            viewModel.data.collect { news ->
-                Log.d(TAG, "singleNews: $news")
-                binding.newsTitle.text = "${news.title} ${news.id}"
-                binding.newsBody.text = news.body
-            }
-        }
-    }
-
-    private fun infoLoadingObserve() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            Log.d(TAG, "infoLoadingObserve: ")
-            viewModel.loadState.collect { loadState ->
-                when (loadState) {
-                    LoadState.LOADING -> {
-                        binding.progressBar.isVisible = true
-                        binding.newsBody.isVisible = false
-                        binding.newsTitle.isVisible = false
+            viewModel.data.collect { newsResponse ->
+                newsResponse.news.let { news ->
+                    if (news != null) {
+                        binding.newsPreview.loadImage(news.imageUrl)
+                        binding.newsTitle.text = news.title
+                        binding.newsBody.text = news.body
                     }
-
-                    LoadState.ERROR -> {
-                        binding.progressBar.isVisible = false
-                        binding.newsBody.isVisible = false
-                        binding.newsTitle.isVisible = false
-                        Toast.makeText(requireContext(), "loading error", Toast.LENGTH_SHORT).show()
-                    }
-
-                    LoadState.SUCCESS -> {
-                        binding.progressBar.isVisible = false
-                        binding.newsBody.isVisible = true
-                        binding.newsTitle.isVisible = true
-                    }
-
                 }
             }
         }
     }
-}
+
+        private fun infoLoadingObserve() {
+            viewLifecycleOwner.lifecycleScope.launch {
+                Log.d(TAG, "infoLoadingObserve: ")
+                viewModel.loadState.collect { loadState ->
+                    when (loadState) {
+                        LoadState.LOADING -> {
+                            binding.progressBar.isVisible = true
+                            binding.newsBody.isVisible = false
+                            binding.newsTitle.isVisible = false
+                        }
+
+                        LoadState.ERROR -> {
+                            binding.progressBar.isVisible = false
+                            binding.newsBody.isVisible = false
+                            binding.newsTitle.isVisible = false
+                            Toast.makeText(requireContext(), "loading error", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                        LoadState.SUCCESS -> {
+                            binding.progressBar.isVisible = false
+                            binding.newsBody.isVisible = true
+                            binding.newsTitle.isVisible = true
+                        }
+
+                    }
+                }
+            }
+        }
+    }
