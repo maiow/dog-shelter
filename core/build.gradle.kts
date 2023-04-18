@@ -33,7 +33,8 @@ dependencies {
     implementation(Dependence.Core.glide)
     implementation(Dependence.Core.adapterDelegates)
 
-    implementation("com.google.firebase:firebase-database-ktx:20.2.0")
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseDatabase)
     //implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
     //implementation("androidx.paging:paging-runtime:3.1.1")
 }
