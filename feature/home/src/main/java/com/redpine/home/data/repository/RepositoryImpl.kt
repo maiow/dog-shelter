@@ -1,11 +1,12 @@
 package com.redpine.home.data.repository
 
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.redpine.core.model.Response
 import com.redpine.core.model.card.Dog
+import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
-import com.redpine.home.Data
 import com.redpine.home.R
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.homeScreen.HomeScreen
@@ -17,20 +18,16 @@ import kotlin.random.Random
 class RepositoryImpl : Repository {
 
     //    override suspend fun addToFavorites(item: Item) {}
-//    private val database: DatabaseReference by lazy {
-//        Firebase
-//            .database("https://dog-shelter-d6e3e-default-rtdb.europe-west1.firebasedatabase.app/")
-//            .reference
-//    }
-    //  private var _newsItem = News()
-
-    // private val newsItem get() = _newsItem
-    //private lateinit var newsItem: NewsOne
+    private val database: DatabaseReference by lazy {
+        Firebase
+            .database("https://dog-shelter-d6e3e-default-rtdb.europe-west1.firebasedatabase.app/")
+            .reference
+    }
 
     override suspend fun getItems(): List<HomeScreen> {
         val listNewDog = getNewDogs(10)
         val listRecentSeenDog = getRecentSeenDogs(10)
-        val listNews = getNewsList(10)
+        val listNews = getNewsList().newsList as List<Item>
         return listOf(
             HorizontalGrid(titleId = R.string.New, list = listNewDog, spanCount = 1),
             HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog),
@@ -72,41 +69,25 @@ class RepositoryImpl : Repository {
         return listRecentSeenDog.toList()
     }
 
-    override suspend fun getNewsList(count: Int): List<News> {
-        val listNews = mutableListOf<News>()
-        for (i in 1..count) {
-            listNews.add(
-                News(
-                    "some string $i", i,
-                    Data.images.shuffled().first().url, false, "title $i"
-                )
-            )
+    override suspend fun getNewsList(): Response {
+        val response = Response()
+        try {
+            response.newsList = database.child("news").get().await()
+                .children.map { snapShot -> snapShot.getValue(News::class.java)!! }
+        } catch (exception: Exception) {
+            response.exception = exception
         }
-        return listNews.toList()
+        return response
     }
 
     override suspend fun getSingleNews(id: Int): Response {
         val response = Response()
-
-        val database =
-            Firebase.database("https://dog-shelter-d6e3e-default-rtdb.europe-west1.firebasedatabase.app/").reference
-
-        val singleNews = database.child("news").child("news" + "$id")
+        val singleNews = database.child("news").child("news$id")
         try {
             response.news = singleNews.get().await().getValue(News::class.java)!!
         } catch (exception: Exception) {
             response.exception = exception
         }
         return response
-        /**для листа
-        try {
-        response.news = database.child("news").get().await().children.map { snapShot ->
-        snapShot.getValue(NewsOne::class.java)!!
-        }
-        } catch (exception: Exception) {
-        response.exception = exception
-        }
-        return response
-         */
     }
 }
