@@ -50,15 +50,14 @@ fun verticalGridDelegate(
         }
         bind {
             Log.d(TAG, "verticalGridDelegate: $it")
-            binding.bind(item, itemAdapter/*, onItemClick*/)
+            binding.bind(item, itemAdapter)
         }
     }
 
 
 fun ItemContainerViewHolderBinding.bind(
     item: Grid,
-    adapter: ItemAdapter,
-//    onItemClick: (ClickableView, Item) -> Unit
+    adapter: ItemAdapter
 ) {
     adapter.items = item.list
     Log.d(TAG, "GridDelegate:\n${adapter.items.joinToString("\n")}")

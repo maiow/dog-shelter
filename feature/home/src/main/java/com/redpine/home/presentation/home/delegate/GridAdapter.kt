@@ -28,6 +28,4 @@ class ItemAdapter(onItemClick: (ClickableView, Item) -> Unit) :
             .addDelegate(dogsDelegate(onItemClick))
             .addDelegate(newsDelegate(onItemClick))
     }
-
-
 }
