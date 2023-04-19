@@ -15,8 +15,7 @@ import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
-import com.redpine.home.domain.model.homeScreen.HomeScreen
-import com.redpine.home.presentation.home.delegate.HomeAdapter
+import com.redpine.home.presentation.home.delegate.GridAdapter
 import com.redpine.home.presentation.tools.TG_URI
 import com.redpine.home.presentation.tools.VK_URI
 import kotlinx.coroutines.launch
@@ -25,7 +24,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
     private val viewModel: HomeViewModel by lazy { initViewModel() }
-    private val adapter by lazy { HomeAdapter (::onItemClick, ::onContainerAllButtonClick) }
+    private val adapter by lazy { GridAdapter (::onItemClick, ::onContainerAllButtonClick) }
 
     private fun onContainerAllButtonClick(clickableView: ClickableView) {
         viewModel.onAllButtonClick(clickableView, this)

@@ -11,8 +11,8 @@ import com.redpine.core.tools.ClickableView
 import com.redpine.core.tools.DOG_CONTAINER
 import com.redpine.core.tools.NEWS_CONTAINER
 import com.redpine.home.domain.Repository
-import com.redpine.home.domain.model.homeScreen.HomeScreen
-import com.redpine.home.domain.model.homeScreen.HorizontalGrid
+import com.redpine.home.domain.model.grid.Grid
+import com.redpine.home.domain.model.grid.HorizontalGrid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +23,7 @@ class HomeViewModel @Inject constructor(
     private val repository: Repository,
 ) : ViewModel() {
 
-    private val _data = MutableStateFlow<List<HomeScreen>>(emptyList())
+    private val _data = MutableStateFlow<List<Grid>>(emptyList())
     val data = _data.asStateFlow()
 
     init {
