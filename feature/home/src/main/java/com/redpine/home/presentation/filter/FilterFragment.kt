@@ -8,10 +8,10 @@ import android.widget.CheckBox
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.redpine.home.HomeBaseFragment
-import com.redpine.home.presentation.tools.INITIAL_MAX_AGE_ON_SLIDER
-import com.redpine.home.presentation.tools.INITIAL_MIN_AGE_ON_SLIDER
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentFilterBinding
+import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MAX_AGE_ON_SLIDER
+import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MIN_AGE_ON_SLIDER
 
 class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
