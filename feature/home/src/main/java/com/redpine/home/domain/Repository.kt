@@ -7,7 +7,7 @@ import com.redpine.home.domain.model.homeScreen.HomeScreen
 interface Repository {
 
     suspend fun getItems(): List<HomeScreen>
-    suspend fun getNewDogs(count: Int): List<Dog>
+    suspend fun getNewDogs(): Response
     suspend fun getRecentSeenDogs(count: Int): List<Dog>
     suspend fun getNewsList(): Response
     suspend fun getSingleNews(id: Int): Response

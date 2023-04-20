@@ -25,7 +25,7 @@ class RepositoryImpl : Repository {
     }
 
     override suspend fun getItems(): List<HomeScreen> {
-        val listNewDog = getNewDogs(10)
+        val listNewDog = getNewDogs().dogsList as List<Item>
         val listRecentSeenDog = getRecentSeenDogs(10)
         val listNews = getNewsList().newsList as List<Item>
         return listOf(
@@ -35,32 +35,29 @@ class RepositoryImpl : Repository {
         )
     }
 
-    override suspend fun getNewDogs(count: Int): List<Dog> {
-        val listNewDog = mutableListOf<Dog>()
-        for (i in 1..count) {
-            listNewDog.add(
-                Dog(
-                    i - 1,
-                    "number $i",
-                    "age ${i + 5} years",
-                    "Новая Собака",
-                    Random.nextBoolean(),
-                    Random.nextBoolean()
-                )
-            )
+    override suspend fun getNewDogs(): Response {
+            val response = Response()
+            try {
+                response.dogsList = database.child("dogs").get().await()
+                    .children.map { snapShot -> snapShot.getValue(Dog::class.java)!! }
+            } catch (exception: Exception) {
+                response.exception = exception
+            }
+            return response
         }
-        return listNewDog.toList()
-    }
 
     override suspend fun getRecentSeenDogs(count: Int): List<Dog> {
         val listRecentSeenDog = mutableListOf<Dog>()
         for (i in 1..count) {
             listRecentSeenDog.add(
                 Dog(
-                    i - 1,
+                    "age ${i + 5} years", "active", "dark",
+                    "89162223322",
+                    "male", 45, i - 1,
+                    "https://firebasestorage.googleapis.com/v0/b/dog-shelter-d6e3e.appspot.com/o/news%2FvRgs4P4iyEs.jpg?alt=media&token=f3d1ddf2-c4a3-4102-a31b-cea6e567ba15",
                     "number $i",
-                    "age ${i + 5} years",
-                    "Какая-то Собака",
+                    "small",
+                    "Nothing to say, that's a cool dog",
                     Random.nextBoolean(),
                     Random.nextBoolean()
                 )
@@ -68,6 +65,8 @@ class RepositoryImpl : Repository {
         }
         return listRecentSeenDog.toList()
     }
+
+    //snapshot.getChildrenCount()
 
     override suspend fun getNewsList(): Response {
         val response = Response()

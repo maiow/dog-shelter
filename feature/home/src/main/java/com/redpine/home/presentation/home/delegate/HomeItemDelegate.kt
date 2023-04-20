@@ -42,8 +42,9 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
             binding.dogName.setCompoundDrawablesRelativeWithIntrinsicBounds(
                 0, 0, com.redpine.core.R.drawable.ic_filter_gender_male, 0
             )
-            binding.dogAge.text = item.age
-            binding.dogHeight.text = item.testText
+            binding.dogAge.text = "Возраст: " + item.age
+            binding.dogHeight.text = "Рост в холке: " + item.height.toString() + " см"
+            binding.dogPhoto.loadImage(item.imageUrl)
 
             binding.dogCard.setOnClickListener {
                 onItemClick(ClickableView.DOG, item)
