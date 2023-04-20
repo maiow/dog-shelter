@@ -8,9 +8,9 @@ import com.redpine.core.model.card.News
 import com.redpine.home.Data
 import com.redpine.home.R
 import com.redpine.home.domain.Repository
-import com.redpine.home.domain.model.homeScreen.HomeScreen
-import com.redpine.home.domain.model.homeScreen.HorizontalGrid
-import com.redpine.home.domain.model.homeScreen.VerticalGrid
+import com.redpine.home.domain.model.grid.Grid
+import com.redpine.home.domain.model.grid.HorizontalGrid
+import com.redpine.home.domain.model.grid.VerticalGrid
 import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
 
@@ -27,7 +27,7 @@ class RepositoryImpl : Repository {
     // private val newsItem get() = _newsItem
     //private lateinit var newsItem: NewsOne
 
-    override suspend fun getItems(): List<HomeScreen> {
+    override suspend fun getItems(): List<Grid> {
         val listNewDog = getNewDogs(10)
         val listRecentSeenDog = getRecentSeenDogs(10)
         val listNews = getNewsList(10)

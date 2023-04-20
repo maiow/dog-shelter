@@ -1,10 +1,10 @@
-package com.redpine.home.domain.model.homeScreen
+package com.redpine.home.domain.model.grid
 
 import com.redpine.core.model.card.Item
 
-interface HomeScreen {
+interface Grid {
     val titleId: Int
-    var list: List<Item>
+    val list: List<Item>
     val orientation: Int
     val spanCount: Int
 }

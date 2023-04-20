@@ -3,15 +3,14 @@ package com.redpine.home.presentation.home.delegate
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
-import com.redpine.home.domain.model.homeScreen.HomeScreen
-import com.redpine.home.presentation.home.HomeScreenDiffUtil
+import com.redpine.home.domain.model.grid.Grid
+import com.redpine.home.presentation.home.GridDiffUtil
 import com.redpine.home.presentation.home.ItemDiffUtil
 
-class HomeAdapter(
+class GridAdapter(
     onItemClick: (ClickableView, Item) -> Unit,
     onContainerAllButtonClick: (ClickableView) -> Unit
-) :
-    AsyncListDifferDelegationAdapter<HomeScreen>(HomeScreenDiffUtil()) {
+) : AsyncListDifferDelegationAdapter<Grid>(GridDiffUtil()) {
 
     init {
         delegatesManager
@@ -20,8 +19,9 @@ class HomeAdapter(
     }
 }
 
-class OneListItemAdapter(onItemClick: (ClickableView, Item) -> Unit) :
-    AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
+class ItemAdapter(
+    onItemClick: (ClickableView, Item) -> Unit
+) : AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
 
     init {
         delegatesManager

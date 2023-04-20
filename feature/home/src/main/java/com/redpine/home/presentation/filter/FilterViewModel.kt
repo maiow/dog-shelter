@@ -2,8 +2,6 @@ package com.redpine.home.presentation.filter
 
 import androidx.lifecycle.ViewModel
 import com.redpine.api.Api
-import com.redpine.home.presentation.tools.INITIAL_MAX_AGE_ON_SLIDER
-import com.redpine.home.presentation.tools.INITIAL_MIN_AGE_ON_SLIDER
 import javax.inject.Inject
 
 class FilterViewModel @Inject constructor(
@@ -26,4 +24,9 @@ class FilterViewModel @Inject constructor(
 
     var selectedCheckboxes: MutableSet<String>? = mutableSetOf()
 
+    /**пока что убрал сюда. можно убрать куда-нибудь еще)*/
+    companion object{
+        const val INITIAL_MIN_AGE_ON_SLIDER = 3
+        const val INITIAL_MAX_AGE_ON_SLIDER = 6
+    }
 }

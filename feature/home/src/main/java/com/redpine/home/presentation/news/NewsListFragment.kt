@@ -13,14 +13,14 @@ import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentNewsListBinding
-import com.redpine.home.presentation.home.delegate.OneListItemAdapter
+import com.redpine.home.presentation.home.delegate.ItemAdapter
 import kotlinx.coroutines.launch
 
 class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentNewsListBinding.inflate(inflater)
     private val viewModel: NewsListViewModel by lazy { initViewModel() }
-    private val adapter by lazy { OneListItemAdapter( ::onItemClick) }
+    private val adapter by lazy { ItemAdapter( ::onItemClick) }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
         viewModel.onItemClick(clickableView, item, this)
