@@ -16,8 +16,6 @@ import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
 import com.redpine.home.presentation.home.delegate.GridAdapter
-import com.redpine.home.presentation.tools.TG_URI
-import com.redpine.home.presentation.tools.VK_URI
 import kotlinx.coroutines.launch
 
 class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
@@ -78,5 +76,10 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
                 return false
             }
         })
+    }
+    /**пока что убрал сюда. можно убрать куда-нибудь еще)*/
+    companion object{
+        const val VK_URI = "https://vk.com/redpine"
+        const val TG_URI = "https://t.me/priutKS"
     }
 }

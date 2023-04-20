@@ -1,15 +1,11 @@
 package com.redpine.home.presentation.home
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
-import com.redpine.core.tools.DOG_CONTAINER
-import com.redpine.core.tools.NEWS_CONTAINER
 import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
@@ -42,8 +38,6 @@ class HomeViewModel @Inject constructor(
                 addToFavorites(
                     (item as Dog), ClickableView.FAVORITE.itemPosition, ClickableView.FAVORITE.listPosition
                 )
-                Log.d(TAG, "item: ${ClickableView.FAVORITE.itemPosition}")
-                Log.d(TAG, "list: ${ClickableView.FAVORITE.listPosition}")
             }
             ClickableView.DOG -> fragment.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item.id))
@@ -65,12 +59,12 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onAllButtonClick(clickableView: ClickableView, fragment: HomeFragment) {
-        Log.d(TAG, "onAllButtonClick: ${clickableView.container}")
-        when (clickableView.container) {
-            DOG_CONTAINER -> fragment.findNavController()
+        when (clickableView) {
+            ClickableView.DOG_ALL_BUTTON -> fragment.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
-            NEWS_CONTAINER -> fragment.findNavController()
+            ClickableView.NEWS_ALL_BUTTON -> fragment.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
+            else -> {}
         }
     }
 }

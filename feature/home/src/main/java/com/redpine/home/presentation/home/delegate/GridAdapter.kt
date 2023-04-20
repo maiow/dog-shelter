@@ -10,8 +10,7 @@ import com.redpine.home.presentation.home.ItemDiffUtil
 class GridAdapter(
     onItemClick: (ClickableView, Item) -> Unit,
     onContainerAllButtonClick: (ClickableView) -> Unit
-) :
-    AsyncListDifferDelegationAdapter<Grid>(GridDiffUtil()) {
+) : AsyncListDifferDelegationAdapter<Grid>(GridDiffUtil()) {
 
     init {
         delegatesManager
@@ -20,8 +19,9 @@ class GridAdapter(
     }
 }
 
-class ItemAdapter(onItemClick: (ClickableView, Item) -> Unit) :
-    AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
+class ItemAdapter(
+    onItemClick: (ClickableView, Item) -> Unit
+) : AsyncListDifferDelegationAdapter<Item>(ItemDiffUtil()) {
 
     init {
         delegatesManager
