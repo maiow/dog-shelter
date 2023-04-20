@@ -1,12 +1,18 @@
 package com.redpine.home.presentation.pets_card
 
-import androidx.lifecycle.ViewModel
-import com.redpine.api.Api
+import com.redpine.core.base.BaseViewModel
+import com.redpine.core.model.Response
+import com.redpine.home.domain.Repository
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import javax.inject.Inject
 
 class PetsCardViewModel @Inject constructor(
-    private val api: Api,
-) : ViewModel() {
+    private val repository: Repository
+) : BaseViewModel() {
+
+    private val _data = MutableSharedFlow<Response>()
+    val data = _data.asSharedFlow()
 
     /** убрать при настройке взаимодействия с бэком */
     fun getCuratorNumber(dogId: Int) = "+79167777777"
@@ -15,11 +21,7 @@ class PetsCardViewModel @Inject constructor(
 
     fun getDogName(dogId: Int) = "Викки"
 
-//    fun getUrls() {
-//        firebaseStorage.ref('image.jpg').getDownloadURL()
-//            .then((url) => {
-//                Log.i("RED", "first url = $it")
-//            })
-//        )
-//    }
+    fun getDogImages(dogId: Int) = scopeAction {
+        _data.emit(repository.getDogImages(dogId))
+    }
 }

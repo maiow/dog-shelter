@@ -9,7 +9,6 @@ data class Dog(
     var character: String = "",
     var color: String = "",
     var curator_phone: String = "",
-    //var gallery: List<String> = mutableListOf(""),
     var gender: String = "",
     var height: Int = 20,
     override var id: Int = 0,

@@ -22,7 +22,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
 }
 dependencies {
 
@@ -37,8 +36,5 @@ dependencies {
     implementation(platform(Dependence.Firebase.firebaseBom))
     implementation(Dependence.Firebase.firebaseDatabase)
     implementation(Dependence.Firebase.firebaseAuth)
-    //implementation("com.hannesdorfmann:adapterdelegates4-pagination:4.3.2")
-    //implementation("androidx.paging:paging-runtime:3.1.1")
-
 
 }

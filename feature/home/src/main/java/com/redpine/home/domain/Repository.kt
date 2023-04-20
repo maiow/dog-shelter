@@ -11,6 +11,7 @@ interface Repository {
     suspend fun getRecentSeenDogs(count: Int): List<Dog>
     suspend fun getNewsList(): Response
     suspend fun getSingleNews(id: Int): Response
+    suspend fun getDogImages(id: Int): Response
 
 //    suspend fun addToFavorites(item: Item)
 }

@@ -36,15 +36,15 @@ class RepositoryImpl : Repository {
     }
 
     override suspend fun getNewDogs(): Response {
-            val response = Response()
-            try {
-                response.dogsList = database.child("dogs").get().await()
-                    .children.map { snapShot -> snapShot.getValue(Dog::class.java)!! }
-            } catch (exception: Exception) {
-                response.exception = exception
-            }
-            return response
+        val response = Response()
+        try {
+            response.dogsList = database.child("dogs").get().await()
+                .children.map { snapShot -> snapShot.getValue(Dog::class.java)!! }
+        } catch (exception: Exception) {
+            response.exception = exception
         }
+        return response
+    }
 
     override suspend fun getRecentSeenDogs(count: Int): List<Dog> {
         val listRecentSeenDog = mutableListOf<Dog>()
@@ -84,6 +84,19 @@ class RepositoryImpl : Repository {
         val singleNews = database.child("news").child("news$id")
         try {
             response.news = singleNews.get().await().getValue(News::class.java)!!
+        } catch (exception: Exception) {
+            response.exception = exception
+        }
+        return response
+    }
+
+    override suspend fun getDogImages(id: Int): Response {
+        val response = Response()
+        val imagesList = mutableListOf<String>()
+        try {
+             database.child("gallery").child("gallery$id").get().await()
+                .children.forEach { snapShot -> imagesList.add(snapShot.value as String)}
+            response.imagesList = imagesList
         } catch (exception: Exception) {
             response.exception = exception
         }

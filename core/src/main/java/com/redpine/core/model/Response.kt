@@ -7,5 +7,6 @@ class Response(
     var news: News? = null,
     var newsList: List<News>? = null,
     var dogsList: List<Dog>? = null,
+    var imagesList: List<String>? = null,
     var exception: Exception? = null
 )
