@@ -36,7 +36,7 @@ class ViewModelFactory @Inject constructor(
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository) as T
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
-        PetsCardViewModel::class.java -> PetsCardViewModel(api) as T
+        PetsCardViewModel::class.java -> PetsCardViewModel(repository) as T
         NewsListViewModel::class.java -> NewsListViewModel(repository) as T
         SingleNewsViewModel::class.java -> SingleNewsViewModel(repository) as T
 

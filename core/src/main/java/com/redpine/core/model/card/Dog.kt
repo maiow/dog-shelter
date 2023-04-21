@@ -5,19 +5,19 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Dog(
-    override val id: Int = 0,
-    val name: String = "",
-    val age: String = "",
-//    val character: String ="",
-//    val color: String ="",
-//    val curator_phone: String ="",
-//    val gallery: List<String> = emptyList<>,
-//    val gender: String = "",
-//    val height: Int = 20,
-//    val size: String ="",
-//    val text: String ="",
-    val testText: String = "",
+    var age: String = "",
+    var character: String = "",
+    var color: String = "",
+    var curator_phone: String = "",
+    var gender: String = "",
+    var height: Int = 20,
+    override var id: Int = 0,
+    var imageUrl: String = "",
+    var name: String = "",
+    var size: String = "",
+    var text: String = "",
     @Exclude
     override var isFavorite: Boolean = false,
-    val isNew: Boolean = false,
+    @Exclude
+    var isNew: Boolean = false,
 ) : Item

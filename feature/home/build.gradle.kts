@@ -4,7 +4,6 @@ plugins {
     id(Plugins.android)
     id(Plugins.kapt)
     id(Plugins.safeArgs)
-    id(Plugins.parselize)
 }
 
 android {
@@ -28,10 +27,6 @@ android {
 
 }
 dependencies {
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-
     implementation(project(":api"))
     implementation(project(":core"))
 
@@ -43,6 +38,8 @@ dependencies {
     implementation(Dependence.Core.navigationUi)
     implementation(Dependence.Core.glide)
     implementation(Dependence.Core.adapterDelegates)
+    implementation(Dependence.Core.lifecycleLivedata)
+    implementation(Dependence.Core.lifecycleViewmodel)
 
     implementation(Dependence.Firebase.googleServices)
     implementation(platform(Dependence.Firebase.firebaseBom))

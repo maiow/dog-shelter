@@ -41,6 +41,7 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
                         binding.newsTitle.text = news.title
                         binding.newsBody.text = news.body
                     }
+                    //TODO: нужно добавить обработку newsResponse.exception
                 }
             }
         }

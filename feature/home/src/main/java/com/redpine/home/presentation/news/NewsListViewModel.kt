@@ -15,6 +15,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**в Firebase 3 новости, поэтому показываем все, что есть, при переходе на свой бэк нужно будет
+ * в запрос добавлять:
+const val NEWS_COUNT = 3
+ */
+
 class NewsListViewModel @Inject constructor(
     private val repository: Repository
 ) : BaseViewModel() {
@@ -28,8 +33,10 @@ class NewsListViewModel @Inject constructor(
 
     private fun getNewsList() {
         viewModelScope.launch(Dispatchers.IO) {
-//            delay(2000)
-            _data.value = repository.getNewsList(20)
+//TODO: нужна проверка на непустой список и если пришел пустой, добавить обработку
+// newsResponse.exception, показывать юзеру что-то про состояние сети
+
+            _data.value = repository.getNewsList().newsList!!
             Log.d(TAG, "getNewsList: ${_data.value}")
         }
     }

@@ -1,30 +1,31 @@
 package com.redpine.home.presentation.pets_card
 
+import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.redpine.core.tools.loadImage
-import com.redpine.home.Data
 import com.redpine.home.HomeBaseFragment
-import com.redpine.home.Image
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentPetsCardBinding
 import com.redpine.home.databinding.ItemGridImageBinding
+import kotlinx.coroutines.launch
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
     private val viewModel: PetsCardViewModel by lazy { initViewModel() }
-
-    private val adapter by lazy { CarouselAdapter(Data.images) }
 
     private val args by navArgs<PetsCardFragmentArgs>()
 
@@ -34,8 +35,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         setCloseButton()
         setShareButton(args.dogId)
         setCuratorButton(args.dogId)
-
-        binding.dogPhoto.adapter = adapter
+        observeData(args.dogId)
 
         binding.dogPhoto
             .addItemDecoration(
@@ -45,6 +45,20 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
             )
         PagerSnapHelper().attachToRecyclerView(binding.dogPhoto)
     }
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun observeData(dogId: Int) {
+        viewModel.getDogImages(dogId)
+        viewLifecycleOwner.lifecycleScope.launch {
+            Log.d(ContentValues.TAG, "observeNews: ")
+            viewModel.data.collect { response ->
+                if (response.imagesList != null)
+                binding.dogPhoto.adapter = CarouselAdapter(response.imagesList!!)
+                    //TODO: нужно добавить обработку response.exception
+                }
+            }
+        }
+
 
     private fun setCloseButton() = binding.backButton.setOnClickListener {
         findNavController().popBackStack()
@@ -115,7 +129,7 @@ class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
 //    }
 }
 
-internal class CarouselAdapter(private val images: List<Image>) :
+internal class CarouselAdapter(private val images: List<String>) :
     RecyclerView.Adapter<CarouselAdapter.DogGalleryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -131,6 +145,6 @@ internal class CarouselAdapter(private val images: List<Image>) :
     class DogGalleryViewHolder(private val binding: ItemGridImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Image) = binding.image.loadImage(item.url)
+        fun bind(item: String) = binding.image.loadImage(item)
     }
 }
