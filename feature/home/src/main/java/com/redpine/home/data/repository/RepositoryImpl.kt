@@ -25,7 +25,9 @@ class RepositoryImpl : Repository {
     }
 
     override suspend fun getItems(): List<Grid> {
-        val listNewDog = getNewDogs().dogsList as List<Item>
+        //TODO: вынести количество (10 и 10) в константы - создать файл настроек, чтобы потом не искать,
+        // где это количество можно поменять
+        val listNewDog = getNewDogs(10).dogsList as List<Item>
         val listRecentSeenDog = getRecentSeenDogs(10)
         val listNews = getNewsList().newsList as List<Item>
         return listOf(
@@ -35,11 +37,14 @@ class RepositoryImpl : Repository {
         )
     }
 
-    override suspend fun getNewDogs(): Response {
+    override suspend fun getNewDogs(count: Int): Response {
         val response = Response()
         try {
             response.dogsList = database.child("dogs").get().await()
                 .children.map { snapShot -> snapShot.getValue(Dog::class.java)!! }
+            //TODO: дополнить логику ограничением в count штук
+            //if (count <= snapshot.getChildrenCount()) оставить как есть,
+            //else в dogslist записать только count
         } catch (exception: Exception) {
             response.exception = exception
         }
@@ -65,8 +70,6 @@ class RepositoryImpl : Repository {
         }
         return listRecentSeenDog.toList()
     }
-
-    //snapshot.getChildrenCount()
 
     override suspend fun getNewsList(): Response {
         val response = Response()
