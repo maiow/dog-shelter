@@ -13,10 +13,10 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "DogShelter"
-include ':app'
-include ':feature:favorites'
-include ':feature:profile'
-include ':feature:home'
-include ':feature:chats'
-include ':core'
-include ':api'
+include(":app")
+include(":feature:favorites")
+include(":feature:profile")
+include(":feature:home")
+include(":feature:chats")
+include(":core")
+include(":api")
