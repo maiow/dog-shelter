@@ -2,13 +2,10 @@ package com.redpine.home.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Dog
-import com.redpine.core.model.card.Item
-import com.redpine.core.tools.ClickableView
-import com.redpine.home.domain.Repository
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
+import com.redpine.home.domain.usecase.HomeScreenUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val repository: Repository,
+    private val homeScreenUseCase: HomeScreenUseCase,
 ) : ViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
@@ -28,26 +25,11 @@ class HomeViewModel @Inject constructor(
 
     private fun createHomeScreen() {
         viewModelScope.launch(Dispatchers.IO) {
-            _data.value = repository.getItems()
+            _data.value = homeScreenUseCase.getHomeScreenItems()
         }
     }
 
-    fun onItemClick(clickableView: ClickableView, item: Item, fragment: HomeFragment) {
-        when (clickableView) {
-            ClickableView.FAVORITE -> {
-                addToFavorites(
-                    (item as Dog), ClickableView.FAVORITE.itemPosition, ClickableView.FAVORITE.listPosition
-                )
-            }
-            ClickableView.DOG -> fragment.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item.id))
-            ClickableView.NEWS -> fragment.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item.id))
-            else -> {}
-        }
-    }
-
-    private fun addToFavorites(item: Dog, itemPosition: Int, listPosition: Int) {
+    fun addToFavorites(itemPosition: Int, listPosition: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val newData = _data.value.toMutableList()
             val newList = newData[listPosition].list.toMutableList() as MutableList<Dog>
@@ -58,20 +40,4 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun onAllButtonClick(clickableView: ClickableView, fragment: HomeFragment) {
-        when (clickableView) {
-            ClickableView.DOG_ALL_BUTTON -> fragment.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
-            ClickableView.NEWS_ALL_BUTTON -> fragment.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
-            else -> {}
-        }
-    }
 }
-
-
-
-
-
-
-

@@ -22,9 +22,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
-
         onClickNextButton()
-
         onClickSkipButton()
 
     }
@@ -46,5 +44,4 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
             findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
         }
     }
-
 }

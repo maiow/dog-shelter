@@ -1,5 +1,6 @@
 package com.redpine.home.presentation.home
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 import com.redpine.home.domain.model.grid.Grid
 
@@ -9,11 +10,9 @@ class GridDiffUtil : DiffUtil.ItemCallback<Grid>() {
         return oldItem.titleId == newItem.titleId
     }
 
+    @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: Grid, newItem: Grid): Boolean {
-        return (oldItem.titleId == newItem.titleId) &&
-                (oldItem.list == newItem.list) &&
-                (oldItem.orientation == newItem.orientation) &&
-                (oldItem.spanCount == newItem.spanCount)
+        return oldItem == newItem
     }
 
     override fun getChangePayload(oldItem: Grid, newItem: Grid): Any? {

@@ -21,9 +21,7 @@ class RegistrationFragment : HomeBaseFragment<FragmentRegistrationBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         validationButton()
-
         onClickRegistration()
-
         flowObserver(viewModel.loadState) { loadState -> loadStateListener(loadState) }
     }
 

@@ -12,7 +12,7 @@ import com.redpine.home.domain.model.grid.VerticalGrid
 import com.redpine.home.presentation.home.GridDiffUtil
 
 fun horizontalGridDelegate(
-    onItemClick: (ClickableView, Item) -> Unit, onContainerAllButtonClick: (ClickableView) -> Unit
+    onItemClick: (ClickableView, Item?) -> Unit
 ): AdapterDelegate<List<Grid>> {
     return adapterDelegateViewBinding<HorizontalGrid, Grid, ItemContainerViewHolderBinding>({ inflater, root ->
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
@@ -22,15 +22,13 @@ fun horizontalGridDelegate(
             onItemClick(clickableView, item)
         }
         binding.recyclerView.adapter = itemAdapter
-        binding.btnAll.setOnClickListener {
-            onContainerAllButtonClick(ClickableView.DOG_ALL_BUTTON)
-        }
+        binding.btnAll.setOnClickListener { onItemClick(ClickableView.DOG_ALL_BUTTON,null) }
         bind { binding.bind(item, itemAdapter, it) }
     }
 }
 
 fun verticalGridDelegate(
-    onItemClick: (ClickableView, Item) -> Unit, onContainerAllButtonClick: (ClickableView) -> Unit
+    onItemClick: (ClickableView, Item?) -> Unit
 ): AdapterDelegate<List<Grid>> {
     return adapterDelegateViewBinding<VerticalGrid, Grid, ItemContainerViewHolderBinding>({ inflater, root ->
         ItemContainerViewHolderBinding.inflate(inflater, root, false)
@@ -38,7 +36,7 @@ fun verticalGridDelegate(
         val itemAdapter = ItemAdapter(onItemClick)
         binding.recyclerView.adapter = itemAdapter
         binding.btnAll.setOnClickListener {
-            onContainerAllButtonClick(ClickableView.NEWS_ALL_BUTTON)
+            onItemClick(ClickableView.NEWS_ALL_BUTTON,null)
         }
         bind { binding.bind(item, itemAdapter, it) }
     }

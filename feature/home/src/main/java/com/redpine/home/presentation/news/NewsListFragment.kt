@@ -1,15 +1,15 @@
 package com.redpine.home.presentation.news
 
-import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Item
+import com.redpine.core.model.card.News
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentNewsListBinding
@@ -20,46 +20,29 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentNewsListBinding.inflate(inflater)
     private val viewModel: NewsListViewModel by lazy { initViewModel() }
-    private val adapter by lazy { ItemAdapter( ::onItemClick) }
-
-    private fun onItemClick(clickableView: ClickableView, item: Item) {
-        viewModel.onItemClick(clickableView, item, this)
-    }
+    private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUserInterface()
-        setAdapter()
-        observeData()
-    }
-
-    private fun observeData(){
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.data.collect{ data ->
-                adapter.items = data
-//                adapter.notifyDataSetChanged()
-                Log.d(ContentValues.TAG, "fragment: $data")
-            }
-        }
-    }
-
-    private fun setAdapter(){
-        binding.recycler.adapter = adapter
-    }
-
-    private fun setUserInterface() {
+        flowObserver(viewModel.data) { news -> observeData(news) }
         setSearch()
-//        binding.filterButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
-//        }
-//        binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
-//        binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }
-
+        setAdapter()
     }
 
-    private fun onSocialClick(uri: String) {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+    private fun onItemClick(clickableView: ClickableView, item: Item) {
+        if (clickableView == ClickableView.NEWS) navigate(item.id)
+    }
+
+    private fun navigate(itemId: Int) = findNavController()
+        .navigate(NewsListFragmentDirections.actionNewsListFragmentToSingleNewsFragment(itemId))
+
+    private fun observeData(news: List<News>) {
+        adapter.items = news
+    }
+
+    private fun setAdapter() {
+        binding.recycler.adapter = adapter
     }
 
     private fun setSearch() {
@@ -73,6 +56,4 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
             }
         })
     }
-
-
 }

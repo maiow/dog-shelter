@@ -11,16 +11,15 @@ class ResetPasswordViewModel(
 ) : BaseViewModel() {
 
     fun resetPassword(email: String) =
-        scopeAction {
+        scopeLaunch {
             resetPasswordUseCase.sendResetPasswordForEmail(email)
         }
 
     fun validation(text: String, type: TypeAuthListener) =
         when (type) {
             TypeAuthListener.PASSWORD -> throw RuntimeException("no Password Type")
-            TypeAuthListener.EMAIL -> {
+            TypeAuthListener.EMAIL ->
                 _loadState.value =
                     if (text.emailValidation()) LoadState.ENABLE_BUTTON else LoadState.START
-            }
         }
 }

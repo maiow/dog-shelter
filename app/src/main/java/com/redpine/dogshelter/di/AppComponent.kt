@@ -1,6 +1,5 @@
 package com.redpine.dogshelter.di
 
-import android.app.Application
 import android.content.Context
 import com.redpine.api.Api
 import com.redpine.chats.di.ChatsDependencies

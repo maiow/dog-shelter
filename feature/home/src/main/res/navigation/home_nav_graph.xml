@@ -150,4 +150,8 @@
         android:name="com.redpine.home.presentation.authorization.message.AuthMessageFragment"
         android:label="fragment_auth_message"
         tools:layout="@layout/fragment_auth_message" />
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.redpine.home.presentation.filter.TestFragment"
+        android:label="TestFragment" />
 </navigation>
