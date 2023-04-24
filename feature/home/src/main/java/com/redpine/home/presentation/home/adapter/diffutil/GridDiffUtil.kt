@@ -1,4 +1,4 @@
-package com.redpine.home.presentation.home
+package com.redpine.home.presentation.home.adapter.diffutil
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

@@ -13,7 +13,7 @@ import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
 import com.redpine.home.domain.model.grid.Grid
-import com.redpine.home.presentation.home.delegate.GridAdapter
+import com.redpine.home.presentation.home.adapter.delegate.GridAdapter
 
 class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
@@ -54,7 +54,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun observeData(data: List<Grid>) {
-        adapter.items = data
+        adapter.submitList(data)
     }
 
     private fun setUserInterface() {

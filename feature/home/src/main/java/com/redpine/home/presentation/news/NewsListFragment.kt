@@ -1,20 +1,16 @@
 package com.redpine.home.presentation.news
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.model.card.Item
 import com.redpine.core.model.card.News
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentNewsListBinding
-import com.redpine.home.presentation.home.delegate.ItemAdapter
-import kotlinx.coroutines.launch
+import com.redpine.home.presentation.home.adapter.delegate.ItemAdapter
 
 class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
@@ -38,7 +34,7 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
         .navigate(NewsListFragmentDirections.actionNewsListFragmentToSingleNewsFragment(itemId))
 
     private fun observeData(news: List<News>) {
-        adapter.items = news
+        adapter.submitList(news)
     }
 
     private fun setAdapter() {

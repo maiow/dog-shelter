@@ -1,4 +1,4 @@
-package com.redpine.home.presentation.home
+package com.redpine.home.presentation.home.adapter.diffutil
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
@@ -17,11 +17,7 @@ class ItemDiffUtil : DiffUtil.ItemCallback<Item>() {
 
     override fun getChangePayload(oldItem: Item, newItem: Item): Any? {
         return if (oldItem.isFavorite != newItem.isFavorite) {
-            FAVORITE_BUTTON_CLICKED
+            newItem.isFavorite
         } else super.getChangePayload(oldItem, newItem)
-    }
-
-    companion object {
-        const val FAVORITE_BUTTON_CLICKED = "FavoriteButtonClicked"
     }
 }

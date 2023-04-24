@@ -1,0 +1,52 @@
+Index: feature/home/src/main/java/com/redpine/home/presentation/home/delegate/ItemDelegate.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.redpine.home.presentation.home.delegate\r\n\r\nimport com.hannesdorfmann.adapterdelegates4.AdapterDelegate\r\nimport com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding\r\nimport com.redpine.core.databinding.DogViewHolderBinding\r\nimport com.redpine.core.databinding.NewsViewHolderBinding\r\nimport com.redpine.core.model.card.Dog\r\nimport com.redpine.core.model.card.Item\r\nimport com.redpine.core.model.card.News\r\nimport com.redpine.core.tools.ClickableView\r\nimport com.redpine.core.tools.loadImage\r\n\r\nfun newsDelegate(onItemClick: (ClickableView, Item) -> Unit): AdapterDelegate<List<Item>> {\r\n    return adapterDelegateViewBinding<News, Item, NewsViewHolderBinding>({ inflater, root ->\r\n        NewsViewHolderBinding.inflate(inflater, root, false)\r\n    }) {\r\n        binding.root.setOnClickListener {\r\n            onItemClick(ClickableView.NEWS, item)\r\n        }\r\n        bind {\r\n            binding.newsTitle.text = item.title\r\n            binding.newsBodyPreview.text = item.body\r\n            binding.newsPreview.loadImage(item.imageUrl)\r\n        }\r\n    }\r\n}\r\n\r\nfun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit): AdapterDelegate<List<Item>> {\r\n    return adapterDelegateViewBinding<Dog, Item, DogViewHolderBinding>({ inflater, root ->\r\n        DogViewHolderBinding.inflate(inflater, root, false)\r\n    }) {\r\n        binding.btnFavorite.setOnClickListener {\r\n            ClickableView.FAVORITE.itemPosition = bindingAdapterPosition\r\n            onItemClick(ClickableView.FAVORITE, item)\r\n        }\r\n        binding.dogCard.setOnClickListener {\r\n            onItemClick(ClickableView.DOG, item)\r\n        }\r\n        bind {\r\n            binding.btnFavorite.isSelected = item.isFavorite\r\n            binding.dogName.text = item.name\r\n            /**тут нужна будет логика для пола*/\r\n            binding.dogName.setCompoundDrawablesRelativeWithIntrinsicBounds(\r\n                0, 0, com.redpine.core.R.drawable.ic_filter_gender_male, 0\r\n            )\r\n            binding.dogAge.text = item.age\r\n            binding.dogHeight.text = item.testText\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/feature/home/src/main/java/com/redpine/home/presentation/home/delegate/ItemDelegate.kt b/feature/home/src/main/java/com/redpine/home/presentation/home/delegate/ItemDelegate.kt
+--- a/feature/home/src/main/java/com/redpine/home/presentation/home/delegate/ItemDelegate.kt	(revision dd5e3720eb09dcc6d34480008599be9a418140f8)
++++ b/feature/home/src/main/java/com/redpine/home/presentation/home/delegate/ItemDelegate.kt	(date 1682327348261)
+@@ -1,5 +1,6 @@
+ package com.redpine.home.presentation.home.delegate
+ 
++import android.util.Log
+ import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
+ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+ import com.redpine.core.databinding.DogViewHolderBinding
+@@ -33,12 +34,17 @@
+             ClickableView.FAVORITE.itemPosition = bindingAdapterPosition
+             onItemClick(ClickableView.FAVORITE, item)
+         }
++
++        Log.e("Kart","Kast")
++
+         binding.dogCard.setOnClickListener {
+             onItemClick(ClickableView.DOG, item)
+         }
++
+         bind {
+             binding.btnFavorite.isSelected = item.isFavorite
+             binding.dogName.text = item.name
++            Log.e("Kart","Kast123")
+             /**тут нужна будет логика для пола*/
+             binding.dogName.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                 0, 0, com.redpine.core.R.drawable.ic_filter_gender_male, 0
+Index: core/src/main/java/com/redpine/core/base/PagedDataDelegationAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\npackage com.redpine.core.base\r\n\r\nimport android.view.ViewGroup\r\nimport androidx.paging.PagingDataAdapter\r\nimport androidx.recyclerview.widget.DiffUtil\r\nimport androidx.recyclerview.widget.RecyclerView\r\nimport com.hannesdorfmann.adapterdelegates4.AdapterDelegate\r\nimport com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager\r\n\r\n//на основе библиотеки 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2'\r\n\r\nabstract class PagedDataDelegationAdapter<T:Any > : PagingDataAdapter<T, RecyclerView.ViewHolder> {\r\n    protected val delegatesManager: AdapterDelegatesManager<List<T>>\r\n\r\n    constructor(\r\n        diffCallback: DiffUtil.ItemCallback<T>,\r\n        vararg delegates: AdapterDelegate<List<T>?>?,\r\n    ) : this(AdapterDelegatesManager<List<T>?>(), diffCallback) {\r\n        for (i in delegates.indices) {\r\n            delegatesManager.addDelegate(delegates[i]!!)\r\n        }\r\n    }\r\n\r\n    constructor(diffCallback: DiffUtil.ItemCallback<T>) : this(\r\n        AdapterDelegatesManager<List<T>?>(),\r\n        diffCallback) {\r\n    }\r\n\r\n    constructor(\r\n        delegatesManager: AdapterDelegatesManager<List<T>?>,\r\n        diffCallback: DiffUtil.ItemCallback<T>,\r\n    ) : super(diffCallback) {\r\n        if (diffCallback == null) {\r\n            throw NullPointerException(\"ItemCallback is null\")\r\n        }\r\n        if (delegatesManager == null) {\r\n            throw NullPointerException(\"AdapterDelegatesManager is null\")\r\n        }\r\n        this.delegatesManager = delegatesManager as AdapterDelegatesManager<List<T>>\r\n    }\r\n\r\n\r\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {\r\n        return delegatesManager.onCreateViewHolder(parent, viewType)\r\n    }\r\n\r\n    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {\r\n        getItem(position)\r\n\r\n        // Internally triggers loading items around items around the given position\r\n        delegatesManager.onBindViewHolder(snapshot().items, position, holder, null)\r\n    }\r\n\r\n    override fun onBindViewHolder(\r\n        holder: RecyclerView.ViewHolder, position: Int,\r\n        payloads: List<*>,\r\n    ) {\r\n        getItem(position) // Internally triggers loading items around items around the given position\r\n        delegatesManager.onBindViewHolder(snapshot().items, position, holder, payloads)\r\n    }\r\n\r\n    override fun getItemViewType(position: Int): Int {\r\n        return delegatesManager.getItemViewType(snapshot().items, position)\r\n    }\r\n\r\n    override  fun onViewRecycled(holder: RecyclerView.ViewHolder) {\r\n        delegatesManager.onViewRecycled(holder)\r\n    }\r\n\r\n    override  fun onFailedToRecycleView(holder: RecyclerView.ViewHolder): Boolean {\r\n        return delegatesManager.onFailedToRecycleView(holder)\r\n    }\r\n\r\n    override  fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {\r\n        delegatesManager.onViewAttachedToWindow(holder)\r\n    }\r\n\r\n    override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {\r\n        delegatesManager.onViewDetachedFromWindow(holder)\r\n    }\r\n}*/\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/main/java/com/redpine/core/base/PagedDataDelegationAdapter.kt b/core/src/main/java/com/redpine/core/base/PagedDataDelegationAdapter.kt
+--- a/core/src/main/java/com/redpine/core/base/PagedDataDelegationAdapter.kt	(revision dd5e3720eb09dcc6d34480008599be9a418140f8)
++++ b/core/src/main/java/com/redpine/core/base/PagedDataDelegationAdapter.kt	(date 1682327397918)
+@@ -79,4 +79,5 @@
+     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+         delegatesManager.onViewDetachedFromWindow(holder)
+     }
+-}*/
++}
++*/

@@ -1,20 +1,16 @@
 package com.redpine.home.presentation.found
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.redpine.core.extensions.onClickToPopBackStack
-import com.redpine.core.model.card.Dog
 import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentDogsFoundBinding
-import com.redpine.home.presentation.home.delegate.ItemAdapter
-import com.redpine.home.presentation.home.delegate.dogsDelegate
+import com.redpine.home.presentation.home.adapter.delegate.ItemAdapter
 
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
@@ -49,6 +45,6 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     }
 
     private fun loadContent(data: List<Item>) {
-        adapter.items = data
+        adapter.submitList(data)
     }
 }

@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation(project(":api"))
     implementation(project(":core"))
+    implementation(project(":delegate"))
 
     implementation(Dependence.Core.core)
     implementation(Dependence.Core.appcompat)
@@ -37,7 +38,6 @@ dependencies {
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.navigationUi)
     implementation(Dependence.Core.glide)
-    implementation(Dependence.Core.adapterDelegates)
     implementation(Dependence.Core.lifecycleLivedata)
     implementation(Dependence.Core.lifecycleViewmodel)
 
