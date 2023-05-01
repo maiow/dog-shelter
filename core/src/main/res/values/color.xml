@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="red">#AE0047</color>
-    <color name="background">#F9F9F9</color>
+    <color name="background">#F2F1F1</color>
     <color name="green_solid">#2DB79E</color>
     <color name="mint_chats">#90CFC3</color>
     <color name="grey_main">#49454F</color>

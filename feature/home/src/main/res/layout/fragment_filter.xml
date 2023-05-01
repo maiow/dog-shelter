@@ -290,11 +290,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="-20dp"
-        android:background="@drawable/layout_bg"
-        android:elevation="10dp"
+        android:background="@drawable/rounded_bottom_bar"
         android:orientation="horizontal"
         android:stateListAnimator="@null"
-        android:translationZ="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

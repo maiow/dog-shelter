@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                 || destination.id == com.redpine.home.R.id.registrationFragment
                 || destination.id == com.redpine.home.R.id.resetPasswordFragment
                 || destination.id == com.redpine.home.R.id.authMessageFragment
+                || destination.id == com.redpine.home.R.id.filterFragment
             )
                 navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE
