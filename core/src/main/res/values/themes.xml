@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Theme.DogShelter" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red</item>
@@ -15,8 +16,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/backgroundColor</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="elevationOverlayEnabled">false</item>
-        <item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton</item>
+        <item name="elevationOverlayEnabled">true</item>
         <!-- Customize your theme here. -->
     </style>
+
 </resources>

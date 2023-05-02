@@ -17,14 +17,12 @@
 
     <Button
         android:id="@+id/next_button"
-        style="?attr/materialButtonOutlinedStyle"
+        style="@style/Widget.App.Button.OutlinedButton.RedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="43dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat_regular"
         android:text="@string/next"
-        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

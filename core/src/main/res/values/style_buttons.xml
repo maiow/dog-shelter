@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.DogShelter.Button" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/century_gothic</item>
+    </style>
+
+    <style name="Widget.DogShelter.Button.ElevatedButton" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:textAppearance">@style/TextAppearance.DogShelter.Button</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+        <item name="android:elevation">3dp</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="Widget.DogShelter.Button.ElevatedButton.GreenButton" parent="Widget.DogShelter.Button.ElevatedButton">
+        <item name="android:background">@drawable/green_gradient</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="iconTint">?attr/colorOnPrimary</item>
+        <item name="iconSize">0dp</item>
+    </style>
+
+    <style name="Widget.DogShelter.Button.ElevatedButton.LightGreenButton" parent="Widget.DogShelter.Button.ElevatedButton">
+        <item name="android:background">@drawable/light_green_button</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
+    </style>
+
+    <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.DogShelter.Button</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.App.Button.OutlinedButton.RedButton" parent="Widget.App.Button.OutlinedButton">
+        <item name="strokeColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.App.Button.OutlinedButton.GreenButton" parent="Widget.App.Button.OutlinedButton">
+        <item name="android:textColor">@color/green_solid</item>
+        <item name="strokeColor">?attr/colorSecondary</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+        <item name="backgroundTint">?attr/colorSurface</item>
+        <item name="iconTint">?attr/colorSecondary</item>
+        <item name="iconSize">0dp</item>
+    </style>
+
+</resources>
