@@ -38,7 +38,7 @@
     </style>
 
     <style name="Widget.App.Button.OutlinedButton.GreenButton" parent="Widget.App.Button.OutlinedButton">
-        <item name="android:textColor">@color/green_solid</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
         <item name="strokeColor">?attr/colorSecondary</item>
         <item name="rippleColor">?attr/colorSecondary</item>
         <item name="backgroundTint">?attr/colorSurface</item>
