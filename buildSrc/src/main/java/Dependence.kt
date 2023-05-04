@@ -12,6 +12,7 @@ object Dependence {
         const val glide = "com.github.bumptech.glide:glide:4.15.1"
         const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
         const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+        const val paging = "androidx.paging:paging-runtime:3.1.1"
     }
 
     object Di {
