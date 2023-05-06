@@ -1,32 +1,27 @@
 package com.redpine.home.presentation.pets_card
 
-import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.Intent
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.carousel.CarouselLayoutManager
 import com.redpine.core.tools.loadImage
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
+import com.redpine.home.databinding.CarouselItemContainerBinding
 import com.redpine.home.databinding.FragmentPetsCardBinding
-import com.redpine.home.databinding.ItemGridImageBinding
 import kotlinx.coroutines.launch
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
     private val viewModel: PetsCardViewModel by lazy { initViewModel() }
-
     private val args by navArgs<PetsCardFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,103 +31,62 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         setShareButton(args.dogId)
         setCuratorButton(args.dogId)
         observeData(args.dogId)
-
-        binding.dogPhoto
-            .addItemDecoration(
-                LinearHorizontalSpacingDecoration(
-                    resources.getDimensionPixelSize(R.dimen.carousel_spacing)
-                )
-            )
-        PagerSnapHelper().attachToRecyclerView(binding.dogPhoto)
+        assignCarouselLayoutManager()
     }
 
-    @SuppressLint("SuspiciousIndentation")
+    private fun assignCarouselLayoutManager() {
+        binding.carouselRecyclerView.layoutManager = CarouselLayoutManager()
+    }
+
     private fun observeData(dogId: Int) {
         viewModel.getDogImages(dogId)
         viewLifecycleOwner.lifecycleScope.launch {
-            Log.d(ContentValues.TAG, "observeNews: ")
             viewModel.data.collect { imagesList ->
-                binding.dogPhoto.adapter = CarouselAdapter(imagesList)
-                }
+                binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
             }
         }
-
+    }
 
     private fun setCloseButton() = binding.backButton.setOnClickListener {
         findNavController().popBackStack()
     }
 
-
     private fun setShareButton(dogId: Int) = binding.shareButton.setOnClickListener {
         shareLinkOnDog(viewModel.getDogLink(dogId))
     }
 
-
     private fun setCuratorButton(dogId: Int) = binding.curatorButton.setOnClickListener {
-        //callCurator(viewModel.getCuratorNumber(dogId))
         sendWhatsAppMessageToCurator(viewModel.getCuratorNumber(dogId), viewModel.getDogName(dogId))
     }
-
 
     private fun shareLinkOnDog(link: String) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://priut-ks.ru/tproduct/$link")
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, WEBSITE_LINK + link)
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)))
     }
 
     private fun sendWhatsAppMessageToCurator(phone: String, dogName: String) {
-        val message = "Добрый день! Пишу по поводу собаки $dogName из Красной Сосны"
+        val message = getString(R.string.watsapp_message, dogName)
         val uri = Uri.parse("https://api.whatsapp.com/send?phone=$phone&text=$message")
         startActivity(Intent(Intent.ACTION_VIEW, uri))
     }
-}
 
-class LinearHorizontalSpacingDecoration(private val innerSpacing: Int) :
-    RecyclerView.ItemDecoration() {
-
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State,
-    ) {
-
-        val itemPosition = parent.getChildAdapterPosition(view)
-//        if (itemPosition == 0) outRect.left = 0 else innerSpacing/2
-//        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing/2
-        outRect.left = innerSpacing/2
-        outRect.right = innerSpacing/2
-
-
-//        outRect.left = if (itemPosition == 0) 0 else innerSpacing / 2
-//        outRect.right = if (itemPosition == state.itemCount - 1) 0 else innerSpacing / 2
-//
-//        Log.i("RED", "leftRect = ${outRect.left}")
-//
-//        val spacingPixelSize: Int =
-//            parent.context.resources.getDimensionPixelSize(R.dimen.carousel_spacing)
-//
-//            when (itemPosition) {
-//                0 ->
-//                    outRect.set(getOffsetPixelSize(parent, view), 0, spacingPixelSize / 2, 0)
-//                parent.adapter!!.itemCount - 1 ->
-//                    outRect.set(spacingPixelSize / 2, 0, getOffsetPixelSize(parent, view), 0)
-//                else ->
-//                    outRect.set(spacingPixelSize / 2, 0, spacingPixelSize / 2, 0)
+    private companion object {
+        const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
     }
-//    private fun getOffsetPixelSize(parent: RecyclerView, view: View): Int {
-//        val orientationHelper = OrientationHelper.createVerticalHelper(parent.layoutManager)
-//        return (orientationHelper.totalSpace - view.layoutParams.width) / 4
-//    }
 }
 
 internal class CarouselAdapter(private val images: List<String>) :
     RecyclerView.Adapter<CarouselAdapter.DogGalleryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        DogGalleryViewHolder(ItemGridImageBinding.inflate(LayoutInflater.from(parent.context),
-                parent,false))
+        DogGalleryViewHolder(
+            CarouselItemContainerBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
+        )
 
 
     override fun onBindViewHolder(holder: DogGalleryViewHolder, position: Int) =
@@ -140,9 +94,9 @@ internal class CarouselAdapter(private val images: List<String>) :
 
     override fun getItemCount(): Int = images.size
 
-    class DogGalleryViewHolder(private val binding: ItemGridImageBinding) :
+    class DogGalleryViewHolder(private val binding: CarouselItemContainerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: String) = binding.image.loadImage(item)
+        fun bind(item: String) = binding.carouselImageView.loadImage(item)
     }
 }

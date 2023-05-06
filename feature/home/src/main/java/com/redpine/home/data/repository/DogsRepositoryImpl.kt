@@ -2,7 +2,6 @@ package com.redpine.home.data.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
-import com.redpine.core.model.Response
 import com.redpine.core.model.card.Dog
 import com.redpine.home.domain.repository.DogsRepository
 import kotlinx.coroutines.tasks.await
@@ -12,7 +11,7 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
 
     override suspend fun getNewDogs(count: Int): List<Dog> {
         val dogsList = database
-            .child("dogs")
+            .child(DOGS_NODE)
             .get().await()
             .children.map { snapShot -> snapShot.getValue(Dog::class.java) ?: Dog() }
         /// TODO: дополнить логику ограничением в count штук
@@ -21,14 +20,13 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
 
     override suspend fun getDogImages(id: Int): List<String> {
        val listImage = database
-           .child("gallery")
-           .child("gallery$id")
+           .child(GALLERY_NODE)
+           .child(GALLERY_NODE+id)
            .get()
            .await()
            .children.map { snapShot -> snapShot.value.toString() }
         if (listImage.isNotEmpty()) return listImage else throw FirebaseBaseExceptionNullResponse()
     }
-
 
     override suspend fun getRecentSeenDogs(count: Int): List<Dog> {
         val listRecentSeenDog = mutableListOf<Dog>()
@@ -48,5 +46,10 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
             )
         }
         return listRecentSeenDog.toList()
+    }
+
+    private companion object {
+        const val DOGS_NODE = "dogs"
+        const val GALLERY_NODE = "news"
     }
 }

@@ -1,6 +1,5 @@
 package com.redpine.home.domain.repository
 
-import com.redpine.core.model.Response
 import com.redpine.core.model.card.Dog
 
 interface DogsRepository{

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-HEAD
     <string name="New">New pets</string>
     <string name="Recent_seen">Recent Seen</string>
     <string name="News">News</string>
-=======
     <string name="filter">Filter</string>
     <string name="gender">Gender</string>
     <string name="girl">Girl</string>
@@ -65,5 +63,6 @@ HEAD
         <item quantity="one">%1$s year</item>
         <item quantity="other">%1$s years</item>
     </plurals>
->>>>>>> main
+
+    <string name="watsapp_message">Hello! I\'m writing about a dog named %1$s living at RedPine dog shelter</string>
 </resources>
