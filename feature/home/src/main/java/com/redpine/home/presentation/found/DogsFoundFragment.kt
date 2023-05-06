@@ -21,7 +21,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
-        if (clickableView == ClickableView.DOG) navigateTooPetsCardFragment(item.id)
+        if (clickableView == ClickableView.DOG) navigateToPetsCardFragment(item.id)
         viewModel.onItemClick(clickableView)
     }
 
@@ -35,7 +35,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         binding.filterButton.onClickToPopBackStack()
     }
 
-    private fun navigateTooPetsCardFragment(id: Int) =
+    private fun navigateToPetsCardFragment(id: Int) =
         findNavController().navigate(
             DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(id)
         )

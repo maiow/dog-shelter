@@ -27,10 +27,10 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
-        if (clickableView == ClickableView.NEWS) navigate(item.id)
+        if (clickableView == ClickableView.NEWS) navigateToSingleNews(item.id)
     }
 
-    private fun navigate(itemId: Int) = findNavController()
+    private fun navigateToSingleNews(itemId: Int) = findNavController()
         .navigate(NewsListFragmentDirections.actionNewsListFragmentToSingleNewsFragment(itemId))
 
     private fun observeData(news: List<News>) {
