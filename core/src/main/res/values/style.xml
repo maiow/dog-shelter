@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Title">
-        <item name="android:fontFamily">@font/centurygothic</item>
+        <item name="android:fontFamily">@font/century_gothic</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -27,24 +27,17 @@
         <item name="android:layout_marginEnd">20dp</item>
     </style>
 
-    <style name="GreenButton" parent="Widget.Material3.Button.ElevatedButton">
-        <item name="android:background">@drawable/green_gradient</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textSize">20sp</item>
-        <item name="fontFamily">@font/centurygothic</item>
-        <item name="rippleColor">?attr/colorSecondary</item>
-        <item name="android:elevation">30dp</item>
-        <item name="android:translationZ">2dp</item>
+    <style name="Body">
+        <item name="android:fontFamily">@font/sf_ui_text_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="cornerRadius">16dp</item>
-        <item name="strokeColor">?attr/colorPrimary</item>
+    <style name="NewsTitle">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
     </style>
-    
-    <style name="AppSearchBar" parent="TextAppearance.Material3.SearchBar">
-        <item name="android:lines">2</item>
-        <item name="expandedHintEnabled">true</item>
-    </style>
+
 
 </resources>

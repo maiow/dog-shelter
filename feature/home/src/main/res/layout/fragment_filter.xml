@@ -8,7 +8,8 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,15 +20,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:id="@+id/container_checkboxes"
-            android:layout_marginBottom="80dp">
+            android:layout_marginBottom="20dp">
 
             <ImageButton
                 android:id="@+id/filter_close_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="?attr/backgroundColor"
                 android:clickable="true"
                 android:focusable="true"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/ic_close"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -148,7 +150,7 @@
                     app:chipSpacingHorizontal="16dp"
                     android:id="@+id/size_chips_group"
                     app:singleLine="true"
-                    app:singleSelection="true">
+                    app:singleSelection="false">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_small"
@@ -289,44 +291,31 @@
         android:id="@+id/bottom_buttons_layer"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="-20dp"
-        android:background="@drawable/layout_bg"
-        android:elevation="10dp"
-        android:orientation="horizontal"
-        android:stateListAnimator="@null"
-        android:translationZ="6dp"
+        android:background="@drawable/rounded_bottom_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
 
-    <Button
-        android:id="@+id/apply_btn"
-        style="@style/GreenButton"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:stateListAnimator="@null"
-        android:text="@string/apply"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/clear_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer">
+        <Button
+            android:id="@+id/clear_btn"
+            style="@style/Widget.DogShelter.Button.ElevatedButton.LightGreenButton"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="16dp"
+            android:text="@string/clear" />
 
-    </Button>
+        <Button
+            android:id="@+id/apply_btn"
+            style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="16dp"
+            android:text="@string/apply" />
 
-    <Button
-        android:id="@+id/clear_btn"
-        style="@style/LightGreenButton"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:stateListAnimator="@null"
-        android:text="@string/clear"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/apply_btn"
-        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer">
 
-    </Button>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

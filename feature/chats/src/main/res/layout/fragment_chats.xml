@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminate="false"
+        android:indeterminate="true"
         android:progress="75"/>
 
     <Button
@@ -32,6 +32,6 @@
         android:text="Подтвердить"
         android:layout_gravity="center_horizontal"
         app:backgroundTint="@null"
-        style="@style/GreenButton"/>
+        style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"/>
 
 </LinearLayout>

@@ -48,13 +48,13 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogs_name"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
+        app:layout_constraintTop_toBottomOf="@+id/dogs_name">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -193,27 +193,28 @@
 
             <Button
                 android:id="@+id/curator_button"
-                style="@style/GreenOutlinedButton"
+                style="@style/Widget.App.Button.OutlinedButton.GreenButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_chat_btn"
-                android:paddingHorizontal="34dp"
+                app:icon="@drawable/ic_chat_btn"
+                app:iconGravity="end"
+                android:layout_marginTop="32dp"
+                android:paddingHorizontal="40dp"
                 android:text="@string/contact_handler"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/story" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/share_button"
-                style="@style/GreenButton"
+                style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"
+                app:icon="@drawable/ic_share"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:drawableStart="@drawable/ic_share"
                 android:paddingHorizontal="40dp"
                 android:text="@string/share_profile"
-                app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

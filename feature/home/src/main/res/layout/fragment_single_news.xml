@@ -1,41 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".presentation.news.SingleNewsFragment">
 
-    <TextView
-        android:id="@+id/newsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello"
-        style="@style/FilterTitle"
-        android:layout_gravity="center_horizontal"
-        android:textSize="36sp"/>
-
-    <ImageView
-        android:id="@+id/newsPreview"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:adjustViewBounds="true"
-        tools:srcCompat="@drawable/news_card" />
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/rounded_layout">
 
-    <TextView
-        android:id="@+id/newsBody"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/ItemContainerTitle"
-        android:layout_gravity="center_horizontal"
-        android:text="Body" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="15dp"
+                android:background="?attr/colorSurface"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+            <LinearLayout
+                android:id="@+id/news_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="-3dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="@id/back_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/newsTitle"
+                    style="@style/NewsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    tools:text=" hello hellohellohellohellohello hellohello  " />
+
+                <ImageView
+                    android:id="@+id/newsPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginVertical="16dp"
+                    android:adjustViewBounds="true"
+                    tools:srcCompat="@drawable/news_card" />
+
+                <TextView
+                    android:id="@+id/newsBody"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem/random" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
+        android:indeterminate="true" />
 
 </LinearLayout>

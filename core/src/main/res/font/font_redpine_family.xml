@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <font
-        android:font="@font/centurygothic"
+        android:font="@font/century_gothic"
         android:fontStyle="normal"
         android:fontWeight="400"
         tools:targetApi="o" />
