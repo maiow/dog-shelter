@@ -10,7 +10,7 @@ import com.redpine.core.model.card.News
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentNewsListBinding
-import com.redpine.home.presentation.home.adapter.delegate.ItemAdapter
+import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
 class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 

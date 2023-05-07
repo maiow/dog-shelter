@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-HEAD
     <string name="New">Новые питомцы</string>
     <string name="Recent_seen">Недавно просмотренные</string>
     <string name="News">Новости</string>
-=======
     <string name="filter">Фильтр</string>
     <string name="gender">Пол</string>
     <string name="girl">Девочка</string>
@@ -67,5 +65,5 @@ HEAD
         <item quantity="other">%1$s лет</item>
     </plurals>
 
->>>>>>> main
+    <string name="watsapp_message">Добрый день! Пишу по поводу собаки %1$s из Красной Сосны</string>
 </resources>

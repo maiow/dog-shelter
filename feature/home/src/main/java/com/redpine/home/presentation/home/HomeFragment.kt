@@ -13,7 +13,7 @@ import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
 import com.redpine.home.domain.model.grid.Grid
-import com.redpine.home.presentation.home.adapter.delegate.GridAdapter
+import com.redpine.home.presentation.home.adapter.adapter.GridAdapter
 
 class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
