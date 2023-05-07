@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.redpine.core.model.card.News
 import com.redpine.core.state.LoadState
@@ -35,6 +36,7 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
             .replace("    ", "\n\n")
             .replace("•", "  •")
         binding.newsBody.text = body
+        binding.backButton.setOnClickListener { findNavController().popBackStack() }
     }
 
     private fun loadingObserve(loadState: LoadState) {

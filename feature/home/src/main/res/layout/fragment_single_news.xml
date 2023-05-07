@@ -1,55 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".presentation.news.SingleNewsFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="30dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="30dp"
         android:background="@drawable/rounded_layout">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="32dp">
+            android:backgroundTint="@android:color/transparent">
 
-            <TextView
-                android:id="@+id/newsTitle"
-                style="@style/Title"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginBottom="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Hello"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/newsPreview"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginVertical="16dp"
-                android:adjustViewBounds="true"
-                tools:srcCompat="@drawable/news_card" />
-
-            <TextView
-                android:id="@+id/newsBody"
-                style="@style/Body"
+            <ImageButton
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:breakStrategy="high_quality"
-                tools:text="@tools:sample/lorem/random" />
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="15dp"
+                android:background="?attr/colorSurface"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/news_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="-3dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="@id/back_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/newsTitle"
+                    style="@style/NewsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    tools:text=" hello hellohellohellohellohello hellohello  " />
+
+                <ImageView
+                    android:id="@+id/newsPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginVertical="16dp"
+                    android:adjustViewBounds="true"
+                    tools:srcCompat="@drawable/news_card" />
+
+                <TextView
+                    android:id="@+id/newsBody"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem/random" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
