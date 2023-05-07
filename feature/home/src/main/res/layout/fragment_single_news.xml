@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".presentation.news.SingleNewsFragment">
 
@@ -23,15 +24,19 @@
             <TextView
                 android:id="@+id/newsTitle"
                 style="@style/Title"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello"
-                android:textSize="36sp" />
+                tools:text="Hello"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/newsPreview"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_marginVertical="16dp"
                 android:adjustViewBounds="true"
                 tools:srcCompat="@drawable/news_card" />
 
@@ -42,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:breakStrategy="high_quality"
-                android:text="@string/test_text" />
+                tools:text="@tools:sample/lorem/random" />
 
         </LinearLayout>
 
