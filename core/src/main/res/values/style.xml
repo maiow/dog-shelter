@@ -27,10 +27,12 @@
         <item name="android:layout_marginEnd">20dp</item>
     </style>
 
+    <style name="Body">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
 
-
-
-    
     <style name="AppSearchBar" parent="TextAppearance.Material3.SearchBar">
         <item name="android:lines">2</item>
         <item name="expandedHintEnabled">true</item>
