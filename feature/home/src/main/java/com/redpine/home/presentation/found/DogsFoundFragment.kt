@@ -10,7 +10,7 @@ import com.redpine.core.model.card.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentDogsFoundBinding
-import com.redpine.home.presentation.home.adapter.delegate.ItemAdapter
+import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 

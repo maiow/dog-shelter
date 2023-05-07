@@ -30,7 +30,11 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
     private fun bindNews(news: News) {
         binding.newsPreview.loadImage(news.imageUrl)
         binding.newsTitle.text = news.title
-        binding.newsBody.text = news.body
+        val body = news.body
+            .replace("\\n", "\n")
+            .replace("    ", "\n\n")
+            .replace("•", "  •")
+        binding.newsBody.text = body
     }
 
     private fun loadingObserve(loadState: LoadState) {

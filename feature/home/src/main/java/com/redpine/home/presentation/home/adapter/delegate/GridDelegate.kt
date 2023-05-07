@@ -9,6 +9,7 @@ import com.redpine.home.databinding.ItemContainerViewHolderBinding
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.model.grid.VerticalGrid
+import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
 fun horizontalGridDelegate(
     onItemClick: (ClickableView, Item?) -> Unit,
