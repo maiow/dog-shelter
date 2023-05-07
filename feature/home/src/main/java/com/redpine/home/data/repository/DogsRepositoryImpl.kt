@@ -50,6 +50,6 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
 
     private companion object {
         const val DOGS_NODE = "dogs"
-        const val GALLERY_NODE = "news"
+        const val GALLERY_NODE = "gallery"
     }
 }
