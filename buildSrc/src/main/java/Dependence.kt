@@ -10,9 +10,9 @@ object Dependence {
         const val navigationUi = "androidx.navigation:navigation-ui-ktx:2.5.3"
         const val splashScreen = "androidx.core:core-splashscreen:1.0.0"
         const val glide = "com.github.bumptech.glide:glide:4.15.1"
-        const val adapterDelegates = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2"
         const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
         const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+        const val paging = "androidx.paging:paging-runtime:3.1.1"
     }
 
     object Di {

@@ -31,7 +31,6 @@ dependencies {
     implementation(Dependence.Core.material)
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.glide)
-    implementation(Dependence.Core.adapterDelegates)
 
     implementation(platform(Dependence.Firebase.firebaseBom))
     implementation(Dependence.Firebase.firebaseDatabase)

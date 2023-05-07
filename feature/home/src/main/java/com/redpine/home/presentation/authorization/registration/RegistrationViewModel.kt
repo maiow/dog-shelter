@@ -18,7 +18,7 @@ class RegistrationViewModel @Inject constructor(
     private var password = ""
 
     fun createNewUser(email: String, password: String) =
-        scopeAction {
+        scopeLaunch {
              registrationUseCase.createUser(email, password)
         }
 
@@ -27,10 +27,8 @@ class RegistrationViewModel @Inject constructor(
             TypeAuthListener.EMAIL -> emailValidation(text)
             TypeAuthListener.PASSWORD -> passwordValidation(text, text2)
         }
-
         _loadState.value = if (isEmailValidation && isPasswordValidation) LoadState.ENABLE_BUTTON
         else LoadState.START
-
     }
 
     private fun emailValidation(email: String) {

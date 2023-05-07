@@ -51,10 +51,8 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         viewModel.getDogImages(dogId)
         viewLifecycleOwner.lifecycleScope.launch {
             Log.d(ContentValues.TAG, "observeNews: ")
-            viewModel.data.collect { response ->
-                if (response.imagesList != null)
-                binding.dogPhoto.adapter = CarouselAdapter(response.imagesList!!)
-                    //TODO: нужно добавить обработку response.exception
+            viewModel.data.collect { imagesList ->
+                binding.dogPhoto.adapter = CarouselAdapter(imagesList)
                 }
             }
         }

@@ -21,19 +21,15 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         validationButton()
-
         onClickAuthButton()
-
         onClickNavigationButton(
             binding.resetPasswordButton,
             AuthFragmentDirections.actionAuthFragmentToResetPasswordFragment(),
         )
-
         onClickNavigationButton(
             binding.registrationButton,
             AuthFragmentDirections.actionAuthFragmentToRegistrationFragment(binding.editEmail.text.toString())
         )
-
         flowObserver(viewModel.loadState) { loadState -> loadStateListener(loadState) }
 
     }
@@ -66,5 +62,4 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
         if (loadState == LoadState.SUCCESS)
             navigate(AuthFragmentDirections.actionAuthFragmentToHomeFragment())
     }
-
 }

@@ -1,7 +1,9 @@
 package com.redpine.core.extensions
 
 import android.util.Patterns
+import android.view.View
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.findNavController
 import com.google.android.material.textfield.TextInputEditText
 
 fun String.emailValidation() =
@@ -18,3 +20,9 @@ fun TextInputEditText.onTextChanged(action: (text: String) -> Unit) =
     this.doOnTextChanged { text, _, _, _ ->
         action(text.toString())
     }
+
+fun View.onClickToPopBackStack(){
+    this.setOnClickListener{
+        findNavController().popBackStack()
+    }
+}

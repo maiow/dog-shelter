@@ -20,3 +20,5 @@ include(":feature:home")
 include(":feature:chats")
 include(":core")
 include(":api")
+include(":delegate")
+

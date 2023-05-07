@@ -4,7 +4,6 @@ import android.app.Application
 import com.redpine.chats.di.ChatsDependenciesProvider
 import com.redpine.dogshelter.di.AppComponent
 import com.redpine.dogshelter.di.DaggerAppComponent
-
 import com.redpine.favorites.di.FavoritesDependenciesProvider
 import com.redpine.home.di.deps.HomeDependenciesProvider
 

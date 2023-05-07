@@ -5,6 +5,7 @@ enum class LoadState {
     LOADING,
     SUCCESS,
     ERROR_NETWORK,
+    NULL_RESPONSE,
     ERROR_AUTH,
     ENABLE_BUTTON
 }
