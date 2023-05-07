@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentOnboardingBinding
@@ -18,6 +19,8 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private val adapter by lazy { OnBoardingAdapter() }
 
+    private val mediator by lazy { ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager) }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -30,7 +33,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
     private fun setAdapter() {
         adapter.setItems(viewModel.list)
         binding.viewPager.adapter = adapter
-        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager).attach()
+        mediator.attach()
     }
 
     private fun onClickNextButton() {
@@ -43,5 +46,10 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         binding.skip.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mediator.detach()
     }
 }

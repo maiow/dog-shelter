@@ -7,7 +7,7 @@ import com.redpine.home.presentation.onboarding.view.DottedProgressBar
 class ProgressBarLayoutMediator(
     private var progressBar: DottedProgressBar,
     private val viewPager: ViewPager2,
-){
+) {
     private var onPageChangeCallback: DottedProgressOnPageProgressChangeCallback? = null
 
     private var adapter: RecyclerView.Adapter<*>? = null
@@ -18,7 +18,8 @@ class ProgressBarLayoutMediator(
         check(!attached) { throw IllegalStateException("ProgressBar is already attached") }
         adapter = viewPager.adapter
         checkNotNull(adapter) {
-            throw IllegalStateException("ProgressBar attached before ViewPager2 has an " + "adapter") }
+            throw IllegalStateException("ProgressBar attached before ViewPager2 has an " + "adapter")
+        }
         attached = true
 
         onPageChangeCallback = DottedProgressOnPageProgressChangeCallback(progressBar)
@@ -26,9 +27,18 @@ class ProgressBarLayoutMediator(
 
         progressBar.setProgress(viewPager.currentItem)
 
-        if (adapter!=null)
+        if (adapter != null)
             progressBar.setProgressSize(viewPager.adapter!!.itemCount)
 
-        viewPager.setCurrentItem(progressBar.getProgress(),true)
+        viewPager.setCurrentItem(progressBar.getProgress(), true)
+    }
+
+    fun detach() {
+        if (adapter != null) {
+            viewPager.unregisterOnPageChangeCallback(onPageChangeCallback!!)
+            onPageChangeCallback = null
+            adapter = null
+            attached = false
+        }
     }
 }
