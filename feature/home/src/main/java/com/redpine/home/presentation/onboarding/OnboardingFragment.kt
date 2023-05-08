@@ -18,6 +18,8 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private val adapter by lazy { OnBoardingAdapter() }
 
+    private val mediator by lazy { ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager) }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -30,7 +32,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
     private fun setAdapter() {
         adapter.setItems(viewModel.list)
         binding.viewPager.adapter = adapter
-        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager).attach()
+        mediator.attach()
     }
 
     private fun onClickNextButton() {
@@ -43,5 +45,11 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         binding.skip.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        binding.viewPager.adapter = null
+        mediator.detach()
+        super.onDestroyView()
     }
 }

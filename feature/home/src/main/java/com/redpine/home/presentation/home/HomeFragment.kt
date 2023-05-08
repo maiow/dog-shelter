@@ -82,6 +82,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         })
     }
 
+    override fun onDestroyView() {
+        binding.recycler.adapter = null
+        super.onDestroyView()
+    }
+
     private companion object {
         const val VK_URI = "https://vk.com/redpine"
         const val TG_URI = "https://t.me/priutKS"

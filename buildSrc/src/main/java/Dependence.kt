@@ -13,6 +13,7 @@ object Dependence {
         const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
         const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
         const val paging = "androidx.paging:paging-runtime:3.1.1"
+        const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.10"
     }
 
     object Di {

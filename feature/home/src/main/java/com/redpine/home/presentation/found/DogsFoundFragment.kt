@@ -31,7 +31,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         viewModel.getDogsByFilters(args.filters)
         setFilterText(args.filters)
         binding.recyclerView.adapter = adapter
-        flowObserver(viewModel.dogs){dogs-> loadContent(dogs)}
+        flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         binding.filterButton.onClickToPopBackStack()
     }
 
@@ -46,5 +46,10 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private fun loadContent(data: List<Item>) {
         adapter.submitList(data)
+    }
+
+    override fun onDestroyView() {
+        binding.recyclerView.adapter = null
+        super.onDestroyView()
     }
 }
