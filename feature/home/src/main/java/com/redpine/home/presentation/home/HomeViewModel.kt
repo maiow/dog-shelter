@@ -1,7 +1,7 @@
 package com.redpine.home.presentation.home
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.redpine.core.base.BaseViewModel
 import com.redpine.core.model.card.Dog
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
@@ -14,19 +14,14 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
     val data = _data.asStateFlow()
 
-    init {
-        createHomeScreen()
-    }
-
-    private fun createHomeScreen() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _data.value = homeScreenUseCase.getHomeScreenItems()
-        }
+    fun createHomeScreen() = scopeLaunch {
+//        delay(500)
+        _data.emit(homeScreenUseCase.getHomeScreenItems())
     }
 
     fun addToFavorites(itemPosition: Int, listPosition: Int) {
