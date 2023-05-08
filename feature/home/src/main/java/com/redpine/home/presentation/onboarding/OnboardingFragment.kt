@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.tabs.TabLayoutMediator
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentOnboardingBinding
@@ -49,7 +48,8 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        binding.viewPager.adapter = null
         mediator.detach()
+        super.onDestroyView()
     }
 }

@@ -59,6 +59,8 @@ dependencies {
     implementation(Dependence.Core.navigationUi)
     implementation(Dependence.Core.splashScreen)
 
+    //debugImplementation(Dependence.Core.leakCanary)
+
     implementation(Dependence.Firebase.googleServices)
     implementation(platform(Dependence.Firebase.firebaseBom))
     implementation(Dependence.Firebase.firebaseAnalytics)
