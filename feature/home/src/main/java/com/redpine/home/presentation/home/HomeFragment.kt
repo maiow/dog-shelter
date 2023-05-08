@@ -28,7 +28,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         setUserInterface()
-        viewModel.createHomeScreen()
         binding.recycler.adapter = adapter
         flowObserver(viewModel.data) { data -> observeData(data) }
         flowObserver(viewModel.loadState){loadState -> loadingObserve(loadState)}

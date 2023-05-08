@@ -7,6 +7,7 @@ import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -19,8 +20,13 @@ class HomeViewModel @Inject constructor(
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
     val data = _data.asStateFlow()
 
-    fun createHomeScreen() = scopeLaunch {
+    init {
+        createHomeScreen()
+    }
+
+    private fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
+        delay(500)
     }
 
     fun addToFavorites(itemPosition: Int, listPosition: Int) {
