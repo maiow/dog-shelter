@@ -20,8 +20,7 @@ class HomeViewModel @Inject constructor(
     val data = _data.asStateFlow()
 
     fun createHomeScreen() = scopeLaunch {
-//        delay(500)
-        _data.emit(homeScreenUseCase.getHomeScreenItems())
+        _data.value = homeScreenUseCase.getHomeScreenItems()
     }
 
     fun addToFavorites(itemPosition: Int, listPosition: Int) {

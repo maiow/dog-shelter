@@ -1,8 +1,10 @@
 package com.redpine.home.presentation.home
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -53,12 +55,14 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun observeData(data: List<Grid>) {
+        Log.d(TAG, "observeData: $data")
         adapter.submitList(data)
     }
 
     private fun loadingObserve(loadState: LoadState){
+        Log.d(TAG, "loadingObserve: $loadState")
         binding.progressBar.isVisible = loadState == LoadState.LOADING
-        binding.recycler.isVisible = loadState == LoadState.SUCCESS
+        binding.scroll.isVisible = loadState == LoadState.SUCCESS
         if (LoadState.ERROR_NETWORK == loadState) Toast.makeText(
             requireContext(), "loading error", Toast.LENGTH_SHORT
         ).show()

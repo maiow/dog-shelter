@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -24,29 +22,19 @@
 
         <action
             android:id="@+id/action_homeFragment_to_filterFragment"
-            app:destination="@id/filterFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/filterFragment" />
         <action
             android:id="@+id/action_homeFragment_to_petsCardFragment"
-            app:destination="@id/petsCardFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/petsCardFragment"/>
         <action
             android:id="@+id/action_homeFragment_to_dogsFoundFragment"
-            app:destination="@id/dogsFoundFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/dogsFoundFragment"/>
         <action
             android:id="@+id/action_homeFragment_to_newsListFragment"
-            app:destination="@id/newsListFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/newsListFragment"/>
         <action
             android:id="@+id/action_homeFragment_to_singleNewsFragment"
-            app:destination="@id/singleNewsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/singleNewsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -54,9 +42,7 @@
         android:label="FilterFragment">
         <action
             android:id="@+id/action_filterFragment_to_dogsFoundFragment"
-            app:destination="@id/dogsFoundFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/dogsFoundFragment"/>
     </fragment>
     <fragment
         android:id="@+id/dogsFoundFragment"
@@ -69,9 +55,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_dogsFoundFragment_to_petsCardFragment"
-            app:destination="@id/petsCardFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/petsCardFragment"/>
     </fragment>
     <fragment
         android:id="@+id/petsCardFragment"
@@ -90,9 +74,7 @@
         tools:layout="@layout/fragment_news_list">
         <action
             android:id="@+id/action_newsListFragment_to_singleNewsFragment"
-            app:destination="@id/singleNewsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/singleNewsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/singleNewsFragment"
