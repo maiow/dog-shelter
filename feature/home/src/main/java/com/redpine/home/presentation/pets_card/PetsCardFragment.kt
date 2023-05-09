@@ -6,17 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
+import com.redpine.core.state.LoadState
 import com.redpine.core.tools.loadImage
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.CarouselItemContainerBinding
 import com.redpine.home.databinding.FragmentPetsCardBinding
-import kotlinx.coroutines.launch
+import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Error
+import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Loaded
+import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Loading
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
@@ -27,10 +32,14 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.onGettingArgument(args.dogId)
         setCloseButton()
         setShareButton(args.dogId)
-        setCuratorButton(args.dogId)
-        observeData(args.dogId)
+        flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
+        flowObserver(viewModel.imagesList) { imagesList ->
+            binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
+        }
+        flowObserver(viewModel.dogInfoState) { data -> bindDogInfo(data) }
         assignCarouselLayoutManager()
     }
 
@@ -38,12 +47,36 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         binding.carouselRecyclerView.layoutManager = CarouselLayoutManager()
     }
 
-    private fun observeData(dogId: Int) {
-        viewModel.getDogImages(dogId)
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.data.collect { imagesList ->
-                binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
-            }
+    private fun loadingObserve(loadState: LoadState) {
+        binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
+        binding.carouselRecyclerView.isVisible = (loadState == LoadState.SUCCESS)
+        if (LoadState.ERROR_NETWORK == loadState) Toast.makeText(
+            requireContext(), "loading error", Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun bindDogInfo(state: PetsCardViewModel.State) {
+        binding.commonProgress.progressBar.isVisible = (state == Loading)
+
+        if (state is Loaded) {
+            binding.dogsName.text = state.dogInfo.name
+            binding.age.text = state.dogInfo.age
+            binding.color.text = state.dogInfo.color
+            binding.height.text = state.dogInfo.height.toString() + " см"
+            binding.story.text = state.dogInfo.text
+            val genderIcon = if (state.dogInfo.gender == GENDER_MALE)
+                ResourcesCompat.getDrawable(
+                    resources,
+                    com.redpine.core.R.drawable.ic_filter_gender_male,
+                    null
+                ) else ResourcesCompat.getDrawable(
+                resources, com.redpine.core.R.drawable.ic_filter_gender_female, null
+            )
+            binding.genderImage.setImageDrawable(genderIcon)
+            setCuratorButton(state.dogInfo.curator_phone, state.dogInfo.name)
+        }
+        if (state is Error) {
+            Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -55,9 +88,10 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         shareLinkOnDog(viewModel.getDogLink(dogId))
     }
 
-    private fun setCuratorButton(dogId: Int) = binding.curatorButton.setOnClickListener {
-        sendWhatsAppMessageToCurator(viewModel.getCuratorNumber(dogId), viewModel.getDogName(dogId))
-    }
+    private fun setCuratorButton(curator_phone: String, dogName: String) =
+        binding.curatorButton.setOnClickListener {
+            sendWhatsAppMessageToCurator(curator_phone, dogName)
+        }
 
     private fun shareLinkOnDog(link: String) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
@@ -74,6 +108,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private companion object {
         const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
+        const val GENDER_MALE = "male"
     }
 }
 

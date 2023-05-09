@@ -19,12 +19,12 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
     }
 
     override suspend fun getDogImages(id: Int): List<String> {
-       val listImage = database
-           .child(GALLERY_NODE)
-           .child(GALLERY_NODE+id)
-           .get()
-           .await()
-           .children.map { snapShot -> snapShot.value.toString() }
+        val listImage = database
+            .child(GALLERY_NODE)
+            .child(GALLERY_NODE + id)
+            .get()
+            .await()
+            .children.map { snapShot -> snapShot.value.toString() }
         if (listImage.isNotEmpty()) return listImage else throw FirebaseBaseExceptionNullResponse()
     }
 
@@ -48,8 +48,22 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
         return listRecentSeenDog.toList()
     }
 
+    override suspend fun getDogInfo(id: Int): Dog {
+        var child = DOGS_NODE_CHILD + id
+        if (id == 1) child = "lenora"
+        if (id == 2) child = "lion"
+        val res = database
+            .child(DOGS_NODE)
+            .child(child)
+            .get()
+            .await()
+            .getValue(Dog::class.java) ?: Dog()
+        if (res.id != 0) return res else throw FirebaseBaseExceptionNullResponse()
+    }
+
     private companion object {
         const val DOGS_NODE = "dogs"
+        const val DOGS_NODE_CHILD = "dog"
         const val GALLERY_NODE = "gallery"
     }
 }
