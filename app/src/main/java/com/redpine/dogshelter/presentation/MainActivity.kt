@@ -7,11 +7,24 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.dogshelter.R
 import com.redpine.dogshelter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private val onBoardingPrefs = object : OnBoardingPrefs{
+        override fun rememberOnBoardingIsShown() {
+
+        }
+
+        override fun clearToken() {
+        }
+
+        override fun isShown(): Boolean {
+            return false
+        }
+    }
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE
         }
+
+        if (onBoardingPrefs.isShown()) navController.navigate(com.redpine.home.R.id.home_nav_graph)
+
 
     }
 }

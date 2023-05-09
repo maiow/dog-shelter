@@ -3,9 +3,9 @@ package com.redpine.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
+import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.repository.OnboardingRepository
-import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.AuthTokenUseCase
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.usecase.HomeScreenUseCase
@@ -16,9 +16,9 @@ import com.redpine.home.domain.usecase.SingleNewsUseCase
 import com.redpine.home.presentation.authorization.auth.AuthViewModel
 import com.redpine.home.presentation.authorization.registration.RegistrationViewModel
 import com.redpine.home.presentation.authorization.resetpassword.ResetPasswordViewModel
-import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.filter.FilterViewModel
 import com.redpine.home.presentation.found.DogsFoundViewModel
+import com.redpine.home.presentation.home.HomeViewModel
 import com.redpine.home.presentation.news.NewsListViewModel
 import com.redpine.home.presentation.news.SingleNewsViewModel
 import com.redpine.home.presentation.onboarding.OnboardingViewModel
@@ -33,6 +33,7 @@ class ViewModelFactory @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
     private val resetPasswordUseCase: ResetPasswordUseCase,
     private val onboardingRepository: OnboardingRepository,
+    private val onBoardingPrefs: OnBoardingPrefs,
     private val homeScreenUseCase: HomeScreenUseCase,
     private val listNewsUseCase: ListNewsUseCase,
     private val singleNewsUseCase: SingleNewsUseCase,
@@ -40,7 +41,7 @@ class ViewModelFactory @Inject constructor(
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase) as T
-        OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository) as T
+        OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository, onBoardingPrefs) as T
         FilterViewModel::class.java -> FilterViewModel(api) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(api) as T
         PetsCardViewModel::class.java -> PetsCardViewModel(dogsRepository) as T

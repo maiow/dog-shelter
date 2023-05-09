@@ -1,13 +1,11 @@
 package com.redpine.home.di.module
 
 import com.redpine.core.domain.TokenProvider
-import com.redpine.home.data.repository.NewsRepositoryImpl
-import com.redpine.home.domain.repository.NewsRepository
-import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
 import com.redpine.home.domain.repository.AuthenticationRepository
 import com.redpine.home.domain.repository.DogsRepository
-import com.redpine.home.domain.usecase.SingleNewsUseCase
+import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
+import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
@@ -46,4 +44,5 @@ class UseCaseModule {
     @Provides
     fun providesSingleNewsUseCase(newsRepository: NewsRepository) =
         SingleNewsUseCaseImpl(newsRepository)
+
 }

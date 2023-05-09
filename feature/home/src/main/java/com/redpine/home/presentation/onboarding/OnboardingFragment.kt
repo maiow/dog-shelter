@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.redpine.home.HomeBaseFragment
-import com.redpine.home.R
 import com.redpine.home.databinding.FragmentOnboardingBinding
 import com.redpine.home.presentation.onboarding.adapter.OnBoardingAdapter
 import com.redpine.home.presentation.onboarding.view.mediator.ProgressBarLayoutMediator
@@ -26,7 +25,11 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         setAdapter()
         onClickNextButton()
         onClickSkipButton()
+        rememberOnBoardingIsShown()
 
+    }
+    private fun rememberOnBoardingIsShown(){
+        viewModel.rememberOnBoardingIsShown()
     }
 
     private fun setAdapter() {
@@ -43,7 +46,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private fun onClickSkipButton() {
         binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
+            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
         }
     }
 

@@ -1,7 +1,5 @@
 package com.redpine.home.presentation.home.adapter.delegate
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.view.LayoutInflater
 import com.redpine.adapter.adapterDelegate
 import com.redpine.core.databinding.DogViewHolderBinding
@@ -46,7 +44,7 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
             binding.dogAge.text = "Возраст: " + item.age
             binding.dogHeight.text = "Рост в холке: " + item.height.toString() + " см"
             binding.dogPhoto.loadImage(item.imageUrl)
-            Log.d(TAG, "dogsDelegate: ")
+//            Log.d(TAG, "dogsDelegate: ")
         }
 
         bindForPayloads { payloads ->
