@@ -5,19 +5,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
+import com.redpine.core.model.card.Dog
 import com.redpine.core.state.LoadState
-import com.redpine.core.tools.loadImage
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
-import com.redpine.home.databinding.CarouselItemContainerBinding
 import com.redpine.home.databinding.FragmentPetsCardBinding
 import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Error
 import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Loaded
@@ -34,12 +31,11 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
         viewModel.onGettingArgument(args.dogId)
         setCloseButton()
-        setShareButton(args.dogId)
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
         }
-        flowObserver(viewModel.dogInfoState) { data -> bindDogInfo(data) }
+        flowObserver(viewModel.dogInfoState) { state -> updateUiOnDogInfoState(state) }
         assignCarouselLayoutManager()
     }
 
@@ -55,42 +51,46 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         ).show()
     }
 
-    private fun bindDogInfo(state: PetsCardViewModel.State) {
+    private fun updateUiOnDogInfoState(state: PetsCardViewModel.State) {
         binding.commonProgress.progressBar.isVisible = (state == Loading)
-
         if (state is Loaded) {
-            binding.dogsName.text = state.dogInfo.name
-            binding.age.text = state.dogInfo.age
-            binding.color.text = state.dogInfo.color
-            binding.height.text = state.dogInfo.height.toString() + " см"
-            binding.story.text = state.dogInfo.text
-            val genderIcon = if (state.dogInfo.gender == GENDER_MALE)
-                ResourcesCompat.getDrawable(
-                    resources,
-                    com.redpine.core.R.drawable.ic_filter_gender_male,
-                    null
-                ) else ResourcesCompat.getDrawable(
-                resources, com.redpine.core.R.drawable.ic_filter_gender_female, null
-            )
-            binding.genderImage.setImageDrawable(genderIcon)
+            showDogInfo(state.dogInfo)
             setCuratorButton(state.dogInfo.curator_phone, state.dogInfo.name)
+            setShareButton(state.dogInfo.web_link)
         }
         if (state is Error) {
             Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun showDogInfo(dogInfo: Dog) {
+        binding.dogsName.text = dogInfo.name
+        binding.age.text = dogInfo.age
+        binding.color.text = dogInfo.color
+        binding.height.text = getString(R.string.height, dogInfo.height)
+        binding.story.text = dogInfo.text
+        val genderIcon = if (dogInfo.gender == GENDER_MALE)
+            ResourcesCompat.getDrawable(
+                resources,
+                com.redpine.core.R.drawable.ic_filter_gender_male,
+                null
+            ) else ResourcesCompat.getDrawable(
+            resources, com.redpine.core.R.drawable.ic_filter_gender_female, null
+        )
+        binding.genderImage.setImageDrawable(genderIcon)
+    }
+
     private fun setCloseButton() = binding.backButton.setOnClickListener {
         findNavController().popBackStack()
     }
 
-    private fun setShareButton(dogId: Int) = binding.shareButton.setOnClickListener {
-        shareLinkOnDog(viewModel.getDogLink(dogId))
+    private fun setShareButton(dogLink: String) = binding.shareButton.setOnClickListener {
+        shareLinkOnDog(dogLink)
     }
 
-    private fun setCuratorButton(curator_phone: String, dogName: String) =
+    private fun setCuratorButton(phone: String, dogName: String) =
         binding.curatorButton.setOnClickListener {
-            sendWhatsAppMessageToCurator(curator_phone, dogName)
+            sendWhatsAppMessageToCurator(phone, dogName)
         }
 
     private fun shareLinkOnDog(link: String) {
@@ -109,29 +109,5 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     private companion object {
         const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
         const val GENDER_MALE = "male"
-    }
-}
-
-internal class CarouselAdapter(private val images: List<String>) :
-    RecyclerView.Adapter<CarouselAdapter.DogGalleryViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        DogGalleryViewHolder(
-            CarouselItemContainerBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent, false
-            )
-        )
-
-
-    override fun onBindViewHolder(holder: DogGalleryViewHolder, position: Int) =
-        holder.bind(images[position])
-
-    override fun getItemCount(): Int = images.size
-
-    class DogGalleryViewHolder(private val binding: CarouselItemContainerBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: String) = binding.carouselImageView.loadImage(item)
     }
 }

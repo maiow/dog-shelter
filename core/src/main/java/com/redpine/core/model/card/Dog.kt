@@ -10,12 +10,13 @@ data class Dog(
     var color: String = "",
     var curator_phone: String = "",
     var gender: String = "",
-    var height: Int = 20,
+    var height: String = "20",
     override var id: Int = 0,
     var imageUrl: String = "",
     var name: String = "",
     var size: String = "",
     var text: String = "",
+    var web_link: String = "",
     @Exclude
     override var isFavorite: Boolean = false,
     @Exclude

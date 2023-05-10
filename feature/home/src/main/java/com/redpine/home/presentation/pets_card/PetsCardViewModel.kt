@@ -26,8 +26,6 @@ class PetsCardViewModel @Inject constructor(
         getDogInfo(dogId)
     }
 
-    fun getDogLink(dogId: Int) = "1-848899393821-valli"
-
     private fun getDogInfo(dogId: Int) =
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -46,9 +44,6 @@ class PetsCardViewModel @Inject constructor(
     sealed interface State {
         object Loading : State
         data class Error(val error: String) : State
-
-        data class Loaded(
-            val dogInfo: Dog
-        ) : State
+        data class Loaded(val dogInfo: Dog) : State
     }
 }

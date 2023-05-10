@@ -42,7 +42,7 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
             binding.btnFavorite.isSelected = item.isFavorite
             binding.dogName.text = item.name
             binding.dogAge.text = "Возраст: " + item.age
-            binding.dogHeight.text = "Рост в холке: " + item.height.toString() + " см"
+            binding.dogHeight.text = "Рост в холке: " + item.height + " см"
             binding.dogPhoto.loadImage(item.imageUrl)
         }
 

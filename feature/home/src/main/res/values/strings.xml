@@ -65,4 +65,5 @@
     </plurals>
 
     <string name="watsapp_message">Hello! I\'m writing about a dog named %1$s living at RedPine dog shelter</string>
+    <string name="height">%1$s cm</string>
 </resources>
