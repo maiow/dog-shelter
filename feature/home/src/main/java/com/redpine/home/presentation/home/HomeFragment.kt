@@ -62,6 +62,9 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         binding.filterButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
         }
+        binding.helpButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_helpFragment)
+        }
         binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
         binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }
     }

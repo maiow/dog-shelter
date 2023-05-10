@@ -67,4 +67,15 @@
 
     <string name="watsapp_message">Добрый день! Пишу по поводу собаки %1$s из Красной Сосны</string>
     <string name="height">%1$s см</string>
+    <string name="how_to_help">У нас вы можете:</string>
+    <string name="become_volunteer">Стать \nволонтером</string>
+    <string name="become_guardian">Стать \nопекуном</string>
+    <string name="become_fincurator">Стать \nфинкуратором</string>
+    <string name="make_gift">Сделать \nподарок</string>
+    <string name="make_donation">Сделать \nпожертвование</string>
+    <string name="other_help">Другая \nпомощь</string>
+    <string name="card_transfer">1. Перевод на карту</string>
+    <string name="hungry_phone">2. Голодный телефон</string>
+    <string name="ya_wallet">3. Яндекс-кошелёк</string>
+    <string name="help">Помочь</string>
 </resources>

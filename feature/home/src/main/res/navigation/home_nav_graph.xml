@@ -47,6 +47,9 @@
             app:destination="@id/singleNewsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -151,7 +154,8 @@
         android:label="fragment_auth_message"
         tools:layout="@layout/fragment_auth_message" />
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.redpine.home.presentation.filter.TestFragment"
-        android:label="TestFragment" />
+        android:id="@+id/helpFragment"
+        android:name="com.redpine.home.presentation.help.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>
