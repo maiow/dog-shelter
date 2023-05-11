@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="@string/oops"
+        android:textColor="@color/green_solid"
+        android:textSize="90sp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_marginTop="24dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_wifi_off"
+        app:tint="@color/red"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="36dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/no_connection"
+        android:textSize="24sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="36dp"
+        android:layout_gravity="center"
+        android:text="@string/retry"
+        style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

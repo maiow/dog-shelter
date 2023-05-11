@@ -80,5 +80,8 @@
     <string name="hungry_phone_number" translatable="false">+7 963 767 79 57</string>
     <string name="sber_card_number" translatable="false">5469 3801 4999 3056</string>
     <string name="help">Help</string>
+    <string name="oops">Oops!</string>
+    <string name="no_connection">No Internet connection. Check it and try again.</string>
+    <string name="retry">Retry</string>
 
 </resources>

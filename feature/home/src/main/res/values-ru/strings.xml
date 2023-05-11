@@ -78,4 +78,7 @@
     <string name="hungry_phone">2. Голодный телефон</string>
     <string name="ya_wallet">3. Яндекс-кошелёк</string>
     <string name="help">Помочь</string>
+    <string name="oops">Ой!</string>
+    <string name="no_connection">Не удалось подключиться к сети. Проверьте соединение и повторите попытку.</string>
+    <string name="retry">Повторить</string>
 </resources>
