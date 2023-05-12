@@ -3,7 +3,7 @@ package com.redpine.home.presentation.pets_card
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.redpine.core.tools.loadImage
+import com.redpine.core.extensions.loadImage
 import com.redpine.home.databinding.CarouselItemContainerBinding
 
 class CarouselAdapter (private val images: List<String>) :

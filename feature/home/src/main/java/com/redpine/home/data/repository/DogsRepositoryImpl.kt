@@ -2,7 +2,10 @@ package com.redpine.home.data.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
-import com.redpine.core.model.card.Dog
+import com.redpine.core.domain.model.Dog
+import com.redpine.core.extensions.toDog
+import com.redpine.core.extensions.toDogList
+import com.redpine.core.data.DogDto
 import com.redpine.home.domain.repository.DogsRepository
 import kotlinx.coroutines.tasks.await
 import kotlin.random.Random
@@ -10,12 +13,12 @@ import kotlin.random.Random
 class DogsRepositoryImpl(private val database: DatabaseReference) : DogsRepository {
 
     override suspend fun getNewDogs(count: Int): List<Dog> {
-        val dogsList = database
+        val dogsLists = database
             .child(DOGS_NODE)
             .get().await()
-            .children.map { snapShot -> snapShot.getValue(Dog::class.java) ?: Dog() }
+            .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
         /// TODO: дополнить логику ограничением в count штук
-        if (dogsList.isNotEmpty()) return dogsList else throw FirebaseBaseExceptionNullResponse()
+        if (dogsLists.isNotEmpty()) return dogsLists.toDogList() else throw FirebaseBaseExceptionNullResponse()
     }
 
     override suspend fun getDogImages(id: Int): List<String> {
@@ -58,8 +61,8 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
             .child(child)
             .get()
             .await()
-            .getValue(Dog::class.java) ?: Dog()
-        if (res.id != 0) return res else throw FirebaseBaseExceptionNullResponse()
+            .getValue(DogDto::class.java) ?: DogDto()
+        if (res.id != 0) return res.toDog() else throw FirebaseBaseExceptionNullResponse()
     }
 
     private companion object {

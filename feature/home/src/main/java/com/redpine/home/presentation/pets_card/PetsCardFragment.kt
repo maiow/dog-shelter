@@ -11,14 +11,11 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.carousel.CarouselLayoutManager
-import com.redpine.core.model.card.Dog
+import com.redpine.core.domain.model.Dog
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentPetsCardBinding
-import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Error
-import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Loaded
-import com.redpine.home.presentation.pets_card.PetsCardViewModel.State.Loading
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
@@ -29,13 +26,15 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.onGettingArgument(args.dogId)
+        viewModel.onGettingArgument(args.dog)
+        showDogInfo(args.dog)
         setCloseButton()
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
         }
-        flowObserver(viewModel.dogInfoState) { state -> updateUiOnDogInfoState(state) }
+        setCuratorButton(args.dog.curator_phone, args.dog.name)
+        setShareButton(args.dog.web_link)
         assignCarouselLayoutManager()
     }
 
@@ -51,25 +50,13 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         ).show()
     }
 
-    private fun updateUiOnDogInfoState(state: PetsCardViewModel.State) {
-        binding.commonProgress.progressBar.isVisible = (state == Loading)
-        if (state is Loaded) {
-            showDogInfo(state.dogInfo)
-            setCuratorButton(state.dogInfo.curator_phone, state.dogInfo.name)
-            setShareButton(state.dogInfo.web_link)
-        }
-        if (state is Error) {
-            Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun showDogInfo(dogInfo: Dog) {
-        binding.dogsName.text = dogInfo.name
-        binding.age.text = dogInfo.age
-        binding.color.text = dogInfo.color
-        binding.height.text = getString(R.string.height, dogInfo.height)
-        binding.story.text = dogInfo.text
-        val genderIcon = if (dogInfo.gender == GENDER_MALE)
+    private fun showDogInfo(dog: Dog) {
+        binding.dogsName.text = dog.name
+        binding.age.text = dog.age
+        binding.color.text = dog.color
+        binding.height.text = getString(R.string.height, dog.height)
+        binding.story.text = dog.text
+        val genderIcon = if (dog.gender == GENDER_MALE)
             ResourcesCompat.getDrawable(
                 resources,
                 com.redpine.core.R.drawable.ic_filter_gender_male,

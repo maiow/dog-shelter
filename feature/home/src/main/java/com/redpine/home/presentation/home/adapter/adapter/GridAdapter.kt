@@ -1,7 +1,7 @@
 package com.redpine.home.presentation.home.adapter.adapter
 
 import com.redpine.adapter.ListDelegateAdapter
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.presentation.home.adapter.delegate.dogsDelegate

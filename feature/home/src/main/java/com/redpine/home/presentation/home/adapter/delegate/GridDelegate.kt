@@ -3,7 +3,7 @@ package com.redpine.home.presentation.home.adapter.delegate
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.GridLayoutManager
 import com.redpine.adapter.adapterDelegate
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.databinding.ItemContainerViewHolderBinding
 import com.redpine.home.domain.model.grid.Grid

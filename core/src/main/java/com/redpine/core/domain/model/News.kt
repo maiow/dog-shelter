@@ -1,4 +1,4 @@
-package com.redpine.core.model.card
+package com.redpine.core.domain.model
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties

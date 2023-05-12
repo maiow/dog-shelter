@@ -1,4 +1,4 @@
-package com.redpine.core.model.card
+package com.redpine.core.domain.model
 
 interface Item {
     val id: Int

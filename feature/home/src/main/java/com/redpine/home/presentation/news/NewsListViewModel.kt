@@ -1,8 +1,7 @@
 package com.redpine.home.presentation.news
 
 import com.redpine.core.base.BaseViewModel
-import com.redpine.core.model.card.News
-import com.redpine.home.domain.repository.NewsRepository
+import com.redpine.core.domain.model.News
 import com.redpine.home.domain.usecase.ListNewsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
