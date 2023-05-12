@@ -1,6 +1,6 @@
 package com.redpine.home.domain.usecase.impl
 
-import com.redpine.core.model.card.News
+import com.redpine.core.domain.model.News
 import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.SingleNewsUseCase
 

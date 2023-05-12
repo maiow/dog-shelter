@@ -1,10 +1,8 @@
 package com.redpine.home.presentation.found
 
-import android.util.Log
 import com.redpine.api.Api
 import com.redpine.core.base.BaseViewModel
-import com.redpine.core.model.card.Dog
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Dog
 import com.redpine.core.tools.ClickableView
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

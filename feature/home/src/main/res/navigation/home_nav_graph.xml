@@ -82,9 +82,8 @@
         android:label="fragment_pets_card"
         tools:layout="@layout/fragment_pets_card">
         <argument
-            android:name="dogId"
-            android:defaultValue="1"
-            app:argType="integer" />
+            android:name="dog"
+            app:argType="com.redpine.core.domain.model.Dog" />
     </fragment>
     <fragment
         android:id="@+id/newsListFragment"
@@ -110,7 +109,7 @@
         android:id="@+id/authFragment"
         android:name="com.redpine.home.presentation.authorization.auth.AuthFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" >
+        tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -127,7 +126,7 @@
         android:id="@+id/registrationFragment"
         android:name="com.redpine.home.presentation.authorization.registration.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
+        tools:layout="@layout/fragment_registration">
         <argument
             android:name="email"
             app:argType="string" />
@@ -141,7 +140,7 @@
         android:id="@+id/resetPasswordFragment"
         android:name="com.redpine.home.presentation.authorization.resetpassword.ResetPasswordFragment"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" >
+        tools:layout="@layout/fragment_reset_password">
         <action
             android:id="@+id/action_resetPasswordFragment_to_authMessageFragment"
             app:destination="@id/authMessageFragment"

@@ -1,6 +1,6 @@
 package com.redpine.home.domain.repository
 
-import com.redpine.core.model.card.Dog
+import com.redpine.core.domain.model.Dog
 
 interface DogsRepository {
     suspend fun getDogImages(id: Int): List<String>

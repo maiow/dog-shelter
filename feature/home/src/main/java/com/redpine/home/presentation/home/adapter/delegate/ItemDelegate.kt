@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import com.redpine.adapter.adapterDelegate
 import com.redpine.core.databinding.DogViewHolderBinding
 import com.redpine.core.databinding.NewsViewHolderBinding
-import com.redpine.core.model.card.Dog
-import com.redpine.core.model.card.Item
-import com.redpine.core.model.card.News
+import com.redpine.core.domain.model.Dog
+import com.redpine.core.domain.model.Item
+import com.redpine.core.domain.model.News
+import com.redpine.core.extensions.loadImage
 import com.redpine.core.tools.ClickableView
-import com.redpine.core.tools.loadImage
 
 fun newsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
     adapterDelegate<Item, News, NewsViewHolderBinding>(
