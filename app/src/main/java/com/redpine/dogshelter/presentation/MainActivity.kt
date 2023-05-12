@@ -4,27 +4,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.dogshelter.R
+import com.redpine.dogshelter.app.App
 import com.redpine.dogshelter.databinding.ActivityMainBinding
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val onBoardingPrefs = object : OnBoardingPrefs{
-        override fun rememberOnBoardingIsShown() {
-
-        }
-
-        override fun clearToken() {
-        }
-
-        override fun isShown(): Boolean {
-            return false
-        }
-    }
+    @Inject
+    lateinit var viewModelFactory: MainViewModelFactory
+    private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        (applicationContext as App).appComponent.inject(this)
+        viewModel  = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
@@ -53,7 +49,10 @@ class MainActivity : AppCompatActivity() {
             else navView.visibility = View.VISIBLE
         }
 
-        if (onBoardingPrefs.isShown()) navController.navigate(com.redpine.home.R.id.home_nav_graph)
+        if (viewModel.isOnboardingShown)
+            navController.navigate(
+                com.redpine.home.R.id.action_onboardingFragment_to_home_nav_graph
+            )
 
 
     }

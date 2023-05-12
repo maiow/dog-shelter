@@ -6,6 +6,7 @@ import com.redpine.core.data.OnBoardingPrefsImpl
 import com.redpine.core.data.TokenProviderImpl
 import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
+import com.redpine.dogshelter.presentation.MainViewModelFactory
 import dagger.Provides
 import javax.inject.Singleton
 
@@ -22,6 +23,11 @@ object Module {
 
     @Provides
     @Singleton
-    fun providesOnBoardingPrefs (context: Context): OnBoardingPrefs = OnBoardingPrefsImpl(context)
+    fun providesOnBoardingPrefs(context: Context): OnBoardingPrefs = OnBoardingPrefsImpl(context)
+
+    @Provides
+    @Singleton
+    fun providesMainViewModelFactory(onBoardingPrefs: OnBoardingPrefs) =
+        MainViewModelFactory(onBoardingPrefs)
 }
 
