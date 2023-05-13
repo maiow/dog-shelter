@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import com.redpine.core.domain.model.Dog
 import androidx.core.view.isVisible
 import com.redpine.core.model.card.Item
 import com.redpine.core.state.LoadState
@@ -37,7 +38,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         val isNullItem = item == null
         when (clickableView) {
             ClickableView.DOG -> if (!isNullItem)
-                    navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!!.id))
+                    navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!! as Dog))
 
             ClickableView.NEWS -> if (!isNullItem)
                     navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item!!.id))
@@ -54,7 +55,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun observeData(data: List<Grid>) {
-        Log.d(TAG, "observeData: $data")
         adapter.submitList(data)
     }
 

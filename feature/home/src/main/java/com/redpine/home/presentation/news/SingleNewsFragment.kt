@@ -7,9 +7,9 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.redpine.core.model.card.News
+import com.redpine.core.domain.model.News
+import com.redpine.core.extensions.loadImage
 import com.redpine.core.state.LoadState
-import com.redpine.core.tools.loadImage
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentSingleNewsBinding
 

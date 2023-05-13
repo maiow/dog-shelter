@@ -64,9 +64,8 @@
         android:label="fragment_pets_card"
         tools:layout="@layout/fragment_pets_card">
         <argument
-            android:name="dogId"
-            android:defaultValue="1"
-            app:argType="integer" />
+            android:name="dog"
+            app:argType="com.redpine.core.domain.model.Dog" />
     </fragment>
     <fragment
         android:id="@+id/newsListFragment"
@@ -133,8 +132,4 @@
         android:name="com.redpine.home.presentation.authorization.message.AuthMessageFragment"
         android:label="fragment_auth_message"
         tools:layout="@layout/fragment_auth_message" />
-    <fragment
-        android:id="@+id/testFragment"
-        android:name="com.redpine.home.presentation.filter.TestFragment"
-        android:label="TestFragment" />
 </navigation>

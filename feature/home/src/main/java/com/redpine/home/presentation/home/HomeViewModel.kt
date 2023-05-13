@@ -1,6 +1,7 @@
 package com.redpine.home.presentation.home
 
 import androidx.lifecycle.viewModelScope
+import com.redpine.core.domain.model.Dog
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.model.card.Dog
 import com.redpine.home.domain.model.grid.Grid

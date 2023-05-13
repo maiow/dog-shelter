@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.redpine.core.domain.model.Dog
 import com.redpine.core.extensions.onClickToPopBackStack
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentDogsFoundBinding
@@ -21,7 +22,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
-        if (clickableView == ClickableView.DOG) navigateToPetsCardFragment(item.id)
+        if (clickableView == ClickableView.DOG) navigateToPetsCardFragment(item as Dog)
         viewModel.onItemClick(clickableView)
     }
 
@@ -35,9 +36,9 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         binding.filterButton.onClickToPopBackStack()
     }
 
-    private fun navigateToPetsCardFragment(id: Int) =
+    private fun navigateToPetsCardFragment(dog: Dog) =
         findNavController().navigate(
-            DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(id)
+            DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(dog)
         )
 
     private fun setFilterText(filters: String) {

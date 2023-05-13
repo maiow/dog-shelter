@@ -2,7 +2,7 @@ package com.redpine.home.presentation.home.adapter.diffutil
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Item
 
 class ItemDiffUtil : DiffUtil.ItemCallback<Item>() {
 

@@ -66,4 +66,5 @@
     </plurals>
 
     <string name="watsapp_message">Добрый день! Пишу по поводу собаки %1$s из Красной Сосны</string>
+    <string name="height">%1$s см</string>
 </resources>
