@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
-import com.redpine.core.model.card.Item
-import com.redpine.core.model.card.News
+import com.redpine.core.domain.model.Item
+import com.redpine.core.domain.model.News
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentNewsListBinding

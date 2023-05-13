@@ -1,23 +1,24 @@
-package com.redpine.core.model.card
+package com.redpine.core.data
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class Dog(
+class DogDto(
     var age: String = "",
     var character: String = "",
     var color: String = "",
     var curator_phone: String = "",
     var gender: String = "",
-    var height: Int = 20,
-    override var id: Int = 0,
+    var height: String = "20",
+    var id: Int = 0,
     var imageUrl: String = "",
     var name: String = "",
     var size: String = "",
     var text: String = "",
+    var web_link: String = "",
     @Exclude
-    override var isFavorite: Boolean = false,
+    var isFavorite: Boolean = false,
     @Exclude
-    var isNew: Boolean = false,
-) : Item
+    var isNew: Boolean = false
+)

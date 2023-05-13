@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Dog
+import com.redpine.core.domain.model.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
@@ -35,7 +36,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             ClickableView.DOG ->
                 if (!isNullItem)
                     findNavController()
-                        .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!!.id))
+                        .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!! as Dog))
 
             ClickableView.NEWS ->
                 if (!isNullItem)

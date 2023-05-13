@@ -67,7 +67,7 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/gender_image"
@@ -196,11 +196,11 @@
                 style="@style/Widget.App.Button.OutlinedButton.GreenButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_chat_btn"
-                app:iconGravity="end"
                 android:layout_marginTop="32dp"
                 android:paddingHorizontal="40dp"
                 android:text="@string/contact_handler"
+                app:icon="@drawable/ic_chat_btn"
+                app:iconGravity="end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/story" />
@@ -208,13 +208,13 @@
             <Button
                 android:id="@+id/share_button"
                 style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"
-                app:icon="@drawable/ic_share"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:paddingHorizontal="40dp"
                 android:text="@string/share_profile"
+                app:icon="@drawable/ic_share"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -222,5 +222,9 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/common_progress"
+        layout="@layout/common_progress_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

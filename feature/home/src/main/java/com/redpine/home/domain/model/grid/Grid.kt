@@ -1,6 +1,6 @@
 package com.redpine.home.domain.model.grid
 
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Item
 
 interface Grid {
     val titleId: Int

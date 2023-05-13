@@ -4,6 +4,7 @@ plugins {
     id(Plugins.android)
     id(Plugins.kapt)
     id(Plugins.safeArgs)
+    id(Plugins.parcelize)
 }
 
 android {

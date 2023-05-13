@@ -2,7 +2,7 @@ package com.redpine.home.data.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
-import com.redpine.core.model.card.News
+import com.redpine.core.domain.model.News
 import com.redpine.home.domain.repository.NewsRepository
 import kotlinx.coroutines.tasks.await
 
