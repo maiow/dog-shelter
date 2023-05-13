@@ -9,9 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import com.redpine.core.domain.model.Dog
 import androidx.core.view.isVisible
-import com.redpine.core.model.card.Item
+import com.redpine.core.domain.model.Dog
+import com.redpine.core.domain.model.Item
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment

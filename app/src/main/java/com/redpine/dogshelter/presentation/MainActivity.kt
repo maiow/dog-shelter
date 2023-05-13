@@ -53,7 +53,5 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(
                 com.redpine.home.R.id.action_onboardingFragment_to_home_nav_graph
             )
-
-
     }
 }
