@@ -16,9 +16,14 @@ class PetsCardViewModel @Inject constructor(
 
     fun onGettingArgument(dog: Dog) {
         getDogImages(dog.id)
+        sendDogToSeenList(dog.id)
     }
 
     private fun getDogImages(dogId: Int) = scopeLaunch {
         _images.emit(repository.getDogImages(dogId))
+    }
+
+    private fun sendDogToSeenList(dogId: Int) = scopeLaunch {
+        repository.sendDogToSeenList(dogId)
     }
 }
