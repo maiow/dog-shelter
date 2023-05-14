@@ -26,7 +26,7 @@ import com.redpine.home.presentation.pets_card.PetsCardViewModel
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory @Inject constructor(
+class HomeViewModelFactory @Inject constructor(
     private val api: Api,
     private val authTokenUseCase: AuthTokenUseCase,
     private val authUseCase: AuthUseCase,

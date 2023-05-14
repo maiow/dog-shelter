@@ -1,14 +1,14 @@
 package com.redpine.home.di.module
 
 import androidx.lifecycle.ViewModelProvider
-import com.redpine.home.ViewModelFactory
+import com.redpine.home.HomeViewModelFactory
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.DogsRepositoryImpl
-import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import com.redpine.home.data.repository.NewsRepositoryImpl
-import com.redpine.home.domain.repository.NewsRepository
+import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import com.redpine.home.domain.repository.AuthenticationRepository
 import com.redpine.home.domain.repository.DogsRepository
+import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.usecase.AuthTokenUseCase
 import com.redpine.home.domain.usecase.AuthUseCase
@@ -37,7 +37,7 @@ interface Binds {
     fun bindsAuthenticationRepository(repositoryImpl: AuthenticationRepositoryImpl): AuthenticationRepository
 
     @Binds
-    fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+    fun bindsHomeViewModelFactory(homeViewModelFactory: HomeViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     fun bindsAuthUseCase(useCaseImpl: AuthUseCaseImpl): AuthUseCase

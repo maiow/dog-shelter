@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/on_boarding_nav_graph">
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.redpine.dogshelter.presentation.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_on_boarding_nav_graph"
+            app:destination="@id/on_boarding_nav_graph"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_home_nav_graph"
+            app:destination="@id/home_nav_graph"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <include app:graph="@navigation/on_boarding_nav_graph"/>
     <include app:graph="@navigation/home_nav_graph" />
     <include app:graph="@navigation/favorites_nav_graph" />
     <include app:graph="@navigation/chats_nav_graph" />
+
 
 </navigation>
