@@ -48,5 +48,5 @@ dependencies {
     implementation(Dependence.Firebase.firebaseDatabase)
 
     implementation(Dependence.Di.dagger)
-    kapt(Dependence.Di.kapt)
+    kapt(Dependence.Di.daggerCompiler)
 }

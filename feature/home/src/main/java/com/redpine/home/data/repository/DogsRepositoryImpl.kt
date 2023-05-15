@@ -71,15 +71,37 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
         if (res.id != 0) return res.toDog() else throw FirebaseBaseExceptionNullResponse()
     }
 
-    override suspend fun sendDogToSeenList(dogId: Int) {
+    override suspend fun sendDogToSeenList(id: Int) {
         if (uid != null) {
             database
                 .child(SEEN_NODE)
                 .child(uid)
                 .push()
-                .setValue(dogId)
+                .setValue(id)
                 .await()
         }
+    }
+
+    override suspend fun makeLikeDislike(id: Int, isLike: Boolean): Boolean {
+        if (uid == null) return false
+        else
+            if (isLike){
+            database
+                .child(LIKES_NODE)
+                .child(uid)
+                .child(id.toString())
+                .setValue(id)
+                .await()
+
+            } else {
+            database
+                .child(LIKES_NODE)
+                .child(uid)
+                .child(id.toString())
+                .removeValue()
+                .await()
+        }
+        return true
     }
 
     private companion object {
@@ -87,5 +109,6 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
         const val DOGS_NODE_CHILD = "dog"
         const val GALLERY_NODE = "gallery"
         const val SEEN_NODE = "seen"
+        const val LIKES_NODE = "likes"
     }
 }

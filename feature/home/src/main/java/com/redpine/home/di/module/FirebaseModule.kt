@@ -1,6 +1,5 @@
 package com.redpine.home.di.module
 
-//import com.google.firebase.storage.ktx.storage
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -14,7 +13,4 @@ class FirebaseModule {
     @Singleton
     fun providesFireBase() = Firebase.auth
 
-//    @Singleton
-//    @Provides
-//    fun providesFirebaseStorage() = Firebase.storage
 }

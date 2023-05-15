@@ -50,7 +50,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
                 .navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
 
             ClickableView.FAVORITE ->
-                viewModel.addToFavorites(clickableView.itemPosition, clickableView.listPosition)
+                viewModel.addToFavorites(clickableView.itemPosition, clickableView.listPosition, item!!.id)
         }
     }
 
