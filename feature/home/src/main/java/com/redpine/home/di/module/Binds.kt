@@ -13,6 +13,7 @@ import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.usecase.AuthTokenUseCase
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.usecase.HomeScreenUseCase
+import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.ListNewsUseCase
 import com.redpine.home.domain.usecase.RegistrationUseCase
 import com.redpine.home.domain.usecase.ResetPasswordUseCase
@@ -20,6 +21,7 @@ import com.redpine.home.domain.usecase.SingleNewsUseCase
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
+import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
@@ -66,4 +68,6 @@ interface Binds {
     @Binds
     fun bindsSingleNewsUseCase(useCase: SingleNewsUseCaseImpl): SingleNewsUseCase
 
+    @Binds
+    fun bindsLikeUseCase(likeUseCase: LikeUseCaseImpl): LikeUseCase
 }

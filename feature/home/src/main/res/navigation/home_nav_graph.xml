@@ -5,17 +5,6 @@
     android:id="@+id/home_nav_graph"
     app:startDestination="@id/homeFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/onboardingFragment"-->
-<!--        android:name="com.redpine.home.presentation.onboarding.OnboardingFragment"-->
-<!--        android:label="fragment_onboarding"-->
-<!--        tools:layout="@layout/fragment_onboarding">-->
-<!--        <action-->
-<!--            android:id="@+id/action_onboardingFragment_to_homeFragment"-->
-<!--            app:destination="@id/homeFragment"-->
-<!--            app:popUpTo="@id/onboardingFragment"-->
-<!--            app:popUpToInclusive="true" />-->
-<!--    </fragment>-->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.redpine.home.presentation.home.HomeFragment"
@@ -36,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_singleNewsFragment"
             app:destination="@id/singleNewsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -132,4 +124,9 @@
         android:name="com.redpine.home.presentation.authorization.message.AuthMessageFragment"
         android:label="fragment_auth_message"
         tools:layout="@layout/fragment_auth_message" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.redpine.home.presentation.help.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

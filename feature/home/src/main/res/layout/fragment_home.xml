@@ -66,6 +66,15 @@
                 tools:listitem="@layout/item_container_view_holder"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/help_button"
+                style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"
+                android:layout_marginBottom="32dp"
+                android:text="@string/help" />
+
             <TextView
                 android:id="@+id/textSocial"
                 style="@style/ItemContainerTitle"

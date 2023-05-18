@@ -50,7 +50,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
                 navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
 
             ClickableView.FAVORITE ->
-                viewModel.addToFavorites(clickableView.itemPosition, clickableView.listPosition)
+                viewModel.addToFavorites(clickableView.itemPosition, clickableView.listPosition, item!!.id)
         }
     }
 
@@ -71,6 +71,9 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         setSearch()
         binding.filterButton.setOnClickListener {
             navigate(HomeFragmentDirections.actionHomeFragmentToFilterFragment())
+        }
+        binding.helpButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_helpFragment)
         }
         binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
         binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }

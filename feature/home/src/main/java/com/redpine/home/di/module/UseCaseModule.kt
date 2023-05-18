@@ -7,6 +7,7 @@ import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
+import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
@@ -45,4 +46,7 @@ class UseCaseModule {
     fun providesSingleNewsUseCase(newsRepository: NewsRepository) =
         SingleNewsUseCaseImpl(newsRepository)
 
+    @Provides
+    fun providesLikeUseCase(dogsRepository: DogsRepository) =
+        LikeUseCaseImpl(dogsRepository)
 }
