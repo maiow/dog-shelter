@@ -8,7 +8,7 @@ data class Dog(
     val age: String,
     val character: String,
     val color: String,
-    val curator_phone: String,
+    val curatorPhone: String,
     val gender: String,
     val height: String,
     override val id: Int,
@@ -16,7 +16,7 @@ data class Dog(
     val name: String,
     val size: String,
     val text: String,
-    val web_link: String,
+    val webLink: String,
     override var isFavorite: Boolean = false,
     var isNew: Boolean = false,
-): Item, Parcelable
+) : Item, Parcelable

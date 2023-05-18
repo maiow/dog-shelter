@@ -8,7 +8,7 @@ class DogDto(
     var age: String = "",
     var character: String = "",
     var color: String = "",
-    var curator_phone: String = "",
+    var curatorPhone: String = "",
     var gender: String = "",
     var height: String = "20",
     var id: Int = 0,
@@ -16,7 +16,7 @@ class DogDto(
     var name: String = "",
     var size: String = "",
     var text: String = "",
-    var web_link: String = "",
+    var webLink: String = "",
     @Exclude
     var isFavorite: Boolean = false,
     @Exclude

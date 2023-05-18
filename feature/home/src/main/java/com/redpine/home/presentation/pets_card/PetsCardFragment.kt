@@ -33,8 +33,8 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
         }
-        setCuratorButton(args.dog.curator_phone, args.dog.name)
-        setShareButton(args.dog.web_link)
+        setCuratorButton(args.dog.curatorPhone, args.dog.name)
+        setShareButton(args.dog.webLink)
         assignCarouselLayoutManager()
     }
 
