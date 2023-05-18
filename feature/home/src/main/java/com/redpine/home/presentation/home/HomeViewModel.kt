@@ -1,14 +1,15 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -17,7 +18,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
     private val likeUseCase: LikeUseCase
-) : ViewModel() {
+) : BaseViewModel() {
+
+
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
     val data = _data.asStateFlow()
@@ -26,10 +29,9 @@ class HomeViewModel @Inject constructor(
         createHomeScreen()
     }
 
-    private fun createHomeScreen() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _data.value = homeScreenUseCase.getHomeScreenItems()
-        }
+    private fun createHomeScreen() = scopeLaunch {
+        _data.value = homeScreenUseCase.getHomeScreenItems()
+        delay(500)
     }
 
     @SuppressLint("SuspiciousIndentation")

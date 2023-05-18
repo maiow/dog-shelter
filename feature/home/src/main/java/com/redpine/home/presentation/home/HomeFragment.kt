@@ -5,10 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
+import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
@@ -28,26 +31,23 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         setUserInterface()
         binding.recycler.adapter = adapter
         flowObserver(viewModel.data) { data -> observeData(data) }
+        flowObserver(viewModel.loadState){loadState -> loadingObserve(loadState)}
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item?) {
         val isNullItem = item == null
         when (clickableView) {
-            ClickableView.DOG ->
-                if (!isNullItem)
-                    findNavController()
-                        .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!! as Dog))
+            ClickableView.DOG -> if (!isNullItem)
+                    navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!! as Dog))
 
-            ClickableView.NEWS ->
-                if (!isNullItem)
-                    findNavController()
-                        .navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item!!.id))
+            ClickableView.NEWS -> if (!isNullItem)
+                    navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item!!.id))
 
-            ClickableView.DOG_ALL_BUTTON -> findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
+            ClickableView.DOG_ALL_BUTTON ->
+                navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
 
-            ClickableView.NEWS_ALL_BUTTON -> findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
+            ClickableView.NEWS_ALL_BUTTON ->
+                navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
 
             ClickableView.FAVORITE ->
                 viewModel.addToFavorites(clickableView.itemPosition, clickableView.listPosition, item!!.id)
@@ -58,10 +58,18 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         adapter.submitList(data)
     }
 
+    private fun loadingObserve(loadState: LoadState){
+        binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
+        binding.scroll.isVisible = loadState == LoadState.SUCCESS
+        if (LoadState.ERROR_NETWORK == loadState) Toast.makeText(
+            requireContext(), "loading error", Toast.LENGTH_SHORT
+        ).show()
+    }
+
     private fun setUserInterface() {
         setSearch()
         binding.filterButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_filterFragment)
+            navigate(HomeFragmentDirections.actionHomeFragmentToFilterFragment())
         }
         binding.helpButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_helpFragment)

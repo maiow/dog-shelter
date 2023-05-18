@@ -3,50 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
-    app:startDestination="@id/onboardingFragment">
+    app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/onboardingFragment"
-        android:name="com.redpine.home.presentation.onboarding.OnboardingFragment"
-        android:label="fragment_onboarding"
-        tools:layout="@layout/fragment_onboarding">
-        <action
-            android:id="@+id/action_onboardingFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
-    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.redpine.home.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-
         <action
             android:id="@+id/action_homeFragment_to_filterFragment"
-            app:destination="@id/filterFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/filterFragment" />
         <action
             android:id="@+id/action_homeFragment_to_petsCardFragment"
-            app:destination="@id/petsCardFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/petsCardFragment" />
         <action
             android:id="@+id/action_homeFragment_to_dogsFoundFragment"
-            app:destination="@id/dogsFoundFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/dogsFoundFragment" />
         <action
             android:id="@+id/action_homeFragment_to_newsListFragment"
-            app:destination="@id/newsListFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/newsListFragment" />
         <action
             android:id="@+id/action_homeFragment_to_singleNewsFragment"
-            app:destination="@id/singleNewsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/singleNewsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_helpFragment"
             app:destination="@id/helpFragment" />
@@ -57,9 +35,7 @@
         android:label="FilterFragment">
         <action
             android:id="@+id/action_filterFragment_to_dogsFoundFragment"
-            app:destination="@id/dogsFoundFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/dogsFoundFragment" />
     </fragment>
     <fragment
         android:id="@+id/dogsFoundFragment"
@@ -72,9 +48,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_dogsFoundFragment_to_petsCardFragment"
-            app:destination="@id/petsCardFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/petsCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/petsCardFragment"
@@ -92,9 +66,7 @@
         tools:layout="@layout/fragment_news_list">
         <action
             android:id="@+id/action_newsListFragment_to_singleNewsFragment"
-            app:destination="@id/singleNewsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:destination="@id/singleNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/singleNewsFragment"

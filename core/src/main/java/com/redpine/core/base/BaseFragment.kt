@@ -1,7 +1,7 @@
 package com.redpine.core.base
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,6 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
@@ -36,6 +35,11 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        val destinationsInBackStack =
+            findNavController().backQueue.joinToString("\n") { dest ->
+                dest.destination.displayName
+            }
+        Log.d("BackStack", "----------------------------------\n$destinationsInBackStack")
         _binding = initBinding(inflater)
         return binding.root
     }
@@ -48,10 +52,9 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     protected fun <I : Any?> flowObserver(flow: Flow<I>?, action: suspend (it: I) -> Unit) =
         viewLifecycleOwner.lifecycleScope.launch {
             flow?.collect {
-                  action(it)
+                action(it)
             }
         }
-
 
 
     override fun onDestroyView() {

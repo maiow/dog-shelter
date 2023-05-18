@@ -26,7 +26,11 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         setAdapter()
         onClickNextButton()
         onClickSkipButton()
+        rememberOnBoardingIsShown()
 
+    }
+    private fun rememberOnBoardingIsShown(){
+        viewModel.rememberOnBoardingIsShown()
     }
 
     private fun setAdapter() {
@@ -43,7 +47,9 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private fun onClickSkipButton() {
         binding.skip.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
+            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
+            findNavController().graph.setStartDestination(R.id.home_nav_graph)
+            // TODO: сделать ресурсы навигации в core
         }
     }
 
