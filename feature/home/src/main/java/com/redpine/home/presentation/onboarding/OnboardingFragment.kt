@@ -49,6 +49,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         binding.skip.setOnClickListener {
             findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
             findNavController().graph.setStartDestination(R.id.home_nav_graph)
+            // TODO: сделать ресурсы навигации в core
         }
     }
 
