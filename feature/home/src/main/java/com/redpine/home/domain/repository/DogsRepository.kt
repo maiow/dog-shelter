@@ -7,4 +7,6 @@ interface DogsRepository {
     suspend fun getNewDogs(count: Int): List<Dog>
     suspend fun getRecentSeenDogs(count: Int): List<Dog>
     suspend fun getDogInfo(id: Int): Dog
+    suspend fun sendDogToSeenList(id: Int)
+    suspend fun makeLikeDislike(id: Int, isLike: Boolean): Boolean
 }

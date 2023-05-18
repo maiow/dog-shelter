@@ -38,5 +38,5 @@ dependencies {
     implementation(Dependence.Core.navigationUi)
 
     implementation(Dependence.Di.dagger)
-    kapt(Dependence.Di.kapt)
+    kapt(Dependence.Di.daggerCompiler)
 }

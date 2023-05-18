@@ -13,15 +13,14 @@ class HomeScreenUseCaseImpl(
     private val newsRepository: NewsRepository
 ) : HomeScreenUseCase {
 
-    override suspend fun getHomeScreenItems(newCount: Int, storyCount: Int): List<Grid> {
+    override suspend fun getHomeScreenItems(newCount: Int, seenCount: Int): List<Grid> {
         val listNewDog = dogsRepository.getNewDogs(newCount)
-        val listRecentSeenDog = dogsRepository.getRecentSeenDogs(storyCount)
+        val listRecentSeenDog = dogsRepository.getRecentSeenDogs(seenCount)
         val listNews = newsRepository.getNewsList()
         return listOf(
-            HorizontalGrid(titleId = R.string.New, list = listNewDog, spanCount = 1),
-            HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog),
+            HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog, spanCount = 1),
+            HorizontalGrid(titleId = R.string.New, list = listNewDog),
             VerticalGrid(titleId = R.string.News, list = listNews, spanCount = 1),
         )
     }
-
 }

@@ -7,7 +7,7 @@ fun DogDto.toDog() = Dog(
     age = age,
     character = character,
     color = color,
-    curator_phone = curator_phone,
+    curatorPhone = curatorPhone,
     gender = gender,
     height = height,
     id = id,
@@ -15,7 +15,7 @@ fun DogDto.toDog() = Dog(
     name = name,
     size = size,
     text = text,
-    web_link = web_link
+    webLink = webLink
 )
 
 fun List<DogDto>.toDogList(): List<Dog> = this.map { item -> item.toDog() }

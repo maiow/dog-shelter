@@ -18,7 +18,7 @@ object Dependence {
 
     object Di {
         const val dagger = "com.google.dagger:dagger:2.46"
-        const val kapt = "com.google.dagger:dagger-compiler:2.46"
+        const val daggerCompiler = "com.google.dagger:dagger-compiler:2.46"
     }
 
     object Firebase {
