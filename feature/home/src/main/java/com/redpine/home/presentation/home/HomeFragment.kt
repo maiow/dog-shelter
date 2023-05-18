@@ -1,20 +1,20 @@
 package com.redpine.home.presentation.home
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
+import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.presentation.home.adapter.adapter.GridAdapter
@@ -59,8 +59,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun loadingObserve(loadState: LoadState){
-        Log.d(TAG, "loadingObserve: $loadState")
-        binding.progressBar.isVisible = loadState == LoadState.LOADING
+        binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
         binding.scroll.isVisible = loadState == LoadState.SUCCESS
         if (LoadState.ERROR_NETWORK == loadState) Toast.makeText(
             requireContext(), "loading error", Toast.LENGTH_SHORT

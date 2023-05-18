@@ -44,7 +44,6 @@ fun dogsDelegate(onItemClick: (ClickableView, Item) -> Unit) =
             binding.dogAge.text = "Возраст: " + item.age
             binding.dogHeight.text = "Рост в холке: " + item.height + " см"
             binding.dogPhoto.loadImage(item.imageUrl)
-//            Log.d(TAG, "dogsDelegate: ")
         }
 
         bindForPayloads { payloads ->

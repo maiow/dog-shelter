@@ -1,10 +1,9 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.redpine.core.domain.model.Dog
 import com.redpine.core.base.BaseViewModel
+import com.redpine.core.domain.model.Dog
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
