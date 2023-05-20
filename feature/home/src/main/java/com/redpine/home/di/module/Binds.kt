@@ -4,14 +4,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.home.ViewModelFactory
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.DogsRepositoryImpl
-import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import com.redpine.home.data.repository.NewsRepositoryImpl
-import com.redpine.home.domain.repository.NewsRepository
+import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import com.redpine.home.domain.repository.AuthenticationRepository
 import com.redpine.home.domain.repository.DogsRepository
+import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.usecase.AuthTokenUseCase
 import com.redpine.home.domain.usecase.AuthUseCase
+import com.redpine.home.domain.usecase.FilterUseCase
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.ListNewsUseCase
@@ -20,6 +21,7 @@ import com.redpine.home.domain.usecase.ResetPasswordUseCase
 import com.redpine.home.domain.usecase.SingleNewsUseCase
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
+import com.redpine.home.domain.usecase.impl.FilterUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
@@ -48,7 +50,7 @@ interface Binds {
     fun bindsRegistrationUseCase(useCaseImpl: RegistrationUseCaseImpl): RegistrationUseCase
 
     @Binds
-    fun bindsResetPasswordUseCase(useCaseImpl:ResetPasswordUseCaseImpl): ResetPasswordUseCase
+    fun bindsResetPasswordUseCase(useCaseImpl: ResetPasswordUseCaseImpl): ResetPasswordUseCase
 
     @Binds
     fun bindsNewsRepository(repositoryImpl: NewsRepositoryImpl): NewsRepository
@@ -70,4 +72,7 @@ interface Binds {
 
     @Binds
     fun bindsLikeUseCase(likeUseCase: LikeUseCaseImpl): LikeUseCase
+
+    @Binds
+    fun bindsFilterUseCase(filterUseCase: FilterUseCaseImpl): FilterUseCase
 }

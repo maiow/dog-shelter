@@ -13,13 +13,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="14dp"
-        app:queryBackground="@android:color/transparent"
         android:background="@drawable/round_corners_20alfa_btn"
         app:iconifiedByDefault="false"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/filter_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@android:color/transparent"
         app:queryHint="Кого вы ищете?" />
 
     <ImageButton
@@ -53,15 +53,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:listitem="@layout/item_container_view_holder"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_container_view_holder" />
 
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/help_button"
                 style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:text="@string/help" />
 
@@ -105,6 +105,12 @@
 
     <include
         android:id="@+id/common_progress"
-        layout="@layout/common_progress_bar" />
+        layout="@layout/common_progress_bar"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/connection_error"
+        layout="@layout/common_connection_error"
+        android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

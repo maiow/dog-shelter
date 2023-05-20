@@ -5,7 +5,7 @@ import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
 
 interface HomeDependencies {
- val api:Api
- val tokenProvider:TokenProvider
- val onBoardingPrefs: OnBoardingPrefs
+    val api: Api
+    val tokenProvider: TokenProvider
+    val onBoardingPrefs: OnBoardingPrefs
 }

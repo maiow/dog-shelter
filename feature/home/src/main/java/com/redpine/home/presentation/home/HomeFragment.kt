@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -21,9 +20,9 @@ import com.redpine.home.presentation.home.adapter.adapter.GridAdapter
 
 class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
     private val viewModel: HomeViewModel by lazy { initViewModel() }
     private val adapter by lazy { GridAdapter(::onItemClick) }
+    override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,17 +30,17 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         setUserInterface()
         binding.recycler.adapter = adapter
         flowObserver(viewModel.data) { data -> observeData(data) }
-        flowObserver(viewModel.loadState){loadState -> loadingObserve(loadState)}
+        flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item?) {
         val isNullItem = item == null
         when (clickableView) {
             ClickableView.DOG -> if (!isNullItem)
-                    navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!! as Dog))
+                navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(item!! as Dog))
 
             ClickableView.NEWS -> if (!isNullItem)
-                    navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item!!.id))
+                navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item!!.id))
 
             ClickableView.DOG_ALL_BUTTON ->
                 navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
@@ -50,7 +49,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
                 navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
 
             ClickableView.FAVORITE ->
-                viewModel.addToFavorites(clickableView.itemPosition, clickableView.listPosition, item!!.id)
+                viewModel.addToFavorites(
+                    clickableView.itemPosition,
+                    clickableView.listPosition,
+                    item!!.id
+                )
         }
     }
 
@@ -58,12 +61,15 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         adapter.submitList(data)
     }
 
-    private fun loadingObserve(loadState: LoadState){
+    private fun loadingObserve(loadState: LoadState) {
         binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
         binding.scroll.isVisible = loadState == LoadState.SUCCESS
-        if (LoadState.ERROR_NETWORK == loadState) Toast.makeText(
-            requireContext(), "loading error", Toast.LENGTH_SHORT
-        ).show()
+        if (LoadState.ERROR_NETWORK == loadState) {
+            binding.connectionError.error.isVisible = true
+            binding.connectionError.retryButton.setOnClickListener {
+                viewModel.createHomeScreen()
+            }
+        }
     }
 
     private fun setUserInterface() {

@@ -12,13 +12,13 @@ import com.redpine.home.presentation.onboarding.view.mediator.ProgressBarLayoutM
 
 class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentOnboardingBinding.inflate(inflater)
-
     private val viewModel by lazy { initViewModel<OnboardingViewModel>() }
-
     private val adapter by lazy { OnBoardingAdapter() }
+    private val mediator by lazy {
+        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager)
+    }
 
-    private val mediator by lazy { ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager) }
+    override fun initBinding(inflater: LayoutInflater) = FragmentOnboardingBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,7 +29,8 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         rememberOnBoardingIsShown()
 
     }
-    private fun rememberOnBoardingIsShown(){
+
+    private fun rememberOnBoardingIsShown() {
         viewModel.rememberOnBoardingIsShown()
     }
 

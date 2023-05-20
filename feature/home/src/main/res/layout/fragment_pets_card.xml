@@ -227,4 +227,9 @@
         android:id="@+id/common_progress"
         layout="@layout/common_progress_bar" />
 
+    <include
+        android:id="@+id/connection_error"
+        layout="@layout/common_connection_error"
+        android:visibility="gone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
+import com.redpine.home.domain.usecase.impl.FilterUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
@@ -49,4 +50,8 @@ class UseCaseModule {
     @Provides
     fun providesLikeUseCase(dogsRepository: DogsRepository) =
         LikeUseCaseImpl(dogsRepository)
+
+    @Provides
+    fun providesFilterUseCase(dogsRepository: DogsRepository) =
+        FilterUseCaseImpl(dogsRepository)
 }

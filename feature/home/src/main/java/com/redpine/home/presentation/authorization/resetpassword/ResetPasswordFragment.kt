@@ -11,10 +11,10 @@ import com.redpine.home.databinding.FragmentResetPasswordBinding
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
 class ResetPasswordFragment : HomeBaseFragment<FragmentResetPasswordBinding>() {
+    private val viewModel: ResetPasswordViewModel by lazy { initViewModel() }
+
     override fun initBinding(inflater: LayoutInflater) =
         FragmentResetPasswordBinding.inflate(inflater)
-
-    private val viewModel: ResetPasswordViewModel by lazy { initViewModel() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

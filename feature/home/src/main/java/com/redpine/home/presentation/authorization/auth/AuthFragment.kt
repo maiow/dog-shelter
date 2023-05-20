@@ -13,9 +13,9 @@ import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
 class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentAuthBinding.inflate(inflater)
-
     private val viewModel: AuthViewModel by lazy { initViewModel() }
+
+    override fun initBinding(inflater: LayoutInflater) = FragmentAuthBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

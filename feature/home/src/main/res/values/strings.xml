@@ -83,5 +83,7 @@
     <string name="oops">Oops!</string>
     <string name="no_connection">No Internet connection. Check it and try again.</string>
     <string name="retry">Retry</string>
+    <string name="none_found">No dogs found, try to change filtering parameters</string>
+    <string name="initial_age_on_slider">3–6 years</string>
 
 </resources>
