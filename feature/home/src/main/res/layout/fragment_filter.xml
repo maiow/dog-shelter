@@ -16,10 +16,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_checkboxes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:id="@+id/container_checkboxes"
             android:layout_marginBottom="20dp">
 
             <ImageButton
@@ -66,9 +66,9 @@
                 app:layout_constraintTop_toBottomOf="@id/gender">
 
                 <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/gender_chips_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/gender_chips_group"
                     app:chipSpacingHorizontal="16dp"
                     app:singleLine="true"
                     app:singleSelection="true">
@@ -144,10 +144,10 @@
                 app:layout_constraintTop_toBottomOf="@id/size">
 
                 <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/size_chips_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:chipSpacingHorizontal="16dp"
-                    android:id="@+id/size_chips_group"
                     app:singleLine="true"
                     app:singleSelection="true">
 
@@ -293,7 +293,7 @@
         android:background="@drawable/rounded_bottom_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/clear_btn"
@@ -312,9 +312,6 @@
             android:layout_gravity="start|center_vertical"
             android:layout_marginStart="16dp"
             android:text="@string/apply" />
-
-
-
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

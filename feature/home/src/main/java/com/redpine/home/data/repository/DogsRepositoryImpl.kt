@@ -1,6 +1,5 @@
 package com.redpine.home.data.repository
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
@@ -113,11 +112,9 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
         size: String?,
         character: String
     ): List<Dog> {
-        //TODO: вариант, когда результат поиска empty
 
         /**фильтрация в бд по полу, если не указан Любой*/
         if (gender != "Любой" && gender != "Any") {
-            Log.i("BRED", "REPO: фильтрация по полу")
             val filteredByGenderDogsList = database.child(DOGS_NODE)
                 .orderByChild("gender")
                 .equalTo(gender)
@@ -132,15 +129,12 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
                 if (filteredDogsList.size == 0) filteredDogsList =
                     emptyList<DogDto>().toMutableList()
             } else filteredDogsList = filteredByGenderDogsList.toMutableList()
-            Log.i("BRED", "filteredDogsLists - by Gender: $filteredDogsList")
             FilteredDogs.filteredDogsList = filteredDogsList.toDogList()
-            Log.i("BRED", "Filtered Object filled: ${FilteredDogs.filteredDogsList}")
             return filteredDogsList.toDogList()
-            /**пол был указан Любой или Any*/
         } else {
-            /**фильтрация в бд по размеру, если только один, а не несколько*/
+            /**пол был указан Любой или Any, фильтрация в бд по размеру,
+             * если был указан только один размер, а не несколько*/
             if (size != null && !size.contains(",")) {
-                Log.i("BRED", "REPO: фильтрация в бд по размеру, если только один, а не несколько")
                 val filteredBySizeDogsList = database.child(DOGS_NODE)
                     .orderByChild("size")
                     .equalTo(size)
@@ -153,36 +147,20 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
                 }
                 if (filteredDogsList.size == 0) filteredDogsList =
                     emptyList<DogDto>().toMutableList()
-                Log.i("BRED", "filteredDogsLists - by Size: $filteredDogsList")
                 FilteredDogs.filteredDogsList = filteredDogsList.toDogList()
                 return filteredDogsList.toDogList()
-                /**пол был указан Любой или Any И размер либо не указан, либо указано несколько*/
             } else {
-                /**все собаки без фильтрации*/
-                Log.i("BRED", "REPO: все без фильтрации")
+                /**пол был указан Любой или Any И размер либо не указан, либо указано несколько,
+                 * все собаки без фильтрации*/
                 val dogsList = database
                     .child(DOGS_NODE)
                     .get().await()
                     .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
-                Log.i("BRED", "filteredDogsLists - ALL: $dogsList")
                 FilteredDogs.filteredDogsList = dogsList.toDogList()
                 return dogsList.toDogList()
             }
         }
     }
-
-    /**фильтрация в бд по возрасту*//*
-
-            val dbEarliestYear = Calendar.getInstance().get(Calendar.YEAR) - maxAge.toInt()
-            //.subSequence(3,6).toString().toInt()
-            Log.i("BRED", "dbMaxAge: $dbEarliestYear")
-//            val ddbMaxAge = Calendar.getInstance().get(Calendar.MONTH) + dbEarliestYear
-            val ddbMaxAge = "05" + dbEarliestYear.toString()
-
-            val filteredByAgeDogsList = database.child(DOGS_NODE)
-                .orderByChild("age")
-                .startAt(minAge)
-                .endAt(maxAge)*/
 
     private companion object {
         const val DOGS_NODE = "dogs"

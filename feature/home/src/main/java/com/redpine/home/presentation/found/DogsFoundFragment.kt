@@ -10,6 +10,7 @@ import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
+import com.redpine.home.R
 import com.redpine.home.databinding.FragmentDogsFoundBinding
 import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
@@ -49,8 +50,12 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private fun loadContent(data: List<Item>) {
         adapter.submitList(data)
-        //TODO: add string with placeholder & plurals
-        binding.title.text = "Найдено " + data.size.toString() + " питомцев"
+        binding.title.isVisible = data.isNotEmpty()
+        binding.title.text = resources.getQuantityString(
+            R.plurals.found_pets,
+            data.size,
+            data.size
+        )
         binding.noneFound.isVisible = data.isEmpty()
     }
 
