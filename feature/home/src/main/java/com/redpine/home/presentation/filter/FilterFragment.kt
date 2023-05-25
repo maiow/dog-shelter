@@ -15,8 +15,8 @@ import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MI
 
 class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentFilterBinding.inflate(inflater)
     private val viewModel: FilterViewModel by lazy { initViewModel() }
+    override fun initBinding(inflater: LayoutInflater) = FragmentFilterBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -93,13 +93,15 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                     ).text.toString()
                 else null
 
-            Log.i("RED", "selected checkboxes = ${viewModel.selectedCheckboxes}")
+            Log.i("BRED", "selected checkboxes = ${viewModel.selectedCheckboxes}")
 
-            Log.i("RED", "genderChipsGroup.checkedChip = ${viewModel.selectedGenderChip}")
-            Log.i("RED", "sizeChipsGroup.checkedChip = ${viewModel.selectedSizeChip}")
+            Log.i("BRED", "genderChipsGroup.checkedChip = ${viewModel.selectedGenderChip}")
+            Log.i("BRED", "sizeChipsGroup.checkedChip = ${viewModel.selectedSizeChip}")
 
-            Log.i("RED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
-            Log.i("RED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
+            Log.i("BRED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
+            Log.i("BRED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
+
+            viewModel.filterDogs()
 
             val filtersText = buildFiltersTextForNextScreen()
 

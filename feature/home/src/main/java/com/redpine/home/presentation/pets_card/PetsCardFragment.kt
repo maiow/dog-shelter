@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -19,9 +18,9 @@ import com.redpine.home.databinding.FragmentPetsCardBinding
 
 class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
-    private val viewModel: PetsCardViewModel by lazy { initViewModel() }
     private val args by navArgs<PetsCardFragmentArgs>()
+    private val viewModel: PetsCardViewModel by lazy { initViewModel() }
+    override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,9 +44,12 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     private fun loadingObserve(loadState: LoadState) {
         binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
         binding.carouselRecyclerView.isVisible = (loadState == LoadState.SUCCESS)
-        if (LoadState.ERROR_NETWORK == loadState) Toast.makeText(
-            requireContext(), "loading error", Toast.LENGTH_SHORT
-        ).show()
+        if (LoadState.ERROR_NETWORK == loadState) {
+            binding.connectionError.error.isVisible = true
+            binding.connectionError.retryButton.setOnClickListener {
+                viewModel.onGettingArgument(args.dog)
+            }
+        }
     }
 
     private fun showDogInfo(dog: Dog) {

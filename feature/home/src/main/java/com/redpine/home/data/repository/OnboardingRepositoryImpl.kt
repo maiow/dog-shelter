@@ -1,8 +1,8 @@
 package com.redpine.home.data.repository
 
 import com.redpine.home.R
-import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.model.Onboarding
+import com.redpine.home.domain.repository.OnboardingRepository
 
 class OnboardingRepositoryImpl : OnboardingRepository {
 

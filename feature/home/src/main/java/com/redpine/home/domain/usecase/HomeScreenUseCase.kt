@@ -10,7 +10,7 @@ interface HomeScreenUseCase {
     ): List<Grid>
 
     private companion object {
-        const val NEW_DOGS_COUNT = 12
+        const val NEW_DOGS_COUNT = 10
         const val SEEN_DOGS_COUNT = 10
     }
 }

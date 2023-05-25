@@ -14,9 +14,9 @@ import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
 class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentNewsListBinding.inflate(inflater)
     private val viewModel: NewsListViewModel by lazy { initViewModel() }
     private val adapter by lazy { ItemAdapter(::onItemClick) }
+    override fun initBinding(inflater: LayoutInflater) = FragmentNewsListBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

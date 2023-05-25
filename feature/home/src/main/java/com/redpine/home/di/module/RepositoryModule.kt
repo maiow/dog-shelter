@@ -6,8 +6,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.DogsRepositoryImpl
-import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import com.redpine.home.data.repository.NewsRepositoryImpl
+import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -21,7 +21,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesAuthenticationRepository(auth:FirebaseAuth) = AuthenticationRepositoryImpl(auth)
+    fun providesAuthenticationRepository(auth: FirebaseAuth) = AuthenticationRepositoryImpl(auth)
 
     @Provides
     @Singleton

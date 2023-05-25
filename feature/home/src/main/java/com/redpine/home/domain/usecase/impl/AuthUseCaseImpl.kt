@@ -12,7 +12,7 @@ class AuthUseCaseImpl(private val authRepository: AuthenticationRepository) : Au
         val user = authRepository.authEmail(email, password).await().user
 
         return if (user?.isEmailVerified == true) user.uid
-        else throw FirebaseAuthInvalidCredentialsException("403","noEmailVerifications")
+        else throw FirebaseAuthInvalidCredentialsException("403", "noEmailVerifications")
 
     }
 }

@@ -20,8 +20,6 @@ class HomeViewModel @Inject constructor(
     private val likeUseCase: LikeUseCase
 ) : BaseViewModel() {
 
-
-
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
     val data = _data.asStateFlow()
 
@@ -29,7 +27,7 @@ class HomeViewModel @Inject constructor(
         createHomeScreen()
     }
 
-    private fun createHomeScreen() = scopeLaunch {
+    fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
         delay(500)
     }

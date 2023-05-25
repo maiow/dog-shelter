@@ -1,54 +1,49 @@
 package com.redpine.home.presentation.found
 
-import com.redpine.api.Api
+import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
+import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
+import com.redpine.home.data.FilteredDogs
+import com.redpine.home.domain.usecase.LikeUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlin.random.Random
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DogsFoundViewModel(api: Api) : BaseViewModel() {
+class DogsFoundViewModel @Inject constructor(
+    private val likeUseCase: LikeUseCase
+) : BaseViewModel() {
 
-
-    private val _foundDogList = mutableListOf<Dog>()
-    private val _dogs = MutableStateFlow(emptyList<Dog>())
+    private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
     val dogs = _dogs.asStateFlow()
 
     init {
-        for (i in 1..10) {
-            _foundDogList.add(
-                Dog(
-                    "age ${i + 5} years", "active", "dark",
-                    "89162223322",
-                    "male", "45", i - 1,
-                    "https://firebasestorage.googleapis.com/v0/b/dog-shelter-d6e3e.appspot.com/o/news%2FvRgs4P4iyEs.jpg?alt=media&token=f3d1ddf2-c4a3-4102-a31b-cea6e567ba15",
-                    "number $i",
-                    "small",
-                    "Nothing to say, that's a cool dog",
-                    "some link",
-                    Random.nextBoolean(),
-                    Random.nextBoolean()
-                )
-            )
+        while (FilteredDogs.filteredDogsList == null)
+            _loadState.value = LoadState.LOADING
+        _dogs.value = FilteredDogs.filteredDogsList ?: emptyList()
+        _loadState.value = LoadState.SUCCESS
+    }
+
+    fun onLikeClick(clickableView: ClickableView, id: Int) =
+        addToFavorites(clickableView.itemPosition, id)
+
+    fun onFilterButtonClick() {
+        FilteredDogs.filteredDogsList = null
+    }
+
+    fun onDestroyView() {
+        FilteredDogs.filteredDogsList = null
+    }
+
+    private fun addToFavorites(position: Int, id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val newList = _dogs.value.toMutableList()
+            newList[position] = newList[position].copy(isFavorite = !newList[position].isFavorite)
+            if (likeUseCase.makeLikeDislike(id, newList[position].isFavorite))
+                _dogs.value = newList
         }
-    }
-
-    fun onItemClick(clickableView: ClickableView) {
-        when (clickableView) {
-            ClickableView.FAVORITE -> addToFavorites(clickableView.itemPosition)
-            else -> {}
-        }
-    }
-
-    fun getDogsByFilters(filters: String) = scopeLaunch {
-        _dogs.value = _foundDogList.toList()
-    }
-
-    private fun addToFavorites(position: Int) {
-
-        val newList = _dogs.value.toMutableList()
-        newList[position] = newList[position].copy(isFavorite = !newList[position].isFavorite)
-        _dogs.value = newList
     }
 }

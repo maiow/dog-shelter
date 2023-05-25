@@ -24,6 +24,7 @@ fun TextInputEditText.onTextChanged(action: (text: String) -> Unit) =
         action(text.toString())
     }
 
+//TODO: использовать или удалить
 fun View.onClickToPopBackStack(){
     this.setOnClickListener{
         findNavController().popBackStack()

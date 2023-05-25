@@ -17,18 +17,7 @@ class HomeScreenUseCaseImpl(
         val listNewDog = dogsRepository.getNewDogs(newCount)
         val listRecentSeenDog = dogsRepository.getRecentSeenDogs(seenCount)
         val listNews = newsRepository.getNewsList()
-//        val listNewDog = mutableListOf<Item>()
-//        val listRecentSeenDog = mutableListOf<Item>()
-//        val listNews = mutableListOf<Item>()
-//        for(i in 1..10){
-//            listNewDog.add( Dog(id = i-1, name = "number $i", age =  "age ${i+5} years", isNew = Random.nextBoolean(),
-//                isFavorite = Random.nextBoolean())
-//            )
-//            listRecentSeenDog.add(  Dog(id = i-1, name = "number $i", age =  "age ${i+5} years", isNew = Random.nextBoolean(),
-//                isFavorite = Random.nextBoolean())
-//            )
-//            listNews.add(  News(id = i, title = "title $i", body = "some string $i"))
-//        }
+
         return listOf(
             HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog, spanCount = 1),
             HorizontalGrid(titleId = R.string.New, list = listNewDog),

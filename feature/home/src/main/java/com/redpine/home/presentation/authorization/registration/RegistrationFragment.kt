@@ -12,10 +12,10 @@ import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
 class RegistrationFragment : HomeBaseFragment<FragmentRegistrationBinding>() {
 
+    private val viewModel: RegistrationViewModel by lazy { initViewModel() }
+
     override fun initBinding(inflater: LayoutInflater) =
         FragmentRegistrationBinding.inflate(inflater)
-
-    private val viewModel: RegistrationViewModel by lazy { initViewModel() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

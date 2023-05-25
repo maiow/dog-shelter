@@ -9,14 +9,14 @@ class DottedProgressOnPageProgressChangeCallback(dottedProgressBar: DottedProgre
     private var previousScrollState = 0
     private var scrollState = 0
 
-    private fun reset() {
-        scrollState = ViewPager2.SCROLL_STATE_IDLE
-        previousScrollState = scrollState
-    }
-
     init {
         progressRef = WeakReference(dottedProgressBar)
         reset()
+    }
+
+    private fun reset() {
+        scrollState = ViewPager2.SCROLL_STATE_IDLE
+        previousScrollState = scrollState
     }
 
     override fun onPageScrollStateChanged(state: Int) {

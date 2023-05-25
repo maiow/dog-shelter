@@ -26,11 +26,6 @@ object Dependence {
         const val firebaseBom = "com.google.firebase:firebase-bom:32.0.0"
         const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
         const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
-        const val firebaseDatabase = "com.google.firebase:firebase-database-ktx" //Realtime Database
-        //const val firebaseStorage = "com.google.firebase:firebase-storage-ktx" //Cloud Storage
-        //const val firestore = "com.google.firebase:firebase-firestore-ktx" //Cloud Firestore
-        //const val firebaseCore = "com.google.firebase:firebase-core"
+        const val firebaseDatabase = "com.google.firebase:firebase-database-ktx"
     }
-
-
 }

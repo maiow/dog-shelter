@@ -13,6 +13,4 @@ object Config {
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     val javaVersion = JavaVersion.VERSION_17
     const val jvmTarget = "17"
-
-
 }

@@ -15,9 +15,9 @@ import com.redpine.home.databinding.FragmentSingleNewsBinding
 
 class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentSingleNewsBinding.inflate(inflater)
     private val viewModel: SingleNewsViewModel by lazy { initViewModel() }
     private val args by navArgs<SingleNewsFragmentArgs>()
+    override fun initBinding(inflater: LayoutInflater) = FragmentSingleNewsBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

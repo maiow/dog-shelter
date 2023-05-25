@@ -7,5 +7,5 @@ data class VerticalGrid(
     override val titleId: Int,
     override val list: List<Item>,
     override val orientation: Int = RecyclerView.VERTICAL,
-    override val spanCount:Int = 2
-):Grid
+    override val spanCount: Int = 2
+) : Grid

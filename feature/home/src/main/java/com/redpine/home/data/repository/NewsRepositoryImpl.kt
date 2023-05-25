@@ -6,7 +6,7 @@ import com.redpine.core.domain.model.News
 import com.redpine.home.domain.repository.NewsRepository
 import kotlinx.coroutines.tasks.await
 
-class NewsRepositoryImpl( private val database: DatabaseReference) : NewsRepository {
+class NewsRepositoryImpl(private val database: DatabaseReference) : NewsRepository {
 
     override suspend fun getNewsList(): List<News> {
         val newsList = database
