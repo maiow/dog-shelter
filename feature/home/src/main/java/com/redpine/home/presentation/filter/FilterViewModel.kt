@@ -19,9 +19,10 @@ class FilterViewModel @Inject constructor(
         Log.i("BRED", "selectedGenderChip: $selectedGenderChip")
         Log.i("BRED", "selectedSizeChip: $selectedSizeChip")
         var gender = selectedGenderChip
-        if (selectedGenderChip != "Любой" && selectedGenderChip != "Any") {
+        if (selectedGenderChip != GENDER_ANY_RU && selectedGenderChip != GENDER_ANY_EN) {
             gender =
-                if (selectedGenderChip == "Девочка" || selectedGenderChip == "Girl") "female" else "male"
+                if (selectedGenderChip == GENDER_GIRL_RU || selectedGenderChip == GENDER_GIRL_EN)
+                    FEMALE else MALE
         }
 
         scopeLaunch {
@@ -37,5 +38,11 @@ class FilterViewModel @Inject constructor(
     companion object {
         const val INITIAL_MIN_AGE_ON_SLIDER = 3
         const val INITIAL_MAX_AGE_ON_SLIDER = 6
+        const val GENDER_ANY_RU = "Любой"
+        const val GENDER_ANY_EN = "Any"
+        const val GENDER_GIRL_RU = "Девочка"
+        const val GENDER_GIRL_EN = "Girl"
+        const val MALE = "male"
+        const val FEMALE = "female"
     }
 }
