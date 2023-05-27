@@ -13,11 +13,11 @@ import kotlinx.coroutines.tasks.await
 
 class DogsRepositoryImpl(private val database: DatabaseReference) : DogsRepository {
 
-    private val fireBaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
 /** подумать, для какого экрана может быть нужно в случае нулл кидать ошибку и
  * во вью модели ее обрабатывать, и что именно показывать юзеру*/
-    private fun getUserId(): String? = fireBaseAuth.currentUser?.uid
+    private fun getUserId(): String? = firebaseAuth.currentUser?.uid
 
     override suspend fun getNewDogs(count: Int): List<Dog> {
         val dogsList = database

@@ -8,4 +8,8 @@
 
     <string name="next">Next</string>
     <string name="skip">Skip</string>
+
+    <string name="oops">Oops!</string>
+    <string name="no_connection">No Internet connection. Check it and try again.</string>
+    <string name="retry">Retry</string>
 </resources>

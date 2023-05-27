@@ -8,4 +8,8 @@
 
     <string name="next">Далее</string>
     <string name="skip">Пропустить</string>
+
+    <string name="oops">Ой!</string>
+    <string name="no_connection">Не удалось подключиться к сети. Проверьте соединение и повторите попытку.</string>
+    <string name="retry">Повторить</string>
 </resources>

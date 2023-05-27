@@ -80,9 +80,6 @@
     <string name="hungry_phone_number" translatable="false">+7 963 767 79 57</string>
     <string name="sber_card_number" translatable="false">5469 3801 4999 3056</string>
     <string name="help">Help</string>
-    <string name="oops">Oops!</string>
-    <string name="no_connection">No Internet connection. Check it and try again.</string>
-    <string name="retry">Retry</string>
     <string name="none_found">No dogs found, try to change filtering parameters</string>
     <string name="initial_age_on_slider">3–6 years</string>
     <plurals name="found_pets">
