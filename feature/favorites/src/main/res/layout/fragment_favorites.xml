@@ -6,74 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".presentation.FavoritesFragment">
 
-    <!--TextView
-        android:id="@+id/search_params_view"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="14dp"
         android:background="@drawable/round_corners_20alfa_btn"
-        android:gravity="center"
+        app:iconifiedByDefault="false"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/filter_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Девочка • Размер средний • 2-6 лет" />
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Кого вы ищете?" />
 
     <ImageButton
         android:id="@+id/filter_button"
         style="@style/AppImageButton"
         android:layout_marginEnd="16dp"
         android:src="@drawable/filter_button"
-        app:layout_constraintBottom_toBottomOf="@+id/search_params_view"
+        app:layout_constraintBottom_toBottomOf="@id/search_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/search_params_view"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" /-->
+        app:layout_constraintTop_toTopOf="@id/search_view"
+        tools:ignore="ContentDescription, SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/favorites"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Найдено 100 питомцев" />
-    <!--style="@style/ItemContainerTitle"-->
+        app:layout_constraintTop_toBottomOf="@id/search_view" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="6dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:spanCount="2"
-        tools:listitem="@layout/dog_view_holder" />
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:spanCount="2"
+            tools:listitem="@layout/dog_view_holder" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/none_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="none_found"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/title"
-        tools:text="По заданным параметрам не найдено ни одной собаки, попробуйте изменить параметры поиска."
-        android:visibility="gone"/>
-<!--style="@style/FilterTitle"-->
+        tools:text="По заданным параметрам не найдено ни одной собаки, попробуйте изменить параметры поиска." />
+    <!--style="@style/FilterTitle"-->
 
     <include
         android:id="@+id/common_progress"
-        layout="@layout/common_progress_bar" />
+        layout="@layout/common_progress_bar"
+        android:visibility="gone" />
 
     <include
         android:id="@+id/connection_error"

@@ -44,7 +44,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     private fun loadingObserve(loadState: LoadState) {
         binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
         binding.carouselRecyclerView.isVisible = (loadState == LoadState.SUCCESS)
-        if (LoadState.ERROR_NETWORK == loadState) {
+        if (loadState == LoadState.ERROR_NETWORK) {
             binding.connectionError.error.isVisible = true
             binding.connectionError.retryButton.setOnClickListener {
                 viewModel.onGettingArgument(args.dog)

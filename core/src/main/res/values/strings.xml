@@ -12,4 +12,6 @@
     <string name="oops">Oops!</string>
     <string name="no_connection">No Internet connection. Check it and try again.</string>
     <string name="retry">Retry</string>
+
+    <string name="favorites">Favorites</string>
 </resources>
