@@ -13,5 +13,5 @@
     <string name="no_connection">Не удалось подключиться к сети. Проверьте соединение и повторите попытку.</string>
     <string name="retry">Повторить</string>
 
-    <string name="favorites">Избранные</string>
+    <string name="search_hint">Кого вы ищете?</string>
 </resources>

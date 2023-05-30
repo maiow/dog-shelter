@@ -20,19 +20,16 @@ class FavoritesViewModel @Inject constructor(
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
     val dogs = _dogs.asStateFlow()
 
-
     //TODO: при уходе из Избранного удалять из стека, чтобы при возвращении список избранных собак обновлялся
     init {
         getDogInfo()
     }
 
-    //TODO: добавить в базовую VM job и ee cancel
     private fun getDogInfo() = scopeLaunch {
         _dogs.value = favoritesRepository.getFavoriteDogs()
     }
 
     fun onRetryButtonClick() = getDogInfo()
-
 
     fun onLikeClick(clickableView: ClickableView, id: Int) =
         deleteFromFavorites(clickableView.itemPosition, id)

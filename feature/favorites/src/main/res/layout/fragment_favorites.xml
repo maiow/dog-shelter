@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="Кого вы ищете?" />
+        app:queryHint="@string/search_hint" />
 
     <ImageButton
         android:id="@+id/filter_button"
@@ -81,14 +81,15 @@
         android:id="@+id/none_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="none_found"
+        android:text="@string/no_favorite"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/title"
-        tools:text="По заданным параметрам не найдено ни одной собаки, попробуйте изменить параметры поиска." />
-    <!--style="@style/FilterTitle"-->
+        tools:text="У вас нет пока избранных собак, вы можете поставить лайк собаке и она будет добавлена в Избранные." />
 
     <include
         android:id="@+id/common_progress"
