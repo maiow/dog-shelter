@@ -29,6 +29,7 @@ dependencies {
 
     implementation(project(":api"))
     implementation(project(":core"))
+    implementation(project(":delegate"))
 
     implementation(Dependence.Core.core)
     implementation(Dependence.Core.appcompat)
@@ -36,7 +37,15 @@ dependencies {
     implementation(Dependence.Core.material)
     implementation(Dependence.Core.navigationFragment)
     implementation(Dependence.Core.navigationUi)
+    implementation(Dependence.Core.glide)
+    implementation(Dependence.Core.lifecycleLivedata)
+    implementation(Dependence.Core.lifecycleViewmodel)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.daggerCompiler)
+
+    implementation(Dependence.Firebase.googleServices)
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseAuth)
+    implementation(Dependence.Firebase.firebaseDatabase)
 }

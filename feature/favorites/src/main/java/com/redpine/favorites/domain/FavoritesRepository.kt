@@ -1,8 +1,10 @@
 package com.redpine.favorites.domain
 
-import com.redpine.favorites.domain.model.FavoriteDogs
+import com.redpine.core.domain.model.Dog
 
 interface FavoritesRepository {
 
-     fun  getInfo():List<FavoriteDogs>
+    suspend fun getFavoriteDogs(): List<Dog>
+
+    suspend fun makeDislike(dogId: Int): Boolean
 }

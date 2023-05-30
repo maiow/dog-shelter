@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -42,31 +41,25 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
     }
 
     private fun loadingObserve(loadState: LoadState) {
-        binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
-        binding.carouselRecyclerView.isVisible = (loadState == LoadState.SUCCESS)
-        if (LoadState.ERROR_NETWORK == loadState) {
-            binding.connectionError.error.isVisible = true
-            binding.connectionError.retryButton.setOnClickListener {
+        with(binding) {
+            commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
+            carouselRecyclerView.isVisible = (loadState == LoadState.SUCCESS)
+            connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
+            connectionError.retryButton.setOnClickListener {
                 viewModel.onGettingArgument(args.dog)
             }
         }
     }
 
     private fun showDogInfo(dog: Dog) {
-        binding.dogsName.text = dog.name
-        binding.age.text = dog.age
-        binding.color.text = dog.color
-        binding.height.text = getString(R.string.height, dog.height)
-        binding.story.text = dog.text
-        val genderIcon = if (dog.gender == GENDER_MALE)
-            ResourcesCompat.getDrawable(
-                resources,
-                com.redpine.core.R.drawable.ic_filter_gender_male,
-                null
-            ) else ResourcesCompat.getDrawable(
-            resources, com.redpine.core.R.drawable.ic_filter_gender_female, null
-        )
-        binding.genderImage.setImageDrawable(genderIcon)
+        with(binding) {
+            dogsName.text = dog.name
+            age.text = dog.age
+            color.text = dog.color
+            height.text = getString(R.string.height, dog.height)
+            story.text = dog.text
+            genderImage.isSelected = dog.gender == GENDER_MALE
+        }
     }
 
     private fun setCloseButton() = binding.backButton.setOnClickListener {
@@ -91,12 +84,14 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private fun sendWhatsAppMessageToCurator(phone: String, dogName: String) {
         val message = getString(R.string.watsapp_message, dogName)
-        val uri = Uri.parse("https://api.whatsapp.com/send?phone=$phone&text=$message")
+        val uri = Uri.parse(WHATSAPP_URI + phone + WHATSAPP_URI_TEXT + message)
         startActivity(Intent(Intent.ACTION_VIEW, uri))
     }
 
     private companion object {
         const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
         const val GENDER_MALE = "male"
+        const val WHATSAPP_URI = "https://api.whatsapp.com/send?phone="
+        const val WHATSAPP_URI_TEXT = "&text="
     }
 }

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="Кого вы ищете?" />
+        app:queryHint="@string/search_hint" />
 
     <ImageButton
         android:id="@+id/filter_button"

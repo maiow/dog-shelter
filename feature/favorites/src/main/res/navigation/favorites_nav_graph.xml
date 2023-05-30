@@ -9,5 +9,27 @@
         android:id="@+id/favoritesFragment"
         android:name="com.redpine.favorites.presentation.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/actionFavoritesToFilter"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/actionFavoritesToPetsCard"
+            app:destination="@id/petsCardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.redpine.home.presentation.filter.FilterFragment"
+        android:label="FilterFragment" />
+
+    <fragment
+        android:id="@+id/petsCardFragment"
+        android:name="com.redpine.home.presentation.pets_card.PetsCardFragment"
+        android:label="fragment_pets_card">
+        <argument
+            android:name="dog"
+            app:argType="com.redpine.core.domain.model.Dog" />
+    </fragment>
+
 </navigation>

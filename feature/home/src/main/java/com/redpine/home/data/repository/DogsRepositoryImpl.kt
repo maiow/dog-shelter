@@ -13,11 +13,11 @@ import kotlinx.coroutines.tasks.await
 
 class DogsRepositoryImpl(private val database: DatabaseReference) : DogsRepository {
 
-    private val fireBaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-/** подумать, для какого экрана может быть нужно в случае нулл кидать ошибку и
- * во вью модели ее обрабатывать, и что именно показывать юзеру*/
-    private fun getUserId(): String? = fireBaseAuth.currentUser?.uid
+    /** подумать, для какого экрана может быть нужно в случае нулл кидать ошибку и
+     * во вью модели ее обрабатывать, и что именно показывать юзеру*/
+    private fun getUserId(): String? = firebaseAuth.currentUser?.uid
 
     override suspend fun getNewDogs(count: Int): List<Dog> {
         val dogsList = database
@@ -25,22 +25,25 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
             .limitToLast(count)
             .get().await()
             .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
-        if (dogsList.isNotEmpty()) return dogsList.toDogList() else throw FirebaseBaseExceptionNullResponse()
+            .ifEmpty { throw FirebaseBaseExceptionNullResponse() }
+        return dogsList.toDogList()
     }
 
     override suspend fun getDogImages(id: Int): List<String> {
-        val listOfImages = database
+        return database
             .child(GALLERY_NODE)
             .child(GALLERY_NODE + id)
             .get()
             .await()
             .children.map { snapShot -> snapShot.value.toString() }
-        if (listOfImages.isNotEmpty()) return listOfImages else throw FirebaseBaseExceptionNullResponse()
+            .ifEmpty { throw FirebaseBaseExceptionNullResponse() }
     }
 
     override suspend fun getRecentSeenDogs(count: Int): List<Dog> {
         val listRecentSeenDogsDto = mutableListOf<DogDto>()
         val uid = getUserId()
+        //TODO: поменять на val uid = getUserId() ?: throw NullPointerException() с обработкой во
+        // вью модели и показом чего-то на экране
         if (uid != null) {
             val listSeenIds = mutableSetOf<String>()
             database
@@ -110,7 +113,8 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
             }
         return true
     }
-//TODO: добавить фильтрацию по остальным передаваемым параметрам + по всем не передаваемым сейчас
+
+    //TODO: добавить фильтрацию по остальным передаваемым параметрам + по всем не передаваемым сейчас
 // в репозиторий чекбоксам
     override suspend fun filterDogs(
         minAge: String, maxAge: String, gender: String, size: String?, character: String

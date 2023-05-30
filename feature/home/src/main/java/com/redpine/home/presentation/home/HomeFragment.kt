@@ -62,11 +62,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun loadingObserve(loadState: LoadState) {
-        binding.commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
-        binding.scroll.isVisible = loadState == LoadState.SUCCESS
-        if (LoadState.ERROR_NETWORK == loadState) {
-            binding.connectionError.error.isVisible = true
-            binding.connectionError.retryButton.setOnClickListener {
+        with(binding) {
+            commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
+            scroll.isVisible = loadState == LoadState.SUCCESS
+            connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
+            connectionError.retryButton.setOnClickListener {
                 viewModel.createHomeScreen()
             }
         }
