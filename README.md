@@ -2,6 +2,7 @@
 **Kotlin Android mobile application** for Red Pine dog shelter based in Moscow, Russia.
 
 It is a **work in progress** 🚧.
+<br />![](https://geps.dev/progress/70?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
 What we've used here:
 - Modularization
