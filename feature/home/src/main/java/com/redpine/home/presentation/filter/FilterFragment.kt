@@ -25,12 +25,12 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         setAgeSlider()
         setApplyButton()
         setClearButton()
-        hideStatusBar()
+//        hideStatusBar()
     }
 
-    private fun hideStatusBar() {
-        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-    }
+//    private fun hideStatusBar() {
+//        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+//    }
 
     private fun setCloseButton() {
         binding.filterCloseBtn.setOnClickListener {

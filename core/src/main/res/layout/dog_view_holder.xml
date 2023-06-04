@@ -27,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:drawablePadding="7dp"
             android:text="TextView"
-            app:drawableEndCompat="@drawable/gender_female" />
+            app:drawableEndCompat="@drawable/selector_petscard_gender" />
 
         <TextView
             android:id="@+id/dogHeight"

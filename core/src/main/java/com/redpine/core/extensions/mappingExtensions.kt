@@ -4,11 +4,33 @@ import com.redpine.core.data.DogDto
 import com.redpine.core.domain.model.Dog
 
 fun DogDto.toDog() = Dog(
-    age, character, color, curatorPhone, gender, height, id, imageUrl, name, size, text, webLink
+    age = age,
+    character = character,
+    color = color,
+    curatorPhone = curatorPhone,
+    isMale = gender == "male",
+    height = height,
+    id = id,
+    imageUrl = imageUrl,
+    name = name,
+    size = size,
+    text = text,
+    webLink = webLink
 )
 
 fun DogDto.toFavoriteDog() = Dog(
-    age, character, color, curatorPhone, gender, height, id, imageUrl, name, size, text, webLink,
+    age = age,
+    character = character,
+    color = color,
+    curatorPhone = curatorPhone,
+    isMale = gender == "male",
+    height = height,
+    id = id,
+    imageUrl = imageUrl,
+    name = name,
+    size = size,
+    text = text,
+    webLink = webLink,
     isFavorite = true
 )
 
