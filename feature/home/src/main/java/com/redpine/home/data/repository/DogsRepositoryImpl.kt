@@ -92,32 +92,29 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
     }
 
     override suspend fun makeLikeDislike(dogId: Int, isLike: Boolean): Boolean {
-        val uid = getUserId()
-        if (uid == null) return false
-        else
-            if (isLike) {
-                database
-                    .child(LIKES_NODE)
-                    .child(uid)
-                    .child(dogId.toString())
-                    .setValue(dogId)
-                    .await()
+        val uid = getUserId() ?: return false
+        val databaseReference = database
+            .child(LIKES_NODE)
+            .child(uid)
+            .child(dogId.toString())
 
-            } else {
-                database
-                    .child(LIKES_NODE)
-                    .child(uid)
-                    .child(dogId.toString())
-                    .removeValue()
-                    .await()
-            }
+        if (isLike) setFavorite(databaseReference, dogId)
+        else removeFavorite(databaseReference)
+
         return true
     }
+
+    private suspend fun setFavorite(reference: DatabaseReference, dogId: Int) =
+        reference.setValue(dogId).await()
+
+    private suspend fun removeFavorite(reference: DatabaseReference) =
+        reference.removeValue().await()
+
 
     //TODO: добавить фильтрацию по остальным передаваемым параметрам + по всем не передаваемым сейчас
 // в репозиторий чекбоксам
     override suspend fun filterDogs(
-        minAge: String, maxAge: String, gender: String, size: String?, character: String
+        minAge: String, maxAge: String, gender: String, size: String?, character: String,
     ): List<Dog> {
         /**фильтрация в бд по полу, если не указан Любой*/
         if (gender != GENDER_ANY_RU && gender != GENDER_ANY_EN) {
@@ -137,7 +134,7 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
 
     private suspend fun filterDogsByGender(
         gender: String,
-        size: String?
+        size: String?,
     ): List<Dog> {
         val filteredByGenderDogsList = database.child(DOGS_NODE)
             .orderByChild(GENDER_NODE)

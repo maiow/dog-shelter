@@ -10,6 +10,7 @@ import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -17,11 +18,14 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
-    private val likeUseCase: LikeUseCase
+    private val likeUseCase: LikeUseCase,
 ) : BaseViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
     val data = _data.asStateFlow()
+
+    private val _isNavigateAuth = MutableStateFlow(false)
+    val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
     init {
         createHomeScreen()
@@ -40,8 +44,14 @@ class HomeViewModel @Inject constructor(
             newList[itemPosition] =
                 newList[itemPosition].copy(isFavorite = !newList[itemPosition].isFavorite)
             newData[listPosition] = (newData[listPosition] as HorizontalGrid).copy(list = newList)
-            if (likeUseCase.makeLikeDislike(id, newList[itemPosition].isFavorite))
-            _data.value = newData
+            val isSuccessFavorite =
+                likeUseCase.makeLikeDislike(id, newList[itemPosition].isFavorite)
+            if (isSuccessFavorite) _data.value = newData
+            else _isNavigateAuth.value = true
         }
+    }
+
+    fun resetNavigateFlow() {
+        _isNavigateAuth.value = false
     }
 }

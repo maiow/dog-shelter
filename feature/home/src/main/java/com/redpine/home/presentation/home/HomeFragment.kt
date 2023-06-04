@@ -31,6 +31,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         binding.recycler.adapter = adapter
         flowObserver(viewModel.data) { data -> observeData(data) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
+        flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item?) {
@@ -55,6 +56,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
                     item!!.id
                 )
         }
+    }
+
+    private fun observeNavigateAuth(isNavigation: Boolean) {
+        if (isNavigation) navigate(R.id.authFragment)
+        viewModel.resetNavigateFlow()
     }
 
     private fun observeData(data: List<Grid>) {
