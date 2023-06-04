@@ -58,7 +58,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
             color.text = dog.color
             height.text = getString(R.string.height, dog.height)
             story.text = dog.text
-            genderImage.isSelected = dog.gender == GENDER_MALE
+            genderImage.isSelected = dog.isMale
         }
     }
 

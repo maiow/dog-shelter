@@ -9,7 +9,7 @@ data class Dog(
     val character: String,
     val color: String,
     val curatorPhone: String,
-    val gender: String,
+    val isMale: Boolean,
     val height: String,
     override val id: Int,
     val imageUrl: String,
