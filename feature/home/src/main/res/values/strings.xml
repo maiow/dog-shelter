@@ -82,6 +82,7 @@
     <string name="help">Help</string>
     <string name="none_found">No dogs found, try to change filtering parameters</string>
     <string name="initial_age_on_slider">3–6 years</string>
+    <string name="all_dogs">All dogs</string>
     <plurals name="found_pets">
         <item quantity="one">Found %1$d dog</item>
         <item quantity="few">Found %1$d dogs</item>

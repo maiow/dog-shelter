@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
+import com.redpine.home.data.FilteredDogs
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
@@ -43,5 +44,9 @@ class HomeViewModel @Inject constructor(
             if (likeUseCase.makeLikeDislike(id, newList[itemPosition].isFavorite))
             _data.value = newData
         }
+    }
+
+    fun onAllDogsClick() = viewModelScope.launch(Dispatchers.IO) {
+        FilteredDogs.filteredDogsList = homeScreenUseCase.getAllDogs()
     }
 }
