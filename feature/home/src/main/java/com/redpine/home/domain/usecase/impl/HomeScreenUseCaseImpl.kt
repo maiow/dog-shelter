@@ -1,5 +1,6 @@
 package com.redpine.home.domain.usecase.impl
 
+import com.redpine.core.domain.model.Dog
 import com.redpine.home.R
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
@@ -24,4 +25,5 @@ class HomeScreenUseCaseImpl(
             VerticalGrid(titleId = R.string.News, list = listNews, spanCount = 1),
         )
     }
+    override suspend fun getAllDogs(): List<Dog> = dogsRepository.getAllDogs()
 }

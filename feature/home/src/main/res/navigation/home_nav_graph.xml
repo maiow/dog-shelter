@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_dogs_found">
         <argument
             android:name="filters"
-            android:defaultValue="Девочка"
+            android:defaultValue="Все"
             app:argType="string" />
         <action
             android:id="@+id/action_dogsFoundFragment_to_petsCardFragment"

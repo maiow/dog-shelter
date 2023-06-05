@@ -167,7 +167,7 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
         return filteredDogsList.toDogList()
     }
 
-    private suspend fun getAllDogs(): List<Dog> {
+    override suspend fun getAllDogs(): List<Dog> {
         val dogsList = database
             .child(DOGS_NODE)
             .get().await()

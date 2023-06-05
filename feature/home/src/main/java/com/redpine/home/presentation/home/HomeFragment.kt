@@ -44,8 +44,10 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             ClickableView.NEWS -> if (!isNullItem)
                 navigate(HomeFragmentDirections.actionHomeFragmentToSingleNewsFragment(item!!.id))
 
-            ClickableView.DOG_ALL_BUTTON ->
-                navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(""))
+            ClickableView.DOG_ALL_BUTTON -> {
+                viewModel.onAllDogsClick()
+                navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(getString(R.string.all_dogs)))
+            }
 
             ClickableView.NEWS_ALL_BUTTON ->
                 navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())

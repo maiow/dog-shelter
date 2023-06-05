@@ -15,4 +15,5 @@ interface DogsRepository {
         gender: String,
         size: String?,
         character: String): List<Dog>
+    suspend fun getAllDogs(): List<Dog>
 }
