@@ -27,6 +27,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.createHomeScreen()
         setUserInterface()
         binding.recycler.adapter = adapter
         flowObserver(viewModel.data) { data -> observeData(data) }
