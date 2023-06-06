@@ -62,7 +62,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     }
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation) navigate(R.id.authFragment)
+        if (isNavigation) navigate(R.id.auth_nav_graph)
         viewModel.resetNavigateFlow()
     }
 

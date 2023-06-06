@@ -78,53 +78,6 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/authFragment"
-        android:name="com.redpine.home.presentation.authorization.auth.AuthFragment"
-        android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth">
-        <action
-            android:id="@+id/action_authFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/home_nav_graph"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_authFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
-        <action
-            android:id="@+id/action_authFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.redpine.home.presentation.authorization.registration.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration">
-        <argument
-            android:name="email"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_registrationFragment_to_authMessageFragment"
-            app:destination="@id/authMessageFragment"
-            app:popUpTo="@id/registrationFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/resetPasswordFragment"
-        android:name="com.redpine.home.presentation.authorization.resetpassword.ResetPasswordFragment"
-        android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password">
-        <action
-            android:id="@+id/action_resetPasswordFragment_to_authMessageFragment"
-            app:destination="@id/authMessageFragment"
-            app:popUpTo="@id/resetPasswordFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/authMessageFragment"
-        android:name="com.redpine.home.presentation.authorization.message.AuthMessageFragment"
-        android:label="fragment_auth_message"
-        tools:layout="@layout/fragment_auth_message" />
-    <fragment
         android:id="@+id/helpFragment"
         android:name="com.redpine.home.presentation.help.HelpFragment"
         android:label="fragment_help"

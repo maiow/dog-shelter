@@ -8,6 +8,7 @@ import androidx.navigation.NavDirections
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
+import com.redpine.home.R
 import com.redpine.home.databinding.FragmentAuthBinding
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
@@ -60,6 +61,6 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
         binding.errorAuthMessage.isVisible = loadState == LoadState.ERROR_AUTH
         binding.errorInternetMessage.isVisible = loadState == LoadState.ERROR_NETWORK
         if (loadState == LoadState.SUCCESS)
-            navigate(AuthFragmentDirections.actionAuthFragmentToHomeFragment())
+            navigate(R.id.action_authFragment_to_home_nav_graph)
     }
 }
