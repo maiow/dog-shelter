@@ -20,6 +20,9 @@ class DogsFoundViewModel @Inject constructor(
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
     val dogs = _dogs.asStateFlow()
 
+    private val _isNavigateAuth = MutableStateFlow(false)
+    val isNavigateAuth = _isNavigateAuth.asStateFlow()
+
     init {
         while (FilteredDogs.filteredDogsList == null)
             _loadState.value = LoadState.LOADING
@@ -44,6 +47,11 @@ class DogsFoundViewModel @Inject constructor(
             newList[position] = newList[position].copy(isFavorite = !newList[position].isFavorite)
             if (likeUseCase.makeLikeDislike(id, newList[position].isFavorite))
                 _dogs.value = newList
+            else _isNavigateAuth.value = true
         }
+    }
+
+    fun resetNavigateFlow() {
+        _isNavigateAuth.value = false
     }
 }

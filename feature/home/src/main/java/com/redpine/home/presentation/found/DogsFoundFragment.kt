@@ -28,10 +28,16 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         setFilterText(args.filters)
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
+        flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
         binding.filterButton.setOnClickListener {
             viewModel.onFilterButtonClick()
             findNavController().popBackStack()
         }
+    }
+
+    private fun observeNavigateAuth(isNavigation: Boolean) {
+        if (isNavigation) navigate(R.id.auth_nav_graph)
+        viewModel.resetNavigateFlow()
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
