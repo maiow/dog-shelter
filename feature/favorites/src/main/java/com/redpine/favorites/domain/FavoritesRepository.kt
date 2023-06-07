@@ -7,4 +7,6 @@ interface FavoritesRepository {
     suspend fun getFavoriteDogs(): List<Dog>
 
     suspend fun makeDislike(dogId: Int): Boolean
+
+    suspend fun isUserAuthorized():Boolean
 }

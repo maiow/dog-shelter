@@ -20,12 +20,15 @@ class FavoritesViewModel @Inject constructor(
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
     val dogs = _dogs.asStateFlow()
 
-    //TODO: при уходе из Избранного удалять из стека, чтобы при возвращении список избранных собак обновлялся
-    init {
-        getDogInfo()
-    }
+    private val _isAuth = MutableStateFlow<Boolean>(false)
+    val isAuth = _isAuth.asStateFlow()
 
-    private fun getDogInfo() = scopeLaunch {
+    //TODO: при уходе из Избранного удалять из стека, чтобы при возвращении список избранных собак обновлялся
+//    init {
+//        getDogInfo()
+//    }
+
+    fun getDogInfo() = scopeLaunch {
         _dogs.value = favoritesRepository.getFavoriteDogs()
     }
 
@@ -41,5 +44,15 @@ class FavoritesViewModel @Inject constructor(
             if (dislikeUseCase.makeDislike(id))
                 _dogs.value = newList
         }
+    }
+
+    fun checkAuth(){
+        viewModelScope.launch(Dispatchers.IO){
+            _isAuth.value = favoritesRepository.isUserAuthorized()
+        }
+    }
+
+    fun resetAuthCheck(){
+        _isAuth.value = false
     }
 }

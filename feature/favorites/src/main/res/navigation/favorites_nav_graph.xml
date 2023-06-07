@@ -24,6 +24,12 @@
         android:label="FilterFragment" />
 
     <fragment
+        android:id="@+id/authFragment"
+        android:name="com.redpine.home.presentation.authorization.auth.AuthFragment"
+        android:label="fragment_auth">
+    </fragment>
+
+    <fragment
         android:id="@+id/petsCardFragment"
         android:name="com.redpine.home.presentation.pets_card.PetsCardFragment"
         android:label="fragment_pets_card">

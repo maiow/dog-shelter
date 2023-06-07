@@ -24,10 +24,17 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.checkAuth()
         setUserInterface()
+        viewModel.getDogInfo()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
+        flowObserver(viewModel.isAuth){ isAuth -> authObserve(isAuth)}
+    }
+
+    private fun authObserve(auth: Boolean) {
+        if(!auth) showAuthDialog(R.id.authFragment) { viewModel.resetAuthCheck() }
     }
 
     private fun loadContent(dogs: List<Dog>) {

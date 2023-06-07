@@ -24,6 +24,10 @@ class FavoritesRepositoryImpl(private val database: DatabaseReference) : Favorit
     /**нула не должно быть, до перехода на избранное должна быть проверка на то, авторизован ли юзер*/
     private fun getUserId(): String? = firebaseAuth.currentUser?.uid
 
+    override suspend fun isUserAuthorized(): Boolean {
+        return getUserId() != null
+    }
+
     private fun checkConnection() {
         connectedRef = database.child(".info/connected")
         valueEventListener = object : ValueEventListener {
