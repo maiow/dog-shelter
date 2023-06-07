@@ -14,4 +14,8 @@
     <string name="retry">Retry</string>
 
     <string name="search_hint">Whom are you looking for?</string>
+
+    <string name="auth_dialog_message">Authorization / registration is required to add a pet to favorites</string>
+    <string name="auth_dialog_cancel">Cancel</string>
+    <string name="auth_dialog_apply">Apply</string>
 </resources>

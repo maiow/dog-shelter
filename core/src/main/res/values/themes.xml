@@ -17,9 +17,46 @@
         <item name="android:statusBarColor">?attr/backgroundColor</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="elevationOverlayEnabled">true</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.DogShelter.MaterialAlertDialog
+        </item>
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="ThemeOverlay.DogShelter.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
+        <item name="elevationOverlayColor">#f5f5f5</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.DogShelter.AlertDialogButton.Negative</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.DogShelter.AlertDialogButton.Positive</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/DogShelter.AlertDialog.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/DogShelter.AlertDialog.Body.Text</item>
+        <item name="materialAlertDialogButtonSpacerVisibility">2</item>
+    </style>
+
+    <style name="DogShelter.AlertDialog.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text.CenterStacked">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/sf_ui_text_regular</item>
+    </style>
+
+    <style name="DogShelter.AlertDialog.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text.CenterStacked">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/sf_ui_text_regular</item>
+    </style>
+
+    <style name="Widget.DogShelter.AlertDialogButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/sf_ui_text_regular</item>
+    </style>
+
+    <style name="Widget.DogShelter.AlertDialogButton.Positive">
+        <item name="android:layout_weight">10</item>
+        <item name="android:textColor">#FE3B30</item>
+    </style>
+
+    <style name="Widget.DogShelter.AlertDialogButton.Negative">
+        <item name="android:layout_weight">10</item>
+        <item name="android:textColor">#007AFF</item>
+    </style>
 
 
 </resources>

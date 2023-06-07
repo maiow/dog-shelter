@@ -14,4 +14,7 @@
     <string name="retry">Повторить</string>
 
     <string name="search_hint">Кого вы ищете?</string>
+    <string name="auth_dialog_message">Для добавления питомца в избранное необходима авторизация / регистрация</string>
+    <string name="auth_dialog_cancel">Отмена</string>
+    <string name="auth_dialog_apply">Принять</string>
 </resources>

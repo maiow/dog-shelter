@@ -26,18 +26,18 @@
         <item name="android:textColor">?attr/colorSecondary</item>
     </style>
 
-    <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+    <style name="Widget.DogShelter.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="cornerRadius">16dp</item>
         <item name="android:textAppearance">@style/TextAppearance.DogShelter.Button</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
 
-    <style name="Widget.App.Button.OutlinedButton.RedButton" parent="Widget.App.Button.OutlinedButton">
+    <style name="Widget.DogShelter.Button.OutlinedButton.RedButton" parent="Widget.DogShelter.Button.OutlinedButton">
         <item name="strokeColor">?attr/colorPrimary</item>
     </style>
 
-    <style name="Widget.App.Button.OutlinedButton.GreenButton" parent="Widget.App.Button.OutlinedButton">
+    <style name="Widget.DogShelter.Button.OutlinedButton.GreenButton" parent="Widget.DogShelter.Button.OutlinedButton">
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="strokeColor">?attr/colorSecondary</item>
         <item name="rippleColor">?attr/colorSecondary</item>

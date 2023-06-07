@@ -39,7 +39,7 @@
         android:background="?attr/backgroundColor"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_favorites"
+        android:src="@drawable/selector_favorites"
         app:layout_constraintBottom_toBottomOf="@id/dogs_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -193,7 +193,7 @@
 
             <Button
                 android:id="@+id/curator_button"
-                style="@style/Widget.App.Button.OutlinedButton.GreenButton"
+                style="@style/Widget.DogShelter.Button.OutlinedButton.GreenButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
