@@ -19,14 +19,33 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
      * во вью модели ее обрабатывать, и что именно показывать юзеру*/
     private fun getUserId(): String? = firebaseAuth.currentUser?.uid
 
+    private val listFavoriteDogsIds = mutableSetOf<String>()
     override suspend fun getNewDogs(count: Int): List<Dog> {
+        val uid = getUserId()
         val dogsList = database
             .child(DOGS_NODE)
             .limitToLast(count)
             .get().await()
             .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
             .ifEmpty { throw FirebaseBaseExceptionNullResponse() }
-        return dogsList.toDogList()
+        return if (uid == null) {
+            dogsList.toDogList()
+        } else {
+            getFavoriteDogs(uid)
+            dogsList.forEach {
+                if (it.id.toString() in listFavoriteDogsIds) it.isFavorite = true
+            }
+            dogsList.toDogList()
+        }
+    }
+
+    private suspend fun getFavoriteDogs(uid: String) {
+        database
+            .child(LIKES_NODE)
+            .child(uid)
+            .get()
+            .await()
+            .children.map { snapShot -> snapShot.value.let { listFavoriteDogsIds.add(it.toString()) } }
     }
 
     override suspend fun getDogImages(id: Int): List<String> {
@@ -65,8 +84,12 @@ class DogsRepositoryImpl(private val database: DatabaseReference) : DogsReposito
                 )
             }
         }
-        return if (listRecentSeenDogsDto.isNotEmpty()) listRecentSeenDogsDto.toDogList()
-        else emptyList()
+        return if (listRecentSeenDogsDto.isNotEmpty()) {
+            listRecentSeenDogsDto.forEach {
+                if (it.id.toString() in listFavoriteDogsIds) it.isFavorite = true
+            }
+            listRecentSeenDogsDto.toDogList()
+        } else emptyList()
     }
 
     override suspend fun getDogInfo(id: Int): Dog {
