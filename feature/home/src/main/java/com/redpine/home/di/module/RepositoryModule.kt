@@ -29,7 +29,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDogsRepository(database: DatabaseReference) = DogsRepositoryImpl(database)
+    fun provideDogsRepository(database: DatabaseReference, auth: FirebaseAuth) = DogsRepositoryImpl(database, auth)
 
     @Provides
     fun providesDatabaseReference(): DatabaseReference = Firebase
