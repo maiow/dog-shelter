@@ -73,7 +73,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     private fun loadingObserve(loadState: LoadState) {
         with(binding) {
             commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
-            scroll.isVisible = loadState == LoadState.SUCCESS
+            noDogs.isVisible = (loadState == LoadState.NULL_RESPONSE)
             connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
             connectionError.retryButton.setOnClickListener {
                 viewModel.createHomeScreen()
@@ -91,6 +91,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         }
         binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
         binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }
+
+        //TODO: идеально было бы убирать также по клику на крестик и по клику на серч поле
+        binding.searchView.setOnClickListener {
+            binding.noDogs.isVisible = false
+        }
     }
 
     private fun onSocialClick(uri: String) {
@@ -100,6 +105,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     private fun setSearch() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) viewModel.onDogSearchClick(query, parentFragment!!)
                 return false
             }
 

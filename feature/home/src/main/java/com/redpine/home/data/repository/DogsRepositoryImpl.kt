@@ -221,6 +221,19 @@ class DogsRepositoryImpl(
         return dogsList.toDogList()
     }
 
+    override suspend fun searchDogByName(query: String): Dog {
+        val res = database
+            .child(DOGS_NODE)
+            .orderByChild(NAME_NODE)
+            .equalTo(query)
+            .get()
+            .await()
+            .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
+
+        if (res.isNotEmpty() && res[0].id != 0) return res[0].toDog()
+        else throw FirebaseBaseExceptionNullResponse()
+    }
+
     private companion object {
         const val DOGS_NODE = "dogs"
         const val DOGS_NODE_CHILD = "dog"
@@ -231,5 +244,6 @@ class DogsRepositoryImpl(
         const val GENDER_ANY_EN = "Any"
         const val GENDER_NODE = "gender"
         const val SIZE_NODE = "size"
+        const val NAME_NODE = "name"
     }
 }

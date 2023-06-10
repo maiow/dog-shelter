@@ -14,6 +14,7 @@ import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.ListNewsUseCase
 import com.redpine.home.domain.usecase.RegistrationUseCase
 import com.redpine.home.domain.usecase.ResetPasswordUseCase
+import com.redpine.home.domain.usecase.SearchUseCase
 import com.redpine.home.domain.usecase.SingleNewsUseCase
 import com.redpine.home.presentation.authorization.auth.AuthViewModel
 import com.redpine.home.presentation.authorization.registration.RegistrationViewModel
@@ -41,10 +42,11 @@ class ViewModelFactory @Inject constructor(
     private val singleNewsUseCase: SingleNewsUseCase,
     private val dogsRepository: DogsRepository,
     private val likeUseCase: LikeUseCase,
-    private val filterUseCase: FilterUseCase
+    private val filterUseCase: FilterUseCase,
+    private val searchUseCase: SearchUseCase
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
-        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase) as T
+        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, searchUseCase) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository, onBoardingPrefs) as T
         FilterViewModel::class.java -> FilterViewModel(filterUseCase) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase) as T

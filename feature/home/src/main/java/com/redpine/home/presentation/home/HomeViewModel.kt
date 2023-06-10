@@ -1,23 +1,28 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
+import com.redpine.home.domain.usecase.SearchUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
     private val likeUseCase: LikeUseCase,
+    private val searchUseCase: SearchUseCase
 ) : BaseViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
@@ -52,5 +57,13 @@ class HomeViewModel @Inject constructor(
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false
+    }
+
+    fun onDogSearchClick(query: String, fragment: Fragment) = scopeLaunch {
+        val dog = searchUseCase.searchDogByName(query)
+        withContext(Dispatchers.Main) {
+            fragment.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(dog))
+        }
     }
 }
