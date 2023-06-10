@@ -83,7 +83,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private companion object {
         const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
-        const val GENDER_MALE = "male"
         const val WHATSAPP_URI = "https://api.whatsapp.com/send?phone="
         const val WHATSAPP_URI_TEXT = "&text="
     }
