@@ -28,4 +28,8 @@ class PetsCardViewModel @Inject constructor(
     private fun sendDogToSeenList(dogId: Int) = scopeLaunch {
         repository.sendDogToSeenList(dogId)
     }
+
+    fun addToFavorites(dog: Dog) = scopeLaunch {
+        //TODO()
+    }
 }

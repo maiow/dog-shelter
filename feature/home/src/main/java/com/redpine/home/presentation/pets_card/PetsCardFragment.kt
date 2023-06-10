@@ -25,19 +25,25 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.onGettingArgument(args.dog)
+        setUserInterface(args.dog)
         showDogInfo(args.dog)
-        setCloseButton()
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
         }
-        setCuratorButton(args.dog.curatorPhone, args.dog.name)
-        setShareButton(args.dog.webLink)
-        assignCarouselLayoutManager()
     }
 
-    private fun assignCarouselLayoutManager() {
-        binding.carouselRecyclerView.layoutManager = CarouselLayoutManager()
+    private fun setUserInterface(dog: Dog) {
+        with(binding) {
+            backButton.setOnClickListener { findNavController().popBackStack() }
+            curatorButton.setOnClickListener {
+                sendWhatsAppMessageToCurator(dog.curatorPhone, dog.name)
+            }
+            shareButton.setOnClickListener { shareLinkOnDog(dog.webLink) }
+            likeButton.isSelected = dog.isFavorite
+            likeButton.setOnClickListener { viewModel.addToFavorites(dog) }
+            carouselRecyclerView.layoutManager = CarouselLayoutManager()
+        }
     }
 
     private fun loadingObserve(loadState: LoadState) {
@@ -62,19 +68,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         }
     }
 
-    private fun setCloseButton() = binding.backButton.setOnClickListener {
-        findNavController().popBackStack()
-    }
-
-    private fun setShareButton(dogLink: String) = binding.shareButton.setOnClickListener {
-        shareLinkOnDog(dogLink)
-    }
-
-    private fun setCuratorButton(phone: String, dogName: String) =
-        binding.curatorButton.setOnClickListener {
-            sendWhatsAppMessageToCurator(phone, dogName)
-        }
-
     private fun shareLinkOnDog(link: String) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
@@ -90,7 +83,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private companion object {
         const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
-        const val GENDER_MALE = "male"
         const val WHATSAPP_URI = "https://api.whatsapp.com/send?phone="
         const val WHATSAPP_URI_TEXT = "&text="
     }

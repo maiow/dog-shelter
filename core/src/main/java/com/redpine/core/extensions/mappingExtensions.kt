@@ -15,7 +15,8 @@ fun DogDto.toDog() = Dog(
     name = name,
     size = size,
     text = text,
-    webLink = webLink
+    webLink = webLink,
+    isFavorite = isFavorite
 )
 
 fun DogDto.toFavoriteDog() = Dog(
