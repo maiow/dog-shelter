@@ -21,6 +21,11 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private val adapter by lazy { FavoritesAdapter(::onItemClick) }
     override fun initBinding(inflater: LayoutInflater) = FragmentFavoritesBinding.inflate(inflater)
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.onStart()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

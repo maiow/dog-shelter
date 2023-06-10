@@ -20,11 +20,6 @@ class FavoritesViewModel @Inject constructor(
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
     val dogs = _dogs.asStateFlow()
 
-    //TODO: при уходе из Избранного удалять из стека, чтобы при возвращении список избранных собак обновлялся
-    init {
-        getDogInfo()
-    }
-
     private fun getDogInfo() = scopeLaunch {
         _dogs.value = favoritesRepository.getFavoriteDogs()
     }
@@ -42,4 +37,6 @@ class FavoritesViewModel @Inject constructor(
                 _dogs.value = newList
         }
     }
+
+    fun onStart() = getDogInfo()
 }

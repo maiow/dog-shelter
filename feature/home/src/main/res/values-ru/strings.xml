@@ -81,6 +81,10 @@
     <string name="none_found">По заданным параметрам не найдено ни одной собаки, попробуйте изменить параметры поиска.</string>
     <string name="initial_age_on_slider">3–6 лет</string>
     <string name="all_dogs">Все собаки</string>
+    <string name="all">Все</string>
+    <string name="gets_along">ладит с\u0020</string>
+    <string name="follow_us">Мы в соцсетях</string>
+
 
     <plurals name="found_pets">
         <item quantity="one">Найдена %1$d собака</item>

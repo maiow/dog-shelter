@@ -36,7 +36,7 @@
     <string name="test_text">Рыжая красотка Викки ищет дом. Открытая, ласковая, послушная девочка с чувством собственного достоинства. С такой собакой сложно остаться незамеченным, и вы не один раз услышите: «А что это за порода такая?» Викки отлично гуляет, слушается на ура, быстро адаптируется к новому и всегда готова завести друзей. Молодая (и душой и телом) и игривая, любит побегать за мячиком или погрызть палочку. \nВикки очень верная и быстро привыкает к человеку. С ней очень комфортно и легко. Подойдёт в любую семью — с детьми, второй собакой или одинокому человеку: проблем с поведением нет, есть только больше количество положительных эмоций от общения с ней.</string>
     <string name="share_profile">Share profile</string>
     <string name="contact_handler">Contact handler</string>
-    <string name="story">Story:</string>
+    <string name="story">Story (no English translation yet):</string>
     <string name="share">Share</string>
 
     <string name="e_mail" translatable="false">e-mail</string>
@@ -83,6 +83,9 @@
     <string name="none_found">No dogs found, try to change filtering parameters</string>
     <string name="initial_age_on_slider">3–6 years</string>
     <string name="all_dogs">All dogs</string>
+    <string name="all">All</string>
+    <string name="gets_along">gets along\u0020</string>
+    <string name="follow_us">Follow us</string>
     <plurals name="found_pets">
         <item quantity="one">Found %1$d dog</item>
         <item quantity="few">Found %1$d dogs</item>

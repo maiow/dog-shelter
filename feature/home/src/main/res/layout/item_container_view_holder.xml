@@ -10,7 +10,7 @@
         android:id="@+id/itemTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        tools:text="TextView"
         style="@style/ItemContainerTitle"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         android:paddingRight="0dp"
         android:textSize="16sp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Все"
+        android:text="@string/all"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -59,20 +59,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="6dp"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            app:spanCount="2"
-            tools:listitem="@layout/dog_view_holder" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:spanCount="2"
+                tools:listitem="@layout/dog_view_holder" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -81,15 +81,14 @@
         android:id="@+id/none_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/no_favorite"
         android:layout_marginHorizontal="16dp"
+        android:text="@string/no_favorite"
         android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/title"
-        tools:text="У вас нет пока избранных собак, вы можете поставить лайк собаке и она будет добавлена в Избранные." />
+        app:layout_constraintTop_toTopOf="@id/title" />
 
     <include
         android:id="@+id/common_progress"
