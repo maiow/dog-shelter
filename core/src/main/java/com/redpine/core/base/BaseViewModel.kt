@@ -23,6 +23,7 @@ abstract class BaseViewModel : ViewModel() {
         _loadState.value = when (e) {
             is FirebaseAuthInvalidCredentialsException -> LoadState.ERROR_AUTH
             is FirebaseBaseExceptionNullResponse -> LoadState.NULL_RESPONSE
+            is FirebaseSearchExceptionNullResponse -> LoadState.NULL_SEARCH
             else -> LoadState.ERROR_NETWORK
         }
     }
@@ -42,5 +43,9 @@ abstract class BaseViewModel : ViewModel() {
 }
 
 class FirebaseBaseExceptionNullResponse(
+    val errorMessage: String = "Null Response"
+) : FirebaseNetworkException(errorMessage)
+
+class FirebaseSearchExceptionNullResponse(
     val errorMessage: String = "Null Response"
 ) : FirebaseNetworkException(errorMessage)

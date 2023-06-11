@@ -3,10 +3,13 @@ package com.redpine.favorites.presentation
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
+import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.favorites.domain.FavoritesRepository
 import com.redpine.favorites.domain.usecase.DislikeUseCase
+import com.redpine.favorites.domain.usecase.SearchUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -14,11 +17,15 @@ import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository,
-    private val dislikeUseCase: DislikeUseCase
+    private val dislikeUseCase: DislikeUseCase,
+    private val searchUseCase: SearchUseCase
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
     val dogs = _dogs.asStateFlow()
+
+    private val _foundDog = MutableStateFlow<Dog?>(null)
+    val foundDog = _foundDog.asStateFlow()
 
     private fun getDogInfo() = scopeLaunch {
         _dogs.value = favoritesRepository.getFavoriteDogs()
@@ -39,4 +46,14 @@ class FavoritesViewModel @Inject constructor(
     }
 
     fun onStart() = getDogInfo()
+
+    fun onDogSearchClick(query: String) {
+        viewModelScope.launch(Dispatchers.IO + handler) {
+            _loadState.value = LoadState.START
+            _foundDog.value = searchUseCase.searchDogByName(query)
+            /**передаем и потом обнуляем собаку, иначе по бэкстеку не вернуться*/
+            delay(1)
+            _foundDog.value = null
+        }
+    }
 }

@@ -1,11 +1,10 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
+import com.redpine.core.state.LoadState
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
@@ -16,7 +15,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -30,6 +28,11 @@ class HomeViewModel @Inject constructor(
 
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
+
+    private val _foundDog = MutableStateFlow<Dog?>(null)
+    val foundDog = _foundDog.asStateFlow()
+//    private val _foundDog = MutableSharedFlow<Dog?>()
+//    val foundDog = _foundDog.asSharedFlow()
 
     fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
@@ -59,11 +62,13 @@ class HomeViewModel @Inject constructor(
         _isNavigateAuth.value = false
     }
 
-    fun onDogSearchClick(query: String, fragment: Fragment) = scopeLaunch {
-        val dog = searchUseCase.searchDogByName(query)
-        withContext(Dispatchers.Main) {
-            fragment.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(dog))
+    fun onDogSearchClick(query: String) {
+        viewModelScope.launch(Dispatchers.IO + handler) {
+            _loadState.value = LoadState.START
+            _foundDog.value = searchUseCase.searchDogByName(query)
+            /**передаем и потом обнуляем собаку, иначе по бэкстеку не вернуться*/
+            delay(1)
+            _foundDog.value = null
         }
     }
 }

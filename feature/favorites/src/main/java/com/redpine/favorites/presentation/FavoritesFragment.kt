@@ -3,11 +3,11 @@ package com.redpine.favorites.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
+import com.redpine.core.extensions.setSubmitTextListener
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.favorites.FavoritesBaseFragment
@@ -33,6 +33,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
+        flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
     }
 
     private fun loadContent(dogs: List<Dog>) {
@@ -44,32 +45,43 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private fun loadingObserve(loadState: LoadState) {
         with(binding) {
             commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
-            recyclerView.isVisible = loadState == LoadState.SUCCESS
+            recyclerView.isVisible =
+                loadState == LoadState.SUCCESS || loadState == LoadState.NULL_SEARCH
             connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
             connectionError.retryButton.setOnClickListener {
                 viewModel.onRetryButtonClick()
             }
+            noDogs.isVisible = loadState == LoadState.NULL_SEARCH
         }
     }
 
     private fun setUserInterface() {
-        setSearch()
         binding.filterButton.setOnClickListener {
             findNavController().navigate(R.id.actionFavoritesToFilter)
         }
+
+        binding.searchView.setSubmitTextListener { query ->
+            viewModel.onDogSearchClick(query)
+        }
+        /**клик на лупу*/
+        binding.searchView.setOnClickListener {
+            binding.noDogs.isVisible = false
+        }
+        /**клик на крестик*/
+        val searchCloseButton: View =
+            binding.searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
+        searchCloseButton.setOnClickListener {
+            binding.searchView.setQuery("", false)
+            binding.noDogs.isVisible = false
+        }
     }
 
-    //TODO: скопировать реализацию из Home, когда там будет готов поиск
-    private fun setSearch() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
+    private fun observeSearchResult(dog: Dog?) {
+        if (dog == null) binding.noDogs.isVisible = true
+        else {
+            findNavController().navigate(R.id.actionFavoritesToPetsCard,
+                Bundle().apply { putParcelable("dog", (dog)) })
+        }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
