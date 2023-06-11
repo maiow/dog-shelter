@@ -1,8 +1,10 @@
 package com.redpine.home.presentation.pets_card
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
@@ -26,10 +28,27 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
         viewModel.onGettingArgument(args.dog)
         setUserInterface(args.dog)
-        showDogInfo(args.dog)
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
+        flowObserver(viewModel.dogInfo) {dog -> loadingDogInfo(dog)}
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
+        }
+    }
+
+    private fun loadingDogInfo(dog: Dog){
+        Log.d(TAG, "args: ${args.dog.isFavorite}")
+        Log.d(TAG, "flow: ${dog.isFavorite}")
+        with(binding) {
+            dogsName.text = dog.name
+            age.text = dog.age
+            color.text = dog.color
+            height.text = getString(R.string.height, dog.height)
+            story.text = dog.text
+            genderImage.isSelected = dog.isMale
+            likeButton.isSelected = dog.isFavorite
+            likeButton.setOnClickListener {
+                viewModel.addToFavorites(dog)
+            }
         }
     }
 
@@ -40,9 +59,8 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
                 sendWhatsAppMessageToCurator(dog.curatorPhone, dog.name)
             }
             shareButton.setOnClickListener { shareLinkOnDog(dog.webLink) }
-            likeButton.isSelected = dog.isFavorite
-            likeButton.setOnClickListener { viewModel.addToFavorites(dog) }
             carouselRecyclerView.layoutManager = CarouselLayoutManager()
+
         }
     }
 
@@ -54,17 +72,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
             connectionError.retryButton.setOnClickListener {
                 viewModel.onGettingArgument(args.dog)
             }
-        }
-    }
-
-    private fun showDogInfo(dog: Dog) {
-        with(binding) {
-            dogsName.text = dog.name
-            age.text = dog.age
-            color.text = dog.color
-            height.text = getString(R.string.height, dog.height)
-            story.text = dog.text
-            genderImage.isSelected = dog.isMale
         }
     }
 
