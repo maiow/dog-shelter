@@ -52,12 +52,13 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             ClickableView.NEWS_ALL_BUTTON ->
                 navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
 
-            ClickableView.FAVORITE ->
+            ClickableView.FAVORITE -> {
                 viewModel.addToFavorites(
                     clickableView.itemPosition,
                     clickableView.listPosition,
                     item!!.id
                 )
+            }
         }
     }
 
