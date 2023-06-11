@@ -1,11 +1,13 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.data.FilteredDogs
 import com.redpine.home.domain.model.grid.Grid
+import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import kotlinx.coroutines.Dispatchers
@@ -31,19 +33,29 @@ class HomeViewModel @Inject constructor(
         delay(100)
     }
 
+
     @SuppressLint("SuspiciousIndentation")
-    fun addToFavorites(itemPosition: Int, listPosition: Int, id: Int) {
+    fun addToFavorites(itemPosition: Int, firstListPosition: Int, id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val newData = _data.value.toMutableList()
-            val firstList = newData[listPosition].list.toMutableList() as MutableList<Dog>
-            val secondList =
-                if (listPosition == 0) newData[1].list.toMutableList() as MutableList<Dog>
-                else newData[0].list.toMutableList() as MutableList<Dog>
-//            newList[itemPosition] =
-//                newList[itemPosition].copy(isFavorite = !newList[itemPosition].isFavorite)
-//            newData[listPosition] = (newData[listPosition] as HorizontalGrid).copy(list = newList)
-            addLikeToBothLists(itemPosition, firstList, secondList)
-//            TODO()
+            val firstList = newData[firstListPosition].list.toMutableList() as MutableList<Dog>
+
+            firstList[itemPosition] =
+                firstList[itemPosition].copy(isFavorite = !firstList[itemPosition].isFavorite)
+
+
+           val secondListPosition = if (firstListPosition == 0) 1 else firstListPosition
+
+            val oldSecondList = newData[secondListPosition].list.toMutableList() as MutableList<Dog>
+
+            val newSecondList = addLike(firstList[itemPosition].id, oldSecondList)
+
+            newData[firstListPosition] = (newData[firstListPosition] as HorizontalGrid).copy(list = firstList)
+            Log.e("Kart",newData[firstListPosition].list[itemPosition].isFavorite.toString())
+            newData[secondListPosition] = (newData[secondListPosition] as HorizontalGrid).copy(list = newSecondList)
+
+            _data.value = newData
+
             val isSuccessFavorite =
                 likeUseCase.makeLikeDislike(id, firstList[itemPosition].isFavorite)
             if (isSuccessFavorite) _data.value = newData
@@ -57,6 +69,18 @@ class HomeViewModel @Inject constructor(
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false
+    }
+
+
+    fun addLike(dogId: Int, secondList: MutableList<Dog>): List<Dog> {
+        for (position in secondList.indices) {
+            if (dogId == secondList[position].id) {
+                secondList[position] =
+                    secondList[position].copy(isFavorite = !secondList[position].isFavorite)
+                break
+            }
+        }
+        return secondList
     }
 
     fun addLikeToBothLists(

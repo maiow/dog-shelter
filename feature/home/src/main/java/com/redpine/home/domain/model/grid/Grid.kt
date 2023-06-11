@@ -4,7 +4,7 @@ import com.redpine.core.domain.model.Item
 
 interface Grid {
     val titleId: Int
-    val list: List<Item>
+    var list: List<Item>
     val orientation: Int
     val spanCount: Int
 }
