@@ -6,12 +6,14 @@ import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
+import com.redpine.home.domain.usecase.impl.DogInfoUseCaseImpl
 import com.redpine.home.domain.usecase.impl.FilterUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
+import com.redpine.home.domain.usecase.impl.SeenListUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SingleNewsUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -54,4 +56,12 @@ class UseCaseModule {
     @Provides
     fun providesFilterUseCase(dogsRepository: DogsRepository) =
         FilterUseCaseImpl(dogsRepository)
+
+    @Provides
+    fun providesDogInfoUseCase(dogsRepository: DogsRepository) =
+        DogInfoUseCaseImpl(dogsRepository)
+
+    @Provides
+    fun providesSeenListUseCase(dogsRepository: DogsRepository) =
+        SeenListUseCaseImpl(dogsRepository)
 }

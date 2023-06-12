@@ -3,8 +3,9 @@ package com.redpine.home.presentation.pets_card
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
-import com.redpine.home.domain.repository.DogsRepository
+import com.redpine.home.domain.usecase.DogInfoUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
+import com.redpine.home.domain.usecase.SeenListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PetsCardViewModel @Inject constructor(
-    private val repository: DogsRepository,
+    private val dogInfoUseCase: DogInfoUseCase,
+    private val seenListUseCase: SeenListUseCase,
     private val likeUseCase: LikeUseCase
 ) : BaseViewModel() {
 
@@ -35,16 +37,16 @@ class PetsCardViewModel @Inject constructor(
 
     private fun getDogInfo(dog:Dog){
         scopeLaunch {
-            _dogInfo.emit(repository.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
+            _dogInfo.emit(dogInfoUseCase.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
         }
     }
 
     private fun getDogImages(dogId: Int) = scopeLaunch {
-        _images.emit(repository.getDogImages(dogId))
+        _images.emit(dogInfoUseCase.getDogImages(dogId))
     }
 
     private fun sendDogToSeenList(dogId: Int) = scopeLaunch {
-        repository.sendDogToSeenList(dogId)
+        seenListUseCase.sendDogToSeenList(dogId)
     }
 
     fun addToFavorites(dog: Dog){
