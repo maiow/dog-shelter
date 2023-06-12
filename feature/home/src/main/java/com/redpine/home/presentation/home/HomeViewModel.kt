@@ -31,8 +31,6 @@ class HomeViewModel @Inject constructor(
 
     private val _foundDog = MutableStateFlow<Dog?>(null)
     val foundDog = _foundDog.asStateFlow()
-//    private val _foundDog = MutableSharedFlow<Dog?>()
-//    val foundDog = _foundDog.asSharedFlow()
 
     fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()

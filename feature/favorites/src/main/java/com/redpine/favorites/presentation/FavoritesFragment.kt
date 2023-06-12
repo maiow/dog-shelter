@@ -45,8 +45,6 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private fun loadingObserve(loadState: LoadState) {
         with(binding) {
             commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
-            recyclerView.isVisible =
-                loadState == LoadState.SUCCESS || loadState == LoadState.NULL_SEARCH
             connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
             connectionError.retryButton.setOnClickListener {
                 viewModel.onRetryButtonClick()
