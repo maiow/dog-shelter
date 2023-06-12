@@ -7,7 +7,9 @@ import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.usecase.LikeUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,6 +23,9 @@ class PetsCardViewModel @Inject constructor(
 
     private val _dogInfo = MutableSharedFlow<Dog>()
     val dogInfo = _dogInfo.asSharedFlow()
+
+    private val _isNavigateAuth = MutableStateFlow(false)
+    val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
     fun onGettingArgument(dog: Dog) {
         getDogInfo(dog)
@@ -46,6 +51,11 @@ class PetsCardViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             if (likeUseCase.makeLikeDislike(dog.id, !dog.isFavorite))
                 _dogInfo.emit(dog.copy(isFavorite = !dog.isFavorite))
+            else _isNavigateAuth.value = true
         }
+    }
+
+    fun resetNavigateFlow() {
+        _isNavigateAuth.value = false
     }
 }

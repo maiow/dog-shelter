@@ -33,8 +33,12 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
         }
+        flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
     }
 
+    private fun observeNavigateAuth(isNavigation: Boolean) {
+        if (isNavigation) showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
+    }
     private fun loadingDogInfo(dog: Dog){
         Log.d(TAG, "args: ${args.dog.isFavorite}")
         Log.d(TAG, "flow: ${dog.isFavorite}")
