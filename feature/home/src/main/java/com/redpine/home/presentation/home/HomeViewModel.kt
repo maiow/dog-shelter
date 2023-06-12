@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.model.Dog
-import com.redpine.home.data.FilteredDogs
+import com.redpine.core.state.LoadState
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
+import com.redpine.home.domain.usecase.SearchUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
     private val likeUseCase: LikeUseCase,
+    private val searchUseCase: SearchUseCase
 ) : BaseViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
@@ -26,6 +28,9 @@ class HomeViewModel @Inject constructor(
 
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
+
+    private val _foundDog = MutableStateFlow<Dog?>(null)
+    val foundDog = _foundDog.asStateFlow()
 
     fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
@@ -48,10 +53,20 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onAllDogsClick() = viewModelScope.launch(Dispatchers.IO) {
-        FilteredDogs.filteredDogsList = homeScreenUseCase.getAllDogs()
+        homeScreenUseCase.getAllDogs()
     }
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false
+    }
+
+    fun onDogSearchClick(query: String) {
+        viewModelScope.launch(Dispatchers.IO + handler) {
+            _loadState.value = LoadState.START
+            _foundDog.value = searchUseCase.searchDogByName(query)
+            /**передаем и потом обнуляем собаку, иначе по бэкстеку не вернуться*/
+            delay(1)
+            _foundDog.value = null
+        }
     }
 }

@@ -16,4 +16,5 @@ interface DogsRepository {
         size: String?,
         character: String): List<Dog>
     suspend fun getAllDogs(): List<Dog>
+    suspend fun searchDogByName(query: String): Dog
 }

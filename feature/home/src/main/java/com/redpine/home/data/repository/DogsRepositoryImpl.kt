@@ -3,6 +3,7 @@ package com.redpine.home.data.repository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
+import com.redpine.core.base.FirebaseSearchExceptionNullResponse
 import com.redpine.core.data.DogDto
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.extensions.toDog
@@ -221,6 +222,20 @@ class DogsRepositoryImpl(
         return dogsList.toDogList()
     }
 
+    override suspend fun searchDogByName(query: String): Dog {
+        val searchResult = database
+            .child(DOGS_NODE)
+            .orderByChild(NAME_NODE)
+            .equalTo(query)
+            .get()
+            .await()
+            .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
+
+        if (searchResult.isNotEmpty() && searchResult[0].id != 0)
+            return searchResult[0].toDog()
+        else throw FirebaseSearchExceptionNullResponse()
+    }
+
     private companion object {
         const val DOGS_NODE = "dogs"
         const val DOGS_NODE_CHILD = "dog"
@@ -231,5 +246,6 @@ class DogsRepositoryImpl(
         const val GENDER_ANY_EN = "Any"
         const val GENDER_NODE = "gender"
         const val SIZE_NODE = "size"
+        const val NAME_NODE = "name"
     }
 }

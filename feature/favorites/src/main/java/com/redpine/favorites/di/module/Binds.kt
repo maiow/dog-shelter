@@ -6,6 +6,8 @@ import com.redpine.favorites.data.FavoritesRepositoryImpl
 import com.redpine.favorites.domain.usecase.DislikeUseCase
 import com.redpine.favorites.domain.usecase.impl.DislikeUseCaseImpl
 import com.redpine.favorites.domain.FavoritesRepository
+import com.redpine.favorites.domain.usecase.SearchUseCase
+import com.redpine.favorites.domain.usecase.impl.SearchUseCaseImpl
 import dagger.Binds
 import dagger.Module
 
@@ -20,4 +22,7 @@ interface Binds {
 
     @Binds
     fun bindsDislikeUseCase(dislikeUseCase: DislikeUseCaseImpl): DislikeUseCase
+
+    @Binds
+    fun bindsSearchUseCase(searchUseCase: SearchUseCaseImpl): SearchUseCase
 }

@@ -20,10 +20,12 @@ abstract class BaseViewModel : ViewModel() {
 
     protected val handler = CoroutineExceptionHandler { _, e ->
         Log.e("Kart", "${e.message} ${e}")
-        _loadState.value = if (e is FirebaseAuthInvalidCredentialsException)
-            LoadState.ERROR_AUTH
-        else if (e is FirebaseBaseExceptionNullResponse) LoadState.NULL_RESPONSE else
-            LoadState.ERROR_NETWORK
+        _loadState.value = when (e) {
+            is FirebaseAuthInvalidCredentialsException -> LoadState.ERROR_AUTH
+            is FirebaseBaseExceptionNullResponse -> LoadState.NULL_RESPONSE
+            is FirebaseSearchExceptionNullResponse -> LoadState.NULL_SEARCH
+            else -> LoadState.ERROR_NETWORK
+        }
     }
 
     protected fun scopeLaunch(
@@ -41,5 +43,9 @@ abstract class BaseViewModel : ViewModel() {
 }
 
 class FirebaseBaseExceptionNullResponse(
+    val errorMessage: String = "Null Response"
+) : FirebaseNetworkException(errorMessage)
+
+class FirebaseSearchExceptionNullResponse(
     val errorMessage: String = "Null Response"
 ) : FirebaseNetworkException(errorMessage)

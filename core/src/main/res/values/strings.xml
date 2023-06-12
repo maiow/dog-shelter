@@ -13,5 +13,6 @@
     <string name="no_connection">No Internet connection. Check it and try again.</string>
     <string name="retry">Retry</string>
 
-    <string name="search_hint">Whom are you looking for?</string>
+    <string name="search_hint">Who are you looking for?</string>
+    <string name="no_such_dog">We don\'t have dogs with that name</string>
 </resources>

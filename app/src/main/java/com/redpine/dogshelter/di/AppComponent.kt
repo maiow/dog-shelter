@@ -2,7 +2,6 @@ package com.redpine.dogshelter.di
 
 import android.content.Context
 import com.redpine.api.Api
-import com.redpine.chats.di.ChatsDependencies
 import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainActivity
@@ -18,7 +17,7 @@ import javax.inject.Singleton
     ]
 )
 @Singleton
-interface AppComponent : ChatsDependencies, FavoritesDependencies, HomeDependencies {
+interface AppComponent : FavoritesDependencies, HomeDependencies {
 
     fun inject(mainActivity: MainActivity)
 

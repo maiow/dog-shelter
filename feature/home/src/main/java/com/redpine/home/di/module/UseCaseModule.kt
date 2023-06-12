@@ -12,6 +12,7 @@ import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
+import com.redpine.home.domain.usecase.impl.SearchUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SingleNewsUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -54,4 +55,8 @@ class UseCaseModule {
     @Provides
     fun providesFilterUseCase(dogsRepository: DogsRepository) =
         FilterUseCaseImpl(dogsRepository)
+
+    @Provides
+    fun providesSearchUseCase(dogsRepository: DogsRepository) =
+        SearchUseCaseImpl(dogsRepository)
 }
