@@ -36,8 +36,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     }
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation) navigate(R.id.auth_nav_graph)
-        viewModel.resetNavigateFlow()
+        if (isNavigation) showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
