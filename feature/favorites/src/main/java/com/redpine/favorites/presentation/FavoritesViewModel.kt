@@ -35,12 +35,8 @@ class FavoritesViewModel @Inject constructor(
     private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
     val authDialogIsShown = _authDialogIsShown.asStateFlow()
 
-    //TODO: при уходе из Избранного удалять из стека, чтобы при возвращении список избранных собак обновлялся
-//    init {
-//        getDogInfo()
-//    }
 
-    private fun getDogInfo() = scopeLaunch {
+    fun getDogInfo() = scopeLaunch {
         _dogs.value = favoritesRepository.getFavoriteDogs()
     }
 
@@ -57,8 +53,6 @@ class FavoritesViewModel @Inject constructor(
                 _dogs.value = newList
         }
     }
-
-    fun onStart() = getDogInfo()
 
     fun onDogSearchClick(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
