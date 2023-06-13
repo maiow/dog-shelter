@@ -16,7 +16,7 @@
     <string name="search_hint">Who are you looking for?</string>
     <string name="no_such_dog">We don\'t have dogs with that name</string>
 
-    <string name="auth_dialog_message">Authorization / registration is required to add a pet to favorites</string>
+    <string name="auth_dialog_message">You must be logged in to add a pet to your favorites</string>
     <string name="auth_dialog_cancel">Cancel</string>
     <string name="auth_dialog_apply">Apply</string>
 </resources>

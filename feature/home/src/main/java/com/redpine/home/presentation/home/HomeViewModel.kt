@@ -52,8 +52,10 @@ class HomeViewModel @Inject constructor(
             newData[firstListPosition] =
                 (newData[firstListPosition] as HorizontalGrid).copy(list = firstList)
 
-            if(_data.value.size == 3){
-                val secondListPosition = if (firstListPosition == 0) 1 else 0
+            if (_data.value.size == FULL_HOME_SCREEN_LIST_SIZE) {
+                val secondListPosition =
+                    if (firstListPosition == RESENT_SEEN_LIST_INDEX) NEW_PETS_LIST_INDEX
+                    else RESENT_SEEN_LIST_INDEX
                 val oldSecondList =
                     newData[secondListPosition].list.toMutableList() as MutableList<Dog>
                 val newSecondList = addLike(firstList[itemPosition].id, oldSecondList)
@@ -102,5 +104,11 @@ class HomeViewModel @Inject constructor(
             }
         }
         return secondList
+    }
+
+    companion object {
+        const val FULL_HOME_SCREEN_LIST_SIZE = 3
+        const val RESENT_SEEN_LIST_INDEX = 0
+        const val NEW_PETS_LIST_INDEX = 1
     }
 }

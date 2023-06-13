@@ -1,10 +1,8 @@
 package com.redpine.home.presentation.pets_card
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
@@ -51,8 +49,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
             observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
     private fun loadingDogInfo(dog: Dog){
-        Log.d(TAG, "args: ${args.dog.isFavorite}")
-        Log.d(TAG, "flow: ${dog.isFavorite}")
         with(binding) {
             dogsName.text = dog.name
             age.text = dog.age
@@ -75,7 +71,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
             }
             shareButton.setOnClickListener { shareLinkOnDog(dog.webLink) }
             carouselRecyclerView.layoutManager = CarouselLayoutManager()
-
         }
     }
 
