@@ -3,6 +3,7 @@ package com.redpine.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.api.Api
+import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.repository.OnboardingRepository
@@ -46,13 +47,14 @@ class ViewModelFactory @Inject constructor(
     private val filterUseCase: FilterUseCase,
     private val dogInfoUseCase: DogInfoUseCase,
     private val seenListUseCase: SeenListUseCase,
+    private val authDialogPrefs: AuthDialogPrefs,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
-        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase) as T
+        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, authDialogPrefs) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository, onBoardingPrefs) as T
         FilterViewModel::class.java -> FilterViewModel(filterUseCase) as T
-        DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase) as T
-        PetsCardViewModel::class.java -> PetsCardViewModel(dogInfoUseCase, seenListUseCase, likeUseCase) as T
+        DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase, authDialogPrefs) as T
+        PetsCardViewModel::class.java -> PetsCardViewModel(dogInfoUseCase, seenListUseCase, likeUseCase, authDialogPrefs) as T
         NewsListViewModel::class.java -> NewsListViewModel(listNewsUseCase) as T
         SingleNewsViewModel::class.java -> SingleNewsViewModel(singleNewsUseCase) as T
         AuthViewModel::class.java -> AuthViewModel(authUseCase, authTokenUseCase) as T

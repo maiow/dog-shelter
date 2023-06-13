@@ -2,6 +2,7 @@ package com.redpine.favorites.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
+import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.tools.ClickableView
 import com.redpine.favorites.domain.FavoritesRepository
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository,
-    private val dislikeUseCase: DislikeUseCase
+    private val dislikeUseCase: DislikeUseCase,
+    private val authDialogPrefs: AuthDialogPrefs,
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
@@ -22,6 +24,9 @@ class FavoritesViewModel @Inject constructor(
 
     private val _isAuth = MutableStateFlow<Boolean>(false)
     val isAuth = _isAuth.asStateFlow()
+
+    private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
+    val authDialogIsShown = _authDialogIsShown.asStateFlow()
 
     //TODO: при уходе из Избранного удалять из стека, чтобы при возвращении список избранных собак обновлялся
 //    init {
@@ -49,10 +54,15 @@ class FavoritesViewModel @Inject constructor(
     fun checkAuth(){
         viewModelScope.launch(Dispatchers.IO){
             _isAuth.value = favoritesRepository.isUserAuthorized()
+            _authDialogIsShown.value = authDialogPrefs.isShown()
         }
     }
 
     fun resetAuthCheck(){
         _isAuth.value = false
+    }
+
+    fun rememberAuthDialogIsShown() {
+        authDialogPrefs.rememberAuthDialogIsShown()
     }
 }

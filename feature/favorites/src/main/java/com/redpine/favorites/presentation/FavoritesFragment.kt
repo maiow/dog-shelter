@@ -33,8 +33,18 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         flowObserver(viewModel.isAuth){ isAuth -> authObserve(isAuth)}
     }
 
+    private fun observeAuthDialogIsShown(isShown: Boolean) {
+        if (!isShown) {
+            showAuthDialog(R.id.authFragment) { viewModel.resetAuthCheck() }
+            viewModel.rememberAuthDialogIsShown()
+        } else {
+            viewModel.resetAuthCheck()
+        }
+    }
+
     private fun authObserve(auth: Boolean) {
-        if(!auth) showAuthDialog(R.id.authFragment) { viewModel.resetAuthCheck() }
+        if(!auth)
+            flowObserver(viewModel.authDialogIsShown) { isShown -> observeAuthDialogIsShown(isShown) }
     }
 
     private fun loadContent(dogs: List<Dog>) {

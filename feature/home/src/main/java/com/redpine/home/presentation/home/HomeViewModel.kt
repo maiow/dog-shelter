@@ -3,6 +3,7 @@ package com.redpine.home.presentation.home
 import android.annotation.SuppressLint
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
+import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.data.FilteredDogs
 import com.redpine.home.domain.model.grid.Grid
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
     private val likeUseCase: LikeUseCase,
+    private val authDialogPrefs: AuthDialogPrefs,
 ) : BaseViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
@@ -26,6 +28,9 @@ class HomeViewModel @Inject constructor(
 
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
+
+    private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
+    val authDialogIsShown = _authDialogIsShown.asStateFlow()
 
     fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
@@ -56,7 +61,10 @@ class HomeViewModel @Inject constructor(
             val isSuccessFavorite =
                 likeUseCase.makeLikeDislike(id, firstList[itemPosition].isFavorite)
             if (isSuccessFavorite) _data.value = newData
-            else _isNavigateAuth.value = true
+            else {
+                _isNavigateAuth.value = true
+                _authDialogIsShown.value = authDialogPrefs.isShown()
+            }
         }
     }
 
@@ -66,6 +74,10 @@ class HomeViewModel @Inject constructor(
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false
+    }
+
+    fun rememberAuthDialogIsShown() {
+        authDialogPrefs.rememberAuthDialogIsShown()
     }
 
     private fun addLike(dogId: Int, secondList: MutableList<Dog>): List<Dog> {

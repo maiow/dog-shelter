@@ -36,8 +36,19 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
     }
 
+    private fun observeAuthDialogIsShown(isShown: Boolean) {
+        if (!isShown) {
+            showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
+            viewModel.rememberAuthDialogIsShown()
+        } else {
+            navigate(R.id.auth_nav_graph)
+            viewModel.resetNavigateFlow()
+        }
+    }
+
     private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation) showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
+        if (isNavigation)
+            flowObserver(viewModel.authDialogIsShown) { isShown -> observeAuthDialogIsShown(isShown) }
     }
     private fun loadingDogInfo(dog: Dog){
         Log.d(TAG, "args: ${args.dog.isFavorite}")

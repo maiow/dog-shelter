@@ -3,6 +3,7 @@ package com.redpine.dogshelter.di
 import android.content.Context
 import com.redpine.api.Api
 import com.redpine.chats.di.ChatsDependencies
+import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainActivity
@@ -25,6 +26,7 @@ interface AppComponent : ChatsDependencies, FavoritesDependencies, HomeDependenc
     override var api: Api
     override val tokenProvider: TokenProvider
     override val onBoardingPrefs: OnBoardingPrefs
+    override val authDialogPrefs: AuthDialogPrefs
 
     @Component.Builder
     interface Builder {

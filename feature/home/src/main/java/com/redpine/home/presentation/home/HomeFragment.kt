@@ -62,8 +62,19 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         }
     }
 
+    private fun observeAuthDialogIsShown(isShown: Boolean) {
+        if (!isShown) {
+            showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
+            viewModel.rememberAuthDialogIsShown()
+        } else {
+            navigate(R.id.auth_nav_graph)
+            viewModel.resetNavigateFlow()
+        }
+    }
+
     private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation) showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
+        if (isNavigation)
+            flowObserver(viewModel.authDialogIsShown) { isShown -> observeAuthDialogIsShown(isShown) }
     }
 
     private fun observeData(data: List<Grid>) {
