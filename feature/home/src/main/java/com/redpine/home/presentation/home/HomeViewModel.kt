@@ -1,8 +1,6 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.AuthDialogPrefs
@@ -63,10 +61,8 @@ class HomeViewModel @Inject constructor(
                     (newData[secondListPosition] as HorizontalGrid).copy(list = newSecondList)
             }
 
-            _data.value = newData
             val isSuccessFavorite =
                 likeUseCase.makeLikeDislike(id, firstList[itemPosition].isFavorite)
-            Log.d(TAG, "addToFavorites: $isSuccessFavorite")
             if (isSuccessFavorite) _data.value = newData
             else {
                 _isNavigateAuth.value = true
