@@ -32,8 +32,7 @@ class FavoritesViewModel @Inject constructor(
     private val _isAuth = MutableStateFlow<Boolean>(false)
     val isAuth = _isAuth.asStateFlow()
 
-    private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
-    val authDialogIsShown = _authDialogIsShown.asStateFlow()
+    var authDialogIsShown = authDialogPrefs.isShown()
 
 
     fun getDogInfo() = scopeLaunch {
@@ -67,7 +66,7 @@ class FavoritesViewModel @Inject constructor(
     fun checkAuth(){
         viewModelScope.launch(Dispatchers.IO){
             _isAuth.value = favoritesRepository.isUserAuthorized()
-            _authDialogIsShown.value = authDialogPrefs.isShown()
+            authDialogIsShown = authDialogPrefs.isShown()
         }
     }
 

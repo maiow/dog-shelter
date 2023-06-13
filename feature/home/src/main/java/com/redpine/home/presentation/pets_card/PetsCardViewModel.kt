@@ -31,8 +31,7 @@ class PetsCardViewModel @Inject constructor(
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
-    private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
-    val authDialogIsShown = _authDialogIsShown.asStateFlow()
+    var authDialogIsShown = authDialogPrefs.isShown()
 
     fun onGettingArgument(dog: Dog) {
         getDogInfo(dog)
@@ -60,7 +59,7 @@ class PetsCardViewModel @Inject constructor(
                 _dogInfo.emit(dog.copy(isFavorite = !dog.isFavorite))
             else {
                 _isNavigateAuth.value = true
-                _authDialogIsShown.value = authDialogPrefs.isShown()
+                authDialogIsShown = authDialogPrefs.isShown()
             }
         }
     }

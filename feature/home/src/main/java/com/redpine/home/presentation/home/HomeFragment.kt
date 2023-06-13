@@ -1,8 +1,10 @@
 package com.redpine.home.presentation.home
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
@@ -75,7 +77,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation)
-            flowObserver(viewModel.authDialogIsShown) { isShown -> observeAuthDialogIsShown(isShown) }
+            observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
 
     private fun observeData(data: List<Grid>) {

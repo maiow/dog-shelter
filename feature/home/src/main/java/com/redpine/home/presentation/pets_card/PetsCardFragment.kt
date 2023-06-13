@@ -48,7 +48,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation)
-            flowObserver(viewModel.authDialogIsShown) { isShown -> observeAuthDialogIsShown(isShown) }
+            observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
     private fun loadingDogInfo(dog: Dog){
         Log.d(TAG, "args: ${args.dog.isFavorite}")

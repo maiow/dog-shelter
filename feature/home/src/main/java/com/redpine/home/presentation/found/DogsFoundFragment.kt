@@ -47,7 +47,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation)
-            flowObserver(viewModel.authDialogIsShown) { isShown -> observeAuthDialogIsShown(isShown) }
+            observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {

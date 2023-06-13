@@ -11,7 +11,7 @@ import com.redpine.home.domain.usecase.HomeScreenUseCase
 
 class HomeScreenUseCaseImpl(
     private val dogsRepository: DogsRepository,
-    private val newsRepository: NewsRepository
+    private val newsRepository: NewsRepository,
 ) : HomeScreenUseCase {
 
     override suspend fun getHomeScreenItems(newCount: Int, seenCount: Int): List<Grid> {
@@ -19,11 +19,17 @@ class HomeScreenUseCaseImpl(
         val listRecentSeenDog = dogsRepository.getRecentSeenDogs(seenCount)
         val listNews = newsRepository.getNewsList()
 
-        return listOf(
-            HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog, spanCount = 1),
+        return if (listRecentSeenDog.isNotEmpty())
+            listOf(
+                HorizontalGrid(titleId = R.string.Recent_seen, list = listRecentSeenDog, spanCount = 1),
+                HorizontalGrid(titleId = R.string.New, list = listNewDog),
+                VerticalGrid(titleId = R.string.News, list = listNews, spanCount = 1),
+            )
+        else listOf(
             HorizontalGrid(titleId = R.string.New, list = listNewDog),
             VerticalGrid(titleId = R.string.News, list = listNews, spanCount = 1),
         )
     }
+
     override suspend fun getAllDogs(): List<Dog> = dogsRepository.getAllDogs()
 }

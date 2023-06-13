@@ -25,8 +25,7 @@ class DogsFoundViewModel @Inject constructor(
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
-    private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
-    val authDialogIsShown = _authDialogIsShown.asStateFlow()
+    var authDialogIsShown = authDialogPrefs.isShown()
 
     init {
         while (FilteredDogs.filteredDogsList == null)
@@ -54,7 +53,7 @@ class DogsFoundViewModel @Inject constructor(
                 _dogs.value = newList
             else {
                 _isNavigateAuth.value = true
-                _authDialogIsShown.value = authDialogPrefs.isShown()
+                authDialogIsShown = authDialogPrefs.isShown()
             }
         }
     }

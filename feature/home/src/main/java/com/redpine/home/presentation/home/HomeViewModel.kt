@@ -1,6 +1,8 @@
 package com.redpine.home.presentation.home
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.AuthDialogPrefs
@@ -34,8 +36,7 @@ class HomeViewModel @Inject constructor(
     private val _foundDog = MutableStateFlow<Dog?>(null)
     val foundDog = _foundDog.asStateFlow()
 
-    private val _authDialogIsShown = MutableStateFlow(authDialogPrefs.isShown())
-    val authDialogIsShown = _authDialogIsShown.asStateFlow()
+    var authDialogIsShown = authDialogPrefs.isShown()
 
     fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
@@ -50,25 +51,26 @@ class HomeViewModel @Inject constructor(
                 newData[firstListPosition].list.toMutableList() as MutableList<Dog>
             firstList[itemPosition] =
                 firstList[itemPosition].copy(isFavorite = !firstList[itemPosition].isFavorite)
-
-            val secondListPosition = if (firstListPosition == 0) 1 else 0
-
-            val oldSecondList =
-                newData[secondListPosition].list.toMutableList() as MutableList<Dog>
-            val newSecondList = addLike(firstList[itemPosition].id, oldSecondList)
-
             newData[firstListPosition] =
                 (newData[firstListPosition] as HorizontalGrid).copy(list = firstList)
-            newData[secondListPosition] =
-                (newData[secondListPosition] as HorizontalGrid).copy(list = newSecondList)
-            _data.value = newData
 
+            if(_data.value.size == 3){
+                val secondListPosition = if (firstListPosition == 0) 1 else 0
+                val oldSecondList =
+                    newData[secondListPosition].list.toMutableList() as MutableList<Dog>
+                val newSecondList = addLike(firstList[itemPosition].id, oldSecondList)
+                newData[secondListPosition] =
+                    (newData[secondListPosition] as HorizontalGrid).copy(list = newSecondList)
+            }
+
+            _data.value = newData
             val isSuccessFavorite =
                 likeUseCase.makeLikeDislike(id, firstList[itemPosition].isFavorite)
+            Log.d(TAG, "addToFavorites: $isSuccessFavorite")
             if (isSuccessFavorite) _data.value = newData
             else {
                 _isNavigateAuth.value = true
-                _authDialogIsShown.value = authDialogPrefs.isShown()
+                authDialogIsShown = authDialogPrefs.isShown()
             }
         }
     }
