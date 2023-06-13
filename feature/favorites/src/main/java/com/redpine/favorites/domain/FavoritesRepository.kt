@@ -9,4 +9,6 @@ interface FavoritesRepository {
     suspend fun makeDislike(dogId: Int): Boolean
 
     suspend fun isUserAuthorized():Boolean
+
+    suspend fun searchDogByName(query: String): Dog
 }

@@ -19,6 +19,7 @@ import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.ListNewsUseCase
 import com.redpine.home.domain.usecase.RegistrationUseCase
 import com.redpine.home.domain.usecase.ResetPasswordUseCase
+import com.redpine.home.domain.usecase.SearchUseCase
 import com.redpine.home.domain.usecase.SeenListUseCase
 import com.redpine.home.domain.usecase.SingleNewsUseCase
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
@@ -30,6 +31,7 @@ import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
+import com.redpine.home.domain.usecase.impl.SearchUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SeenListUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SingleNewsUseCaseImpl
 import dagger.Binds
@@ -79,6 +81,9 @@ interface Binds {
 
     @Binds
     fun bindsFilterUseCase(filterUseCase: FilterUseCaseImpl): FilterUseCase
+
+    @Binds
+    fun bindsSearchUseCase(searchUseCase: SearchUseCaseImpl): SearchUseCase
 
     @Binds
     fun bindsDogInfoUseCase(dogInfoUseCase: DogInfoUseCaseImpl): DogInfoUseCase

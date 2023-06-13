@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.favorites.domain.FavoritesRepository
 import com.redpine.favorites.domain.usecase.DislikeUseCase
+import com.redpine.favorites.domain.usecase.SearchUseCase
 import com.redpine.favorites.presentation.FavoritesViewModel
 import javax.inject.Inject
 
@@ -12,12 +13,14 @@ import javax.inject.Inject
 class FavoritesViewModelFactory @Inject constructor(
     private val favoritesRepository: FavoritesRepository,
     private val dislikeUseCase: DislikeUseCase,
-    private val authDialogPrefs: AuthDialogPrefs
+    private val searchUseCase: SearchUseCase,
+    private val authDialogPrefs: AuthDialogPrefs,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         FavoritesViewModel::class.java -> FavoritesViewModel(
             favoritesRepository,
             dislikeUseCase,
+            searchUseCase,
             authDialogPrefs
         ) as T
 
