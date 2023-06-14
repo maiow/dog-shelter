@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.library)
     id(Plugins.android)
+    id(Plugins.kapt)
 }
 
 android {
@@ -12,16 +13,36 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.javaVersion
+        targetCompatibility = Config.javaVersion
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
     }
-
+    buildFeatures {
+        viewBinding = true
+    }
 }
 dependencies {
+    implementation(project(":api"))
+    implementation(project(":core"))
 
     implementation(Dependence.Core.core)
     implementation(Dependence.Core.appcompat)
+    implementation(Dependence.Core.fragmentKtx)
+    implementation(Dependence.Core.material)
+    implementation(Dependence.Core.navigationFragment)
+    implementation(Dependence.Core.navigationUi)
+    implementation(Dependence.Core.lifecycleLivedata)
+    implementation(Dependence.Core.lifecycleViewmodel)
+
+    implementation(Dependence.Di.dagger)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    kapt(Dependence.Di.daggerCompiler)
+
+    implementation(Dependence.Firebase.googleServices)
+    implementation(platform(Dependence.Firebase.firebaseBom))
+    implementation(Dependence.Firebase.firebaseAuth)
 }

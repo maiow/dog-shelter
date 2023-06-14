@@ -39,8 +39,6 @@
     <string name="story">Story (no English translation yet):</string>
     <string name="share">Share</string>
 
-    <string name="e_mail" translatable="false">e-mail</string>
-    <string name="password">Password</string>
     <string name="repeat_password">Repeat password</string>
     <string name="auth_button">Log in</string>
     <string name="registration_button">Register</string>

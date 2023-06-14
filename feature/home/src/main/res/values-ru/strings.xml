@@ -39,7 +39,6 @@
     <string name="story">История:</string>
     <string name="share">Поделиться</string>
 
-    <string name="password">Пароль</string>
     <string name="repeat_password">Повторить пароль</string>
     <string name="auth_button">Войти</string>
     <string name="registration_button">Зарегестрироваться</string>
