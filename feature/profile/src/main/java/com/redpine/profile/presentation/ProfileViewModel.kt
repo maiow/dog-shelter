@@ -20,6 +20,9 @@ class ProfileViewModel @Inject constructor(
 
     var authDialogIsShown = authDialogPrefs.isShown()
 
+    private val _email = MutableStateFlow("")
+    val email = _email.asStateFlow()
+
     fun onRetryButtonClick() {
         TODO()
     }
@@ -28,6 +31,9 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO){
             _isAuth.value = profileRepository.isUserAuthorized()
             authDialogIsShown = authDialogPrefs.isShown()
+            if (_isAuth.value) {
+                _email.value = profileRepository.getEmail()
+            }
         }
     }
 

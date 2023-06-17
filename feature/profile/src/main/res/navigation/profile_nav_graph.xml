@@ -9,5 +9,14 @@
         android:id="@+id/profileFragment"
         android:name="com.redpine.profile.presentation.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/actionProfileToHelp"
+            app:destination="@id/helpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.redpine.home.presentation.help.HelpFragment"
+        android:label="HelpFragment" />
 </navigation>

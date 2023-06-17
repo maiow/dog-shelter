@@ -3,8 +3,10 @@ package com.redpine.profile.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.isVisible
 import com.redpine.core.state.LoadState
 import com.redpine.profile.ProfileBaseFragment
+import com.redpine.profiler.R
 import com.redpine.profiler.databinding.FragmentProfileBinding
 
 class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
@@ -17,8 +19,10 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.checkAuth()
-        setUserInterface()
-
+        flowObserver(viewModel.email) { email -> setUserInterface(email) }
+        binding.helpDogsButton.setOnClickListener {
+            navigate(R.id.actionProfileToHelp)
+        }
     }
 
     private fun loadingObserve(loadState: LoadState) {
@@ -31,8 +35,15 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
 //        }
     }
 
-    private fun setUserInterface() {
-        //TODO()
+    private fun setUserInterface(email: String) {
+        with(binding) {
+            layoutEmail.hint =
+                if (viewModel.isAuth.value) email
+                else "pls login"
+            saveDataButton.isVisible = false
+            layoutPassword.isVisible = false
+        }
+
     }
 
 }
