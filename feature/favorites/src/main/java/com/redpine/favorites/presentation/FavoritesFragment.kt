@@ -19,6 +19,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
     private val viewModel: FavoritesViewModel by lazy { initViewModel() }
     private val adapter by lazy { FavoritesAdapter(::onItemClick) }
+
     override fun initBinding(inflater: LayoutInflater) = FragmentFavoritesBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
-        flowObserver(viewModel.isAuth){ isAuth -> authObserve(isAuth)}
+        flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
     }
 
     private fun observeAuthDialogIsShown(isShown: Boolean) {
@@ -44,7 +45,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     }
 
     private fun authObserve(auth: Boolean) {
-        if(!auth)
+        if (!auth)
             observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
 

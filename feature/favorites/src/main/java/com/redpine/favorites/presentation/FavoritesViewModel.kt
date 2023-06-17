@@ -20,7 +20,7 @@ class FavoritesViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository,
     private val dislikeUseCase: DislikeUseCase,
     private val searchUseCase: SearchUseCase,
-    private val authDialogPrefs: AuthDialogPrefs,
+    private val authDialogPrefs: AuthDialogPrefs
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
@@ -29,7 +29,7 @@ class FavoritesViewModel @Inject constructor(
     private val _foundDog = MutableStateFlow<Dog?>(null)
     val foundDog = _foundDog.asStateFlow()
 
-    private val _isAuth = MutableStateFlow<Boolean>(false)
+    private val _isAuth = MutableStateFlow(false)
     val isAuth = _isAuth.asStateFlow()
 
     var authDialogIsShown = authDialogPrefs.isShown()
@@ -63,14 +63,14 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    fun checkAuth(){
-        viewModelScope.launch(Dispatchers.IO){
+    fun checkAuth() {
+        viewModelScope.launch(Dispatchers.IO) {
             _isAuth.value = favoritesRepository.isUserAuthorized()
             authDialogIsShown = authDialogPrefs.isShown()
         }
     }
 
-    fun resetAuthCheck(){
+    fun resetAuthCheck() {
         _isAuth.value = false
     }
 
