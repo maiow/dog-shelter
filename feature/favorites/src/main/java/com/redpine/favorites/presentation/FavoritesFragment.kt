@@ -19,18 +19,15 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
     private val viewModel: FavoritesViewModel by lazy { initViewModel() }
     private val adapter by lazy { FavoritesAdapter(::onItemClick) }
-    override fun initBinding(inflater: LayoutInflater) = FragmentFavoritesBinding.inflate(inflater)
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.onStart()
-    }
+    override fun initBinding(inflater: LayoutInflater) = FragmentFavoritesBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.checkAuth()
         setUserInterface()
+        viewModel.getDogInfo()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
