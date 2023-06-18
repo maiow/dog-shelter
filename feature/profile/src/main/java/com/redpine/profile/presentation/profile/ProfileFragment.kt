@@ -1,4 +1,4 @@
-package com.redpine.profile.presentation
+package com.redpine.profile.presentation.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

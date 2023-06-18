@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.profile.domain.ProfileRepository
-import com.redpine.profile.presentation.ProfileViewModel
+import com.redpine.profile.presentation.profile.ProfileViewModel
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")

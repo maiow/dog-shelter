@@ -3,4 +3,15 @@
     <string name="delete_data"><u>Удалить мой аккаунт</u></string>
     <string name="save_data">Сохранить данные</string>
     <string name="help_dogs">Помочь собачкам</string>
+
+    <string name="how_to_help">У нас вы можете:</string>
+    <string name="become_volunteer">Стать \nволонтером</string>
+    <string name="become_guardian">Стать \nопекуном</string>
+    <string name="become_fincurator">Стать \nфинкуратором</string>
+    <string name="make_gift">Сделать \nподарок</string>
+    <string name="make_donation">Сделать \nпожертвование</string>
+    <string name="other_help">Другая \nпомощь</string>
+    <string name="card_transfer">1. Перевод на карту</string>
+    <string name="hungry_phone">2. Голодный телефон</string>
+    <string name="ya_wallet">3. Яндекс-кошелёк</string>
 </resources>

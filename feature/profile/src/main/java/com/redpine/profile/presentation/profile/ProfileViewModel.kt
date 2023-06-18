@@ -1,4 +1,4 @@
-package com.redpine.profile.presentation
+package com.redpine.profile.presentation.profile
 
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
