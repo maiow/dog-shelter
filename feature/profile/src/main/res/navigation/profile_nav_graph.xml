@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionProfileToHelp"
             app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/actionProfileToAuth"
+            app:destination="@+id/auth_nav_graph" />
     </fragment>
 
     <fragment

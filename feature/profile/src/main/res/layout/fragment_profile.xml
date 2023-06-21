@@ -53,6 +53,19 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/not_logged_text"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginHorizontal="32dp"
+        android:gravity="center_horizontal"
+        android:text="@string/not_logged_text"
+        android:textAlignment="center"
+        android:textSize="22sp" />
+
     <Button
         android:id="@+id/help_dogs_button"
         style="@style/Widget.DogShelter.Button.ElevatedButton.GreenButton"
@@ -82,16 +95,46 @@
         android:text="Сменить пароль"
         android:textColor="@color/grey_main" /-->
 
+    <Button
+        android:id="@+id/auth_button"
+        style="@style/Widget.DogShelter.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/login_registration"
+        android:textColor="@color/grey_main" />
+
+    <Button
+        android:id="@+id/logout_button"
+        style="@style/Widget.DogShelter.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/logout"
+        android:textColor="@color/grey_main" />
+
     <TextView
         android:id="@+id/delete_account_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/century_gothic"
         android:text="@string/delete_data"
         android:textSize="20sp" />
+
+    <include
+        android:id="@+id/common_progress"
+        layout="@layout/common_progress_bar"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/connection_error"
+        layout="@layout/common_connection_error"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -3,6 +3,8 @@
     <string name="delete_data"><u>Удалить мой аккаунт</u></string>
     <string name="save_data">Сохранить данные</string>
     <string name="help_dogs">Помочь собачкам</string>
+    <string name="login_registration">Вход / регистрация</string>
+    <string name="logout">Выйти из аккаунта</string>
 
     <string name="how_to_help">У нас вы можете:</string>
     <string name="become_volunteer">Стать \nволонтером</string>
@@ -14,4 +16,10 @@
     <string name="card_transfer">1. Перевод на карту</string>
     <string name="hungry_phone">2. Голодный телефон</string>
     <string name="ya_wallet">3. Яндекс-кошелёк</string>
+
+    <string name="you_have_logged_out">Вы вышли из аккаунта</string>
+    <string name="reauthentication_failed">Не удалось войти, проверьте пароль</string>
+    <string name="account_deleted">Аккаунт удален</string>
+    <string name="some_error_occurred">Ошибка, попробуйте еще раз</string>
+    <string name="not_logged_text">Чтобы добавлять собак в Избранное, нужно зарегистрироваться</string>
 </resources>
