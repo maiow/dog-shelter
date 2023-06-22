@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.profile.domain.ProfileRepository
-import com.redpine.profile.presentation.UserActionResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,15 +56,22 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun deleteAccount(email: String, password: String) {
+    fun deleteAccount(password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (!profileRepository.reauthenticateUser(email, password))
+            if (!profileRepository.reauthenticateUser(password))
                 _actionResult.emit(UserActionResult.REAUTH_FAILED)
             else if (profileRepository.deleteAccount()) {
                 _actionResult.emit(UserActionResult.ACCOUNT_DELETED)
                 _isAuth.value = false
             } else _actionResult.emit(UserActionResult.ERROR)
         }
+    }
+
+    enum class UserActionResult {
+        LOGOUT,
+        REAUTH_FAILED,
+        ACCOUNT_DELETED,
+        ERROR
     }
 
     companion object {

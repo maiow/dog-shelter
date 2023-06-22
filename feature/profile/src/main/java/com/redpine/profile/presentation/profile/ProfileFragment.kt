@@ -1,13 +1,16 @@
 package com.redpine.profile.presentation.profile
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.redpine.core.state.LoadState
 import com.redpine.profile.ProfileBaseFragment
-import com.redpine.profile.presentation.UserActionResult
+import com.redpine.profile.presentation.profile.ProfileViewModel.UserActionResult
 import com.redpine.profiler.R
 import com.redpine.profiler.databinding.FragmentProfileBinding
 
@@ -33,8 +36,7 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
             navigate(R.id.actionProfileToHelp)
         }
         binding.deleteAccountButton.setOnClickListener {
-            // TODO: collect email and password or just password
-            viewModel.deleteAccount("email", "password")
+            showDeleteAccountDialog()
         }
         binding.logoutButton.setOnClickListener {
             viewModel.logout()
@@ -52,6 +54,11 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
             UserActionResult.ERROR -> getString(R.string.some_error_occurred)
         }
         Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).show()
+
+        with(binding){
+            reenterPassword.isVisible = result == UserActionResult.REAUTH_FAILED
+            layoutPassword.isVisible = result == UserActionResult.REAUTH_FAILED
+        }
     }
 
     private fun observeAuth(auth: Boolean) {
@@ -88,9 +95,45 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
     private fun setUserInterface(email: String) {
         with(binding) {
             layoutEmail.hint = email
-            /**пока эти кнопки скрыты всегда, переписать для передачи пароля при удалении*/
-            saveDataButton.isVisible = false
             layoutPassword.isVisible = false
+            reenterPassword.isVisible = false
+        }
+    }
+
+    private fun showDeleteAccountDialog() {
+        val authDialog = MaterialAlertDialogBuilder(requireContext()).create()
+        authDialog.apply {
+            setTitle(getString(R.string.delete_account_dialog_title))
+            setMessage(getString(R.string.delete_account_dialog))
+            setButton(
+                AlertDialog.BUTTON_NEGATIVE, getString(com.redpine.core.R.string.auth_dialog_cancel)
+            ) { dialog, _ ->
+                dialog.dismiss()
+            }
+            setButton(
+                AlertDialog.BUTTON_POSITIVE, getString(R.string.delete)
+            ) { _, _ ->
+                reenterPassword()
+            }
+            show()
+        }
+    }
+
+    private fun reenterPassword() {
+        with(binding) {
+            reenterPassword.isVisible = true
+            layoutPassword.isVisible = true
+            editPassword.setOnKeyListener(object : View.OnKeyListener {
+                override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                    if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                        viewModel.deleteAccount(editPassword.text.toString())
+                        editPassword.clearFocus()
+                        editPassword.isCursorVisible = false
+                        return true
+                    }
+                    return false
+                }
+            })
         }
     }
 }

@@ -29,7 +29,7 @@ class FavoritesViewModel @Inject constructor(
     private val _foundDog = MutableStateFlow<Dog?>(null)
     val foundDog = _foundDog.asStateFlow()
 
-    private val _isAuth = MutableStateFlow<Boolean>(false)
+    private val _isAuth = MutableStateFlow(false)
     val isAuth = _isAuth.asStateFlow()
 
     var authDialogIsShown = authDialogPrefs.isShown()

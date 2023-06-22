@@ -25,4 +25,8 @@
     <string name="account_deleted">Account deleted</string>
     <string name="some_error_occurred">Some error occurred</string>
     <string name="not_logged_text">You must register to add dogs to favorites</string>
+    <string name="delete_account_dialog">Are you sure you want to delete your account?</string>
+    <string name="delete_account_dialog_title">Account deletion</string>
+    <string name="delete">Delete</string>
+    <string name="enter_pass">Enter your password to confirm account deletion</string>
 </resources>

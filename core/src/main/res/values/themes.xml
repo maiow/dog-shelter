@@ -19,11 +19,10 @@
         <item name="elevationOverlayEnabled">true</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.DogShelter.MaterialAlertDialog
         </item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="ThemeOverlay.DogShelter.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
-        <item name="elevationOverlayColor">#f5f5f5</item>
+        <item name="elevationOverlayColor">@color/background_alert</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DogShelter.AlertDialogButton.Negative</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DogShelter.AlertDialogButton.Positive</item>
         <item name="materialAlertDialogTitleTextStyle">@style/DogShelter.AlertDialog.Title.Text</item>
@@ -50,12 +49,12 @@
 
     <style name="Widget.DogShelter.AlertDialogButton.Positive">
         <item name="android:layout_weight">10</item>
-        <item name="android:textColor">#FE3B30</item>
+        <item name="android:textColor">@color/positive_alert</item>
     </style>
 
     <style name="Widget.DogShelter.AlertDialogButton.Negative">
         <item name="android:layout_weight">10</item>
-        <item name="android:textColor">#007AFF</item>
+        <item name="android:textColor">@color/negative_alert</item>
     </style>
 
 

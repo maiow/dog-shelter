@@ -8,7 +8,7 @@ interface ProfileRepository {
 
     suspend fun deleteAccount(): Boolean
 
-    suspend fun reauthenticateUser(email: String, password: String): Boolean
+    suspend fun reauthenticateUser(password: String): Boolean
 
     suspend fun logout(): Boolean
 

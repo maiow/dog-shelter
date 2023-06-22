@@ -18,9 +18,9 @@ class ProfileRepositoryImpl : ProfileRepository {
 
     override suspend fun getEmail(): String = firebaseAuth.currentUser?.email ?: ""
 
-    override suspend fun reauthenticateUser(email: String, password: String): Boolean {
+    override suspend fun reauthenticateUser(password: String): Boolean {
         val user = firebaseAuth.currentUser ?: return false
-
+        val email = getEmail()
         try {
             val credential = EmailAuthProvider
                 .getCredential(email, password)
