@@ -1,14 +1,8 @@
 package com.redpine.home.domain.usecase
 
-import com.redpine.core.domain.model.Dog
+import com.redpine.home.domain.utils.Filters
 
 interface FilterUseCase {
 
-    suspend fun filterDogs(
-        minAge: String,
-        maxAge: String,
-        gender: String,
-        size: String?,
-        character: String
-    ): List<Dog>
+    fun setFilters(filters: Filters?)
 }

@@ -1,11 +1,14 @@
 package com.redpine.home.di.module
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.DogsRepositoryImpl
+import com.redpine.home.data.repository.FiltrationRepositoryImpl
 import com.redpine.home.data.repository.NewsRepositoryImpl
 import com.redpine.home.data.repository.OnboardingRepositoryImpl
 import dagger.Module
@@ -15,6 +18,9 @@ import javax.inject.Singleton
 @Module
 object RepositoryModule {
 
+    init {
+        Log.d(TAG, "repoModule: ")
+    }
     @Provides
     @Singleton
     fun providesOnboardingRepository() = OnboardingRepositoryImpl()
@@ -35,4 +41,8 @@ object RepositoryModule {
     fun providesDatabaseReference(): DatabaseReference = Firebase
         .database("https://dog-shelter-d6e3e-default-rtdb.europe-west1.firebasedatabase.app/")
         .reference
+
+    @Provides
+    @Singleton
+    fun providesFiltrationRepository() = FiltrationRepositoryImpl()
 }

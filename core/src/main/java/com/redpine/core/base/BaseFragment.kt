@@ -33,16 +33,20 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         return viewModel
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+    override fun onResume() {
+        super.onResume()
         val destinationsInBackStack =
             findNavController().backQueue.joinToString("\n") { dest ->
                 dest.destination.displayName
             }
         Log.d("BackStack", "----------------------------------\n$destinationsInBackStack")
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
         _binding = initBinding(inflater)
         return binding.root
     }

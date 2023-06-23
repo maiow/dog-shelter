@@ -1,5 +1,7 @@
 package com.redpine.home.data.repository
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
@@ -22,6 +24,10 @@ class DogsRepositoryImpl(
     private fun getUserId(): String? = firebaseAuth.currentUser?.uid
     private var listFavoriteDogsIds = mutableSetOf<String>()
 
+
+    init {
+        Log.d(TAG, "dogRepo: ")
+    }
     override suspend fun getNewDogs(count: Int): List<Dog> {
         val uid = getUserId()
         val dogsList = database
@@ -135,76 +141,6 @@ class DogsRepositoryImpl(
 
     private suspend fun removeFavorite(reference: DatabaseReference) =
         reference.removeValue().await()
-
-
-    //TODO: добавить фильтрацию по остальным передаваемым параметрам + по всем не передаваемым сейчас
-// в репозиторий чекбоксам
-    override suspend fun filterDogs(
-        minAge: String, maxAge: String, gender: String, size: String?, character: String,
-    ): List<Dog> {
-        var authorized = false
-        val uid = getUserId()
-        if (uid != null) {
-            getFavoriteDogs(uid)
-            authorized = true
-        }
-        /**фильтрация в бд по полу, если не указан Любой + добавление лайков*/
-        if (gender != GENDER_ANY_RU && gender != GENDER_ANY_EN) {
-            return filterDogsByGender(gender, size, authorized)
-        } else {
-            /**пол был указан Любой или Any, фильтрация в бд по размеру,
-             * если был указан только один размер, а не несколько, + добавление лайков*/
-            if (size != null && !size.contains(",")) {
-                return filterDogsBySize(size, authorized)
-            } else {
-                /**пол был указан Любой или Any И размер либо не указан, либо указано несколько,
-                 * все собаки без фильтрации + добавление лайков*/
-                return getAllDogs()
-            }
-        }
-    }
-
-    private suspend fun filterDogsByGender(
-        gender: String,
-        size: String?,
-        authorized: Boolean
-    ): List<Dog> {
-        val filteredByGenderDogsList = database.child(DOGS_NODE)
-            .orderByChild(GENDER_NODE)
-            .equalTo(gender)
-            .get().await()
-            .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
-
-        var filteredDogsList = mutableListOf<DogDto>()
-        if (size != null) {
-            filteredByGenderDogsList.forEach { dog ->
-                if (dog.size == size) filteredDogsList.add(dog)
-            }
-        } else filteredDogsList = filteredByGenderDogsList.toMutableList()
-        if (authorized) {
-            filteredDogsList.forEach { dog ->
-                if (dog.id.toString() in listFavoriteDogsIds) dog.isFavorite = true
-            }
-        }
-        FilteredDogs.filteredDogsList = filteredDogsList.toDogList()
-        return filteredDogsList.toDogList()
-    }
-
-    private suspend fun filterDogsBySize(size: String?, authorized: Boolean): List<Dog> {
-        val filteredBySizeDogsList = database.child(DOGS_NODE)
-            .orderByChild(SIZE_NODE)
-            .equalTo(size)
-            .get().await()
-            .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
-
-        if (authorized) {
-            filteredBySizeDogsList.forEach { dog ->
-                if (dog.id.toString() in listFavoriteDogsIds) dog.isFavorite = true
-            }
-        }
-        FilteredDogs.filteredDogsList = filteredBySizeDogsList.toDogList()
-        return filteredBySizeDogsList.toDogList()
-    }
 
     override suspend fun getAllDogs(): List<Dog> {
         val uid = getUserId()

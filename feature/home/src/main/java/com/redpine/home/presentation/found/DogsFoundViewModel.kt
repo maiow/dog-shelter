@@ -4,9 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
-import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.data.FilteredDogs
+import com.redpine.home.domain.usecase.FilteredDogsUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +17,7 @@ import javax.inject.Inject
 class DogsFoundViewModel @Inject constructor(
     private val likeUseCase: LikeUseCase,
     private val authDialogPrefs: AuthDialogPrefs,
+    private val filteredDogsUseCase: FilteredDogsUseCase,
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
@@ -28,10 +29,13 @@ class DogsFoundViewModel @Inject constructor(
     var authDialogIsShown = authDialogPrefs.isShown()
 
     init {
-        while (FilteredDogs.filteredDogsList == null)
-            _loadState.value = LoadState.LOADING
-        _dogs.value = FilteredDogs.filteredDogsList ?: emptyList()
-        _loadState.value = LoadState.SUCCESS
+//        while (FilteredDogs.filteredDogsList == null)
+//            _loadState.value = LoadState.LOADING
+//        _dogs.value = FilteredDogs.filteredDogsList ?: emptyList()
+//        _loadState.value = LoadState.SUCCESS
+    }
+    fun getDogs() = scopeLaunch {
+        _dogs.value = filteredDogsUseCase.getFilteredDogs()
     }
 
     fun onLikeClick(clickableView: ClickableView, id: Int) =

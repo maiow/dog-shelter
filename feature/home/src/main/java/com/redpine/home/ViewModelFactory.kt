@@ -11,6 +11,7 @@ import com.redpine.home.domain.usecase.AuthTokenUseCase
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.usecase.DogInfoUseCase
 import com.redpine.home.domain.usecase.FilterUseCase
+import com.redpine.home.domain.usecase.FilteredDogsUseCase
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.ListNewsUseCase
@@ -50,12 +51,14 @@ class ViewModelFactory @Inject constructor(
     private val dogInfoUseCase: DogInfoUseCase,
     private val seenListUseCase: SeenListUseCase,
     private val authDialogPrefs: AuthDialogPrefs,
+    private val filteredDogsUseCase: FilteredDogsUseCase,
 ) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, searchUseCase, authDialogPrefs) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository, onBoardingPrefs) as T
         FilterViewModel::class.java -> FilterViewModel(filterUseCase) as T
-        DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase, authDialogPrefs) as T
+        DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase, authDialogPrefs, filteredDogsUseCase) as T
         PetsCardViewModel::class.java -> PetsCardViewModel(dogInfoUseCase, seenListUseCase, likeUseCase, authDialogPrefs) as T
         NewsListViewModel::class.java -> NewsListViewModel(listNewsUseCase) as T
         SingleNewsViewModel::class.java -> SingleNewsViewModel(singleNewsUseCase) as T

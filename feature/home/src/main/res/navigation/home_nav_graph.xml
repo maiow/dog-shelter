@@ -42,10 +42,6 @@
         android:name="com.redpine.home.presentation.found.DogsFoundFragment"
         android:label="fragment_dogs_found"
         tools:layout="@layout/fragment_dogs_found">
-        <argument
-            android:name="filters"
-            android:defaultValue="Все"
-            app:argType="string" />
         <action
             android:id="@+id/action_dogsFoundFragment_to_petsCardFragment"
             app:destination="@id/petsCardFragment" />

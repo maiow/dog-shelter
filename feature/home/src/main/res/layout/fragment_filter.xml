@@ -149,21 +149,24 @@
                     android:layout_height="wrap_content"
                     app:chipSpacingHorizontal="16dp"
                     app:singleLine="true"
-                    app:singleSelection="true">
+                    app:singleSelection="false">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_small"
                         style="@style/Chip"
+                        android:tag="маленький"
                         android:text="@string/small" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_medium"
                         style="@style/Chip"
+                        android:tag="средний"
                         android:text="@string/medium" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_big"
                         style="@style/Chip"
+                        android:tag="крупный"
                         android:text="@string/big" />
 
                 </com.google.android.material.chip.ChipGroup>
@@ -179,55 +182,69 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/size_chips_scroll_view" />
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_white"
-                style="@style/Checkbox"
-                android:text="@string/cb_white"
-                app:layout_constraintStart_toStartOf="@id/dog_color"
-                app:layout_constraintTop_toBottomOf="@+id/dog_color" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_ginger"
-                style="@style/Checkbox"
-                android:text="@string/cb_ginger"
-                app:layout_constraintStart_toStartOf="@id/dog_color"
-                app:layout_constraintTop_toBottomOf="@+id/cb_white" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_fawn"
-                style="@style/Checkbox"
-                android:text="@string/cb_fawn"
-                app:layout_constraintStart_toStartOf="@id/dog_color"
-                app:layout_constraintTop_toBottomOf="@+id/cb_ginger" />
-
-            <Space
-                android:id="@+id/barrier"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/colorFilters"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintStart_toStartOf="@id/dog_color"
+                app:layout_constraintTop_toBottomOf="@id/dog_color">
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_grey"
-                style="@style/Checkbox"
-                android:text="@string/cb_grey"
-                app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toBottomOf="@+id/dog_color" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_light"
-                style="@style/Checkbox"
-                android:text="@string/cb_light"
-                app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toBottomOf="@+id/cb_grey" />
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_white"
+                        style="@style/Checkbox"
+                        android:tag="белый"
+                        android:text="@string/cb_white" />
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_dark"
-                style="@style/Checkbox"
-                android:text="@string/cb_dark"
-                app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toBottomOf="@+id/cb_light" />
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_ginger"
+                        style="@style/Checkbox"
+                        android:tag="рыжий"
+                        android:text="@string/cb_ginger" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_fawn"
+                        style="@style/Checkbox"
+                        android:tag="палевый"
+                        android:text="@string/cb_fawn" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_grey"
+                        style="@style/Checkbox"
+                        android:tag="серый"
+                        android:text="@string/cb_grey" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_light"
+                        style="@style/Checkbox"
+                        android:tag="светлый"
+                        android:text="@string/cb_light" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cb_dark"
+                        style="@style/Checkbox"
+                        android:tag="темный"
+                        android:text="@string/cb_dark" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/character"
@@ -236,21 +253,35 @@
                 android:layout_height="wrap_content"
                 android:text="@string/character"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cb_fawn" />
+                app:layout_constraintTop_toBottomOf="@id/colorFilters" />
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_active"
-                style="@style/Checkbox"
-                android:text="@string/active"
+            <LinearLayout
+                android:id="@+id/characterFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/character"
-                app:layout_constraintTop_toBottomOf="@+id/character" />
+                app:layout_constraintTop_toBottomOf="@+id/character">
 
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_calm"
-                style="@style/Checkbox"
-                android:text="@string/calm"
-                app:layout_constraintStart_toStartOf="@id/character"
-                app:layout_constraintTop_toBottomOf="@+id/cb_active" />
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cb_active"
+                    style="@style/Checkbox"
+                    android:tag="активный"
+                    android:text="@string/active"
+                    app:layout_constraintStart_toStartOf="@id/character"
+                    app:layout_constraintTop_toBottomOf="@+id/character" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cb_calm"
+                    style="@style/Checkbox"
+                    android:tag="спокойный"
+                    android:text="@string/calm"
+                    app:layout_constraintStart_toStartOf="@id/character"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_active" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/gets_along_with"
@@ -259,7 +290,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/gets_along_with"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cb_calm" />
+                app:layout_constraintTop_toBottomOf="@id/characterFilter" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_kids"

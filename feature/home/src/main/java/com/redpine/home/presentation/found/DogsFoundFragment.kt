@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.tools.ClickableView
@@ -17,7 +16,7 @@ import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
-    private val args by navArgs<DogsFoundFragmentArgs>()
+//    private val args by navArgs<DogsFoundFragmentArgs>()
     private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
@@ -25,7 +24,8 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setFilterText(args.filters)
+//        setFilterText(args.filters)
+        viewModel.getDogs()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
