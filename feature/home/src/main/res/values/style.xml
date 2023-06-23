@@ -68,12 +68,4 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="HelpTextView" parent="Widget.MaterialComponents.TextView">
-        <item name="android:layout_width">141dp</item>
-        <item name="android:layout_height">52dp</item>
-        <item name="android:layout_marginTop">12dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/help_text_bg</item>
-    </style>
-
 </resources>

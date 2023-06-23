@@ -4,10 +4,11 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/onboarding_nav_graph">
 
-    <include app:graph="@navigation/onboarding_nav_graph"/>
+    <include app:graph="@navigation/onboarding_nav_graph" />
     <include app:graph="@navigation/home_nav_graph" />
     <include app:graph="@navigation/favorites_nav_graph" />
+    <include app:graph="@navigation/auth_nav_graph" />
+    <include app:graph="@navigation/profile_nav_graph" />
     <!--include app:graph="@navigation/chats_nav_graph" /-->
-    <include app:graph="@navigation/auth_nav_graph"/>
 
 </navigation>

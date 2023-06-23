@@ -31,7 +31,6 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
-        flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
         flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
     }
 
@@ -53,6 +52,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         adapter.submitList(dogs)
         binding.title.isVisible = dogs.isNotEmpty()
         binding.noneFound.isVisible = dogs.isEmpty()
+        //binding.noDogs.isVisible = false
     }
 
     private fun loadingObserve(loadState: LoadState) {
@@ -73,12 +73,13 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
         binding.searchView.setSubmitTextListener { query ->
             viewModel.onDogSearchClick(query)
+            flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
         }
-        /**клик на лупу*/
+
         binding.searchView.setOnClickListener {
             binding.noDogs.isVisible = false
         }
-        /**клик на крестик*/
+
         val searchCloseButton: View =
             binding.searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
         searchCloseButton.setOnClickListener {
