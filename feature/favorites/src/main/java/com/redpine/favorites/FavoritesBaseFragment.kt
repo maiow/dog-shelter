@@ -9,7 +9,7 @@ import com.redpine.favorites.di.FavoritesComponentViewModel
 abstract class FavoritesBaseFragment<B : ViewBinding> : BaseFragment<B>() {
 
     override fun initViewModelFactory(): ViewModelProvider.Factory =
-        ViewModelProvider(this)[FavoritesComponentViewModel::class.java]
+        ViewModelProvider(requireActivity())[FavoritesComponentViewModel::class.java]
             .moduleComponent
             .viewModelFactory
 
