@@ -36,6 +36,8 @@
         <action
             android:id="@+id/action_filterFragment_to_dogsFoundFragment"
             app:destination="@id/dogsFoundFragment" />
+        <deepLink
+            app:uri="android-app://com.redpine.dogshelter/FilterFragment" />
     </fragment>
     <fragment
         android:id="@+id/dogsFoundFragment"

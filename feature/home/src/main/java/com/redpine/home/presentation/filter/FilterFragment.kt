@@ -22,10 +22,6 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
     private val viewModel: FilterViewModel by lazy { initViewModel() }
     override fun initBinding(inflater: LayoutInflater) = FragmentFilterBinding.inflate(inflater)
 
-//    private val resRu = requireContext().createConfigurationContext(
-//        requireContext().resources.configuration.apply { setLocale(Locale("ru")) }
-//    ).resources
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

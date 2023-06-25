@@ -3,7 +3,10 @@ package com.redpine.favorites.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
@@ -67,7 +70,10 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
     private fun setUserInterface() {
         binding.filterButton.setOnClickListener {
-            findNavController().navigate(R.id.actionFavoritesToFilter)
+            val deepLink = NavDeepLinkRequest.Builder
+                .fromUri("android-app://com.redpine.dogshelter/FilterFragment".toUri())
+                .build()
+            findNavController().navigate(request = deepLink)
         }
 
         binding.searchView.setSubmitTextListener { query ->
@@ -89,7 +95,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private fun observeSearchResult(dog: Dog?) {
         if (dog == null) binding.noDogs.isVisible = true
         else {
-            findNavController().navigate(R.id.actionFavoritesToPetsCard,
+            findNavController().navigate(R.id.petsCardFragment,
                 Bundle().apply { putParcelable("dog", (dog)) })
         }
     }
@@ -97,7 +103,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private fun onItemClick(clickableView: ClickableView, item: Item) {
         if (clickableView == ClickableView.DOG) {
             findNavController().navigate(
-                R.id.actionFavoritesToPetsCard,
+                R.id.petsCardFragment,
                 Bundle().apply { putParcelable("dog", (item as Dog)) })
         } else
             viewModel.onLikeClick(clickableView, item.id)

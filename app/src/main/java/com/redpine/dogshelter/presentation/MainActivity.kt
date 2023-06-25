@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         if (viewModel.isOnboardingShown) {
             navController.navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
-            navController.graph.setStartDestination(com.redpine.home.R.id.home_nav_graph)
         }
 
         val navView: BottomNavigationView = binding.bottomNavView
@@ -57,11 +56,26 @@ class MainActivity : AppCompatActivity() {
             else navView.visibility = View.VISIBLE
         }
 
+        navView.setOnItemSelectedListener {item ->
+            navController.navigate(
+                resId = item.itemId,
+                args = null,
+                navOptions = NavOptions.Builder()
+                    .setPopUpTo(destinationId = item.itemId, inclusive = true)
+                    .setLaunchSingleTop(true)
+                    .build()
+            )
+            return@setOnItemSelectedListener true
+        }
+
         navView.setOnItemReselectedListener { item ->
             navController.navigate(
                 resId = item.itemId,
                 args = null,
-                navOptions = NavOptions.Builder().setPopUpTo(item.itemId, false).build()
+                navOptions = NavOptions.Builder()
+                    .setPopUpTo(destinationId = item.itemId, inclusive = true)
+                    .setLaunchSingleTop(true)
+                    .build()
             )
         }
     }
