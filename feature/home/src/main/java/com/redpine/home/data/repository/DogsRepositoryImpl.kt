@@ -24,20 +24,20 @@ class DogsRepositoryImpl(
 
     override suspend fun getNewDogs(count: Int): List<Dog> {
         val uid = getUserId()
-        val dogsList = database
-            .child(DOGS_NODE)
+        val dogsList = database.child(DOGS_NODE)
+            .orderByChild(ID)
             .limitToLast(count)
             .get().await()
             .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
             .ifEmpty { throw FirebaseBaseExceptionNullResponse() }
         return if (uid == null) {
-            dogsList.toDogList()
+            dogsList.toDogList().asReversed()
         } else {
             getFavoriteDogs(uid)
             dogsList.forEach { dog ->
                 if (dog.id.toString() in listFavoriteDogsIds) dog.isFavorite = true
             }
-            dogsList.toDogList()
+            dogsList.toDogList().asReversed()
         }
     }
 
@@ -247,5 +247,6 @@ class DogsRepositoryImpl(
         const val GENDER_NODE = "gender"
         const val SIZE_NODE = "size"
         const val NAME_NODE = "name"
+        const val ID = "id"
     }
 }

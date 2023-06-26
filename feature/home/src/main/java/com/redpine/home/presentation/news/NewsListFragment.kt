@@ -3,7 +3,6 @@ package com.redpine.home.presentation.news
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Item
 import com.redpine.core.domain.model.News
@@ -22,7 +21,6 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         flowObserver(viewModel.data) { news -> observeData(news) }
-        setSearch()
         setAdapter()
     }
 
@@ -39,17 +37,5 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
     private fun setAdapter() {
         binding.recycler.adapter = adapter
-    }
-
-    private fun setSearch() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
     }
 }
