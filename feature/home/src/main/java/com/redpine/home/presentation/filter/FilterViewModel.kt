@@ -11,8 +11,8 @@ class FilterViewModel @Inject constructor(
     private val filterUseCase: FilterUseCase
 ) : BaseViewModel() {
 
-    fun setFilters(filters: Filters){
-        Log.d(TAG, "setFilters: $filters")
+    fun onApplyButtonClick(filters: Filters){
+        Log.d(TAG, "onApplyButtonClick at FilterViewModel: $filters")
         filterUseCase.setFilters(filters)
     }
 //    var minAgeOnSlider = INITIAL_MIN_AGE_ON_SLIDER.toString()

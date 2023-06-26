@@ -31,7 +31,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         setClearButton()
     }
 
-    private fun setGenderFilter(): Boolean? {
+    private fun getGenderFilterValue(): Boolean? {
         return when (binding.genderChipsGroup.checkedChipId) {
             R.id.chip_boy -> true
             R.id.chip_girl -> false
@@ -39,7 +39,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         }
     }
 
-    private fun setAgeFilter(): List<Float> {
+    private fun setAgeFilter() {
         binding.ageSlider.addOnChangeListener { slider, _, _ ->
             val minAge = slider.values[0].toInt().toString()
             val maxAge = slider.values[1].toInt().toString()
@@ -57,10 +57,11 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                     )
                 }
         }
-        return binding.ageSlider.values
     }
 
-    private fun setSizeFilter(): List<String> {
+    private fun getAgeSliderValues(): List<Float> = binding.ageSlider.values
+
+    private fun getSizeFilterValues(): List<String> {
         val sizeFilter = mutableListOf<String>()
         binding.sizeChipsGroup.children.forEach { chip ->
             if (chip is Chip && chip.isChecked)
@@ -69,7 +70,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         return sizeFilter
     }
 
-    private fun setColorFilter(): List<String> {
+    private fun getColorFilterValues(): List<String> {
         val colorFilter = mutableListOf<String>()
         binding.colorFilters.children.forEach {
             if (it is LinearLayout)
@@ -81,7 +82,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         return colorFilter
     }
 
-    private fun setCharacterFilter(): List<String> {
+    private fun getCharacterFilterValues(): List<String> {
         val characterFilter = mutableListOf<String>()
         binding.characterFilter.children.forEach { checkBox ->
             if (checkBox is CheckBox && checkBox.isChecked)
@@ -143,21 +144,21 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 //            viewModel.filterDogs()
 
 //            val filtersText = buildFiltersTextForNextScreen()
-//            Log.d(TAG, "gender:${setGenderFilter()} ")
+//            Log.d(TAG, "gender:${getGenderFilterValue()} ")
 //            Log.d(TAG, "slider: ${setAgeFilter()}")
-//            Log.d(TAG, "size: ${setSizeFilter()}")
-//            Log.d(TAG, "color: ${setColorFilter()}")
-//            Log.d(TAG, "character: ${setCharacterFilter()}")
+//            Log.d(TAG, "size: ${getSizeFilterValues()}")
+//            Log.d(TAG, "color: ${getColorFilterValues()}")
+//            Log.d(TAG, "character: ${getCharacterFilterValues()}")
             val filters = Filters(
-                isMale = setGenderFilter(),
-                minAge = setAgeFilter().first().toLong(),
-                maxAge = setAgeFilter().last().toLong(),
-                size = setSizeFilter(),
-                color = setColorFilter(),
-                character = setCharacterFilter()
+                isMale = getGenderFilterValue(),
+                minAge = getAgeSliderValues().first().toLong(),
+                maxAge = getAgeSliderValues().last().toLong(),
+                size = getSizeFilterValues(),
+                color = getColorFilterValues(),
+                character = getCharacterFilterValues()
             )
             Log.d(TAG, "setApplyButton: $filters")
-            viewModel.setFilters(filters)
+            viewModel.onApplyButtonClick(filters)
             findNavController().navigate(
                 FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment()
             )

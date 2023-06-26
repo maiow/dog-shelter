@@ -17,15 +17,17 @@ class FilteredDogsUseCaseImpl(
         val filters = filtration.getFilters()
         Log.d(TAG, "filterDogs: $filters")
         Log.d(TAG, "filterDogs before: ${list.size}")
-        return if (filters != null){
-            list.forEach { dog ->
-                if(filters.isMale != null && filters.isMale != dog.isMale) list.remove(dog)
-                if(filters.color.isNotEmpty() && !filters.color.contains(dog.color)) list.remove(dog)
-                if(filters.character.isNotEmpty() && !filters.character.contains(dog.character)) list.remove(dog)
-                if(filters.size.isNotEmpty() && !filters.size.contains(dog.size)) list.remove(dog)
+        if (filters != null && list.isNotEmpty()) {
+            val myiterator: MutableIterator<Dog> = list.iterator()
+            while (myiterator.hasNext()) {
+                val dog = myiterator.next()
+                if ((filters.isMale != null && dog.isMale != filters.isMale) ||
+                    (filters.color.isNotEmpty() && !filters.color.contains(dog.color)) ||
+                    (filters.character.isNotEmpty() && !filters.character.contains(dog.character)) ||
+                    (filters.size.isNotEmpty() && !filters.size.contains(dog.size))
+                ) myiterator.remove()
             }
-            Log.d(TAG, "filterDogs: ${list.size}")
-            list
-        } else list
+        }
+        return list
     }
 }
