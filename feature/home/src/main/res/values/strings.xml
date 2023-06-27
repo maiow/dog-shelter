@@ -72,6 +72,7 @@
     <string name="all">All</string>
     <string name="gets_along">gets along\u0020</string>
     <string name="follow_us">Follow us</string>
+    <string name="news">Новости</string>
     <plurals name="found_pets">
         <item quantity="one">Found %1$d dog</item>
         <item quantity="few">Found %1$d dogs</item>

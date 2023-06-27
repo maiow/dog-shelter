@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
+import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
@@ -29,6 +30,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
+        flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         binding.filterButton.setOnClickListener {
             viewModel.onFilterButtonClick()
             findNavController().popBackStack()
@@ -73,6 +75,16 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
             data.size
         )
         binding.noneFound.isVisible = data.isEmpty()
+    }
+
+    private fun loadingObserve(loadState: LoadState) {
+        with(binding) {
+            commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
+            connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
+            connectionError.retryButton.setOnClickListener {
+                //TODO: handle retry button click
+            }
+        }
     }
 
     override fun onDestroyView() {

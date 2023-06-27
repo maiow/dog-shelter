@@ -9,7 +9,7 @@ import com.redpine.home.di.componentviewmodel.HomeComponentViewModel
 abstract class HomeBaseFragment<B : ViewBinding> : BaseFragment<B>() {
 
     override fun initViewModelFactory(): ViewModelProvider.Factory =
-        ViewModelProvider(this)[HomeComponentViewModel::class.java]
+        ViewModelProvider(requireActivity())[HomeComponentViewModel::class.java]
             .moduleComponent
             .viewModelFactory
 

@@ -9,7 +9,7 @@ import com.redpine.profile.di.ProfileComponentViewModel
 abstract class ProfileBaseFragment<B : ViewBinding> : BaseFragment<B>() {
 
     override fun initViewModelFactory(): ViewModelProvider.Factory =
-        ViewModelProvider(this)[ProfileComponentViewModel::class.java]
+        ViewModelProvider(requireActivity())[ProfileComponentViewModel::class.java]
             .moduleComponent
             .viewModelFactory
 

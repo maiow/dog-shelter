@@ -12,9 +12,7 @@ class ProfileRepositoryImpl : ProfileRepository {
 
     private fun getUserId(): String? = firebaseAuth.currentUser?.uid
 
-    override suspend fun isUserAuthorized(): Boolean {
-        return getUserId() != null
-    }
+    override suspend fun isUserAuthorized(): Boolean = getUserId() != null
 
     override suspend fun getEmail(): String = firebaseAuth.currentUser?.email ?: ""
 

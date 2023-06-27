@@ -3,7 +3,9 @@ package com.redpine.profile.presentation.profile
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.domain.AuthDialogPrefs
-import com.redpine.profile.domain.ProfileRepository
+import com.redpine.profile.domain.usecase.DeleteAccountUseCase
+import com.redpine.profile.domain.usecase.LogoutUseCase
+import com.redpine.profile.domain.usecase.ProfileInfoUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +15,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
-    private val profileRepository: ProfileRepository,
+    private val profileInfoUseCase: ProfileInfoUseCase,
+    private val deleteAccountUseCase: DeleteAccountUseCase,
+    private val logoutUseCase: LogoutUseCase,
     private val authDialogPrefs: AuthDialogPrefs
 ) : BaseViewModel() {
 
@@ -32,10 +36,10 @@ class ProfileViewModel @Inject constructor(
 
     fun checkAuth() {
         viewModelScope.launch(Dispatchers.IO) {
-            _isAuth.value = profileRepository.isUserAuthorized()
+            _isAuth.value = profileInfoUseCase.isUserAuthorized()
             authDialogIsShown = authDialogPrefs.isShown()
             if (_isAuth.value) {
-                _email.value = profileRepository.getEmail()
+                _email.value = profileInfoUseCase.getEmail()
             }
         }
     }
@@ -48,7 +52,7 @@ class ProfileViewModel @Inject constructor(
 
     fun logout() {
         viewModelScope.launch(Dispatchers.IO) {
-            if (profileRepository.logout()) {
+            if (logoutUseCase.logout()) {
                 _actionResult.emit(UserActionResult.LOGOUT)
                 _email.value = LOGGED_OUT
                 _isAuth.value = false
@@ -58,9 +62,9 @@ class ProfileViewModel @Inject constructor(
 
     fun deleteAccount(password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (!profileRepository.reauthenticateUser(password))
+            if (!deleteAccountUseCase.reauthenticateUser(password))
                 _actionResult.emit(UserActionResult.REAUTH_FAILED)
-            else if (profileRepository.deleteAccount()) {
+            else if (deleteAccountUseCase.deleteAccount()) {
                 _actionResult.emit(UserActionResult.ACCOUNT_DELETED)
                 _isAuth.value = false
             } else _actionResult.emit(UserActionResult.ERROR)
