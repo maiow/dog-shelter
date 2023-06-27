@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.core.base.DiComponent
 import com.redpine.profile.di.module.Binds
 import com.redpine.profile.di.module.RepositoryModule
+import com.redpine.profile.di.module.UseCaseModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,7 +13,8 @@ import javax.inject.Singleton
         ProfileDependencies::class
     ], modules = [
         RepositoryModule::class,
-        Binds::class
+        Binds::class,
+        UseCaseModule::class
     ]
 )
 @Singleton

@@ -6,8 +6,8 @@ import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
-import com.redpine.favorites.domain.FavoritesRepository
 import com.redpine.favorites.domain.usecase.DislikeUseCase
+import com.redpine.favorites.domain.usecase.FavoritesUseCase
 import com.redpine.favorites.domain.usecase.SearchUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
-    private val favoritesRepository: FavoritesRepository,
+    private val favoritesUseCase: FavoritesUseCase,
     private val dislikeUseCase: DislikeUseCase,
     private val searchUseCase: SearchUseCase,
     private val authDialogPrefs: AuthDialogPrefs
@@ -36,7 +36,7 @@ class FavoritesViewModel @Inject constructor(
 
 
     fun getDogInfo() = scopeLaunch {
-        _dogs.value = favoritesRepository.getFavoriteDogs()
+        _dogs.value = favoritesUseCase.getFavoriteDogs()
     }
 
     fun onRetryButtonClick() = getDogInfo()
@@ -65,7 +65,7 @@ class FavoritesViewModel @Inject constructor(
 
     fun checkAuth() {
         viewModelScope.launch(Dispatchers.IO) {
-            _isAuth.value = favoritesRepository.isUserAuthorized()
+            _isAuth.value = favoritesUseCase.isUserAuthorized()
             authDialogIsShown = authDialogPrefs.isShown()
         }
     }
