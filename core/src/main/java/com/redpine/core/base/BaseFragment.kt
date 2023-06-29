@@ -1,7 +1,6 @@
 package com.redpine.core.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,15 +30,6 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     inline fun <reified VM : ViewModel> initViewModel(): VM {
         val viewModel by viewModels<VM>() { initViewModelFactory() }
         return viewModel
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val destinationsInBackStack =
-            findNavController().backQueue.joinToString("\n") { dest ->
-                dest.destination.displayName
-            }
-        Log.d("BackStack", "----------------------------------\n$destinationsInBackStack")
     }
 
     override fun onCreateView(
