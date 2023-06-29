@@ -5,6 +5,7 @@ import com.redpine.dogshelter.di.AppComponent
 import com.redpine.dogshelter.di.DaggerAppComponent
 import com.redpine.favorites.di.FavoritesDependenciesProvider
 import com.redpine.home.di.deps.HomeDependenciesProvider
+import com.redpine.profile.di.ProfileDependenciesProvider
 
 class App : Application() {
 
@@ -16,6 +17,7 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder().application(this.applicationContext).build()
         HomeDependenciesProvider.dependencies = appComponent
         FavoritesDependenciesProvider.dependencies = appComponent
+        ProfileDependenciesProvider.dependencies = appComponent
         //ChatsDependenciesProvider.dependencies = appComponent
     }
 }

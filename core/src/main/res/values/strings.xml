@@ -4,6 +4,7 @@
 
     <string name="title_home">Home</string>
     <string name="title_favorites">Favorites</string>
+    <string name="title_profile">Profile</string>
     <string name="title_chats">Chats</string>
 
     <string name="next">Next</string>
@@ -19,4 +20,7 @@
     <string name="auth_dialog_message">You must be logged in to add a pet to your favorites</string>
     <string name="auth_dialog_cancel">Cancel</string>
     <string name="auth_dialog_apply">Apply</string>
+
+    <string name="e_mail" translatable="false">e-mail</string>
+    <string name="password">Password</string>
 </resources>

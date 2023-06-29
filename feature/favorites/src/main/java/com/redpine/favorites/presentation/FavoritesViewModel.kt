@@ -6,8 +6,8 @@ import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
-import com.redpine.favorites.domain.FavoritesRepository
 import com.redpine.favorites.domain.usecase.DislikeUseCase
+import com.redpine.favorites.domain.usecase.FavoritesUseCase
 import com.redpine.favorites.domain.usecase.SearchUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -17,10 +17,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
-    private val favoritesRepository: FavoritesRepository,
+    private val favoritesUseCase: FavoritesUseCase,
     private val dislikeUseCase: DislikeUseCase,
     private val searchUseCase: SearchUseCase,
-    private val authDialogPrefs: AuthDialogPrefs,
+    private val authDialogPrefs: AuthDialogPrefs
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
@@ -29,14 +29,14 @@ class FavoritesViewModel @Inject constructor(
     private val _foundDog = MutableStateFlow<Dog?>(null)
     val foundDog = _foundDog.asStateFlow()
 
-    private val _isAuth = MutableStateFlow<Boolean>(false)
+    private val _isAuth = MutableStateFlow(false)
     val isAuth = _isAuth.asStateFlow()
 
     var authDialogIsShown = authDialogPrefs.isShown()
 
 
     fun getDogInfo() = scopeLaunch {
-        _dogs.value = favoritesRepository.getFavoriteDogs()
+        _dogs.value = favoritesUseCase.getFavoriteDogs()
     }
 
     fun onRetryButtonClick() = getDogInfo()
@@ -63,14 +63,14 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    fun checkAuth(){
-        viewModelScope.launch(Dispatchers.IO){
-            _isAuth.value = favoritesRepository.isUserAuthorized()
+    fun checkAuth() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _isAuth.value = favoritesUseCase.isUserAuthorized()
             authDialogIsShown = authDialogPrefs.isShown()
         }
     }
 
-    fun resetAuthCheck(){
+    fun resetAuthCheck() {
         _isAuth.value = false
     }
 

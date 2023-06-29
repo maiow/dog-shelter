@@ -4,6 +4,7 @@
 
     <string name="title_home">Главная</string>
     <string name="title_favorites">Избранное</string>
+    <string name="title_profile">Профиль</string>
     <string name="title_chats">Чаты</string>
 
     <string name="next">Далее</string>
@@ -19,4 +20,6 @@
     <string name="auth_dialog_message">Для добавления питомца в избранное необходимо авторизоваться</string>
     <string name="auth_dialog_cancel">Отмена</string>
     <string name="auth_dialog_apply">Принять</string>
+
+    <string name="password">Пароль</string>
 </resources>

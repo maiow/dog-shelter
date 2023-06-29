@@ -39,8 +39,6 @@
     <string name="story">Story (no English translation yet):</string>
     <string name="share">Share</string>
 
-    <string name="e_mail" translatable="false">e-mail</string>
-    <string name="password">Password</string>
     <string name="repeat_password">Repeat password</string>
     <string name="auth_button">Log in</string>
     <string name="registration_button">Register</string>
@@ -66,19 +64,7 @@
 
     <string name="watsapp_message">Hello! That\'s about a dog named %1$s living at RedPine dog shelter</string>
     <string name="height">%1$s cm</string>
-    <string name="how_to_help">You can help us:</string>
-    <string name="become_volunteer">Volunteer</string>
-    <string name="become_guardian">Become \na dog guardian</string>
-    <string name="become_fincurator">Sponsor \na dog</string>
-    <string name="make_gift">Make \na gift</string>
-    <string name="make_donation">Donate</string>
-    <string name="other_help">Other</string>
-    <string name="card_transfer">1. Transfer to card</string>
-    <string name="hungry_phone">2. Transfer to phone number</string>
-    <string name="ya_wallet">3. Yandex wallet</string>
-    <string name="ya_wallet_number" translatable="false">4100 1425 0115 963</string>
-    <string name="hungry_phone_number" translatable="false">+7 963 767 79 57</string>
-    <string name="sber_card_number" translatable="false">5469 3801 4999 3056</string>
+
     <string name="help">Help</string>
     <string name="none_found">No dogs found, try to change filtering parameters</string>
     <string name="initial_age_on_slider">3–6 years</string>
@@ -86,6 +72,7 @@
     <string name="all">All</string>
     <string name="gets_along">gets along\u0020</string>
     <string name="follow_us">Follow us</string>
+    <string name="news">Новости</string>
     <plurals name="found_pets">
         <item quantity="one">Found %1$d dog</item>
         <item quantity="few">Found %1$d dogs</item>

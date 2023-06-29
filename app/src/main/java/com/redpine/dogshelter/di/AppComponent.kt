@@ -8,6 +8,7 @@ import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainActivity
 import com.redpine.favorites.di.FavoritesDependencies
 import com.redpine.home.di.deps.HomeDependencies
+import com.redpine.profile.di.ProfileDependencies
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -18,7 +19,7 @@ import javax.inject.Singleton
     ]
 )
 @Singleton
-interface AppComponent : FavoritesDependencies, HomeDependencies {
+interface AppComponent : ProfileDependencies, FavoritesDependencies, HomeDependencies {
 
     fun inject(mainActivity: MainActivity)
 
