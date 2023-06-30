@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.state.LoadState
@@ -17,7 +18,7 @@ import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
-//    private val args by navArgs<DogsFoundFragmentArgs>()
+    private val args by navArgs<DogsFoundFragmentArgs>()
     private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
@@ -25,31 +26,24 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        setFilterText(args.filters)
+        setFilterText(args.filterText)
         viewModel.getDogs()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         binding.filterButton.setOnClickListener {
-            viewModel.onFilterButtonClick()
-            findNavController().popBackStack()
-        }
-    }
-
-    private fun observeAuthDialogIsShown(isShown: Boolean) {
-        if (!isShown) {
-            showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
-            viewModel.rememberAuthDialogIsShown()
-        } else {
-            navigate(R.id.auth_nav_graph)
-            viewModel.resetNavigateFlow()
+            if (findNavController().previousBackStackEntry?.destination?.id != R.id.filterFragment)
+                findNavController().navigate(R.id.action_dogsFoundFragment_to_filterFragment)
+            else findNavController().popBackStack()
         }
     }
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation)
-            observeAuthDialogIsShown(viewModel.authDialogIsShown)
+        if (isNavigation) {
+            showAuthDialog(com.redpine.core.R.string.auth_dialog_message) {navigate(R.id.auth_nav_graph)}
+            viewModel.resetNavigateFlow()
+        }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
@@ -89,7 +83,11 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     override fun onDestroyView() {
         binding.recyclerView.adapter = null
-        viewModel.onDestroyView()
         super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        viewModel.clearFilters()
+        super.onDestroy()
     }
 }

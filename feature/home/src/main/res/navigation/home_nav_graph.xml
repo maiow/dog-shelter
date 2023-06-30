@@ -47,6 +47,15 @@
         <action
             android:id="@+id/action_dogsFoundFragment_to_petsCardFragment"
             app:destination="@id/petsCardFragment" />
+        <argument
+            android:name="filterText"
+            app:argType="string"
+            android:defaultValue='' />
+        <action
+            android:id="@+id/action_dogsFoundFragment_to_filterFragment"
+            app:destination="@id/filterFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/petsCardFragment"

@@ -28,27 +28,12 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.checkAuth()
+//        viewModel.checkAuth()
         setUserInterface()
-        viewModel.getDogInfo()
+        viewModel.getDogs()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
-        flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
-    }
-
-    private fun observeAuthDialogIsShown(isShown: Boolean) {
-        if (!isShown) {
-            showAuthDialog(R.id.authFragment) { viewModel.resetAuthCheck() }
-            viewModel.rememberAuthDialogIsShown()
-        } else {
-            viewModel.resetAuthCheck()
-        }
-    }
-
-    private fun authObserve(auth: Boolean) {
-        if (!auth)
-            observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
 
     private fun loadContent(dogs: List<Dog>) {
@@ -63,7 +48,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
             commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
             connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
             connectionError.retryButton.setOnClickListener {
-                viewModel.onRetryButtonClick()
+                viewModel.getDogs()
             }
             noDogs.isVisible = loadState == LoadState.NULL_SEARCH
         }

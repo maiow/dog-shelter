@@ -62,23 +62,12 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
     }
 
     private fun observeAuth(auth: Boolean) {
-        if (!auth) observeAuthDialogIsShown(viewModel.authDialogIsShown)
-
         with(binding) {
             layoutEmail.isVisible = auth
             logoutButton.isVisible = auth
             deleteAccountButton.isVisible = auth
             authButton.isVisible = !auth
             notLoggedText.isVisible = !auth
-        }
-    }
-
-    private fun observeAuthDialogIsShown(isShown: Boolean) {
-        if (!isShown) {
-            showAuthDialog(R.id.actionProfileToAuth) { viewModel.resetAuthCheck() }
-            viewModel.rememberAuthDialogIsShown()
-        } else {
-            viewModel.resetAuthCheck()
         }
     }
 

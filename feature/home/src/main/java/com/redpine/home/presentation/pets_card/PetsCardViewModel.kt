@@ -2,7 +2,6 @@ package com.redpine.home.presentation.pets_card
 
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
-import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.domain.usecase.DogInfoUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
@@ -19,7 +18,6 @@ class PetsCardViewModel @Inject constructor(
     private val dogInfoUseCase: DogInfoUseCase,
     private val seenListUseCase: SeenListUseCase,
     private val likeUseCase: LikeUseCase,
-    private val authDialogPrefs: AuthDialogPrefs,
 ) : BaseViewModel() {
 
     private val _images = MutableSharedFlow<List<String>>()
@@ -30,8 +28,6 @@ class PetsCardViewModel @Inject constructor(
 
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
-
-    var authDialogIsShown = authDialogPrefs.isShown()
 
     fun onGettingArgument(dog: Dog) {
         getDogInfo(dog)
@@ -59,16 +55,11 @@ class PetsCardViewModel @Inject constructor(
                 _dogInfo.emit(dog.copy(isFavorite = !dog.isFavorite))
             else {
                 _isNavigateAuth.value = true
-                authDialogIsShown = authDialogPrefs.isShown()
             }
         }
     }
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false
-    }
-
-    fun rememberAuthDialogIsShown() {
-        authDialogPrefs.rememberAuthDialogIsShown()
     }
 }

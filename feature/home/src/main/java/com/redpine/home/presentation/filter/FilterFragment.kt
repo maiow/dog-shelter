@@ -1,8 +1,6 @@
 package com.redpine.home.presentation.filter
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CheckBox
@@ -100,86 +98,47 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
     private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
-//            //TODO: отправка собранных данных на сервер
-//
-//            var i = 0
-//            while (i <= binding.containerCheckboxes.childCount) {
-//                val checkView = binding.containerCheckboxes.getChildAt(i)
-//                if (checkView is CheckBox) {
-//                    if (checkView.isChecked)
-//                        viewModel.selectedCheckboxes?.add(checkView.text.toString())
-//                }
-//                i++
-//            }
-//
-//            viewModel.selectedGenderChip =
-//                if ((binding.genderChipsGroup.findViewById<Chip>(
-//                        binding.genderChipsGroup.checkedChipId
-//                    )) != null
-//                )
-//                    binding.genderChipsGroup.findViewById<Chip>(
-//                        binding.genderChipsGroup.checkedChipId
-//                    ).text.toString()
-//                else null
-//
-//
-//            viewModel.selectedSizeChip =
-//                if ((binding.sizeChipsGroup.findViewById<Chip>(
-//                        binding.sizeChipsGroup.checkedChipId
-//                    )) != null
-//                )
-//                    binding.sizeChipsGroup.findViewById<Chip>(
-//                        binding.sizeChipsGroup.checkedChipId
-//                    ).text.toString()
-//                else null
-//
-//            Log.i("BRED", "selected checkboxes = ${viewModel.selectedCheckboxes}")
-//
-//            Log.i("BRED", "genderChipsGroup.checkedChip = ${viewModel.selectedGenderChip}")
-//            Log.i("BRED", "sizeChipsGroup.checkedChip = ${viewModel.selectedSizeChip}")
-//
-//            Log.i("BRED", "minAgeOnSlider = ${viewModel.minAgeOnSlider}")
-//            Log.i("BRED", "maxAgeOnSlider = ${viewModel.maxAgeOnSlider}")
-
-//            viewModel.filterDogs()
-
-//            val filtersText = buildFiltersTextForNextScreen()
-//            Log.d(TAG, "gender:${getGenderFilterValue()} ")
-//            Log.d(TAG, "slider: ${setAgeFilter()}")
-//            Log.d(TAG, "size: ${getSizeFilterValues()}")
-//            Log.d(TAG, "color: ${getColorFilterValues()}")
-//            Log.d(TAG, "character: ${getCharacterFilterValues()}")
             val filters = Filters(
                 isMale = getGenderFilterValue(),
-                minAge = getAgeSliderValues().first().toLong(),
-                maxAge = getAgeSliderValues().last().toLong(),
+                minAge = getAgeSliderValues().first().toInt(),
+                maxAge =
+                if (getAgeSliderValues().last().toInt() == 12) 20
+                else getAgeSliderValues().last().toInt(),
                 size = getSizeFilterValues(),
                 color = getColorFilterValues(),
                 character = getCharacterFilterValues()
             )
-            Log.d(TAG, "setApplyButton: $filters")
+            val filtersText = buildFiltersTextForNextScreen(filters)
             viewModel.onApplyButtonClick(filters)
-            findNavController().navigate(
-                FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment()
-            )
+            if (findNavController().previousBackStackEntry?.destination?.id == R.id.dogsFoundFragment)
+                findNavController().popBackStack()
+            else
+            findNavController().navigate(FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(filtersText))
         }
     }
 
-//    private fun buildFiltersTextForNextScreen() = buildString {
-//        append(viewModel.selectedGenderChip ?: getString(R.string.any_gender))
-//        append(getString(R.string.size_for_found) + " ")
-//        append(viewModel.selectedSizeChip ?: getString(R.string.any_for_found))
-//        append(getString(R.string.age_for_found) + " ")
-//        append(viewModel.minAgeOnSlider)
-//        append("-")
-//        append(
-//            resources.getQuantityString(
-//                R.plurals.age_data,
-//                viewModel.maxAgeOnSlider.toInt(),
-//                viewModel.maxAgeOnSlider
-//            )
-//        )
-//    }
+    private fun buildFiltersTextForNextScreen(filters: Filters) = buildString {
+        append(
+            if (filters.isMale == null) getString(R.string.any_gender)
+            else if (!filters.isMale) getString(R.string.girl)
+            else getString(R.string.boy)
+        )
+        append(getString(R.string.size_for_found) + " ")
+        append(
+            if (filters.size.isNotEmpty()) filters.size.joinToString(",")
+            else getString(R.string.any_for_found)
+        )
+        append(getString(R.string.age_for_found) + " ")
+        append(filters.minAge.toString())
+        append("-")
+        append(
+            resources.getQuantityString(
+                R.plurals.age_data,
+                filters.maxAge,
+                filters.maxAge.toString()
+            )
+        )
+    }
 
     private fun setClearButton() {
         binding.clearBtn.setOnClickListener {
@@ -190,15 +149,13 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 listOf(INITIAL_MIN_AGE_ON_SLIDER.toFloat(), INITIAL_MAX_AGE_ON_SLIDER.toFloat())
 
             binding.characterFilter.children.forEach { checkBox ->
-                if (checkBox is CheckBox)
-                    checkBox.isChecked = false
+                if (checkBox is CheckBox) checkBox.isChecked = false
             }
 
             binding.colorFilters.children.forEach {
                 if (it is LinearLayout)
                     it.children.forEach { checkBox ->
-                        if (checkBox is CheckBox)
-                            checkBox.isChecked = false
+                        if (checkBox is CheckBox) checkBox.isChecked = false
                     }
             }
 
@@ -206,7 +163,6 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 val checkView = binding.containerCheckboxes.getChildAt(i)
                 if (checkView is CheckBox) checkView.isChecked = false
             }
-//            viewModel.selectedCheckboxes = mutableSetOf()
         }
     }
 }

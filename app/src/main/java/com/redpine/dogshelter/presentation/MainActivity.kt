@@ -54,14 +54,13 @@ class MainActivity : AppCompatActivity() {
             com.redpine.home.R.id.filterFragment
         )
         navController.addOnDestinationChangedListener { nav, destination, _ ->
-            val start = nav.graph.startDestDisplayName
             val destinationsInBackStack =
                 nav.backQueue.joinToString("\n") { dest ->
                     dest.destination.displayName
                 }
             Log.d(
                 "BackStack",
-                "----------------------------------\n$destinationsInBackStack\nstart is $start"
+                "----------------------------------\n$destinationsInBackStack\n"
             )
             if (destination.id in navViewGoneList) navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE

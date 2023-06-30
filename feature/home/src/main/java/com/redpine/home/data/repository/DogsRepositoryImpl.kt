@@ -1,7 +1,5 @@
 package com.redpine.home.data.repository
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.redpine.core.base.FirebaseBaseExceptionNullResponse
@@ -10,7 +8,6 @@ import com.redpine.core.data.DogDto
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.extensions.toDog
 import com.redpine.core.extensions.toDogList
-import com.redpine.home.data.FilteredDogs
 import com.redpine.home.domain.repository.DogsRepository
 import kotlinx.coroutines.tasks.await
 
@@ -24,10 +21,6 @@ class DogsRepositoryImpl(
     private fun getUserId(): String? = firebaseAuth.currentUser?.uid
     private var listFavoriteDogsIds = mutableSetOf<String>()
 
-
-    init {
-        Log.d(TAG, "dogRepo: ")
-    }
     override suspend fun getNewDogs(count: Int): List<Dog> {
         val uid = getUserId()
         val dogsList = database.child(DOGS_NODE)
@@ -154,7 +147,6 @@ class DogsRepositoryImpl(
                 if (dog.id.toString() in listFavoriteDogsIds) dog.isFavorite = true
             }
         }
-        FilteredDogs.filteredDogsList = dogsList.toDogList()
         return dogsList.toDogList()
     }
 

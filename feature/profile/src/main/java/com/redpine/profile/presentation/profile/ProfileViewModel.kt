@@ -2,7 +2,6 @@ package com.redpine.profile.presentation.profile
 
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
-import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.profile.domain.usecase.DeleteAccountUseCase
 import com.redpine.profile.domain.usecase.LogoutUseCase
 import com.redpine.profile.domain.usecase.ProfileInfoUseCase
@@ -18,13 +17,12 @@ class ProfileViewModel @Inject constructor(
     private val profileInfoUseCase: ProfileInfoUseCase,
     private val deleteAccountUseCase: DeleteAccountUseCase,
     private val logoutUseCase: LogoutUseCase,
-    private val authDialogPrefs: AuthDialogPrefs
 ) : BaseViewModel() {
 
     private val _isAuth = MutableStateFlow(false)
     val isAuth = _isAuth.asStateFlow()
 
-    var authDialogIsShown = authDialogPrefs.isShown()
+//    var authDialogIsShown = authDialogPrefs.isShown()
 
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
@@ -37,18 +35,18 @@ class ProfileViewModel @Inject constructor(
     fun checkAuth() {
         viewModelScope.launch(Dispatchers.IO) {
             _isAuth.value = profileInfoUseCase.isUserAuthorized()
-            authDialogIsShown = authDialogPrefs.isShown()
+//            authDialogIsShown = authDialogPrefs.isShown()
             if (_isAuth.value) {
                 _email.value = profileInfoUseCase.getEmail()
             }
         }
     }
 
-    fun resetAuthCheck() {
-        _isAuth.value = false
-    }
+//    fun resetAuthCheck() {
+//        _isAuth.value = false
+//    }
 
-    fun rememberAuthDialogIsShown() = authDialogPrefs.rememberAuthDialogIsShown()
+//    fun rememberAuthDialogIsShown() = authDialogPrefs.rememberAuthDialogIsShown()
 
     fun logout() {
         viewModelScope.launch(Dispatchers.IO) {

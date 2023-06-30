@@ -18,9 +18,9 @@ import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SearchUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SeenListUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SingleNewsUseCaseImpl
+import com.redpine.home.domain.utils.CalendarInstance
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class UseCaseModule {
@@ -74,9 +74,9 @@ class UseCaseModule {
         SeenListUseCaseImpl(dogsRepository)
 
     @Provides
-    @Singleton
     fun providesFilteredDogsUseCase(
         dogsRepository: DogsRepository,
         filtration: FiltrationRepository,
-    ) = FilteredDogsUseCaseImpl(dogsRepository, filtration)
+        calendarInstance: CalendarInstance
+    ) = FilteredDogsUseCaseImpl(dogsRepository, filtration, calendarInstance)
 }

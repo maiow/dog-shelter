@@ -8,6 +8,7 @@ import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainActivity
 import com.redpine.favorites.di.FavoritesDependencies
 import com.redpine.home.di.deps.HomeDependencies
+import com.redpine.home.domain.utils.CalendarInstance
 import com.redpine.profile.di.ProfileDependencies
 import dagger.BindsInstance
 import dagger.Component
@@ -27,6 +28,7 @@ interface AppComponent : ProfileDependencies, FavoritesDependencies, HomeDepende
     override val tokenProvider: TokenProvider
     override val onBoardingPrefs: OnBoardingPrefs
     override val authDialogPrefs: AuthDialogPrefs
+    override val calendarInstance: CalendarInstance
 
     @Component.Builder
     interface Builder {
