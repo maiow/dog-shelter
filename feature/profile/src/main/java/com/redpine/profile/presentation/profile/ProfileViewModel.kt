@@ -22,8 +22,6 @@ class ProfileViewModel @Inject constructor(
     private val _isAuth = MutableStateFlow(false)
     val isAuth = _isAuth.asStateFlow()
 
-//    var authDialogIsShown = authDialogPrefs.isShown()
-
     private val _email = MutableStateFlow("")
     val email = _email.asStateFlow()
 
@@ -35,18 +33,9 @@ class ProfileViewModel @Inject constructor(
     fun checkAuth() {
         viewModelScope.launch(Dispatchers.IO) {
             _isAuth.value = profileInfoUseCase.isUserAuthorized()
-//            authDialogIsShown = authDialogPrefs.isShown()
-            if (_isAuth.value) {
-                _email.value = profileInfoUseCase.getEmail()
-            }
+            if (_isAuth.value) _email.value = profileInfoUseCase.getEmail()
         }
     }
-
-//    fun resetAuthCheck() {
-//        _isAuth.value = false
-//    }
-
-//    fun rememberAuthDialogIsShown() = authDialogPrefs.rememberAuthDialogIsShown()
 
     fun logout() {
         viewModelScope.launch(Dispatchers.IO) {

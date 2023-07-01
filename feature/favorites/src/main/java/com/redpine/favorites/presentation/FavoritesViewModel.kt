@@ -27,6 +27,9 @@ class FavoritesViewModel @Inject constructor(
     private val _foundDog = MutableStateFlow<Dog?>(null)
     val foundDog = _foundDog.asStateFlow()
 
+    private val _isAuth = MutableStateFlow(false)
+    val isAuth = _isAuth.asStateFlow()
+
     fun getDogs() = scopeLaunch {
         _dogs.value = favoritesUseCase.getFavoriteDogs()
     }
@@ -42,6 +45,11 @@ class FavoritesViewModel @Inject constructor(
                 _dogs.value = newList
         }
     }
+
+    fun checkAuth() = scopeLaunch {
+        _isAuth.value = favoritesUseCase.isUserAuthorized()
+    }
+
 
     fun onDogSearchClick(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {

@@ -41,7 +41,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         return binding.root
     }
 
-    protected fun showAuthDialog(messageId: Int, onApplyClick: () -> Unit) {
+    protected fun showDialog(messageId: Int, onApplyClick: () -> Unit) {
         val authDialog = MaterialAlertDialogBuilder(requireContext()).create()
         authDialog.apply {
             setMessage(getString(messageId))

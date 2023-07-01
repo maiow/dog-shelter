@@ -28,12 +28,18 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.checkAuth()
+        viewModel.checkAuth()
         setUserInterface()
         viewModel.getDogs()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
+        flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
+    }
+
+
+    private fun authObserve(auth: Boolean) {
+        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.authFragment) }
     }
 
     private fun loadContent(dogs: List<Dog>) {
@@ -56,14 +62,12 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
     private fun setUserInterface() {
         binding.filterButton.setOnClickListener {
-            val deepLink = NavDeepLinkRequest.Builder
-                .fromUri(Uri.parse("android-app://com.redpine.dogshelter/FilterFragment"))
-                .build()
+            val deepLink =
+                NavDeepLinkRequest.Builder.fromUri(Uri.parse("android-app://com.redpine.dogshelter/FilterFragment"))
+                    .build()
             findNavController().navigate(
                 request = deepLink,
-                navOptions = NavOptions.Builder()
-                    .setPopUpTo(R.id.favorites_nav_graph, true)
-                    .build()
+                navOptions = NavOptions.Builder().setPopUpTo(R.id.favorites_nav_graph, true).build()
             )
         }
 
@@ -87,18 +91,17 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private fun observeSearchResult(dog: Dog?) {
         if (dog == null) binding.noDogs.isVisible = true
         else {
-            findNavController().navigate(R.id.petsCardFragment,
+            findNavController().navigate(
+                R.id.petsCardFragment,
                 Bundle().apply { putParcelable("dog", (dog)) })
         }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
         if (clickableView == ClickableView.DOG) {
-            findNavController().navigate(
-                R.id.petsCardFragment,
+            findNavController().navigate(R.id.petsCardFragment,
                 Bundle().apply { putParcelable("dog", (item as Dog)) })
-        } else
-            viewModel.onLikeClick(clickableView, item.id)
+        } else viewModel.onLikeClick(clickableView, item.id)
     }
 
     override fun onDestroyView() {
