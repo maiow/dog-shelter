@@ -3,6 +3,7 @@ plugins {
     id(Plugins.android)
     id(Plugins.kapt)
     id(Plugins.googleServices)
+    id(Plugins.crashlytics)
 }
 
 android {
@@ -68,6 +69,7 @@ dependencies {
     implementation(Dependence.Firebase.firebaseAuth)
     //implementation(Dependence.Firebase.firebaseCore)
     implementation(Dependence.Firebase.firebaseDatabase)
+    implementation(Dependence.Firebase.firebaseCrashlytics)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.daggerCompiler)

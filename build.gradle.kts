@@ -7,11 +7,8 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.8.21" apply false
     id("com.google.gms.google-services") version "4.3.15" apply false
     id("androidx.navigation.safeargs.kotlin") version "2.5.3" apply false
-
+    id("com.google.firebase.crashlytics") version "2.9.6" apply false
     id("com.github.ben-manes.versions") version "0.46.0" apply false
-
-// Crashlytics Gradle plugin
-//id("com.google.firebase.crashlytics") version "2.9.2" apply false
 }
 
 apply(plugin = "com.github.ben-manes.versions")
@@ -29,6 +26,6 @@ tasks.withType<DependencyUpdatesTask> {
     }
 }
 
-tasks.register<Delete>("clean"){
+tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }
