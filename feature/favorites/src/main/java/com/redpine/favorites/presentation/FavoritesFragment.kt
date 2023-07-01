@@ -67,9 +67,6 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     }
 
     private fun setUserInterface() {
-        binding.filterButton.setOnClickListener {
-            findNavController().navigate(R.id.actionFavoritesToFilter)
-        }
 
         binding.searchView.setSubmitTextListener { query ->
             viewModel.onDogSearchClick(query)

@@ -10,24 +10,16 @@
         android:name="com.redpine.favorites.presentation.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites">
-        <action
-            android:id="@+id/actionFavoritesToFilter"
-            app:destination="@id/filterFragment" />
+
         <action
             android:id="@+id/actionFavoritesToPetsCard"
             app:destination="@id/petsCardFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/filterFragment"
-        android:name="com.redpine.home.presentation.filter.FilterFragment"
-        android:label="FilterFragment" />
-
-    <fragment
         android:id="@+id/authFragment"
         android:name="com.redpine.home.presentation.authorization.auth.AuthFragment"
-        android:label="fragment_auth">
-    </fragment>
+        android:label="fragment_auth" />
 
     <fragment
         android:id="@+id/petsCardFragment"

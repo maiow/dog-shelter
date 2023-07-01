@@ -48,13 +48,15 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         if (isNavigation)
             observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
-    private fun loadingDogInfo(dog: Dog){
+
+    private fun loadingDogInfo(dog: Dog) {
         with(binding) {
             dogsName.text = dog.name
             age.text = dog.age
             color.text = dog.color
             height.text = getString(R.string.height, dog.height)
             story.text = dog.text.replace("<br />", "\n")
+                .replace("""\"""", "\"")
             genderImage.isSelected = dog.isMale
             likeButton.isSelected = dog.isFavorite
             likeButton.setOnClickListener {

@@ -16,7 +16,7 @@
         android:background="@drawable/round_corners_20alfa_btn"
         app:iconifiedByDefault="false"
         app:layout_constrainedWidth="true"
-        app:layout_constraintEnd_toStartOf="@id/filter_button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@android:color/transparent"
@@ -32,16 +32,6 @@
         app:layout_constraintEnd_toEndOf="@+id/search_view"
         app:layout_constraintStart_toStartOf="@+id/search_view"
         app:layout_constraintTop_toBottomOf="@+id/search_view" />
-
-    <ImageButton
-        android:id="@+id/filter_button"
-        style="@style/AppImageButton"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/filter_button"
-        app:layout_constraintBottom_toBottomOf="@id/search_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/search_view"
-        tools:ignore="ContentDescription, SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/title"
