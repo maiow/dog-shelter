@@ -32,9 +32,9 @@ class DogsFoundViewModel @Inject constructor(
     fun onLikeClick(clickableView: ClickableView, id: Int) =
         addToFavorites(clickableView.itemPosition, id)
 
-    fun clearFilters() {
-        filterUseCase.setFilters(null)
-    }
+    fun clearFilters() = filterUseCase.setFilters(null)
+
+    fun getFilters() = filterUseCase.getFilters()
 
     private fun addToFavorites(position: Int, id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -48,6 +48,8 @@ class DogsFoundViewModel @Inject constructor(
             }
         }
     }
+
+    fun onRetryButtonClick() = getDogs()
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false

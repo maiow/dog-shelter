@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.state.LoadState
@@ -13,12 +12,12 @@ import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentDogsFoundBinding
+import com.redpine.home.presentation.filter.FilterFragment
 import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
-    private val args by navArgs<DogsFoundFragmentArgs>()
     private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
@@ -26,7 +25,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setFilterText(args.filterText)
+        setFilterText()
         viewModel.getDogs()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
@@ -41,7 +40,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation) {
-            showDialog(com.redpine.core.R.string.auth_dialog_message) {navigate(R.id.auth_nav_graph)}
+            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
             viewModel.resetNavigateFlow()
         }
     }
@@ -51,22 +50,47 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         else viewModel.onLikeClick(clickableView, item.id)
     }
 
-    private fun navigateToPetsCardFragment(dog: Dog) =
-        findNavController().navigate(
-            DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(dog)
-        )
+    private fun navigateToPetsCardFragment(dog: Dog) = findNavController().navigate(
+        DogsFoundFragmentDirections.actionDogsFoundFragmentToPetsCardFragment(dog)
+    )
 
-    private fun setFilterText(filters: String) {
-        binding.searchParamsView.text = filters
+    private fun setFilterText() {
+        val filters = viewModel.getFilters()
+        binding.searchParamsView.text = if (filters != null) {
+            buildString {
+                append(
+                    if (filters.isMale == null) getString(R.string.any_gender)
+                    else if (!filters.isMale) getString(R.string.girl)
+                    else getString(R.string.boy)
+                )
+                append(getString(R.string.size_for_found) + " ")
+                append(
+                    if (filters.size.isNotEmpty()) filters.size.joinToString(",")
+                    else getString(R.string.any_for_found)
+                )
+                append(getString(R.string.age_for_found) + " ")
+                if (filters.minAge == FilterFragment.MIN_POSSIBLE_AGE &&
+                    filters.maxAge == FilterFragment.MAX_POSSIBLE_AGE
+                ) {
+                    append(getString(R.string.any_for_found))
+                } else {
+                    append(filters.minAge.toString())
+                    append("-")
+                    append(
+                        resources.getQuantityString(
+                            R.plurals.age_data, filters.maxAge, filters.maxAge.toString()
+                        )
+                    )
+                }
+            }
+        } else ""
     }
 
     private fun loadContent(data: List<Item>) {
         adapter.submitList(data)
         binding.title.isVisible = data.isNotEmpty()
         binding.title.text = resources.getQuantityString(
-            R.plurals.found_pets,
-            data.size,
-            data.size
+            R.plurals.found_pets, data.size, data.size
         )
         binding.noneFound.isVisible = data.isEmpty()
     }
@@ -76,7 +100,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
             commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
             connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
             connectionError.retryButton.setOnClickListener {
-                //TODO: handle retry button click
+                viewModel.onRetryButtonClick()
             }
         }
     }

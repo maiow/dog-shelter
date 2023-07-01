@@ -106,41 +106,13 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 color = getColorFilterValues(),
                 character = getCharacterFilterValues()
             )
-            val filtersText = buildFiltersTextForNextScreen(filters)
             viewModel.onApplyButtonClick(filters)
             if (findNavController().previousBackStackEntry?.destination?.id == R.id.dogsFoundFragment)
                 findNavController().popBackStack()
             else
                 findNavController().navigate(
-                    FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(filtersText)
+                    FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment()
                 )
-        }
-    }
-
-    private fun buildFiltersTextForNextScreen(filters: Filters) = buildString {
-        append(
-            if (filters.isMale == null) getString(R.string.any_gender)
-            else if (!filters.isMale) getString(R.string.girl)
-            else getString(R.string.boy)
-        )
-        append(getString(R.string.size_for_found) + " ")
-        append(
-            if (filters.size.isNotEmpty()) filters.size.joinToString(",")
-            else getString(R.string.any_for_found)
-        )
-        append(getString(R.string.age_for_found) + " ")
-        if (filters.minAge == MIN_POSSIBLE_AGE && filters.maxAge == MAX_POSSIBLE_AGE) {
-            append(getString(R.string.any_for_found))
-        } else {
-            append(filters.minAge.toString())
-            append("-")
-            append(
-                resources.getQuantityString(
-                    R.plurals.age_data,
-                    filters.maxAge,
-                    filters.maxAge.toString()
-                )
-            )
         }
     }
 

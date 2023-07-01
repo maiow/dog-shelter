@@ -6,7 +6,8 @@ import com.redpine.home.domain.utils.Filters
 
 class FilterUseCaseImpl(private val filtration: FiltrationRepository) : FilterUseCase {
 
-    override fun setFilters(filters: Filters?) {
-        filtration.setFilters(filters)
-    }
+    override fun setFilters(filters: Filters?) = filtration.setFilters(filters)
+
+    override fun getFilters(): Filters? = filtration.getFilters()
+
 }
