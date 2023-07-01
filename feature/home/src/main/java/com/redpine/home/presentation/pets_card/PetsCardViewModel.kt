@@ -35,10 +35,8 @@ class PetsCardViewModel @Inject constructor(
         sendDogToSeenList(dog.id)
     }
 
-    private fun getDogInfo(dog:Dog){
-        scopeLaunch {
-            _dogInfo.emit(dogInfoUseCase.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
-        }
+    private fun getDogInfo(dog:Dog) = scopeLaunch {
+        _dogInfo.emit(dogInfoUseCase.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
     }
 
     private fun getDogImages(dogId: Int) = scopeLaunch {
@@ -53,9 +51,7 @@ class PetsCardViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             if (likeUseCase.makeLikeDislike(dog.id, !dog.isFavorite))
                 _dogInfo.emit(dog.copy(isFavorite = !dog.isFavorite))
-            else {
-                _isNavigateAuth.value = true
-            }
+            else _isNavigateAuth.value = true
         }
     }
 

@@ -12,6 +12,10 @@ import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentFilterBinding
 import com.redpine.home.domain.utils.Filters
+import com.redpine.home.presentation.INITIAL_MAX_AGE_ON_SLIDER
+import com.redpine.home.presentation.INITIAL_MIN_AGE_ON_SLIDER
+import com.redpine.home.presentation.MAX_POSSIBLE_AGE
+import com.redpine.home.presentation.MAX_SLIDER_AGE
 
 class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
@@ -93,7 +97,6 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         }
     }
 
-
     private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
             val filters = Filters(
@@ -140,12 +143,5 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 if (checkView is CheckBox) checkView.isChecked = false
             }
         }
-    }
-    companion object {
-        const val MIN_POSSIBLE_AGE = 0
-        const val MAX_POSSIBLE_AGE = 20
-        const val MAX_SLIDER_AGE = 12
-        const val INITIAL_MIN_AGE_ON_SLIDER = 3
-        const val INITIAL_MAX_AGE_ON_SLIDER = 6
     }
 }

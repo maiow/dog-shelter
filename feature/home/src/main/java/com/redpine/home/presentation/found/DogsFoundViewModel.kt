@@ -43,9 +43,7 @@ class DogsFoundViewModel @Inject constructor(
                 newList[position].copy(isFavorite = !newList[position].isFavorite)
             if (likeUseCase.makeLikeDislike(id, newList[position].isFavorite))
                 _dogs.value = newList
-            else {
-                _isNavigateAuth.value = true
-            }
+            else _isNavigateAuth.value = true
         }
     }
 

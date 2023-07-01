@@ -12,7 +12,8 @@ import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentDogsFoundBinding
-import com.redpine.home.presentation.filter.FilterFragment
+import com.redpine.home.presentation.MAX_POSSIBLE_AGE
+import com.redpine.home.presentation.MIN_POSSIBLE_AGE
 import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
@@ -69,8 +70,8 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
                     else getString(R.string.any_for_found)
                 )
                 append(getString(R.string.age_for_found) + " ")
-                if (filters.minAge == FilterFragment.MIN_POSSIBLE_AGE &&
-                    filters.maxAge == FilterFragment.MAX_POSSIBLE_AGE
+                if (filters.minAge == MIN_POSSIBLE_AGE &&
+                    filters.maxAge == MAX_POSSIBLE_AGE
                 ) {
                     append(getString(R.string.any_for_found))
                 } else {

@@ -62,9 +62,7 @@ class HomeViewModel @Inject constructor(
             val isSuccessFavorite =
                 likeUseCase.makeLikeDislike(id, firstList[itemPosition].isFavorite)
             if (isSuccessFavorite) _data.value = newData
-            else {
-                _isNavigateAuth.value = true
-            }
+            else _isNavigateAuth.value = true
         }
     }
 
