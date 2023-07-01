@@ -12,8 +12,6 @@ import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentFilterBinding
 import com.redpine.home.domain.utils.Filters
-import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MAX_AGE_ON_SLIDER
-import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MIN_AGE_ON_SLIDER
 
 class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
 
@@ -102,7 +100,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 isMale = getGenderFilterValue(),
                 minAge = getAgeSliderValues().first().toInt(),
                 maxAge =
-                if (getAgeSliderValues().last().toInt() == 12) 20
+                if (getAgeSliderValues().last().toInt() == MAX_SLIDER_AGE) MAX_POSSIBLE_AGE
                 else getAgeSliderValues().last().toInt(),
                 size = getSizeFilterValues(),
                 color = getColorFilterValues(),
@@ -113,7 +111,9 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             if (findNavController().previousBackStackEntry?.destination?.id == R.id.dogsFoundFragment)
                 findNavController().popBackStack()
             else
-            findNavController().navigate(FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(filtersText))
+                findNavController().navigate(
+                    FilterFragmentDirections.actionFilterFragmentToDogsFoundFragment(filtersText)
+                )
         }
     }
 
@@ -129,15 +129,19 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
             else getString(R.string.any_for_found)
         )
         append(getString(R.string.age_for_found) + " ")
-        append(filters.minAge.toString())
-        append("-")
-        append(
-            resources.getQuantityString(
-                R.plurals.age_data,
-                filters.maxAge,
-                filters.maxAge.toString()
+        if (filters.minAge == MIN_POSSIBLE_AGE && filters.maxAge == MAX_POSSIBLE_AGE) {
+            append(getString(R.string.any_for_found))
+        } else {
+            append(filters.minAge.toString())
+            append("-")
+            append(
+                resources.getQuantityString(
+                    R.plurals.age_data,
+                    filters.maxAge,
+                    filters.maxAge.toString()
+                )
             )
-        )
+        }
     }
 
     private fun setClearButton() {
@@ -164,5 +168,12 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
                 if (checkView is CheckBox) checkView.isChecked = false
             }
         }
+    }
+    companion object {
+        const val MIN_POSSIBLE_AGE = 0
+        const val MAX_POSSIBLE_AGE = 20
+        const val MAX_SLIDER_AGE = 12
+        const val INITIAL_MIN_AGE_ON_SLIDER = 3
+        const val INITIAL_MAX_AGE_ON_SLIDER = 6
     }
 }

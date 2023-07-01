@@ -46,7 +46,6 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         adapter.submitList(dogs)
         binding.title.isVisible = dogs.isNotEmpty()
         binding.noneFound.isVisible = dogs.isEmpty()
-        //binding.noDogs.isVisible = false
     }
 
     private fun loadingObserve(loadState: LoadState) {
