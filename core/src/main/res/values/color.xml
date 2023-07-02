@@ -5,6 +5,7 @@
     <color name="green_solid">#2DB79E</color>
     <color name="mint_chats">#90CFC3</color>
     <color name="grey_main">#49454F</color>
+    <color name="grey_main_80_opacity">#CC49454F</color>
     <color name="grey_dark">#333333</color>
     <color name="grey_inactive">#4D470D21</color>
     <color name="white">#FFFFFFFF</color>
