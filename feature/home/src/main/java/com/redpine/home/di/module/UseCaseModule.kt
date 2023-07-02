@@ -3,11 +3,13 @@ package com.redpine.home.di.module
 import com.redpine.core.domain.TokenProvider
 import com.redpine.home.domain.repository.AuthenticationRepository
 import com.redpine.home.domain.repository.DogsRepository
+import com.redpine.home.domain.repository.FiltrationRepository
 import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.impl.AuthTokenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.AuthUseCaseImpl
 import com.redpine.home.domain.usecase.impl.DogInfoUseCaseImpl
 import com.redpine.home.domain.usecase.impl.FilterUseCaseImpl
+import com.redpine.home.domain.usecase.impl.FilteredDogsUseCaseImpl
 import com.redpine.home.domain.usecase.impl.HomeScreenUseCaseImpl
 import com.redpine.home.domain.usecase.impl.LikeUseCaseImpl
 import com.redpine.home.domain.usecase.impl.ListNewsUseCaseImpl
@@ -16,6 +18,7 @@ import com.redpine.home.domain.usecase.impl.ResetPasswordUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SearchUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SeenListUseCaseImpl
 import com.redpine.home.domain.usecase.impl.SingleNewsUseCaseImpl
+import com.redpine.home.domain.utils.CalendarInstance
 import dagger.Module
 import dagger.Provides
 
@@ -55,8 +58,8 @@ class UseCaseModule {
         LikeUseCaseImpl(dogsRepository)
 
     @Provides
-    fun providesFilterUseCase(dogsRepository: DogsRepository) =
-        FilterUseCaseImpl(dogsRepository)
+    fun providesFilterUseCase(filtration: FiltrationRepository) =
+        FilterUseCaseImpl(filtration)
 
     @Provides
     fun providesSearchUseCase(dogsRepository: DogsRepository) =
@@ -69,4 +72,11 @@ class UseCaseModule {
     @Provides
     fun providesSeenListUseCase(dogsRepository: DogsRepository) =
         SeenListUseCaseImpl(dogsRepository)
+
+    @Provides
+    fun providesFilteredDogsUseCase(
+        dogsRepository: DogsRepository,
+        filtration: FiltrationRepository,
+        calendarInstance: CalendarInstance
+    ) = FilteredDogsUseCaseImpl(dogsRepository, filtration, calendarInstance)
 }

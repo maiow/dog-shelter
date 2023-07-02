@@ -2,7 +2,6 @@ package com.redpine.favorites.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
-import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
@@ -20,7 +19,6 @@ class FavoritesViewModel @Inject constructor(
     private val favoritesUseCase: FavoritesUseCase,
     private val dislikeUseCase: DislikeUseCase,
     private val searchUseCase: SearchUseCase,
-    private val authDialogPrefs: AuthDialogPrefs
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
@@ -32,14 +30,9 @@ class FavoritesViewModel @Inject constructor(
     private val _isAuth = MutableStateFlow(false)
     val isAuth = _isAuth.asStateFlow()
 
-    var authDialogIsShown = authDialogPrefs.isShown()
-
-
-    fun getDogInfo() = scopeLaunch {
+    fun getDogs() = scopeLaunch {
         _dogs.value = favoritesUseCase.getFavoriteDogs()
     }
-
-    fun onRetryButtonClick() = getDogInfo()
 
     fun onLikeClick(clickableView: ClickableView, id: Int) =
         deleteFromFavorites(clickableView.itemPosition, id)
@@ -53,6 +46,11 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
+    fun checkAuth() = scopeLaunch {
+        _isAuth.value = favoritesUseCase.isUserAuthorized()
+    }
+
+
     fun onDogSearchClick(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             _loadState.value = LoadState.START
@@ -61,20 +59,5 @@ class FavoritesViewModel @Inject constructor(
             delay(1)
             _foundDog.value = null
         }
-    }
-
-    fun checkAuth() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _isAuth.value = favoritesUseCase.isUserAuthorized()
-            authDialogIsShown = authDialogPrefs.isShown()
-        }
-    }
-
-    fun resetAuthCheck() {
-        _isAuth.value = false
-    }
-
-    fun rememberAuthDialogIsShown() {
-        authDialogPrefs.rememberAuthDialogIsShown()
     }
 }

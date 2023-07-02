@@ -9,12 +9,6 @@ interface DogsRepository {
     suspend fun getDogInfo(id: Int): Dog
     suspend fun sendDogToSeenList(id: Int)
     suspend fun makeLikeDislike(dogId: Int, isLike: Boolean): Boolean
-    suspend fun filterDogs(
-        minAge: String,
-        maxAge: String,
-        gender: String,
-        size: String?,
-        character: String): List<Dog>
     suspend fun getAllDogs(): List<Dog>
     suspend fun searchDogByName(query: String): Dog
 }

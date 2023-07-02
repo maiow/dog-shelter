@@ -1,8 +1,8 @@
-package com.redpine.home.domain.usecase
+package com.redpine.home.domain.repository
 
 import com.redpine.home.domain.utils.Filters
 
-interface FilterUseCase {
+interface FiltrationRepository {
 
     fun setFilters(filters: Filters?)
 

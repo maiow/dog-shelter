@@ -12,5 +12,4 @@ abstract class HomeBaseFragment<B : ViewBinding> : BaseFragment<B>() {
         ViewModelProvider(requireActivity())[HomeComponentViewModel::class.java]
             .moduleComponent
             .viewModelFactory
-
 }

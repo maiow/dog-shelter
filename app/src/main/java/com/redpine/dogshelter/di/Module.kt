@@ -9,6 +9,7 @@ import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainViewModelFactory
+import com.redpine.home.domain.utils.CalendarInstance
 import dagger.Provides
 import javax.inject.Singleton
 
@@ -36,5 +37,8 @@ object Module {
     @Singleton
     fun providesAuthDialogPrefs(context: Context): AuthDialogPrefs = AuthDialogPrefsImpl(context)
 
+    @Provides
+    @Singleton
+    fun providesCalendarInstance(): CalendarInstance = CalendarInstance()
 }
 

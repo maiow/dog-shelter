@@ -9,5 +9,4 @@ class HomeComponentViewModel : ComponentViewModel() {
     override val moduleComponent = DaggerHomeComponent.builder()
         .dependencies(HomeDependenciesProvider.dependencies)
         .build()
-
 }

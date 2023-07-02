@@ -18,10 +18,10 @@
             app:destination="@id/petsCardFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/filterFragment"
-        android:name="com.redpine.home.presentation.filter.FilterFragment"
-        android:label="FilterFragment" />
+<!--    <fragment-->
+<!--        android:id="@+id/filterFragment"-->
+<!--        android:name="com.redpine.home.presentation.filter.FilterFragment"-->
+<!--        android:label="FilterFragment" />-->
 
     <fragment
         android:id="@+id/authFragment"

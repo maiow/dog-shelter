@@ -24,6 +24,7 @@ import javax.inject.Singleton
 interface HomeComponent : DiComponent {
     override val viewModelFactory: ViewModelProvider.Factory
 
+
     @Component.Builder
     interface Builder {
 
