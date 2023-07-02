@@ -1,7 +1,6 @@
 package com.redpine.core.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,32 +37,24 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val destinationsInBackStack =
-            findNavController().backQueue.joinToString("\n") { dest ->
-                dest.destination.displayName
-            }
-        Log.d("BackStack", "----------------------------------\n$destinationsInBackStack")
         _binding = initBinding(inflater)
         return binding.root
     }
 
-    protected fun showAuthDialog(authFragmentId: Int, resetNavigateFlow: () -> Unit) {
+    protected fun showDialog(messageId: Int, onApplyClick: () -> Unit) {
         val authDialog = MaterialAlertDialogBuilder(requireContext()).create()
         authDialog.apply {
-            setMessage(getString(R.string.auth_dialog_message))
+            setMessage(getString(messageId))
             setButton(
                 AlertDialog.BUTTON_NEGATIVE, getString(R.string.auth_dialog_cancel)
             ) { dialog, _ ->
                 dialog.dismiss()
-                resetNavigateFlow()
             }
             setButton(
                 AlertDialog.BUTTON_POSITIVE, getString(R.string.auth_dialog_apply)
             ) { _, _ ->
-                navigate(authFragmentId)
-                resetNavigateFlow()
+                onApplyClick()
             }
-            setOnDismissListener { resetNavigateFlow() }
             show()
         }
     }

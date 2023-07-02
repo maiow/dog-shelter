@@ -1,17 +1,13 @@
 package com.redpine.home.domain.usecase.impl
 
-import com.redpine.core.domain.model.Dog
-import com.redpine.home.domain.repository.DogsRepository
+import com.redpine.home.domain.repository.FiltrationRepository
 import com.redpine.home.domain.usecase.FilterUseCase
+import com.redpine.home.domain.utils.Filters
 
-class FilterUseCaseImpl(private val repository: DogsRepository) : FilterUseCase {
-    override suspend fun filterDogs(
-        minAge: String,
-        maxAge: String,
-        gender: String,
-        size: String?,
-        character: String
-    ): List<Dog> {
-        return repository.filterDogs(minAge, maxAge, gender, size, character)
-    }
+class FilterUseCaseImpl(private val filtration: FiltrationRepository) : FilterUseCase {
+
+    override fun setFilters(filters: Filters?) = filtration.setFilters(filters)
+
+    override fun getFilters(): Filters? = filtration.getFilters()
+
 }

@@ -1,6 +1,7 @@
 package com.redpine.dogshelter.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         (applicationContext as App).appComponent.inject(this)
-        viewModel  = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
@@ -52,7 +53,15 @@ class MainActivity : AppCompatActivity() {
             com.redpine.home.R.id.authMessageFragment,
             com.redpine.home.R.id.filterFragment
         )
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { nav, destination, _ ->
+            val destinationsInBackStack =
+                nav.backQueue.joinToString("\n") { dest ->
+                    dest.destination.displayName
+                }
+            Log.d(
+                "BackStack",
+                "----------------------------------\n$destinationsInBackStack\n"
+            )
             if (destination.id in navViewGoneList) navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE
         }
@@ -61,7 +70,10 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(
                 resId = item.itemId,
                 args = null,
-                navOptions = NavOptions.Builder().setPopUpTo(item.itemId, false).build()
+                navOptions = NavOptions.Builder()
+                    .setPopUpTo(destinationId = item.itemId, inclusive = true)
+                    .setLaunchSingleTop(true)
+                    .build()
             )
         }
     }

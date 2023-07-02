@@ -2,7 +2,6 @@ package com.redpine.home.presentation.pets_card
 
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
-import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.domain.usecase.DogInfoUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
@@ -19,7 +18,6 @@ class PetsCardViewModel @Inject constructor(
     private val dogInfoUseCase: DogInfoUseCase,
     private val seenListUseCase: SeenListUseCase,
     private val likeUseCase: LikeUseCase,
-    private val authDialogPrefs: AuthDialogPrefs,
 ) : BaseViewModel() {
 
     private val _images = MutableSharedFlow<List<String>>()
@@ -31,18 +29,14 @@ class PetsCardViewModel @Inject constructor(
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
-    var authDialogIsShown = authDialogPrefs.isShown()
-
     fun onGettingArgument(dog: Dog) {
         getDogInfo(dog)
         getDogImages(dog.id)
         sendDogToSeenList(dog.id)
     }
 
-    private fun getDogInfo(dog:Dog){
-        scopeLaunch {
-            _dogInfo.emit(dogInfoUseCase.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
-        }
+    private fun getDogInfo(dog:Dog) = scopeLaunch {
+        _dogInfo.emit(dogInfoUseCase.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
     }
 
     private fun getDogImages(dogId: Int) = scopeLaunch {
@@ -57,18 +51,11 @@ class PetsCardViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             if (likeUseCase.makeLikeDislike(dog.id, !dog.isFavorite))
                 _dogInfo.emit(dog.copy(isFavorite = !dog.isFavorite))
-            else {
-                _isNavigateAuth.value = true
-                authDialogIsShown = authDialogPrefs.isShown()
-            }
+            else _isNavigateAuth.value = true
         }
     }
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false
-    }
-
-    fun rememberAuthDialogIsShown() {
-        authDialogPrefs.rememberAuthDialogIsShown()
     }
 }

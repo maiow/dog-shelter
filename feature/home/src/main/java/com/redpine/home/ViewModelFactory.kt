@@ -2,15 +2,13 @@ package com.redpine.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.redpine.api.Api
-import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.OnBoardingPrefs
-import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.repository.OnboardingRepository
 import com.redpine.home.domain.usecase.AuthTokenUseCase
 import com.redpine.home.domain.usecase.AuthUseCase
 import com.redpine.home.domain.usecase.DogInfoUseCase
 import com.redpine.home.domain.usecase.FilterUseCase
+import com.redpine.home.domain.usecase.FilteredDogsUseCase
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.ListNewsUseCase
@@ -33,7 +31,6 @@ import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory @Inject constructor(
-    private val api: Api,
     private val authTokenUseCase: AuthTokenUseCase,
     private val authUseCase: AuthUseCase,
     private val registrationUseCase: RegistrationUseCase,
@@ -43,20 +40,20 @@ class ViewModelFactory @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
     private val listNewsUseCase: ListNewsUseCase,
     private val singleNewsUseCase: SingleNewsUseCase,
-    private val dogsRepository: DogsRepository,
     private val likeUseCase: LikeUseCase,
     private val filterUseCase: FilterUseCase,
     private val searchUseCase: SearchUseCase,
     private val dogInfoUseCase: DogInfoUseCase,
     private val seenListUseCase: SeenListUseCase,
-    private val authDialogPrefs: AuthDialogPrefs,
+    private val filteredDogsUseCase: FilteredDogsUseCase,
 ) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
-        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, searchUseCase, authDialogPrefs) as T
+        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, searchUseCase) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository, onBoardingPrefs) as T
         FilterViewModel::class.java -> FilterViewModel(filterUseCase) as T
-        DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase, authDialogPrefs) as T
-        PetsCardViewModel::class.java -> PetsCardViewModel(dogInfoUseCase, seenListUseCase, likeUseCase, authDialogPrefs) as T
+        DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase, filteredDogsUseCase, filterUseCase) as T
+        PetsCardViewModel::class.java -> PetsCardViewModel(dogInfoUseCase, seenListUseCase, likeUseCase) as T
         NewsListViewModel::class.java -> NewsListViewModel(listNewsUseCase) as T
         SingleNewsViewModel::class.java -> SingleNewsViewModel(singleNewsUseCase) as T
         AuthViewModel::class.java -> AuthViewModel(authUseCase, authTokenUseCase) as T

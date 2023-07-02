@@ -27,26 +27,17 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         viewModel.onGettingArgument(args.dog)
         setUserInterface(args.dog)
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
-        flowObserver(viewModel.dogInfo) {dog -> loadingDogInfo(dog)}
+        flowObserver(viewModel.dogInfo) { dog -> loadingDogInfo(dog) }
         flowObserver(viewModel.imagesList) { imagesList ->
             binding.carouselRecyclerView.adapter = CarouselAdapter(imagesList)
         }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
     }
-
-    private fun observeAuthDialogIsShown(isShown: Boolean) {
-        if (!isShown) {
-            showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
-            viewModel.rememberAuthDialogIsShown()
-        } else {
-            navigate(R.id.auth_nav_graph)
+    private fun observeNavigateAuth(isNavigation: Boolean) {
+        if (isNavigation) {
+            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
             viewModel.resetNavigateFlow()
         }
-    }
-
-    private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation)
-            observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
 
     private fun loadingDogInfo(dog: Dog) {

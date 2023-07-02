@@ -27,32 +27,21 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
         viewModel.checkAuth()
         setUserInterface()
-        viewModel.getDogInfo()
+        viewModel.getDogs()
         binding.recyclerView.adapter = adapter
         flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
     }
 
-    private fun observeAuthDialogIsShown(isShown: Boolean) {
-        if (!isShown) {
-            showAuthDialog(R.id.authFragment) { viewModel.resetAuthCheck() }
-            viewModel.rememberAuthDialogIsShown()
-        } else {
-            viewModel.resetAuthCheck()
-        }
-    }
-
     private fun authObserve(auth: Boolean) {
-        if (!auth)
-            observeAuthDialogIsShown(viewModel.authDialogIsShown)
+        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.authFragment) }
     }
 
     private fun loadContent(dogs: List<Dog>) {
         adapter.submitList(dogs)
         binding.title.isVisible = dogs.isNotEmpty()
         binding.noneFound.isVisible = dogs.isEmpty()
-        //binding.noDogs.isVisible = false
     }
 
     private fun loadingObserve(loadState: LoadState) {
@@ -60,14 +49,13 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
             commonProgress.progressBar.isVisible = loadState == LoadState.LOADING
             connectionError.error.isVisible = loadState == LoadState.ERROR_NETWORK
             connectionError.retryButton.setOnClickListener {
-                viewModel.onRetryButtonClick()
+                viewModel.getDogs()
             }
             noDogs.isVisible = loadState == LoadState.NULL_SEARCH
         }
     }
 
     private fun setUserInterface() {
-
         binding.searchView.setSubmitTextListener { query ->
             viewModel.onDogSearchClick(query)
             flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
@@ -88,18 +76,17 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     private fun observeSearchResult(dog: Dog?) {
         if (dog == null) binding.noDogs.isVisible = true
         else {
-            findNavController().navigate(R.id.actionFavoritesToPetsCard,
+            findNavController().navigate(
+                R.id.petsCardFragment,
                 Bundle().apply { putParcelable("dog", (dog)) })
         }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
         if (clickableView == ClickableView.DOG) {
-            findNavController().navigate(
-                R.id.actionFavoritesToPetsCard,
+            findNavController().navigate(R.id.petsCardFragment,
                 Bundle().apply { putParcelable("dog", (item as Dog)) })
-        } else
-            viewModel.onLikeClick(clickableView, item.id)
+        } else viewModel.onLikeClick(clickableView, item.id)
     }
 
     override fun onDestroyView() {

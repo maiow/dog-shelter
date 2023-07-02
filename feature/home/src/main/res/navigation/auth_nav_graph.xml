@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_authFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="dog_shelter/auth" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"

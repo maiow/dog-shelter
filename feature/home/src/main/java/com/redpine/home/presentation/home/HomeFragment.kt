@@ -47,7 +47,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
             ClickableView.DOG_ALL_BUTTON -> {
                 viewModel.onAllDogsClick()
-                navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment(getString(R.string.all_dogs)))
+                navigate(HomeFragmentDirections.actionHomeFragmentToDogsFoundFragment())
             }
 
             ClickableView.NEWS_ALL_BUTTON ->
@@ -62,20 +62,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             }
         }
     }
-
-    private fun observeAuthDialogIsShown(isShown: Boolean) {
-        if (!isShown) {
-            showAuthDialog(R.id.auth_nav_graph) { viewModel.resetNavigateFlow() }
-            viewModel.rememberAuthDialogIsShown()
-        } else {
-            navigate(R.id.auth_nav_graph)
+    private fun observeNavigateAuth(isNavigation: Boolean) {
+        if (isNavigation) {
+            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
             viewModel.resetNavigateFlow()
         }
-    }
-
-    private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation)
-            observeAuthDialogIsShown(viewModel.authDialogIsShown)
     }
 
     private fun observeData(data: List<Grid>) {
