@@ -14,12 +14,11 @@
         <action
             android:id="@+id/actionFavoritesToPetsCard"
             app:destination="@id/petsCardFragment" />
-    </fragment>
 
-    <fragment
-        android:id="@+id/authFragment"
-        android:name="com.redpine.home.presentation.authorization.auth.AuthFragment"
-        android:label="fragment_auth" />
+        <action
+            android:id="@+id/actionFavoritesToAuth"
+            app:destination="@+id/auth_nav_graph" />
+    </fragment>
 
     <fragment
         android:id="@+id/petsCardFragment"

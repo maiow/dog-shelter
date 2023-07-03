@@ -23,8 +23,6 @@ class NewsListViewModel @Inject constructor(
         getNewsList()
     }
 
-    //TODO: нужна проверка на непустой список и если пришел пустой, добавить обработку
-// newsResponse.exception, показывать юзеру что-то про состояние сети
     private fun getNewsList() = scopeLaunch {
         _data.value = listNewsUseCase.getNewsList()
     }

@@ -35,7 +35,9 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     }
 
     private fun authObserve(auth: Boolean) {
-        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.authFragment) }
+        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) {
+            navigate(R.id.actionFavoritesToAuth)
+        }
     }
 
     private fun loadContent(dogs: List<Dog>) {

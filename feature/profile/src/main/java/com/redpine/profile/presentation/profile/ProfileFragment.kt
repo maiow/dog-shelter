@@ -62,7 +62,9 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
     }
 
     private fun observeAuth(auth: Boolean) {
-        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.actionProfileToAuth) }
+        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) {
+            navigate(R.id.actionProfileToAuth)
+        }
         with(binding) {
             layoutEmail.isVisible = auth
             logoutButton.isVisible = auth

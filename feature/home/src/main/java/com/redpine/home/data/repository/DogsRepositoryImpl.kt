@@ -16,8 +16,6 @@ class DogsRepositoryImpl(
     private val firebaseAuth: FirebaseAuth
 ) : DogsRepository {
 
-    /** подумать, для какого экрана может быть нужно в случае нулл кидать ошибку и
-     * во вью модели ее обрабатывать, и что именно показывать юзеру*/
     private fun getUserId(): String? = firebaseAuth.currentUser?.uid
     private var listFavoriteDogsIds = mutableSetOf<String>()
 
@@ -63,8 +61,6 @@ class DogsRepositoryImpl(
     override suspend fun getRecentSeenDogs(count: Int): List<Dog> {
         val listRecentSeenDogsDto = mutableListOf<DogDto>()
         val uid = getUserId()
-        //TODO: поменять на val uid = getUserId() ?: throw NullPointerException() с обработкой во
-        // вью модели и показом чего-то на экране
         if (uid != null) {
             val listSeenIds = mutableSetOf<String>()
             database

@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.view.children
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
+import com.redpine.core.extensions.onClickToPopBackStack
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentFilterBinding
@@ -91,11 +92,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         return characterFilter
     }
 
-    private fun setCloseButton() {
-        binding.filterCloseBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
+    private fun setCloseButton() = binding.filterCloseBtn.onClickToPopBackStack()
 
     private fun setApplyButton() {
         binding.applyBtn.setOnClickListener {
