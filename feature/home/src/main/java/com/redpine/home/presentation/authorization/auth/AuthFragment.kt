@@ -10,7 +10,6 @@ import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentAuthBinding
-import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
 class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
 
@@ -35,14 +34,10 @@ class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
 
     }
 
-    private fun validationButton() {
-        binding.editEmail.onTextChanged { email ->
-            viewModel.validation(email, TypeAuthListener.EMAIL)
-        }
-        binding.editPassword.onTextChanged { email ->
-            viewModel.validation(email, TypeAuthListener.PASSWORD)
-        }
+    private fun validationButton() = binding.editEmail.onTextChanged { email ->
+        viewModel.validation(email)
     }
+
 
     private fun onClickAuthButton() = binding.authButton.setOnClickListener {
         viewModel.startAuth(binding.editEmail.text.toString(), binding.editPassword.text.toString())

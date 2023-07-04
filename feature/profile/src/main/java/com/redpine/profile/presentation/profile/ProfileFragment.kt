@@ -17,6 +17,7 @@ import com.redpine.profiler.databinding.FragmentProfileBinding
 class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
 
     private val viewModel: ProfileViewModel by lazy { initViewModel() }
+    private var justLoggedOut = false
 
     override fun initBinding(inflater: LayoutInflater) = FragmentProfileBinding.inflate(inflater)
 
@@ -59,10 +60,11 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
             reenterPassword.isVisible = result == UserActionResult.REAUTH_FAILED
             layoutPassword.isVisible = result == UserActionResult.REAUTH_FAILED
         }
+        justLoggedOut = result == UserActionResult.ACCOUNT_DELETED || result == UserActionResult.LOGOUT
     }
 
     private fun observeAuth(auth: Boolean) {
-        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) {
+        if (!auth && !justLoggedOut) showDialog(com.redpine.core.R.string.auth_dialog_message) {
             navigate(R.id.actionProfileToAuth)
         }
         with(binding) {
