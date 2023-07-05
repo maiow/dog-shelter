@@ -20,4 +20,10 @@
         android:fontWeight="700"
         tools:targetApi="o" />
 
+    <font
+        android:font="@font/sf_ui_text_regular"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        tools:targetApi="o" />
+
 </font-family>

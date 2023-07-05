@@ -27,5 +27,6 @@ object Dependence {
         const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
         const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
         const val firebaseDatabase = "com.google.firebase:firebase-database-ktx"
+        const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     }
 }

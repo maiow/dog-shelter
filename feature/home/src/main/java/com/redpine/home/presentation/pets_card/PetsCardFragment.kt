@@ -47,6 +47,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
             color.text = dog.color
             height.text = getString(R.string.height, dog.height)
             story.text = dog.text.replace("<br />", "\n")
+                .replace("""\"""", "\"")
             genderImage.isSelected = dog.isMale
             likeButton.isSelected = dog.isFavorite
             likeButton.setOnClickListener {

@@ -1,12 +1,9 @@
 package com.redpine.favorites.presentation
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
@@ -37,9 +34,10 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
     }
 
-
     private fun authObserve(auth: Boolean) {
-        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.authFragment) }
+        if (!auth) showDialog(com.redpine.core.R.string.auth_dialog_message) {
+            navigate(R.id.actionFavoritesToAuth)
+        }
     }
 
     private fun loadContent(dogs: List<Dog>) {
@@ -60,16 +58,6 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
     }
 
     private fun setUserInterface() {
-        binding.filterButton.setOnClickListener {
-            val deepLink =
-                NavDeepLinkRequest.Builder.fromUri(Uri.parse("android-app://com.redpine.dogshelter/FilterFragment"))
-                    .build()
-            findNavController().navigate(
-                request = deepLink,
-                navOptions = NavOptions.Builder().setPopUpTo(R.id.favorites_nav_graph, true).build()
-            )
-        }
-
         binding.searchView.setSubmitTextListener { query ->
             viewModel.onDogSearchClick(query)
             flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }

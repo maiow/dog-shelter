@@ -2,7 +2,7 @@
 **Kotlin Android mobile application** for Red Pine dog shelter based in Moscow, Russia.
 
 It is a **work in progress** 🚧.
-<br />![](https://geps.dev/progress/80?dangerColor=800000&warningColor=ff9900&successColor=006600)
+<br />![](https://geps.dev/progress/90?dangerColor=800000&warningColor=ff9900&successColor=006600)
 
 What we've used here:
 - Modularization
@@ -17,5 +17,7 @@ What we've used here:
 - Adaptive Layouts - Constraint Layout
 - Firebase Auth, Storage, Realtime database
 - Custom Delegate Adapters
-- Stream Chat - left in 'chat' branch for history as Stream is not granting free-of-charge plans anymore, this to be replaced by own chat
-- Much more is coming...
+- Coroutines, Flow
+
+To be added:
+- Chat on [Stream Chat Android SDK](https://getstream.io/)

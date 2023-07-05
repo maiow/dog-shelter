@@ -104,11 +104,11 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         binding.searchView.setSubmitTextListener { query ->
             viewModel.onDogSearchClick(query)
         }
-        /**клик на лупу*/
+
         binding.searchView.setOnClickListener {
             binding.noDogs.isVisible = false
         }
-        /**клик на крестик*/
+
         val searchCloseButton: View =
             binding.searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
         searchCloseButton.setOnClickListener {

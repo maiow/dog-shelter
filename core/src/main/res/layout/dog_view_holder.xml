@@ -2,11 +2,11 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dog_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginBottom="16dp"
-    android:id="@+id/dog_card">
+    android:layout_marginBottom="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,30 +18,43 @@
             android:layout_width="200dp"
             android:layout_height="130dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/dog_card" />
+            app:srcCompat="@drawable/dog_card"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/dogName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:drawablePadding="7dp"
-            android:text="TextView"
-            app:drawableEndCompat="@drawable/selector_petscard_gender" />
+            android:fontFamily="@font/century_gothic"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:drawableEndCompat="@drawable/selector_dogview_gender"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/dogHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Height" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/sf_ui_text_regular"
+            android:textColor="@color/grey_main_80_opacity"
+            android:textSize="14sp"
+            tools:text="Height" />
 
         <TextView
             android:id="@+id/dogAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView" />
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/sf_ui_text_regular"
+            android:textColor="@color/grey_main_80_opacity"
+            android:textSize="14sp"
+            tools:text="TextView" />
     </LinearLayout>
 
     <ImageButton
@@ -49,10 +62,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="15dp"
-        app:srcCompat="@drawable/selector_favorites"
         android:background="@null"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="16dp"
+        app:srcCompat="@drawable/selector_favorites"
+        tools:ignore="ContentDescription" />
 </com.google.android.material.card.MaterialCardView>

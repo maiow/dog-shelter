@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.textfield.TextInputEditText
+import com.redpine.core.R
 import java.util.Locale
 
 fun String.emailValidation() =
@@ -26,7 +27,6 @@ fun TextInputEditText.onTextChanged(action: (text: String) -> Unit) =
         action(text.toString())
     }
 
-//TODO: использовать или удалить
 fun View.onClickToPopBackStack() {
     this.setOnClickListener {
         findNavController().popBackStack()
@@ -36,7 +36,7 @@ fun View.onClickToPopBackStack() {
 fun ImageView.loadImage(urls: String) {
     Glide.with(this)
         .load(urls)
-        .error(android.R.drawable.ic_delete)
+        .error(R.drawable.ic_no_photo)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .placeholder(android.R.drawable.ic_menu_camera)
         .centerCrop()

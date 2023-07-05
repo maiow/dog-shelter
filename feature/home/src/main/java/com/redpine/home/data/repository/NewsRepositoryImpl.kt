@@ -10,7 +10,7 @@ class NewsRepositoryImpl(private val database: DatabaseReference) : NewsReposito
 
     override suspend fun getNewsList(): List<News> {
         val newsList = database
-            .child("news")
+            .child(NEWS_NODE)
             .get()
             .await()
             .children.map { snapShot -> snapShot.getValue(News::class.java) ?: News() }
@@ -19,12 +19,15 @@ class NewsRepositoryImpl(private val database: DatabaseReference) : NewsReposito
 
     override suspend fun getSingleNews(id: Int): News {
         val news = database
-            .child("news")
-            .child("news$id")
+            .child(NEWS_NODE)
+            .child(NEWS_NODE + id)
             .get()
             .await()
             .getValue(News::class.java)
         if (news != null) return news else throw FirebaseBaseExceptionNullResponse()
     }
 
+    private companion object {
+        const val NEWS_NODE = "news"
+    }
 }

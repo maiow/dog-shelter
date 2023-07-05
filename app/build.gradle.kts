@@ -3,6 +3,7 @@ plugins {
     id(Plugins.android)
     id(Plugins.kapt)
     id(Plugins.googleServices)
+    id(Plugins.crashlytics)
 }
 
 android {
@@ -25,10 +26,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
-//        debug {
-//            isMinifyEnabled = false
-//            applicationIdSuffix = ".beta"
-//        }
     }
     compileOptions {
         sourceCompatibility = Config.javaVersion
@@ -66,8 +63,8 @@ dependencies {
     implementation(platform(Dependence.Firebase.firebaseBom))
     implementation(Dependence.Firebase.firebaseAnalytics)
     implementation(Dependence.Firebase.firebaseAuth)
-    //implementation(Dependence.Firebase.firebaseCore)
     implementation(Dependence.Firebase.firebaseDatabase)
+    implementation(Dependence.Firebase.firebaseCrashlytics)
 
     implementation(Dependence.Di.dagger)
     kapt(Dependence.Di.daggerCompiler)
