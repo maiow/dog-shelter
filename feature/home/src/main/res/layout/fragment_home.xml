@@ -88,25 +88,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="113dp"
                 android:layout_marginBottom="32dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/btnVK"
                     style="@style/AppImageButton"
-                    android:layout_gravity="start"
+                    android:layout_marginHorizontal="32dp"
                     android:src="@drawable/socials_vk" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/btnTG"
                     style="@style/AppImageButton"
-                    android:layout_gravity="end"
+                    android:layout_marginHorizontal="32dp"
                     android:src="@drawable/socials_tg" />
 
             </LinearLayout>
