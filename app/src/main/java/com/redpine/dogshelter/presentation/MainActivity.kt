@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         if (viewModel.isOnboardingShown) {
+            if(navController.currentDestination?.id != com.redpine.home.R.id.onboardingFragment) return
             navController.navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
             navController.graph.setStartDestination(com.redpine.home.R.id.home_nav_graph)
         }
