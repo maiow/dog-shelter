@@ -84,7 +84,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
                     )
                 }
             }
-        } else ""
+        } else getString(R.string.all_shelter_dogs)
     }
 
     private fun loadContent(data: List<Item>) {
