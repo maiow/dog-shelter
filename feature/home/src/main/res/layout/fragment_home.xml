@@ -93,16 +93,22 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnVK"
+                    android:id="@+id/vk_button"
                     style="@style/AppImageButton"
-                    android:layout_marginHorizontal="32dp"
+                    android:layout_marginHorizontal="24dp"
                     android:src="@drawable/socials_vk" />
 
                 <ImageButton
-                    android:id="@+id/btnTG"
+                    android:id="@+id/tg_button"
                     style="@style/AppImageButton"
-                    android:layout_marginHorizontal="32dp"
+                    android:layout_marginHorizontal="24dp"
                     android:src="@drawable/socials_tg" />
+
+                <ImageButton
+                    android:id="@+id/zen_button"
+                    style="@style/AppImageButton"
+                    android:layout_marginHorizontal="24dp"
+                    android:src="@drawable/socials_zen" />
 
             </LinearLayout>
 

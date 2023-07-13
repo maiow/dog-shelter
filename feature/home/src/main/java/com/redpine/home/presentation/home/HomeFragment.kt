@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.extensions.setSubmitTextListener
@@ -87,14 +86,17 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun setUserInterface() {
         setSearching()
-        binding.filterButton.setOnClickListener {
-            navigate(HomeFragmentDirections.actionHomeFragmentToFilterFragment())
+        with(binding) {
+            filterButton.setOnClickListener {
+                navigate(HomeFragmentDirections.actionHomeFragmentToFilterFragment())
+            }
+            helpButton.setOnClickListener {
+                navigate(R.id.action_homeFragment_to_helpFragment)
+            }
+            vkButton.setOnClickListener { onSocialClick(VK_URI) }
+            tgButton.setOnClickListener { onSocialClick(TG_URI) }
+            zenButton.setOnClickListener { onSocialClick(Zen_URI) }
         }
-        binding.helpButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_helpFragment)
-        }
-        binding.btnVK.setOnClickListener { onSocialClick(VK_URI) }
-        binding.btnTG.setOnClickListener { onSocialClick(TG_URI) }
     }
 
     private fun onSocialClick(uri: String) {
@@ -120,8 +122,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun observeSearchResult(dog: Dog?) {
         if (dog == null) binding.noDogs.isVisible = true
-        else findNavController()
-            .navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(dog))
+        else navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(dog))
     }
 
     override fun onDestroyView() {
@@ -132,5 +133,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     private companion object {
         const val VK_URI = "https://vk.com/redpine"
         const val TG_URI = "https://t.me/priutKS"
+        const val Zen_URI = "https://dzen.ru/schastye_eto_sobaki"
     }
 }
