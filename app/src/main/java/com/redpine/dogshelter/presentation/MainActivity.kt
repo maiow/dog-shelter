@@ -1,7 +1,6 @@
 package com.redpine.dogshelter.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         if (viewModel.isOnboardingShown) {
+            if(navController.currentDestination?.id != com.redpine.home.R.id.onboardingFragment) return
             navController.navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
             navController.graph.setStartDestination(com.redpine.home.R.id.home_nav_graph)
         }
@@ -53,15 +53,15 @@ class MainActivity : AppCompatActivity() {
             com.redpine.home.R.id.authMessageFragment,
             com.redpine.home.R.id.filterFragment
         )
-        navController.addOnDestinationChangedListener { nav, destination, _ ->
-            val destinationsInBackStack =
-                nav.backQueue.joinToString("\n") { dest ->
-                    dest.destination.displayName
-                }
-            Log.d(
-                "BackStack",
-                "----------------------------------\n$destinationsInBackStack\n"
-            )
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            val destinationsInBackStack =
+//                nav.backQueue.joinToString("\n") { dest ->
+//                    dest.destination.displayName
+//                }
+//            Log.d(
+//                "BackStack",
+//                "----------------------------------\n$destinationsInBackStack\n"
+//            )
             if (destination.id in navViewGoneList) navView.visibility = View.GONE
             else navView.visibility = View.VISIBLE
         }

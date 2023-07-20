@@ -49,7 +49,7 @@ fun SearchView.setSubmitTextListener(block: (query: String) -> Unit) {
 
         override fun onQueryTextSubmit(query: String): Boolean {
             if (query.isNotEmpty()) {
-                val capitalizedQuery = query.replaceFirstChar {
+                val capitalizedQuery = query.trim().replaceFirstChar {
                     if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString()
                 }
                 block(capitalizedQuery)

@@ -30,9 +30,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     }
 
-    private fun rememberOnBoardingIsShown() {
-        viewModel.rememberOnBoardingIsShown()
-    }
+    private fun rememberOnBoardingIsShown() = viewModel.rememberOnBoardingIsShown()
 
     private fun setAdapter() {
         adapter.setItems(viewModel.list)
@@ -41,17 +39,20 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
     }
 
     private fun onClickNextButton() {
+        var clicksCount = 0
         binding.nextButton.setOnClickListener {
+            clicksCount++
             binding.viewPager.currentItem++
+            if (clicksCount == 3) { navigateToHome() }
         }
     }
 
-    private fun onClickSkipButton() {
-        binding.skip.setOnClickListener {
-            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
-            findNavController().graph.setStartDestination(R.id.home_nav_graph)
-            // TODO: сделать ресурсы навигации в core
-        }
+    private fun onClickSkipButton() = binding.skip.setOnClickListener { navigateToHome() }
+
+    private fun navigateToHome() {
+        findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
+        findNavController().graph.setStartDestination(R.id.home_nav_graph)
+        // TODO: сделать ресурсы навигации в core
     }
 
     override fun onDestroyView() {

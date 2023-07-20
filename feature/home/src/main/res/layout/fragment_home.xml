@@ -88,26 +88,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="113dp"
                 android:layout_marginBottom="32dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnVK"
+                    android:id="@+id/vk_button"
                     style="@style/AppImageButton"
-                    android:layout_gravity="start"
+                    android:layout_marginHorizontal="24dp"
                     android:src="@drawable/socials_vk" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <ImageButton
+                    android:id="@+id/tg_button"
+                    style="@style/AppImageButton"
+                    android:layout_marginHorizontal="24dp"
+                    android:src="@drawable/socials_tg" />
 
                 <ImageButton
-                    android:id="@+id/btnTG"
+                    android:id="@+id/zen_button"
                     style="@style/AppImageButton"
-                    android:layout_gravity="end"
-                    android:src="@drawable/socials_tg" />
+                    android:layout_marginHorizontal="24dp"
+                    android:src="@drawable/socials_zen" />
 
             </LinearLayout>
 

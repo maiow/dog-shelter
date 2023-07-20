@@ -75,7 +75,7 @@
     <string name="gets_along">ладит с\u0020</string>
     <string name="follow_us">Мы в соцсетях</string>
     <string name="news">Новости</string>
-
+    <string name="all_shelter_dogs">Все собаки приюта</string>
 
     <plurals name="found_pets">
         <item quantity="one">Найдена %1$d собака</item>
