@@ -26,6 +26,7 @@
                 android:id="@+id/filter_close_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mini_margin"
                 android:background="?attr/backgroundColor"
                 android:clickable="true"
                 android:focusable="true"
@@ -38,6 +39,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/filter"
                 android:textColor="@color/green_solid"
@@ -45,7 +47,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/gender"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_close_btn" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -293,18 +295,11 @@
                 app:layout_constraintTop_toBottomOf="@id/characterFilter" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cb_kids"
-                style="@style/Checkbox"
-                android:text="@string/kids"
-                app:layout_constraintStart_toStartOf="@id/dog_color"
-                app:layout_constraintTop_toBottomOf="@+id/gets_along_with" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_dogs"
                 style="@style/Checkbox"
                 android:text="@string/dogs"
                 app:layout_constraintStart_toStartOf="@id/dog_color"
-                app:layout_constraintTop_toBottomOf="@+id/cb_kids" />
+                app:layout_constraintTop_toBottomOf="@+id/gets_along_with" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cb_cats"

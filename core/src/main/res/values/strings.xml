@@ -19,7 +19,7 @@
 
     <string name="auth_dialog_message">You must be logged in to add a pet to your favorites</string>
     <string name="auth_dialog_cancel">Cancel</string>
-    <string name="auth_dialog_apply">Apply</string>
+    <string name="auth_dialog_apply">OK</string>
 
     <string name="e_mail" translatable="false">e-mail</string>
     <string name="password">Password</string>

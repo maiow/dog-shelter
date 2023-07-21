@@ -24,7 +24,6 @@
     <string name="active">Активный</string>
     <string name="calm">Спокойный</string>
     <string name="gets_along_with">С кем ладит</string>
-    <string name="kids">С детьми</string>
     <string name="dogs">С другими собаками</string>
     <string name="cats">С кошками</string>
     <string name="apply">Применить</string>
@@ -45,7 +44,7 @@
 
     <string name="password_helper">* Пароль должен:\n
         - состоять из цифр и латинских букв;\n
-        - быть не короче 8-ми символов;\n
+        - быть не короче 8 символов;\n
         - содержать хотя бы 1 заглавную букву;\n
         - содержать хотя бы 1 строчную букву;\n
         - содержать хотя бы 1 цифру</string>

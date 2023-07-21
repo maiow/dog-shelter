@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        tools:text="Викки"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Викки" />
 
     <ImageButton
         android:id="@+id/back_button"
@@ -91,12 +91,12 @@
                 android:background="@drawable/petscard_info_bg"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                tools:text="3 года"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/height"
                 app:layout_constraintStart_toEndOf="@id/gender_image"
-                app:layout_constraintTop_toBottomOf="@id/carousel_recycler_view" />
+                app:layout_constraintTop_toBottomOf="@id/carousel_recycler_view"
+                tools:text="3 года" />
 
             <TextView
                 android:id="@+id/height"
@@ -108,12 +108,12 @@
                 android:backgroundTint="@color/blue"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                tools:text="66 см"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/color"
                 app:layout_constraintStart_toEndOf="@id/age"
-                app:layout_constraintTop_toBottomOf="@id/carousel_recycler_view" />
+                app:layout_constraintTop_toBottomOf="@id/carousel_recycler_view"
+                tools:text="66 см" />
 
             <TextView
                 android:id="@+id/color"
@@ -125,12 +125,12 @@
                 android:backgroundTint="@color/cream"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                tools:text="Светлый"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/height"
-                app:layout_constraintTop_toBottomOf="@id/carousel_recycler_view" />
+                app:layout_constraintTop_toBottomOf="@id/carousel_recycler_view"
+                tools:text="Светлый" />
 
             <TextView
                 android:id="@+id/gets_along_cats"
@@ -172,7 +172,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
                 android:text="@string/story"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/gets_along_cats"
@@ -183,13 +182,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/layout_bg"
                 android:padding="16dp"
-                tools:text="@string/test_text"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_story" />
+                app:layout_constraintTop_toBottomOf="@+id/title_story"
+                tools:text="@string/test_text" />
 
             <Button
                 android:id="@+id/curator_button"

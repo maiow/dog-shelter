@@ -19,22 +19,16 @@
         android:textAlignment="center"
         android:textSize="22sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/layout_email"
+        style="@style/EmailTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="42dp"
         android:layout_marginBottom="16dp"
-        android:hint="@string/e_mail"
-        app:endIconMode="clear_text">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:minHeight="52dp"
+        android:paddingStart="@dimen/standard_margin"
+        tools:text="@string/e_mail" />
 
     <TextView
         android:id="@+id/reenter_password"

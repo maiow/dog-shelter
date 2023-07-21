@@ -15,6 +15,8 @@
         android:layout_marginEnd="14dp"
         android:background="@drawable/round_corners_20alfa_btn"
         android:gravity="center"
+        android:paddingStart="@dimen/mini_margin"
+        android:paddingEnd="@dimen/mini_margin"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/filter_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,16 +60,16 @@
 
     <TextView
         android:id="@+id/none_found"
+        style="@style/FilterTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/none_found"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/title"
-        style="@style/FilterTitle"
-        tools:text="По заданным параметрам не найдено ни одной собаки, попробуйте изменить параметры поиска."
-        android:visibility="gone"/>
+        tools:text="По заданным параметрам не найдено ни одной собаки, попробуйте изменить параметры поиска." />
 
     <include
         android:id="@+id/common_progress"
