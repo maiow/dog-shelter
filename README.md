@@ -2,7 +2,7 @@
 **Kotlin Android mobile application** for Red Pine dog shelter based in Moscow, Russia.
 
 GooglePlay:
-[https://play.google.com/store/apps/details?id=com.redpine.dogshelter](url)
+[https://play.google.com/store/apps/details?id=com.redpine.dogshelter](https://play.google.com/store/apps/details?id=com.redpine.dogshelter)
 
 And it is still a work in progress 🚧.
 
