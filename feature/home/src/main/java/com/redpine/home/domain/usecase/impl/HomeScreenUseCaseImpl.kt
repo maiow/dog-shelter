@@ -14,10 +14,10 @@ class HomeScreenUseCaseImpl(
     private val newsRepository: NewsRepository,
 ) : HomeScreenUseCase {
 
-    override suspend fun getHomeScreenItems(newCount: Int, seenCount: Int): List<Grid> {
+    override suspend fun getHomeScreenItems(newCount: Int, seenCount: Int, newsCount: Int): List<Grid> {
         val listNewDog = dogsRepository.getNewDogs(newCount)
         val listRecentSeenDog = dogsRepository.getRecentSeenDogs(seenCount)
-        val listNews = newsRepository.getNewsList()
+        val listNews = newsRepository.getNewsList(newsCount)
 
         return if (listRecentSeenDog.isNotEmpty())
             listOf(
