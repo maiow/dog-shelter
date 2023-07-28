@@ -135,6 +135,7 @@ class DogsRepositoryImpl(
         val uid = getUserId()
         val dogsList = database
             .child(DOGS_NODE)
+            .orderByChild(ID)
             .get().await()
             .children.map { snapShot -> snapShot.getValue(DogDto::class.java) ?: DogDto() }
         if (uid != null) {
@@ -143,7 +144,7 @@ class DogsRepositoryImpl(
                 if (dog.id.toString() in listFavoriteDogsIds) dog.isFavorite = true
             }
         }
-        return dogsList.toDogList()
+        return dogsList.toDogList().reversed()
     }
 
     override suspend fun searchDogByName(query: String): Dog {
