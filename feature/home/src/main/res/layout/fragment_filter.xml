@@ -336,6 +336,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer" />
 
+    <!--
+        android:textSize="20sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeStepGranularity="2sp"-->
+
     <Button
         android:id="@+id/clear_btn"
         style="@style/Widget.DogShelter.Button.ElevatedButton.LightGreenButton"
