@@ -330,18 +330,13 @@
         android:layout_marginEnd="8dp"
         android:stateListAnimator="@null"
         android:text="@string/apply"
+        android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/clear_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer" />
-
-    <!--
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="12sp"
-        app:autoSizeMaxTextSize="20sp"
-        app:autoSizeStepGranularity="2sp"-->
+        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer"
+        tools:ignore="SpUsage" />
 
     <Button
         android:id="@+id/clear_btn"
@@ -351,10 +346,12 @@
         android:layout_marginEnd="16dp"
         android:stateListAnimator="@null"
         android:text="@string/clear"
+        android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/apply_btn"
-        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer" />
+        app:layout_constraintTop_toTopOf="@id/bottom_buttons_layer"
+        tools:ignore="SpUsage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

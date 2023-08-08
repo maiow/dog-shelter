@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     private var _binding: B? = null
-    protected val binding get() = _binding!!
+    protected val binding get() = requireNotNull(_binding) { "binding is not initialized yet" }
 
     protected abstract fun initBinding(inflater: LayoutInflater): B?
 
