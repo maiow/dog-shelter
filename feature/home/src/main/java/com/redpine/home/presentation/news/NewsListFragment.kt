@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.redpine.core.domain.model.Item
-import com.redpine.core.domain.model.News
 import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentNewsListBinding
@@ -14,14 +13,15 @@ import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
     private val viewModel: NewsListViewModel by lazy { initViewModel() }
-    private val adapter by lazy { ItemAdapter(::onItemClick) }
+
     override fun initBinding(inflater: LayoutInflater) = FragmentNewsListBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        flowObserver(viewModel.data) { news -> observeData(news) }
-        setAdapter()
+        val adapter by lazy { ItemAdapter(::onItemClick) }
+        binding.recycler.adapter = adapter
+        flowObserver(viewModel.data) { news -> adapter.submitList(news) }
     }
 
     private fun onItemClick(clickableView: ClickableView, item: Item) {
@@ -30,12 +30,4 @@ class NewsListFragment : HomeBaseFragment<FragmentNewsListBinding>() {
 
     private fun navigateToSingleNews(itemId: Int) = findNavController()
         .navigate(NewsListFragmentDirections.actionNewsListFragmentToSingleNewsFragment(itemId))
-
-    private fun observeData(news: List<News>) {
-        adapter.submitList(news)
-    }
-
-    private fun setAdapter() {
-        binding.recycler.adapter = adapter
-    }
 }

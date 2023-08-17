@@ -9,7 +9,9 @@ import com.redpine.profile.ProfileBaseFragment
 import com.redpine.profiler.databinding.FragmentHelpBinding
 
 class HelpFragment : ProfileBaseFragment<FragmentHelpBinding>() {
+
     override fun initBinding(inflater: LayoutInflater) = FragmentHelpBinding.inflate(inflater)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.window?.statusBarColor =

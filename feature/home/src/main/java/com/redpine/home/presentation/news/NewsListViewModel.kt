@@ -7,11 +7,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
-/**в Firebase 3 новости, поэтому показываем все, что есть, при переходе на свой бэк нужно будет
- * в запрос добавлять:
-const val NEWS_COUNT = 3
- */
-
 class NewsListViewModel @Inject constructor(
     private val listNewsUseCase: ListNewsUseCase
 ) : BaseViewModel() {

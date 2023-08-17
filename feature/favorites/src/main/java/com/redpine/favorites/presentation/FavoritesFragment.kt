@@ -18,18 +18,18 @@ import com.redpine.favorites.presentation.adapter.FavoritesAdapter
 class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
 
     private val viewModel: FavoritesViewModel by lazy { initViewModel() }
-    private val adapter by lazy { FavoritesAdapter(::onItemClick) }
 
     override fun initBinding(inflater: LayoutInflater) = FragmentFavoritesBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter by lazy { FavoritesAdapter(::onItemClick) }
         viewModel.checkAuth()
         setUserInterface()
         viewModel.getDogs()
         binding.recyclerView.adapter = adapter
-        flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
+        flowObserver(viewModel.dogs) { dogs -> loadContent(dogs, adapter) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.isAuth) { isAuth -> authObserve(isAuth) }
     }
@@ -40,7 +40,7 @@ class FavoritesFragment : FavoritesBaseFragment<FragmentFavoritesBinding>() {
         }
     }
 
-    private fun loadContent(dogs: List<Dog>) {
+    private fun loadContent(dogs: List<Dog>, adapter: FavoritesAdapter) {
         adapter.submitList(dogs)
         binding.title.isVisible = dogs.isNotEmpty()
         binding.noneFound.isVisible = dogs.isEmpty()

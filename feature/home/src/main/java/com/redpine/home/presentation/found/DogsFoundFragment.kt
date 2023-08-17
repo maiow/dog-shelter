@@ -19,17 +19,17 @@ import com.redpine.home.presentation.home.adapter.adapter.ItemAdapter
 class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
 
     private val viewModel: DogsFoundViewModel by lazy { initViewModel() }
-    private val adapter by lazy { ItemAdapter(::onItemClick) }
 
     override fun initBinding(inflater: LayoutInflater) = FragmentDogsFoundBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter by lazy { ItemAdapter(::onItemClick) }
         setFilterText()
         viewModel.getDogs()
         binding.recyclerView.adapter = adapter
-        flowObserver(viewModel.dogs) { dogs -> loadContent(dogs) }
+        flowObserver(viewModel.dogs) { dogs -> loadContent(dogs, adapter) }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         binding.filterButton.setOnClickListener {
@@ -87,7 +87,7 @@ class DogsFoundFragment : HomeBaseFragment<FragmentDogsFoundBinding>() {
         } else getString(R.string.all_shelter_dogs)
     }
 
-    private fun loadContent(data: List<Item>) {
+    private fun loadContent(data: List<Item>, adapter: ItemAdapter) {
         adapter.submitList(data)
         binding.title.isVisible = data.isNotEmpty()
         binding.title.text = resources.getQuantityString(

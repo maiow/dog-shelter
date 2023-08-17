@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.redpine.core.domain.model.Dog
+import com.redpine.core.extensions.onClickToPopBackStack
 import com.redpine.core.state.LoadState
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
@@ -19,6 +19,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private val args by navArgs<PetsCardFragmentArgs>()
     private val viewModel: PetsCardViewModel by lazy { initViewModel() }
+
     override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
         }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
     }
+
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation) {
             showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
@@ -58,7 +60,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private fun setUserInterface(dog: Dog) {
         with(binding) {
-            backButton.setOnClickListener { findNavController().popBackStack() }
+            backButton.onClickToPopBackStack()
             curatorButton.setOnClickListener {
                 sendWhatsAppMessageToCurator(dog.curatorPhone, dog.name)
             }
