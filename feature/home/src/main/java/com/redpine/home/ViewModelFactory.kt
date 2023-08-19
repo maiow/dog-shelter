@@ -49,7 +49,7 @@ class ViewModelFactory @Inject constructor(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
-        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, searchUseCase) as T
+        HomeViewModel::class.java -> HomeViewModel(homeScreenUseCase, likeUseCase, searchUseCase, filterUseCase) as T
         OnboardingViewModel::class.java -> OnboardingViewModel(onboardingRepository, onBoardingPrefs) as T
         FilterViewModel::class.java -> FilterViewModel(filterUseCase) as T
         DogsFoundViewModel::class.java -> DogsFoundViewModel(likeUseCase, filteredDogsUseCase, filterUseCase) as T

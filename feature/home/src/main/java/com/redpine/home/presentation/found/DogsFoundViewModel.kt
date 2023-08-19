@@ -16,7 +16,7 @@ import javax.inject.Inject
 class DogsFoundViewModel @Inject constructor(
     private val likeUseCase: LikeUseCase,
     private val filteredDogsUseCase: FilteredDogsUseCase,
-    private val filterUseCase: FilterUseCase,
+    private val filterUseCase: FilterUseCase
 ) : BaseViewModel() {
 
     private val _dogs = MutableStateFlow<List<Dog>>(emptyList())
@@ -25,7 +25,11 @@ class DogsFoundViewModel @Inject constructor(
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
-    fun getDogs() = scopeLaunch {
+    private var isFromHome = false
+
+    fun getDogs(fromHome: Boolean) = scopeLaunch {
+        isFromHome = fromHome
+        if (isFromHome) clearFilters()
         _dogs.value = filteredDogsUseCase.getFilteredDogs()
     }
 
@@ -47,7 +51,7 @@ class DogsFoundViewModel @Inject constructor(
         }
     }
 
-    fun onRetryButtonClick() = getDogs()
+    fun onRetryButtonClick() = getDogs(isFromHome)
 
     fun resetNavigateFlow() {
         _isNavigateAuth.value = false

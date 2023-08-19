@@ -55,10 +55,4 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         findNavController().graph.setStartDestination(R.id.home_nav_graph)
         // TODO: сделать ресурсы навигации в core
     }
-
-//    override fun onDestroyView() {
-//        binding.viewPager.adapter = null
-//       // mediator.detach()
-//        super.onDestroyView()
-//    }
 }

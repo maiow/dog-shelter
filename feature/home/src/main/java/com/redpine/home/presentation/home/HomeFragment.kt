@@ -121,11 +121,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         else navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(dog))
     }
 
-//    override fun onDestroyView() {
-//        binding.recycler.adapter = null
-//        super.onDestroyView()
-//    }
-
     private companion object {
         const val VK_URI = "https://vk.com/redpine"
         const val TG_URI = "https://t.me/priutKS"

@@ -32,15 +32,4 @@ class ProgressBarLayoutMediator(
 
         progressBar?.let { viewPager!!.setCurrentItem(it.getProgress(), true) }
     }
-
-//    fun detach() {
-//        if (adapter != null) {
-//            viewPager!!.unregisterOnPageChangeCallback(onPageChangeCallback!!)
-//            onPageChangeCallback = null
-//            adapter = null
-//            attached = false
-//            viewPager = null
-//            progressBar = null
-//        }
-//    }
 }
