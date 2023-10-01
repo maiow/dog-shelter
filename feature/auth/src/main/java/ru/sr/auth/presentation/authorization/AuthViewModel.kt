@@ -1,8 +1,6 @@
 package ru.sr.auth.presentation.authorization
 
 import android.content.Intent
-import android.content.IntentSender
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.extensions.emailValidation
@@ -13,8 +11,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.sr.auth.domain.AuthGoogleRepository
-import ru.sr.auth.domain.usecase.AuthTokenUseCase
 import ru.sr.auth.domain.usecase.AuthEmailAndPasswordUseCase
+import ru.sr.auth.domain.usecase.AuthTokenUseCase
+import ru.sr.auth.presentation.state.AuthState
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
@@ -52,24 +51,16 @@ class AuthViewModel @Inject constructor(
     }
 
     fun signWithIntentUseCase(intent: Intent) {
-        viewModelScope.launch(Dispatchers.IO) {
+
+        scopeLaunch {
             authGoogleRepository.signWithIntent(intent)
-                .onSuccess {
-                    Log.e("Kart",it.toString())
-                    _viewState.update { state->
-                        state.copy(isAuthUser = true)
-                    }
+                .onSuccess { token ->
+                    tokenProvider.putToken(token)
                 }
                 .onFailure { exception: Throwable ->
-                    Log.e("Kart",exception.message.toString())
                     exception.printStackTrace()
                 }
-
         }
     }
 }
 
-data class AuthState(
-    val intentSender: IntentSender? = null,
-    val isAuthUser: Boolean = false,
-)

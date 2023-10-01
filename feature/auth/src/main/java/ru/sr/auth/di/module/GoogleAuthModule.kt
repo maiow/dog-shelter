@@ -30,9 +30,9 @@ class GoogleAuthModule {
     @Provides
     fun providerGoogleAuthApiImpl(
         oneTapClient: SignInClientWrapper,
-  //      beginSignInRequest: BeginSignInRequestWrapper,
+        beginSignInRequest: BeginSignInRequestWrapper,
     ): GoogleAuthApiImpl {
-        return GoogleAuthApiImpl(oneTapClient)
+        return GoogleAuthApiImpl(oneTapClient,beginSignInRequest,Firebase.auth)
     }
 
     @Provides

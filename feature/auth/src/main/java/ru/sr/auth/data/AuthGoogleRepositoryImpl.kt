@@ -18,10 +18,10 @@ class AuthGoogleRepositoryImpl(
         }
     }
 
-    override suspend fun signWithIntent(intent: Intent): Result<Boolean> {
+    override suspend fun signWithIntent(intent: Intent): Result<String> {
         return try {
-          authApi.signWithIntent(intent)
-            Result.success(true)
+            val user = authApi.signWithIntent(intent)
+            Result.success(user.uid)
 
         } catch (exception: Exception) {
             exception.printStackTrace()

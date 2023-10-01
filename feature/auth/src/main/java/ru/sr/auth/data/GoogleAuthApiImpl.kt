@@ -6,6 +6,7 @@ import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Status
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -14,24 +15,15 @@ import ru.sr.auth.domain.GoogleAuthApi
 
 class GoogleAuthApiImpl(
     private val oneTapClient: SignInClientWrapper,
-  //  private val beginSignInRequestWrapper: BeginSignInRequestWrapper,
-    // private val auth: FirebaseAuth ,
+    private val beginSignInRequestWrapper: BeginSignInRequestWrapper,
+    private val auth: FirebaseAuth,
 ) : GoogleAuthApi {
 
-  val auth =    Firebase.auth
 
     override suspend fun signIn(): IntentSender {
         return try {
-            val a = BeginSignInRequest.Builder().setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                    .setSupported(true)
-                    .setFilterByAuthorizedAccounts(false)
-                    .setServerClientId("8910379865-hm1cba7du6jeei48odt44sms0m2vfa9n.apps.googleusercontent.com")
-                    .build()
-            ).setAutoSelectEnabled(true)
-                .build()
             oneTapClient.client
-                .beginSignIn(a)
+                .beginSignIn(beginSignInRequestWrapper.beginSignInRequest)
                 .await().pendingIntent.intentSender
         } catch (e: ApiException) {
 
@@ -44,13 +36,13 @@ class GoogleAuthApiImpl(
         }
     }
 
-    override suspend fun signWithIntent(intent: Intent){
+    override suspend fun signWithIntent(intent: Intent): FirebaseUser {
         val credential = oneTapClient.client.getSignInCredentialFromIntent(intent)
         val googleToken = credential.googleIdToken
         val googleAuthCredential = GoogleAuthProvider.getCredential(googleToken, null)
 
         return try {
-            val user = auth.signInWithCredential(googleAuthCredential)
+            auth.signInWithCredential(googleAuthCredential)
                 .await()
                 .user
                 ?: throw NonAuthException()
