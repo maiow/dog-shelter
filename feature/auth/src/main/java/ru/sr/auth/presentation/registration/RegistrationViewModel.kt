@@ -4,7 +4,7 @@ import com.redpine.core.base.BaseViewModel
 import com.redpine.core.extensions.emailValidation
 import com.redpine.core.extensions.passwordValidation
 import com.redpine.core.state.LoadState
-import com.redpine.home.domain.usecase.RegistrationUseCase
+import ru.sr.auth.domain.usecase.RegistrationUseCase
 import ru.sr.auth.presentation.state.TypeAuthListener
 import javax.inject.Inject
 

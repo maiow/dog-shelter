@@ -3,7 +3,7 @@ package ru.sr.auth.domain
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
-interface AuthenticationRepository {
+interface AuthenticationEmailAndPasswordRepository {
 
     fun authEmail(email: String, password: String): Task<AuthResult>
 

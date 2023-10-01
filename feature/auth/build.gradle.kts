@@ -31,6 +31,11 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":core"))
 
+    implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
+
     implementation(Dependence.Core.core)
     implementation(Dependence.Core.appcompat)
     implementation(Dependence.Core.fragmentKtx)

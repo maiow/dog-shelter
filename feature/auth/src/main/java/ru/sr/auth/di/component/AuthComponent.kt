@@ -6,6 +6,7 @@ import dagger.Component
 import ru.sr.auth.di.deps.AuthDependencies
 import ru.sr.auth.di.module.Binds
 import ru.sr.auth.di.module.FirebaseModule
+import ru.sr.auth.di.module.GoogleAuthModule
 import ru.sr.auth.di.module.RepositoryModule
 import ru.sr.auth.di.module.UseCaseModule
 import javax.inject.Singleton
@@ -15,6 +16,7 @@ import javax.inject.Singleton
         AuthDependencies::class
     ], modules = [
         RepositoryModule::class,
+        GoogleAuthModule::class,
         Binds::class,
         FirebaseModule::class,
         UseCaseModule::class

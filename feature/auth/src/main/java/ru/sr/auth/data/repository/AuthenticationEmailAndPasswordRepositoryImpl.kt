@@ -1,11 +1,11 @@
-package ru.sr.auth.data
+package ru.sr.auth.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
-import ru.sr.auth.domain.AuthenticationRepository
+import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
 
-class AuthenticationRepositoryImpl(
+class AuthenticationEmailAndPasswordRepositoryImpl(
     private val fireBaseAuth: FirebaseAuth,
-) : AuthenticationRepository {
+) : AuthenticationEmailAndPasswordRepository {
 
     override fun authEmail(email: String, password: String) =
         fireBaseAuth.signInWithEmailAndPassword(email, password)

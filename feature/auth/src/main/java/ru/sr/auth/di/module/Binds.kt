@@ -2,31 +2,35 @@ package ru.sr.auth.di.module
 
 import androidx.lifecycle.ViewModelProvider
 import ru.sr.auth.domain.usecase.AuthTokenUseCase
-import ru.sr.auth.domain.usecase.AuthUseCase
-import com.redpine.home.domain.usecase.RegistrationUseCase
+import ru.sr.auth.domain.usecase.AuthEmailAndPasswordUseCase
+import ru.sr.auth.domain.usecase.RegistrationUseCase
 import ru.sr.auth.domain.usecase.ResetPasswordUseCase
 import ru.sr.auth.domain.usecase.impl.AuthTokenUseCaseImpl
 import ru.sr.auth.domain.usecase.impl.RegistrationUseCaseImpl
 import ru.sr.auth.domain.usecase.impl.ResetPasswordUseCaseImpl
 import dagger.Binds
 import dagger.Module
-import ru.sr.auth.data.AuthenticationRepositoryImpl
-import ru.sr.auth.domain.AuthenticationRepository
+import ru.sr.auth.data.repository.AuthGoogleRepositoryImpl
+import ru.sr.auth.data.repository.AuthenticationEmailAndPasswordRepositoryImpl
+import ru.sr.auth.data.googleAuth.GoogleAuthApiImpl
+import ru.sr.auth.domain.AuthGoogleRepository
+import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
+import ru.sr.auth.domain.GoogleAuthApi
 import ru.sr.auth.presentation.ViewModelFactory
-import ru.sr.auth.domain.usecase.impl.AuthUseCaseImpl
+import ru.sr.auth.domain.usecase.impl.AuthEmailAndPasswordUseCaseImpl
 
 @Module
 interface Binds {
 
 
     @Binds
-    fun bindsAuthenticationRepository(repositoryImpl: AuthenticationRepositoryImpl): AuthenticationRepository
+    fun bindsAuthenticationRepository(repositoryImpl: AuthenticationEmailAndPasswordRepositoryImpl): AuthenticationEmailAndPasswordRepository
 
     @Binds
     fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
-    fun bindsAuthUseCase(useCaseImpl: AuthUseCaseImpl): AuthUseCase
+    fun bindsAuthUseCase(useCaseImpl: AuthEmailAndPasswordUseCaseImpl): AuthEmailAndPasswordUseCase
 
     @Binds
     fun bindsRegistrationUseCase(useCaseImpl: RegistrationUseCaseImpl): RegistrationUseCase
@@ -37,4 +41,12 @@ interface Binds {
 
     @Binds
     fun bindsAuthTokenUseCase(useCase: AuthTokenUseCaseImpl): AuthTokenUseCase
+
+    @Binds
+    fun bindsGoogleAuthApi(api: GoogleAuthApiImpl): GoogleAuthApi
+
+    @Binds
+    fun bindsAuthGoogleRepository(repository: AuthGoogleRepositoryImpl): AuthGoogleRepository
+
+
 }
