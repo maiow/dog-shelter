@@ -30,6 +30,7 @@ interface AppComponent : ProfileDependencies, FavoritesDependencies, HomeDepende
     override val onBoardingPrefs: OnBoardingPrefs
     override val authDialogPrefs: AuthDialogPrefs
     override val calendarInstance: CalendarInstance
+    override val context: Context
 
     @Component.Builder
     interface Builder {

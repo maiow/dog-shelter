@@ -1,11 +1,11 @@
 package ru.sr.auth.domain.usecase.impl
 
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import ru.sr.auth.domain.usecase.AuthUseCase
+import ru.sr.auth.domain.usecase.AuthEmailAndPasswordUseCase
 import kotlinx.coroutines.tasks.await
-import ru.sr.auth.domain.AuthenticationRepository
+import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
 
-class AuthUseCaseImpl(private val authRepository: AuthenticationRepository) : AuthUseCase {
+class AuthEmailAndPasswordUseCaseImpl(private val authRepository: AuthenticationEmailAndPasswordRepository) : AuthEmailAndPasswordUseCase {
 
     override suspend fun authEmail(email: String, password: String): String {
 

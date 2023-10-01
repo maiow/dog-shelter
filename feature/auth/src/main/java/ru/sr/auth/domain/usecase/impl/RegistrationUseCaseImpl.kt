@@ -1,10 +1,10 @@
 package ru.sr.auth.domain.usecase.impl
 
-import com.redpine.home.domain.usecase.RegistrationUseCase
+import ru.sr.auth.domain.usecase.RegistrationUseCase
 import kotlinx.coroutines.tasks.await
-import ru.sr.auth.domain.AuthenticationRepository
+import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
 
-class RegistrationUseCaseImpl(private val repository: AuthenticationRepository) :
+class RegistrationUseCaseImpl(private val repository: AuthenticationEmailAndPasswordRepository) :
     RegistrationUseCase {
 
     override suspend fun createUser(email: String, password: String): String? {

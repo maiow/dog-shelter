@@ -6,22 +6,22 @@ import ru.sr.auth.domain.usecase.impl.RegistrationUseCaseImpl
 import ru.sr.auth.domain.usecase.impl.ResetPasswordUseCaseImpl
 import dagger.Module
 import dagger.Provides
-import ru.sr.auth.domain.AuthenticationRepository
-import ru.sr.auth.domain.usecase.impl.AuthUseCaseImpl
+import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
+import ru.sr.auth.domain.usecase.impl.AuthEmailAndPasswordUseCaseImpl
 
 @Module
 class UseCaseModule {
 
     @Provides
-    fun providesAuthUseCase(authenticationRepository: AuthenticationRepository) =
-        AuthUseCaseImpl(authenticationRepository)
+    fun providesAuthUseCase(authenticationRepository: AuthenticationEmailAndPasswordRepository) =
+        AuthEmailAndPasswordUseCaseImpl(authenticationRepository)
 
     @Provides
-    fun providesRegistrationUseCase(authenticationRepository: AuthenticationRepository) =
+    fun providesRegistrationUseCase(authenticationRepository: AuthenticationEmailAndPasswordRepository) =
         RegistrationUseCaseImpl(authenticationRepository)
 
     @Provides
-    fun providesResetPasswordUseCase(authenticationRepository: AuthenticationRepository) =
+    fun providesResetPasswordUseCase(authenticationRepository: AuthenticationEmailAndPasswordRepository) =
         ResetPasswordUseCaseImpl(authenticationRepository)
 
     @Provides

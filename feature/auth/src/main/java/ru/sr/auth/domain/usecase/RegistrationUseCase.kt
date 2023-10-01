@@ -1,4 +1,4 @@
-package com.redpine.home.domain.usecase
+package ru.sr.auth.domain.usecase
 
 interface RegistrationUseCase{
 
