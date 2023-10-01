@@ -21,4 +21,4 @@ include(":feature:home")
 include(":core")
 include(":api")
 include(":delegate")
-
+include(":feature:auth")

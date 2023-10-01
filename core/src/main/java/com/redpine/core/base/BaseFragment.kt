@@ -1,6 +1,7 @@
 package com.redpine.core.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     protected abstract fun initBinding(inflater: LayoutInflater): B?
 
     abstract fun initViewModelFactory(): ViewModelProvider.Factory
+
 
     inline fun <reified VM : ViewModel> initViewModel(): VM {
         val viewModel by viewModels<VM>() { initViewModelFactory() }
@@ -53,6 +55,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
             setButton(
                 AlertDialog.BUTTON_POSITIVE, getString(R.string.auth_dialog_apply)
             ) { _, _ ->
+                Log.e("kart","Apllay")
                 onApplyClick()
             }
             show()

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.redpine.home.HomeBaseFragment
-import com.redpine.home.R
 import com.redpine.home.databinding.FragmentOnboardingBinding
 import com.redpine.home.presentation.onboarding.adapter.OnBoardingAdapter
 import com.redpine.home.presentation.onboarding.view.mediator.ProgressBarLayoutMediator
@@ -51,7 +50,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private fun navigateToHome() {
         findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
-        findNavController().graph.setStartDestination(R.id.home_nav_graph)
+        findNavController().graph.setStartDestination(com.redpine.core.R.id.home_nav_graph)
         // TODO: сделать ресурсы навигации в core
     }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="repeat_password">Repeat password</string>
+    <string name="auth_button">Log in</string>
+    <string name="registration_button">Register</string>
+
+    <string name="password_helper">* Password must:\n
+        - contain numbers and latin letters;\n
+        - be not shorter than 8 symbols;\n
+        - contain at least 1 Upper case letter;\n
+        - contain at least 1 Lower case letter;\n
+        - contain at least 1 number</string>
+    <string name="reset_password_message">Forgot password?</string>
+    <string name="error_auth_message">* Not possible to log in with data provided</string>
+    <string name="error_reset_password_message">* Email is not registered</string>
+    <string name="error_registration_message">* Not possible to register with data provided</string>
+    <string name="error_internet_message">* Check network</string>
+    <string name="message_auth">Message has been sent to the specified email address. Follow the link from the email and log in again</string>
+    <string name="reset_password">Reset</string>
+
+
+</resources>

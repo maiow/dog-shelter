@@ -31,7 +31,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
         binding.recycler.adapter = adapter
         flowObserver(viewModel.data) { data -> observeData(data) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
-        flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
         flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
     }
 
@@ -53,19 +52,15 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
                 navigate(HomeFragmentDirections.actionHomeFragmentToNewsListFragment())
 
             ClickableView.FAVORITE -> {
+                showDialog(com.redpine.core.R.string.auth_dialog_message) {
+                    navigate(HomeFragmentDirections.actionAuthNavGraph())
+                }
                 viewModel.addToFavorites(
-                    clickableView.itemPosition,
-                    clickableView.listPosition,
-                    item!!.id
+                    itemPosition = clickableView.itemPosition,
+                    firstListPosition = clickableView.listPosition,
+                    id = item!!.id
                 )
             }
-        }
-    }
-
-    private fun observeNavigateAuth(isNavigation: Boolean) {
-        if (isNavigation) {
-            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
-            viewModel.resetNavigateFlow()
         }
     }
 
