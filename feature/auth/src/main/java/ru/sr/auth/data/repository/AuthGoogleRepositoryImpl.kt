@@ -1,4 +1,4 @@
-package ru.sr.auth.data
+package ru.sr.auth.data.repository
 
 import android.content.Intent
 import android.content.IntentSender

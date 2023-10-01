@@ -10,9 +10,9 @@ import ru.sr.auth.domain.usecase.impl.RegistrationUseCaseImpl
 import ru.sr.auth.domain.usecase.impl.ResetPasswordUseCaseImpl
 import dagger.Binds
 import dagger.Module
-import ru.sr.auth.data.AuthGoogleRepositoryImpl
-import ru.sr.auth.data.AuthenticationEmailAndPasswordRepositoryImpl
-import ru.sr.auth.data.GoogleAuthApiImpl
+import ru.sr.auth.data.repository.AuthGoogleRepositoryImpl
+import ru.sr.auth.data.repository.AuthenticationEmailAndPasswordRepositoryImpl
+import ru.sr.auth.data.googleAuth.GoogleAuthApiImpl
 import ru.sr.auth.domain.AuthGoogleRepository
 import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
 import ru.sr.auth.domain.GoogleAuthApi

@@ -1,4 +1,4 @@
-package ru.sr.auth.data
+package ru.sr.auth.data.googleAuth
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 

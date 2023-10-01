@@ -1,4 +1,4 @@
-package ru.sr.auth.data
+package ru.sr.auth.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import ru.sr.auth.domain.AuthenticationEmailAndPasswordRepository
