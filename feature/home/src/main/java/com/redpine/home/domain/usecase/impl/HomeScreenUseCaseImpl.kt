@@ -1,6 +1,5 @@
 package com.redpine.home.domain.usecase.impl
 
-import com.redpine.core.domain.model.Dog
 import com.redpine.home.R
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
@@ -14,10 +13,10 @@ class HomeScreenUseCaseImpl(
     private val newsRepository: NewsRepository,
 ) : HomeScreenUseCase {
 
-    override suspend fun getHomeScreenItems(newCount: Int, seenCount: Int): List<Grid> {
+    override suspend fun getHomeScreenItems(newCount: Int, seenCount: Int, newsCount: Int): List<Grid> {
         val listNewDog = dogsRepository.getNewDogs(newCount)
         val listRecentSeenDog = dogsRepository.getRecentSeenDogs(seenCount)
-        val listNews = newsRepository.getNewsList()
+        val listNews = newsRepository.getNewsList(newsCount)
 
         return if (listRecentSeenDog.isNotEmpty())
             listOf(
@@ -30,6 +29,4 @@ class HomeScreenUseCaseImpl(
             VerticalGrid(titleId = R.string.News, list = listNews, spanCount = 1),
         )
     }
-
-    override suspend fun getAllDogs(): List<Dog> = dogsRepository.getAllDogs()
 }

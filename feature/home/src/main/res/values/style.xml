@@ -50,12 +50,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
-        <!--item name="cornerRadius">10dp</item>
-        <item name="strokeColor">@color/grey_main</item>
-        <item name="strokeWidth">1dp</item>
-        <item name="buttonTint">@color/grey_main</item>
-        <item name="buttonIconTint">@drawable/ic_checked</item-->
-
     </style>
 
     <style name="roundedCornersImageView" parent="">

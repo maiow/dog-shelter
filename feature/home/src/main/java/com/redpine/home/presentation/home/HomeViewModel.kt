@@ -7,6 +7,7 @@ import com.redpine.core.domain.model.Dog
 import com.redpine.core.state.LoadState
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.domain.model.grid.HorizontalGrid
+import com.redpine.home.domain.usecase.FilterUseCase
 import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.SearchUseCase
@@ -21,6 +22,7 @@ class HomeViewModel @Inject constructor(
     private val homeScreenUseCase: HomeScreenUseCase,
     private val likeUseCase: LikeUseCase,
     private val searchUseCase: SearchUseCase,
+    private val filterUseCase: FilterUseCase
 ) : BaseViewModel() {
 
     private val _data = MutableStateFlow<List<Grid>>(emptyList())
@@ -66,8 +68,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun onAllDogsClick() = viewModelScope.launch(Dispatchers.IO) {
-        homeScreenUseCase.getAllDogs()
+    fun onAllDogsClick() = viewModelScope.launch {
+        filterUseCase.setFilters(null)
     }
 
     fun resetNavigateFlow() {

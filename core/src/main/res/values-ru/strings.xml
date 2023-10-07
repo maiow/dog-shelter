@@ -14,12 +14,12 @@
     <string name="no_connection">Не удалось подключиться к сети. Проверьте соединение и повторите попытку.</string>
     <string name="retry">Повторить</string>
 
-    <string name="search_hint">Кого вы ищете?</string>
+    <string name="search_hint">Поиск по кличке</string>
     <string name="no_such_dog">У нас нет собаки с такой кличкой</string>
 
     <string name="auth_dialog_message">Для добавления питомца в избранное необходимо авторизоваться</string>
     <string name="auth_dialog_cancel">Отмена</string>
-    <string name="auth_dialog_apply">Принять</string>
+    <string name="auth_dialog_apply">ОК</string>
 
     <string name="password">Пароль</string>
 </resources>

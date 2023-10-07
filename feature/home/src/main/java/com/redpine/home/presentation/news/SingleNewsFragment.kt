@@ -17,6 +17,7 @@ class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
 
     private val viewModel: SingleNewsViewModel by lazy { initViewModel() }
     private val args by navArgs<SingleNewsFragmentArgs>()
+
     override fun initBinding(inflater: LayoutInflater) = FragmentSingleNewsBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

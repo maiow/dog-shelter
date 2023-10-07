@@ -14,22 +14,22 @@ import com.redpine.core.tools.ClickableView
 import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
-import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.presentation.home.adapter.adapter.GridAdapter
 
 class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by lazy { initViewModel() }
-    private val adapter by lazy { GridAdapter(::onItemClick) }
+
     override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter by lazy { GridAdapter(::onItemClick) }
         viewModel.createHomeScreen()
         setUserInterface()
         binding.recycler.adapter = adapter
-        flowObserver(viewModel.data) { data -> observeData(data) }
+        flowObserver(viewModel.data) { data -> adapter.submitList(data) }
         flowObserver(viewModel.loadState) { loadState -> loadingObserve(loadState) }
         flowObserver(viewModel.isNavigateAuth) { action -> observeNavigateAuth(action) }
         flowObserver(viewModel.foundDog) { dog -> observeSearchResult(dog) }
@@ -67,10 +67,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
             showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
             viewModel.resetNavigateFlow()
         }
-    }
-
-    private fun observeData(data: List<Grid>) {
-        adapter.submitList(data)
     }
 
     private fun loadingObserve(loadState: LoadState) {
@@ -123,11 +119,6 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
     private fun observeSearchResult(dog: Dog?) {
         if (dog == null) binding.noDogs.isVisible = true
         else navigate(HomeFragmentDirections.actionHomeFragmentToPetsCardFragment(dog))
-    }
-
-    override fun onDestroyView() {
-        binding.recycler.adapter = null
-        super.onDestroyView()
     }
 
     private companion object {

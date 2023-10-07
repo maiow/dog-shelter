@@ -13,17 +13,18 @@ import com.redpine.home.presentation.onboarding.view.mediator.ProgressBarLayoutM
 class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private val viewModel by lazy { initViewModel<OnboardingViewModel>() }
-    private val adapter by lazy { OnBoardingAdapter() }
-    private val mediator by lazy {
-        ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager)
-    }
 
     override fun initBinding(inflater: LayoutInflater) = FragmentOnboardingBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setAdapter()
+        val adapter by lazy { OnBoardingAdapter() }
+        val mediator by lazy {
+            ProgressBarLayoutMediator(binding.viewProgress, binding.viewPager)
+        }
+
+        setAdapter(adapter, mediator)
         onClickNextButton()
         onClickSkipButton()
         rememberOnBoardingIsShown()
@@ -32,7 +33,7 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
 
     private fun rememberOnBoardingIsShown() = viewModel.rememberOnBoardingIsShown()
 
-    private fun setAdapter() {
+    private fun setAdapter(adapter: OnBoardingAdapter, mediator: ProgressBarLayoutMediator) {
         adapter.setItems(viewModel.list)
         binding.viewPager.adapter = adapter
         mediator.attach()
@@ -53,11 +54,5 @@ class OnboardingFragment : HomeBaseFragment<FragmentOnboardingBinding>() {
         findNavController().navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
         findNavController().graph.setStartDestination(R.id.home_nav_graph)
         // TODO: сделать ресурсы навигации в core
-    }
-
-    override fun onDestroyView() {
-        binding.viewPager.adapter = null
-        mediator.detach()
-        super.onDestroyView()
     }
 }

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="item_margin_horizontal">10dp</dimen>
     <dimen name="item_margin_vertical">8dp</dimen>
+    <dimen name="mini_margin">8dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
 </resources>
