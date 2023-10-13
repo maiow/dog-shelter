@@ -24,7 +24,7 @@ interface AppComponent : ProfileDependencies, FavoritesDependencies, HomeDepende
 
     fun inject(mainActivity: MainActivity)
 
-    override var api: Api
+    override val api: Api
     override val tokenProvider: TokenProvider
     override val onBoardingPrefs: OnBoardingPrefs
     override val authDialogPrefs: AuthDialogPrefs
