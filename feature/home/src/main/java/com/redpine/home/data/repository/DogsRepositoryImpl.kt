@@ -62,15 +62,15 @@ class DogsRepositoryImpl(
         val listRecentSeenDogsDto = mutableListOf<DogDto>()
         val uid = getUserId()
         if (uid != null) {
-            val listSeenIds = mutableSetOf<String>()
+            var listSeenIds = mutableSetOf<String>()
             database
                 .child(SEEN_NODE)
                 .child(uid)
-                .limitToLast(count)
                 .get()
                 .await()
                 .children.map { snapShot -> snapShot.value.let { listSeenIds.add(it.toString()) } }
 
+            listSeenIds = listSeenIds.reversed().take(count).toMutableSet()
             listSeenIds.forEach {
                 listRecentSeenDogsDto.add(
                     database
@@ -90,15 +90,7 @@ class DogsRepositoryImpl(
         } else emptyList()
     }
 
-    override suspend fun getDogInfo(id: Int): Dog {
-        val res = database
-            .child(DOGS_NODE)
-            .child(DOGS_NODE_CHILD + id)
-            .get()
-            .await()
-            .getValue(DogDto::class.java) ?: DogDto()
-        if (res.id != 0) return res.toDog() else throw FirebaseBaseExceptionNullResponse()
-    }
+    override suspend fun getDogLikeInfo(id: Int): Boolean = (id.toString() in listFavoriteDogsIds)
 
     override suspend fun sendDogToSeenList(id: Int) {
         val uid = getUserId()
@@ -119,9 +111,13 @@ class DogsRepositoryImpl(
             .child(uid)
             .child(dogId.toString())
 
-        if (isLike) setFavorite(databaseReference, dogId)
-        else removeFavorite(databaseReference)
-
+        if (isLike) {
+            setFavorite(databaseReference, dogId)
+            listFavoriteDogsIds.add(dogId.toString())
+        } else {
+            removeFavorite(databaseReference)
+            listFavoriteDogsIds.remove(dogId.toString())
+        }
         return true
     }
 

@@ -17,26 +17,27 @@ import javax.inject.Inject
 class PetsCardViewModel @Inject constructor(
     private val dogInfoUseCase: DogInfoUseCase,
     private val seenListUseCase: SeenListUseCase,
-    private val likeUseCase: LikeUseCase,
+    private val likeUseCase: LikeUseCase
 ) : BaseViewModel() {
 
     private val _images = MutableSharedFlow<List<String>>()
     val imagesList = _images.asSharedFlow()
 
-    private val _dogInfo = MutableSharedFlow<Dog>()
-    val dogInfo = _dogInfo.asSharedFlow()
+    private val _dogInfo = MutableStateFlow<Dog?>(null)
+    val dogInfo = _dogInfo.asStateFlow()
 
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
     fun onGettingArgument(dog: Dog) {
-        getDogInfo(dog)
+        updateDogLikeInfo(dog)
         getDogImages(dog.id)
         sendDogToSeenList(dog.id)
     }
 
-    private fun getDogInfo(dog:Dog) = scopeLaunch {
-        _dogInfo.emit(dogInfoUseCase.getDogInfo(dog.id).copy(isFavorite = dog.isFavorite))
+    private fun updateDogLikeInfo(dog: Dog) = scopeLaunch {
+        val isFavorite = dogInfoUseCase.getDogLikeInfo(dog.id)
+        _dogInfo.value = dog.copy(isFavorite = isFavorite)
     }
 
     private fun getDogImages(dogId: Int) = scopeLaunch {
@@ -47,10 +48,10 @@ class PetsCardViewModel @Inject constructor(
         seenListUseCase.sendDogToSeenList(dogId)
     }
 
-    fun addToFavorites(dog: Dog){
+    fun addToFavorites(dog: Dog) {
         viewModelScope.launch(Dispatchers.IO) {
             if (likeUseCase.makeLikeDislike(dog.id, !dog.isFavorite))
-                _dogInfo.emit(dog.copy(isFavorite = !dog.isFavorite))
+                _dogInfo.value = dog.copy(isFavorite = !dog.isFavorite)
             else _isNavigateAuth.value = true
         }
     }
