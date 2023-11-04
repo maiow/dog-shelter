@@ -74,6 +74,13 @@
     <string name="news">News</string>
     <string name="all_shelter_dogs">All dogs in the shelter</string>
 
+    <string name="find_friend">Find a friend</string>
+    <string name="you_can_choose_pet">You can choose a pet with desired parameters</string>
+    <string name="help_easy">Easy to help</string>
+    <string name="payments_any_help">Donations, photo shoots, foster care - anything can help us</string>
+    <string name="change_world">Change the world with us</string>
+    <string name="become_volunteer">Become a volunteer, guardian - the whole world for your ward</string>
+
     <plurals name="found_pets">
         <item quantity="one">Found %1$d dog</item>
         <item quantity="few">Found %1$d dogs</item>
