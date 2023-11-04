@@ -1,10 +1,8 @@
 package com.redpine.home.domain.usecase
 
-import com.redpine.core.domain.model.Dog
-
 interface DogInfoUseCase {
 
-    suspend fun getDogInfo(dogId: Int): Dog
+    suspend fun getDogLikeInfo(dogId: Int): Boolean
 
     suspend fun getDogImages(dogId: Int): List<String>
 }
