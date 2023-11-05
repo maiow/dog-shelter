@@ -2,6 +2,6 @@ package com.redpine.home.domain.usecase
 
 interface SeenListUseCase {
 
-    suspend fun sendDogToSeenList(id: Int)
+    suspend fun sendDogToSeenList(dogId: Int)
 
 }

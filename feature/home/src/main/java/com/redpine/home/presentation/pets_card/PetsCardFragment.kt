@@ -37,7 +37,7 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation) {
-            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
+            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(PetsCardFragmentDirections.actionAuthNavGraph()) }
             viewModel.resetNavigateFlow()
         }
     }

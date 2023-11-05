@@ -2,6 +2,7 @@ package com.redpine.dogshelter.di
 
 import android.content.Context
 import com.redpine.api.Api
+import com.redpine.auth.di.deps.AuthDependencies
 import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
@@ -20,7 +21,7 @@ import javax.inject.Singleton
     ]
 )
 @Singleton
-interface AppComponent : ProfileDependencies, FavoritesDependencies, HomeDependencies {
+interface AppComponent : AuthDependencies, ProfileDependencies, FavoritesDependencies, HomeDependencies {
 
     fun inject(mainActivity: MainActivity)
 
@@ -29,6 +30,7 @@ interface AppComponent : ProfileDependencies, FavoritesDependencies, HomeDepende
     override val onBoardingPrefs: OnBoardingPrefs
     override val authDialogPrefs: AuthDialogPrefs
     override val calendarInstance: CalendarInstance
+    override val context: Context
 
     @Component.Builder
     interface Builder {

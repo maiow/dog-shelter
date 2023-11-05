@@ -54,9 +54,9 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
             ClickableView.FAVORITE -> {
                 viewModel.addToFavorites(
-                    clickableView.itemPosition,
-                    clickableView.listPosition,
-                    item!!.id
+                    itemPosition = clickableView.itemPosition,
+                    firstListPosition = clickableView.listPosition,
+                    id = item!!.id
                 )
             }
         }
@@ -64,7 +64,7 @@ class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation) {
-            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
+            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(HomeFragmentDirections.actionAuthNavGraph()) }
             viewModel.resetNavigateFlow()
         }
     }

@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_nav_graph"
+    android:id="@id/home_nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -10,6 +10,9 @@
         android:name="com.redpine.home.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_auth_nav_graph"
+            app:destination="@id/auth_nav_graph" />
         <action
             android:id="@+id/action_homeFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
@@ -55,12 +58,18 @@
             app:destination="@id/filterFragment"
             app:launchSingleTop="true"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_auth_nav_graph"
+            app:destination="@id/auth_nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/petsCardFragment"
         android:name="com.redpine.home.presentation.pets_card.PetsCardFragment"
         android:label="fragment_pets_card"
         tools:layout="@layout/fragment_pets_card">
+        <action
+            android:id="@+id/action_auth_nav_graph"
+            app:destination="@id/auth_nav_graph" />
         <argument
             android:name="dog"
             app:argType="com.redpine.core.domain.model.Dog" />

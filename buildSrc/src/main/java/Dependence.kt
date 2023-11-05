@@ -28,5 +28,6 @@ object Dependence {
         const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
         const val firebaseDatabase = "com.google.firebase:firebase-database-ktx"
         const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+        const val playServices = "com.google.android.gms:play-services-auth:20.6.0"
     }
 }

@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         if (viewModel.isOnboardingShown) {
             if(navController.currentDestination?.id != com.redpine.home.R.id.onboardingFragment) return
             navController.navigate(OnboardingFragmentDirections.actionOnboardingFragmentToHomeNavGraph())
-            navController.graph.setStartDestination(com.redpine.home.R.id.home_nav_graph)
+            navController.graph.setStartDestination(com.redpine.core.R.id.home_nav_graph)
         }
 
         val navView: BottomNavigationView = binding.bottomNavView
@@ -47,10 +47,10 @@ class MainActivity : AppCompatActivity() {
 
         val navViewGoneList = listOf(
             com.redpine.home.R.id.onboardingFragment,
-            com.redpine.home.R.id.authFragment,
-            com.redpine.home.R.id.registrationFragment,
-            com.redpine.home.R.id.resetPasswordFragment,
-            com.redpine.home.R.id.authMessageFragment,
+            com.redpine.auth.R.id.authFragment,
+            com.redpine.auth.R.id.registrationFragment,
+            com.redpine.auth.R.id.resetPasswordFragment,
+            com.redpine.auth.R.id.authMessageFragment,
             com.redpine.home.R.id.filterFragment
         )
         navController.addOnDestinationChangedListener { _, destination, _ ->
