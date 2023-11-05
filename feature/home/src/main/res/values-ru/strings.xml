@@ -76,6 +76,13 @@
     <string name="news">Новости</string>
     <string name="all_shelter_dogs">Все собаки приюта</string>
 
+    <string name="find_friend">Найди себе друга</string>
+    <string name="you_can_choose_pet">Ты можешь выбрать питомца по подходящим тебе параметрам</string>
+    <string name="help_easy">Помогать легко</string>
+    <string name="payments_any_help">Автоплатежи, передержка, фотопомощь - любой навык может нам помочь</string>
+    <string name="change_world">Меняй мир с нами</string>
+    <string name="become_volunteer">Стань волонтером, опекуном  - целым миром для своего подопечного</string>
+
     <plurals name="found_pets">
         <item quantity="one">Найдена %1$d собака</item>
         <item quantity="few">Найдено %1$d собаки</item>

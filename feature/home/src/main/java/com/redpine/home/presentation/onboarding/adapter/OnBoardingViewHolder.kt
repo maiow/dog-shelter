@@ -9,7 +9,7 @@ class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
 
     fun bind(item: Onboarding) {
         binding.image.setImageResource(item.resImgId)
-        binding.title.text = item.title
-        binding.text.text = item.description
+        binding.title.text = itemView.context.getString(item.resTitleId)
+        binding.text.text = itemView.context.getString(item.resDescriptionId)
     }
 }
