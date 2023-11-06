@@ -12,8 +12,11 @@ import com.redpine.home.domain.usecase.HomeScreenUseCase
 import com.redpine.home.domain.usecase.LikeUseCase
 import com.redpine.home.domain.usecase.SearchUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,8 +34,8 @@ class HomeViewModel @Inject constructor(
     private val _isNavigateAuth = MutableStateFlow(false)
     val isNavigateAuth = _isNavigateAuth.asStateFlow()
 
-    private val _foundDog = MutableStateFlow<Dog?>(null)
-    val foundDog = _foundDog.asStateFlow()
+    private val _foundDog = MutableSharedFlow<Dog>()
+    val foundDog = _foundDog.asSharedFlow()
 
     fun createHomeScreen() = scopeLaunch {
         _data.value = homeScreenUseCase.getHomeScreenItems()
@@ -76,13 +79,14 @@ class HomeViewModel @Inject constructor(
         _isNavigateAuth.value = false
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun onDogSearchClick(query: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             _loadState.value = LoadState.START
-            _foundDog.value = searchUseCase.searchDogByName(query)
+            _foundDog.emit(searchUseCase.searchDogByName(query))
             /**передаем и потом обнуляем собаку, иначе по бэкстеку не вернуться*/
-            delay(1)
-            _foundDog.value = null
+            delay(10)
+            _foundDog.resetReplayCache()
         }
     }
 
