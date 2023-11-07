@@ -27,8 +27,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle">
 
@@ -43,11 +43,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/repeat_password"
-        app:helperText="@string/password_helper"
-        app:endIconMode="password_toggle">
+        app:endIconMode="password_toggle"
+        app:helperText="@string/password_helper">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_repeat_password"
@@ -63,9 +63,9 @@
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingBottom="8dp"
-        android:visibility="gone"
+        android:text="@string/error_registration_message"
         android:textColor="@color/red"
-        android:text="@string/error_registration_message" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/error_internet_message"
@@ -74,24 +74,28 @@
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingBottom="8dp"
-        android:visibility="gone"
+        android:text="@string/error_internet_message"
         android:textColor="@color/red"
-        android:text="@string/error_internet_message" />
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/registration_button"
+        style="@style/Widget.DogShelter.Button.OutlinedButton.RedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:layout_gravity="center"
-        android:text="@string/registration_button" />
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:text="@string/registration_button"
+        android:textColor="@color/white"
+        app:strokeColor="?attr/colorPrimary" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"/>
+        android:indeterminate="true"
+        android:visibility="gone" />
 
 </LinearLayout>

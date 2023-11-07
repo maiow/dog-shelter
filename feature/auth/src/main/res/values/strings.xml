@@ -14,8 +14,9 @@
     <string name="error_auth_message">* Not possible to log in with data provided</string>
     <string name="error_reset_password_message">* Email is not registered</string>
     <string name="error_registration_message">* Not possible to register with data provided</string>
-    <string name="error_internet_message">* Check network</string>
+    <string name="error_internet_message">* If you have not registered before, please Register. If already registered - check the network</string>
     <string name="message_auth">Message has been sent to the specified email address. Follow the link from the email and log in again</string>
     <string name="reset_password">Reset</string>
     <string name="google_auth">Sign in with Google</string>
+    <string name="or">or</string>
 </resources>

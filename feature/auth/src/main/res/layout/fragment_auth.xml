@@ -11,7 +11,7 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4"/>
+        android:layout_weight="0.3" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -32,8 +32,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle">
 
@@ -49,8 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:paddingHorizontal="16dp"
         android:padding="16dp"
+        android:paddingHorizontal="16dp"
         android:text="@string/reset_password_message" />
 
     <TextView
@@ -60,9 +60,9 @@
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingBottom="8dp"
-        android:visibility="gone"
+        android:text="@string/error_auth_message"
         android:textColor="@color/red"
-        android:text="@string/error_auth_message" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/error_internet_message"
@@ -71,47 +71,82 @@
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingBottom="8dp"
-        android:visibility="gone"
+        android:text="@string/error_internet_message"
         android:textColor="@color/red"
-        android:text="@string/error_internet_message" />
+        android:visibility="gone" />
 
-        <Button
-            android:id="@+id/auth_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:visibility="gone"
-            android:text="@string/auth_button" />
+    <Button
+        android:id="@+id/auth_button"
+        style="@style/Widget.DogShelter.Button.OutlinedButton.RedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:text="@string/auth_button"
+        android:textColor="@color/white"
+        app:strokeColor="?attr/colorPrimary" />
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progress_circular"
-            android:layout_width="wrap_content"
-            android:indeterminate="true"
-            android:visibility="gone"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="2dp"
             android:layout_gravity="center"
-            android:layout_height="wrap_content"/>
+            android:layout_weight="0.5" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="@string/or" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.5" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/registration_button"
-        style="@style/Widget.Material3.Button.OutlinedButton"
+        style="@style/Widget.DogShelter.Button.OutlinedButton.WhiteButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_gravity="center"
-        android:text="@string/registration_button" />
+        android:layout_marginBottom="@dimen/standard_margin"
+        android:paddingLeft="32dp"
+        android:text="@string/registration_button"
+        app:icon="@drawable/ic_email"
+        app:iconTint="@color/grey_main" />
 
     <Button
         android:id="@+id/auth_button_google"
-        style="@style/Widget.Material3.Button.OutlinedButton"
+        style="@style/Widget.DogShelter.Button.OutlinedButton.WhiteButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_gravity="center"
-        android:text="@string/google_auth" />
+        android:text="@string/google_auth"
+        app:icon="@drawable/ic_goo"
+        app:iconTint="@android:color/transparent"
+        app:iconTintMode="add" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6"/>
+        android:layout_weight="0.6" />
 
 </LinearLayout>

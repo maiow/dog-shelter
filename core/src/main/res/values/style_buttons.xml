@@ -46,4 +46,12 @@
         <item name="iconSize">0dp</item>
     </style>
 
+    <style name="Widget.DogShelter.Button.OutlinedButton.WhiteButton" parent="Widget.DogShelter.Button.OutlinedButton">
+        <item name="strokeColor">@color/grey_main</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="iconSize">0dp</item>
+        <item name="android:textColor">@color/grey_main</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
 </resources>
