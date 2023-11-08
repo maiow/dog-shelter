@@ -9,6 +9,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.redpine.dogshelter.BuildConfig
 import com.redpine.dogshelter.R
 import com.redpine.dogshelter.app.App
 import com.redpine.dogshelter.databinding.ActivityMainBinding
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         (applicationContext as App).appComponent.inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(BuildConfig.DEBUG.not())
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
