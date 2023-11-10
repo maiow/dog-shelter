@@ -11,8 +11,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.redpine.core.state.LoadState
 import com.redpine.profile.ProfileBaseFragment
 import com.redpine.profile.presentation.profile.ProfileViewModel.UserActionResult
-import com.redpine.profiler.R
-import com.redpine.profiler.databinding.FragmentProfileBinding
+import com.redpine.profile.R
+import com.redpine.profile.databinding.FragmentProfileBinding
 
 class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
 

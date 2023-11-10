@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.redpine.profiler"
+    namespace = "com.redpine.profile"
     compileSdk = Config.compileSdk
 
     defaultConfig {

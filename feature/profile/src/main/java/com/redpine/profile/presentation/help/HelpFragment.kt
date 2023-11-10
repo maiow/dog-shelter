@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import com.redpine.profile.ProfileBaseFragment
-import com.redpine.profiler.databinding.FragmentHelpBinding
+import com.redpine.profile.databinding.FragmentHelpBinding
 
 class HelpFragment : ProfileBaseFragment<FragmentHelpBinding>() {
 
