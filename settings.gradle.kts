@@ -13,6 +13,9 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "DogShelter"
+
+includeBuild("build-logic")
+
 include(":app")
 include(":feature:favorites")
 include(":feature:profile")
