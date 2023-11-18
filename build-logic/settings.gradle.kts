@@ -1,7 +1,12 @@
 dependencyResolutionManagement {
     repositories {
+        google {
+            mavenContent {
+                includeGroupByRegex(".*google.*")
+                includeGroupByRegex(".*android.*")
+            }
+        }
         mavenCentral()
-        google()
     }
     versionCatalogs {
         create("libs") {
