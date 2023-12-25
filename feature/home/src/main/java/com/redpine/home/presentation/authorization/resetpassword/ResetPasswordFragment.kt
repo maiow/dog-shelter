@@ -4,17 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
-import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentResetPasswordBinding
+import com.redpine.home.di.component.HomeComponent
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
-class ResetPasswordFragment : HomeBaseFragment<FragmentResetPasswordBinding>() {
-    private val viewModel: ResetPasswordViewModel by lazy { initViewModel() }
+class ResetPasswordFragment :
+    BaseFragmentWithViewModel<FragmentResetPasswordBinding, ResetPasswordViewModel>() {
+
 
     override fun initBinding(inflater: LayoutInflater) =
         FragmentResetPasswordBinding.inflate(inflater)
+
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,7 +33,7 @@ class ResetPasswordFragment : HomeBaseFragment<FragmentResetPasswordBinding>() {
         }
 
         binding.authButton.setOnClickListener {
-            viewModel.resetPassword( binding.editEmail.text.toString())
+            viewModel.resetPassword(binding.editEmail.text.toString())
         }
     }
 

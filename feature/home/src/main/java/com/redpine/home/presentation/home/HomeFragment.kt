@@ -8,21 +8,25 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.domain.model.Item
 import com.redpine.core.state.LoadState
 import com.redpine.core.tools.ClickableView
-import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentHomeBinding
+import com.redpine.home.di.component.HomeComponent
 import com.redpine.home.domain.model.grid.Grid
 import com.redpine.home.presentation.home.adapter.adapter.GridAdapter
 
-class HomeFragment : HomeBaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragmentWithViewModel<FragmentHomeBinding,HomeViewModel>() {
 
-    private val viewModel: HomeViewModel by lazy { initViewModel() }
     private val adapter by lazy { GridAdapter(::onItemClick) }
     override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

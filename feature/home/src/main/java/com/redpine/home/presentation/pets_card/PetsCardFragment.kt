@@ -9,17 +9,22 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.carousel.CarouselLayoutManager
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.core.domain.model.Dog
 import com.redpine.core.state.LoadState
-import com.redpine.home.HomeBaseFragment
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentPetsCardBinding
+import com.redpine.home.di.component.HomeComponent
 
-class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
+class PetsCardFragment : BaseFragmentWithViewModel<FragmentPetsCardBinding,PetsCardViewModel>() {
 
     private val args by navArgs<PetsCardFragmentArgs>()
-    private val viewModel: PetsCardViewModel by lazy { initViewModel() }
+
     override fun initBinding(inflater: LayoutInflater) = FragmentPetsCardBinding.inflate(inflater)
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,7 +95,6 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private companion object {
         const val WEBSITE_LINK = "https://priut-ks.ru/tproduct/"
-        const val GENDER_MALE = "male"
         const val WHATSAPP_URI = "https://api.whatsapp.com/send?phone="
         const val WHATSAPP_URI_TEXT = "&text="
     }

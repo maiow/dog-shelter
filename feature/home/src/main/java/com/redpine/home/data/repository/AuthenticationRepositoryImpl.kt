@@ -2,8 +2,9 @@ package com.redpine.home.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.redpine.home.domain.repository.AuthenticationRepository
+import javax.inject.Inject
 
-class AuthenticationRepositoryImpl(
+class AuthenticationRepositoryImpl @Inject constructor (
     private val fireBaseAuth: FirebaseAuth,
 ) : AuthenticationRepository {
 

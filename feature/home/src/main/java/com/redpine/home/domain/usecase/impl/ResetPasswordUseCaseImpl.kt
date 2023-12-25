@@ -3,8 +3,9 @@ package com.redpine.home.domain.usecase.impl
 import com.redpine.home.domain.repository.AuthenticationRepository
 import com.redpine.home.domain.usecase.ResetPasswordUseCase
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class ResetPasswordUseCaseImpl(
+class ResetPasswordUseCaseImpl @Inject constructor(
     private val repository: AuthenticationRepository
 ) : ResetPasswordUseCase {
 

@@ -5,8 +5,11 @@ import com.redpine.core.base.FirebaseBaseExceptionNullResponse
 import com.redpine.core.domain.model.News
 import com.redpine.home.domain.repository.NewsRepository
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class NewsRepositoryImpl(private val database: DatabaseReference) : NewsRepository {
+class NewsRepositoryImpl @Inject constructor(
+    private val database: DatabaseReference
+) : NewsRepository {
 
     override suspend fun getNewsList(): List<News> {
         val newsList = database

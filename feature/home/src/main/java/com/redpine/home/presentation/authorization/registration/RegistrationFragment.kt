@@ -4,18 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
-import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentRegistrationBinding
+import com.redpine.home.di.component.HomeComponent
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
-class RegistrationFragment : HomeBaseFragment<FragmentRegistrationBinding>() {
-
-    private val viewModel: RegistrationViewModel by lazy { initViewModel() }
+class RegistrationFragment :
+    BaseFragmentWithViewModel<FragmentRegistrationBinding, RegistrationViewModel>() {
 
     override fun initBinding(inflater: LayoutInflater) =
         FragmentRegistrationBinding.inflate(inflater)
+
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,13 +30,13 @@ class RegistrationFragment : HomeBaseFragment<FragmentRegistrationBinding>() {
         flowObserver(viewModel.loadState) { loadState -> loadStateListener(loadState) }
     }
 
-    private fun onClickRegistration()=
+    private fun onClickRegistration() =
         binding.registrationButton.setOnClickListener {
             viewModel.createNewUser(
                 binding.editEmail.text.toString(),
                 binding.editPassword.text.toString()
             )
-    }
+        }
 
     private fun loadStateListener(loadState: LoadState) {
         binding.registrationButton.isEnabled = loadState == LoadState.ENABLE_BUTTON

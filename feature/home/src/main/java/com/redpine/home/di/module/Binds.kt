@@ -1,7 +1,5 @@
 package com.redpine.home.di.module
 
-import androidx.lifecycle.ViewModelProvider
-import com.redpine.home.ViewModelFactory
 import com.redpine.home.data.repository.AuthenticationRepositoryImpl
 import com.redpine.home.data.repository.DogsRepositoryImpl
 import com.redpine.home.data.repository.NewsRepositoryImpl
@@ -32,16 +30,13 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-interface Binds {
+internal interface Binds {
 
     @Binds
     fun bindsOnboardingRepository(repositoryImpl: OnboardingRepositoryImpl): OnboardingRepository
 
     @Binds
     fun bindsAuthenticationRepository(repositoryImpl: AuthenticationRepositoryImpl): AuthenticationRepository
-
-    @Binds
-    fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     fun bindsAuthUseCase(useCaseImpl: AuthUseCaseImpl): AuthUseCase

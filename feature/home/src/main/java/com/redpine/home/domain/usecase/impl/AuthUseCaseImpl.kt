@@ -4,8 +4,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.redpine.home.domain.repository.AuthenticationRepository
 import com.redpine.home.domain.usecase.AuthUseCase
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class AuthUseCaseImpl(private val authRepository: AuthenticationRepository) : AuthUseCase {
+class AuthUseCaseImpl @Inject constructor(
+    private val authRepository: AuthenticationRepository
+) : AuthUseCase {
 
     override suspend fun authEmail(email: String, password: String): String {
 

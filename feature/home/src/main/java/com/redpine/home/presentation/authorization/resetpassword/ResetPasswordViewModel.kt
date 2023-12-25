@@ -5,8 +5,9 @@ import com.redpine.core.extensions.emailValidation
 import com.redpine.core.state.LoadState
 import com.redpine.home.domain.usecase.ResetPasswordUseCase
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
+import javax.inject.Inject
 
-class ResetPasswordViewModel(
+class ResetPasswordViewModel @Inject constructor(
     private val resetPasswordUseCase: ResetPasswordUseCase,
 ) : BaseViewModel() {
 

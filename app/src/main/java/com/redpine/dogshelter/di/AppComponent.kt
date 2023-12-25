@@ -7,24 +7,26 @@ import com.redpine.core.domain.OnBoardingPrefs
 import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainActivity
 import com.redpine.favorites.di.FavoritesDependencies
-import com.redpine.home.di.deps.HomeDependencies
+import com.redpine.home.di.component.HomeComponent
+import com.redpine.home.di.module.HomeModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Component(
     modules = [
-        Module::class
+        Module::class,
+        HomeModule::class
     ]
 )
 @Singleton
-interface AppComponent : ChatsDependencies, FavoritesDependencies, HomeDependencies {
+interface AppComponent : HomeComponent, ChatsDependencies, FavoritesDependencies {
 
     fun inject(mainActivity: MainActivity)
 
     override var api: Api
-    override val tokenProvider: TokenProvider
-    override val onBoardingPrefs: OnBoardingPrefs
+     val tokenProvider: TokenProvider
+     val onBoardingPrefs: OnBoardingPrefs
 
     @Component.Builder
     interface Builder {

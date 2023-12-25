@@ -7,16 +7,21 @@ import android.view.View
 import android.widget.CheckBox
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
-import com.redpine.home.HomeBaseFragment
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.home.R
 import com.redpine.home.databinding.FragmentFilterBinding
+import com.redpine.home.di.component.HomeComponent
 import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MAX_AGE_ON_SLIDER
 import com.redpine.home.presentation.filter.FilterViewModel.Companion.INITIAL_MIN_AGE_ON_SLIDER
 
-class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
+class FilterFragment : BaseFragmentWithViewModel<FragmentFilterBinding,FilterViewModel>() {
 
-    private val viewModel: FilterViewModel by lazy { initViewModel() }
     override fun initBinding(inflater: LayoutInflater) = FragmentFilterBinding.inflate(inflater)
+
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,12 +30,7 @@ class FilterFragment : HomeBaseFragment<FragmentFilterBinding>() {
         setAgeSlider()
         setApplyButton()
         setClearButton()
-//        hideStatusBar()
     }
-
-//    private fun hideStatusBar() {
-//        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-//    }
 
     private fun setCloseButton() {
         binding.filterCloseBtn.setOnClickListener {

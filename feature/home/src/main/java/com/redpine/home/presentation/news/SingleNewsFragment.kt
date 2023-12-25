@@ -7,17 +7,21 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.core.domain.model.News
 import com.redpine.core.extensions.loadImage
 import com.redpine.core.state.LoadState
-import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentSingleNewsBinding
+import com.redpine.home.di.component.HomeComponent
 
-class SingleNewsFragment : HomeBaseFragment<FragmentSingleNewsBinding>() {
+class SingleNewsFragment : BaseFragmentWithViewModel<FragmentSingleNewsBinding,SingleNewsViewModel>() {
 
-    private val viewModel: SingleNewsViewModel by lazy { initViewModel() }
     private val args by navArgs<SingleNewsFragmentArgs>()
     override fun initBinding(inflater: LayoutInflater) = FragmentSingleNewsBinding.inflate(inflater)
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

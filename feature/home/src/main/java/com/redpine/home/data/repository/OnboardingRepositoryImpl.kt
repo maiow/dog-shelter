@@ -3,10 +3,11 @@ package com.redpine.home.data.repository
 import com.redpine.home.R
 import com.redpine.home.domain.model.Onboarding
 import com.redpine.home.domain.repository.OnboardingRepository
+import javax.inject.Inject
 
-class OnboardingRepositoryImpl : OnboardingRepository {
+class OnboardingRepositoryImpl @Inject constructor() : OnboardingRepository {
 
-    private val list = listOf<Onboarding>(
+    private val list = listOf(
         Onboarding(
             R.drawable.start_png_1,
             "Найди себе друга",

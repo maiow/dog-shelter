@@ -4,22 +4,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.redpine.core.component.getComponent
 import com.redpine.dogshelter.R
-import com.redpine.dogshelter.app.App
 import com.redpine.dogshelter.databinding.ActivityMainBinding
+import com.redpine.dogshelter.di.AppComponent
 import com.redpine.home.presentation.onboarding.OnboardingFragmentDirections
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var viewModelFactory: MainViewModelFactory
-    private lateinit var viewModel: MainViewModel
+    lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        (applicationContext as App).appComponent.inject(this)
-        viewModel  = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        getComponent<AppComponent>().inject(this)
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment

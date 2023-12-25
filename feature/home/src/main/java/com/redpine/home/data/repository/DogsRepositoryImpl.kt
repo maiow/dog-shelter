@@ -10,8 +10,11 @@ import com.redpine.core.extensions.toDogList
 import com.redpine.home.data.FilteredDogs
 import com.redpine.home.domain.repository.DogsRepository
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class DogsRepositoryImpl(private val database: DatabaseReference) : DogsRepository {
+class DogsRepositoryImpl @Inject constructor (
+    private val database: DatabaseReference
+) : DogsRepository {
 
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 

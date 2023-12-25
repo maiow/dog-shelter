@@ -3,8 +3,11 @@ package com.redpine.home.domain.usecase.impl
 import com.redpine.core.domain.model.Dog
 import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.usecase.FilterUseCase
+import javax.inject.Inject
 
-class FilterUseCaseImpl(private val repository: DogsRepository) : FilterUseCase {
+class FilterUseCaseImpl @Inject constructor(
+    private val repository: DogsRepository
+) : FilterUseCase {
     override suspend fun filterDogs(
         minAge: String,
         maxAge: String,

@@ -2,8 +2,9 @@ package com.redpine.home.domain.usecase.impl
 
 import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.usecase.LikeUseCase
+import javax.inject.Inject
 
-class LikeUseCaseImpl(
+class LikeUseCaseImpl @Inject constructor(
     private val dogsRepository: DogsRepository
 ) : LikeUseCase {
 

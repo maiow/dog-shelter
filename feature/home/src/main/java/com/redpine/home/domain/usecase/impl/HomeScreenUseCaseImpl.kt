@@ -8,8 +8,9 @@ import com.redpine.home.domain.model.grid.VerticalGrid
 import com.redpine.home.domain.repository.DogsRepository
 import com.redpine.home.domain.repository.NewsRepository
 import com.redpine.home.domain.usecase.HomeScreenUseCase
+import javax.inject.Inject
 
-class HomeScreenUseCaseImpl(
+class HomeScreenUseCaseImpl @Inject constructor (
     private val dogsRepository: DogsRepository,
     private val newsRepository: NewsRepository
 ) : HomeScreenUseCase {

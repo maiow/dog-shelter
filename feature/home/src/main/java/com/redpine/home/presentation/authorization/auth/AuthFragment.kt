@@ -5,17 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.NavDirections
+import com.redpine.core.base.BaseFragmentWithViewModel
+import com.redpine.core.component.getComponent
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
-import com.redpine.home.HomeBaseFragment
 import com.redpine.home.databinding.FragmentAuthBinding
+import com.redpine.home.di.component.HomeComponent
 import com.redpine.home.presentation.authorization.state.TypeAuthListener
 
-class AuthFragment : HomeBaseFragment<FragmentAuthBinding>() {
-
-    private val viewModel: AuthViewModel by lazy { initViewModel() }
+class AuthFragment : BaseFragmentWithViewModel<FragmentAuthBinding,AuthViewModel>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentAuthBinding.inflate(inflater)
+
+    override fun inject() {
+        requireContext().getComponent<HomeComponent>().inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

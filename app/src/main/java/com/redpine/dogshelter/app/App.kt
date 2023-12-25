@@ -2,20 +2,19 @@ package com.redpine.dogshelter.app
 
 import android.app.Application
 import com.redpine.chats.di.ChatsDependenciesProvider
+import com.redpine.core.component.RedPineApp
 import com.redpine.dogshelter.di.AppComponent
 import com.redpine.dogshelter.di.DaggerAppComponent
 import com.redpine.favorites.di.FavoritesDependenciesProvider
-import com.redpine.home.di.deps.HomeDependenciesProvider
 
-class App : Application() {
+class App : RedPineApp,Application() {
 
-    lateinit var appComponent: AppComponent
+   override lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
 
         appComponent = DaggerAppComponent.builder().application(this.applicationContext).build()
-        HomeDependenciesProvider.dependencies = appComponent
         FavoritesDependenciesProvider.dependencies = appComponent
         ChatsDependenciesProvider.dependencies = appComponent
     }

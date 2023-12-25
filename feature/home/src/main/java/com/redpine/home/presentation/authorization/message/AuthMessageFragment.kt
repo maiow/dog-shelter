@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.redpine.home.HomeBaseFragment
+import com.redpine.core.base.BaseFragment
 import com.redpine.home.databinding.FragmentAuthMessageBinding
 
-class AuthMessageFragment : HomeBaseFragment<FragmentAuthMessageBinding>() {
+class AuthMessageFragment : BaseFragment<FragmentAuthMessageBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) =
         FragmentAuthMessageBinding.inflate(inflater)
