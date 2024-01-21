@@ -1,24 +1,12 @@
 plugins {
-    id(Plugins.library)
-    id(Plugins.android)
-    id(Plugins.kapt)
+    id("lib-android-convention")
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kapt)
+
 }
 
 android {
     namespace = "com.redpine.favorites"
-    compileSdk = Config.compileSdk
-
-    defaultConfig {
-        minSdk = Config.minSdk
-    }
-
-    compileOptions {
-        sourceCompatibility = Config.javaVersion
-        targetCompatibility = Config.javaVersion
-    }
-    kotlinOptions {
-        jvmTarget = Config.jvmTarget
-    }
 
     buildFeatures {
         viewBinding = true
@@ -31,21 +19,21 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":delegate"))
 
-    implementation(Dependence.Core.core)
-    implementation(Dependence.Core.appcompat)
-    implementation(Dependence.Core.fragmentKtx)
-    implementation(Dependence.Core.material)
-    implementation(Dependence.Core.navigationFragment)
-    implementation(Dependence.Core.navigationUi)
-    implementation(Dependence.Core.glide)
-    implementation(Dependence.Core.lifecycleLivedata)
-    implementation(Dependence.Core.lifecycleViewmodel)
+    implementation(libs.core)
+    implementation(libs.appcompat)
+    implementation(libs.fragmentKtx)
+    implementation(libs.material)
+    implementation(libs.navigationFragment)
+    implementation(libs.navigationUi)
+    implementation(libs.glide)
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.lifecycle.viewmodel)
 
-    implementation(Dependence.Di.dagger)
-    kapt(Dependence.Di.daggerCompiler)
+    implementation(libs.dagger)
+    kapt(libs.daggerCompiler)
 
-    implementation(Dependence.Firebase.googleServices)
-    implementation(platform(Dependence.Firebase.firebaseBom))
-    implementation(Dependence.Firebase.firebaseAuth)
-    implementation(Dependence.Firebase.firebaseDatabase)
+    implementation(libs.googleServices)
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebaseAuth)
+    implementation(libs.firebaseDatabase)
 }

@@ -4,19 +4,22 @@
 GooglePlay:
 https://play.google.com/store/apps/details?id=com.redpine.dogshelter
 
-And it is still a work in progress 🚧.
+The app with continuous support and improvement 💖🐶
+If you want to contribute - contact @maiow.
 
 What we've used here:
 - Modularization
 - Dagger2
 - Single Activity
-- Gradle.build on Kotlin / BuildSrc 
+- Build.gradle on Kotlin
+- Convention plugins
+- Initially BuildSrc -> migrated to Versions Catalogue 
 - Jetpack Navigation
 - Splash Screen API
 - Custom View
 - ViewPager2, TabLayouts
 - Material3 Design
-- Adaptive Layouts - Constraint Layout
+- Constraint Layout
 - Firebase Auth, Storage, Realtime database
 - Custom Delegate Adapters
 - Coroutines, Flow

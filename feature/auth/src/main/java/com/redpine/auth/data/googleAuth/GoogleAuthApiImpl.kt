@@ -28,7 +28,7 @@ class GoogleAuthApiImpl(
                 Status.RESULT_CANCELED -> throw NonGoogleAccountException()
                 Status.RESULT_DEAD_CLIENT -> throw NonGoogleAccountException()
                 Status.RESULT_TIMEOUT -> throw TimeOutException()
-                else -> throw UnSupportException()
+                else -> throw UnsupportedException()
             }
         }
     }
@@ -47,9 +47,10 @@ class GoogleAuthApiImpl(
         } catch (e: ApiException) {
             when (e.status) {
                 Status.RESULT_CANCELED -> throw NonGoogleAccountException()
+
                 Status.RESULT_DEAD_CLIENT -> throw NonGoogleAccountException()
                 Status.RESULT_TIMEOUT -> throw TimeOutException()
-                else -> throw UnSupportException()
+                else -> throw UnsupportedException()
             }
         }
     }
@@ -59,5 +60,5 @@ class GoogleAuthApiImpl(
 class NonAuthException : Exception("User not Auth")
 class NonGoogleAccountException : Exception("User does not have a google account")
 class TimeOutException : Exception("Timeout exceeded")
-class UnSupportException : Exception("Something didn't go according to plan")
+class UnsupportedException : Exception("Something didn't go according to plan")
 

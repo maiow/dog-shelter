@@ -1,24 +1,11 @@
 plugins {
-    id(Plugins.library)
-    id(Plugins.android)
-    id(Plugins.parcelize)
+    id("lib-android-convention")
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.parcelize)
 }
 
 android {
     namespace = "com.redpine.core"
-    compileSdk = Config.compileSdk
-
-    defaultConfig {
-        minSdk = Config.minSdk
-    }
-
-    compileOptions {
-        sourceCompatibility = Config.javaVersion
-        targetCompatibility = Config.javaVersion
-    }
-    kotlinOptions {
-        jvmTarget = Config.jvmTarget
-    }
 
     buildFeatures {
         viewBinding = true
@@ -26,15 +13,15 @@ android {
 }
 dependencies {
 
-    implementation(Dependence.Core.core)
-    implementation(Dependence.Core.appcompat)
-    implementation(Dependence.Core.fragmentKtx)
-    implementation(Dependence.Core.material)
-    implementation(Dependence.Core.navigationFragment)
-    implementation(Dependence.Core.glide)
+    implementation(libs.core)
+    implementation(libs.appcompat)
+    implementation(libs.fragmentKtx)
+    implementation(libs.material)
+    implementation(libs.navigationFragment)
+    implementation(libs.glide)
 
-    implementation(platform(Dependence.Firebase.firebaseBom))
-    implementation(Dependence.Firebase.firebaseDatabase)
-    implementation(Dependence.Firebase.firebaseAuth)
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebaseDatabase)
+    implementation(libs.firebaseAuth)
 
 }

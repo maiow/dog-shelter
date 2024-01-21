@@ -1,18 +1,26 @@
 pluginManagement {
     repositories {
-        google()
         mavenCentral()
+        google()
         gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupByRegex(".*google.*")
+                includeGroupByRegex(".*android.*")
+            }
+        }
         mavenCentral()
     }
 }
 rootProject.name = "DogShelter"
+
+includeBuild("build-logic")
+
 include(":app")
 include(":feature:favorites")
 include(":feature:profile")
