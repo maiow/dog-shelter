@@ -11,13 +11,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.redpine.core.state.LoadState
 import com.redpine.profile.ProfileBaseFragment
 import com.redpine.profile.presentation.profile.ProfileViewModel.UserActionResult
-import com.redpine.profiler.R
-import com.redpine.profiler.databinding.FragmentProfileBinding
+import com.redpine.profile.R
+import com.redpine.profile.databinding.FragmentProfileBinding
 
 class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
 
     private val viewModel: ProfileViewModel by lazy { initViewModel() }
-    private var justLoggedOut = false
 
     override fun initBinding(inflater: LayoutInflater) = FragmentProfileBinding.inflate(inflater)
 
@@ -60,19 +59,15 @@ class ProfileFragment : ProfileBaseFragment<FragmentProfileBinding>() {
             reenterPassword.isVisible = result == UserActionResult.REAUTH_FAILED
             layoutPassword.isVisible = result == UserActionResult.REAUTH_FAILED
         }
-        justLoggedOut = result == UserActionResult.ACCOUNT_DELETED || result == UserActionResult.LOGOUT
     }
 
-    private fun observeAuth(auth: Boolean) {
-        if (!auth && !justLoggedOut) showDialog(com.redpine.core.R.string.auth_dialog_message) {
-            navigate(R.id.actionProfileToAuth)
-        }
+    private fun observeAuth(userAuthorized: Boolean) {
         with(binding) {
-            layoutEmail.isVisible = auth
-            logoutButton.isVisible = auth
-            deleteAccountButton.isVisible = auth
-            authButton.isVisible = !auth
-            notLoggedText.isVisible = !auth
+            layoutEmail.isVisible = userAuthorized
+            logoutButton.isVisible = userAuthorized
+            deleteAccountButton.isVisible = userAuthorized
+            authButton.isVisible = !userAuthorized
+            notLoggedText.isVisible = !userAuthorized
         }
     }
 

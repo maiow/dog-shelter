@@ -38,24 +38,6 @@
     <string name="story">Story (no English translation yet):</string>
     <string name="share">Share</string>
 
-    <string name="repeat_password">Repeat password</string>
-    <string name="auth_button">Log in</string>
-    <string name="registration_button">Register</string>
-
-    <string name="password_helper">* Password must:\n
-        - contain numbers and latin letters;\n
-        - be not shorter than 8 symbols;\n
-        - contain at least 1 Upper case letter;\n
-        - contain at least 1 Lower case letter;\n
-        - contain at least 1 number</string>
-    <string name="reset_password_message">Forgot password?</string>
-    <string name="error_auth_message">* Not possible to log in with data provided</string>
-    <string name="error_reset_password_message">* Email is not registered</string>
-    <string name="error_registration_message">* Not possible to register with data provided</string>
-    <string name="error_internet_message">* Check network</string>
-    <string name="message_auth">Message has been sent to the specified email address. Follow the link from the email and log in again</string>
-    <string name="reset_password">Reset</string>
-
     <plurals name="age_data">
         <item quantity="one">%1$s year</item>
         <item quantity="other">%1$s years</item>
@@ -73,6 +55,13 @@
     <string name="follow_us">Follow us</string>
     <string name="news">News</string>
     <string name="all_shelter_dogs">All dogs in the shelter</string>
+
+    <string name="find_friend">Find a friend</string>
+    <string name="you_can_choose_pet">You can choose a pet with desired parameters</string>
+    <string name="help_easy">Easy to help</string>
+    <string name="payments_any_help">Donations, photo shoots, foster care - anything can help us</string>
+    <string name="change_world">Change the world with us</string>
+    <string name="become_volunteer">Become a volunteer, guardian - the whole world for your ward</string>
 
     <plurals name="found_pets">
         <item quantity="one">Found %1$d dog</item>

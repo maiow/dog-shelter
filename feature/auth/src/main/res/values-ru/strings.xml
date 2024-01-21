@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="repeat_password">Повторить пароль</string>
+    <string name="auth_button">Войти</string>
+    <string name="registration_button">Зарегистрироваться</string>
+
+    <string name="password_helper">* Пароль должен:\n
+        - состоять из цифр и латинских букв;\n
+        - быть не короче 8 символов;\n
+        - содержать хотя бы 1 заглавную букву;\n
+        - содержать хотя бы 1 строчную букву;\n
+        - содержать хотя бы 1 цифру</string>
+    <string name="reset_password_message">Забыли пароль?</string>
+    <string name="error_auth_message">* Невозможно войти с предоставленными данными. Если вы ранее не регистрировались, сначала Зарегистрируйтесь</string>
+    <string name="error_reset_password_message">* Email не зарегистрирован</string>
+    <string name="error_registration_message">* Невозможно зарегистрироваться с предоставленными данными</string>
+    <string name="error_internet_message">* Если вы ранее не регистрировались, сначала Зарегистрируйтесь. Если уже регистрировались - проверьте состояние сети </string>
+    <string name="message_auth">На указанную почту отправлено сообщение. Пройдите по ссылке из письма и авторизуйтесь снова</string>
+    <string name="reset_password">Сбросить</string>
+    <string name="google_auth">Войти через Google</string>
+    <string name="or">или</string>
+</resources>

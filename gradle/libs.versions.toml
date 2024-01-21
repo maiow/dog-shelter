@@ -1,0 +1,54 @@
+[versions]
+agp = "8.2.1"
+gradle = "8.2.1"
+kotlin = "1.9.10"
+google = "4.3.15"
+coroutines = "1.7.3"
+safeArgs = "2.7.4"
+appcompat = "1.6.1"
+navigation = "2.7.4"
+dagger = "2.48.1"
+
+[libraries]
+
+core = { module = "androidx.core:core-ktx", version = "1.12.0" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+material = { module = "com.google.android.material:material", version = "1.10.0" }
+constraint = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
+fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "appcompat" }
+navigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+navigationUi = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+splashScreen = { module = "androidx.core:core-splashscreen", version = "1.0.1" }
+glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" }
+lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version = "2.6.2" }
+lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version = "2.6.2" }
+paging = { module = "androidx.paging:paging-runtime", version = "3.2.1" }
+leakCanary = { module = "com.squareup.leakcanary:leakcanary-android", version = "2.10" }
+
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+daggerCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+
+googleServices = { module = "com.google.gms:google-services", version.ref = "google" }
+firebaseBom = { module = "com.google.firebase:firebase-bom", version = "32.3.1" }
+firebaseAnalytics.module = "com.google.firebase:firebase-analytics-ktx"
+firebaseAuth.module = "com.google.firebase:firebase-auth-ktx"
+firebaseDatabase.module = "com.google.firebase:firebase-database-ktx"
+firebaseCrashlytics.module = "com.google.firebase:firebase-crashlytics-ktx"
+playServices = { module = "com.google.android.gms:play-services-auth", version = "20.6.0" }
+
+androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+[bundles]
+daggerDeps = ["dagger", "daggerCompiler"]
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "google" }
+safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgs" }
+crashlytics = { id = "com.google.firebase.crashlytics", version = "2.9.9" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

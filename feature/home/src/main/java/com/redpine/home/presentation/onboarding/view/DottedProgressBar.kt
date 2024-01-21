@@ -55,16 +55,16 @@ class DottedProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
             .toMutableList()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         settings.listProgressBar.forEach {
             paint.color = if (it.status == StatusDottedProgressBar.EMPTY) progressEmptyColor
             else progressFullColor
-            canvas?.drawRoundRect(it.rect, 5f, 5f, paint)
+            canvas.drawRoundRect(it.rect, 5f, 5f, paint)
         }
         paint.color = progressFullColor
-        canvas?.drawRoundRect(settings.indicator.rect, 5f, 5f, paint)
+        canvas.drawRoundRect(settings.indicator.rect, 5f, 5f, paint)
     }
 
     fun setProgress(progress: Int) {

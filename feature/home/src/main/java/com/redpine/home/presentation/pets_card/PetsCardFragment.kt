@@ -37,23 +37,25 @@ class PetsCardFragment : HomeBaseFragment<FragmentPetsCardBinding>() {
 
     private fun observeNavigateAuth(isNavigation: Boolean) {
         if (isNavigation) {
-            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(R.id.auth_nav_graph) }
+            showDialog(com.redpine.core.R.string.auth_dialog_message) { navigate(PetsCardFragmentDirections.actionAuthNavGraph()) }
             viewModel.resetNavigateFlow()
         }
     }
 
-    private fun loadingDogInfo(dog: Dog) {
-        with(binding) {
-            dogsName.text = dog.name
-            age.text = dog.age
-            color.text = dog.color
-            height.text = getString(R.string.height, dog.height)
-            story.text = dog.text.replace("<br />", "\n")
-                .replace("""\"""", "\"")
-            genderImage.isSelected = dog.isMale
-            likeButton.isSelected = dog.isFavorite
-            likeButton.setOnClickListener {
-                viewModel.addToFavorites(dog)
+    private fun loadingDogInfo(dog: Dog?) {
+        if (dog != null) {
+            with(binding) {
+                dogsName.text = dog.name
+                age.text = dog.age
+                color.text = dog.color
+                height.text = getString(R.string.height, dog.height)
+                story.text = dog.text.replace("<br />", "\n")
+                    .replace("""\"""", "\"")
+                genderImage.isSelected = dog.isMale
+                likeButton.isSelected = dog.isFavorite
+                likeButton.setOnClickListener {
+                    viewModel.addToFavorites(dog)
+                }
             }
         }
     }
