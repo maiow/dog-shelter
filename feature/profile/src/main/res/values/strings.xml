@@ -18,7 +18,8 @@
     <string name="ya_wallet">3. Yandex wallet</string>
     <string name="ya_wallet_number" translatable="false">4100 1425 0115 963</string>
     <string name="hungry_phone_number" translatable="false">+7 963 767 79 57</string>
-    <string name="sber_card_number" translatable="false">5469 3801 4999 3056</string>
+    <string name="sber_card_number" translatable="false">2202 2068 4013 9302</string>
+    <string name="sber_card_name" translatable="false">(Ольга Г.)</string>
 
     <string name="you_have_logged_out">You have logged out</string>
     <string name="reauthentication_failed">Reauthentication failed</string>
