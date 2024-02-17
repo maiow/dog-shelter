@@ -11,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId = "com.redpine.dogshelter"
-        versionCode = 4
-        versionName = "1.1.0"
+        versionCode = 5
+        versionName = "1.1.1"
 
     }
 

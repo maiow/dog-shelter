@@ -17,17 +17,25 @@ class HelpFragment : ProfileBaseFragment<FragmentHelpBinding>() {
         activity?.window?.statusBarColor =
             resources.getColor(com.redpine.core.R.color.F9_background, null)
 
-        binding.imageView.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/contacts")))
-        }
-        binding.imageView2.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/contacts")))
-        }
-        binding.imageView3.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/fincurator")))
-        }
-        binding.imageView4.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/howtohelp")))
+        with(binding) {
+            imageView.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/contacts")))
+            }
+            imageView2.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/contacts")))
+            }
+            imageView3.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/fincurator")))
+            }
+            imageView4.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/howtohelp")))
+            }
+            imageView5.setOnClickListener {
+                helpScrollView.fullScroll(View.FOCUS_DOWN)
+            }
+            imageView6.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://priut-ks.ru/contacts")))
+            }
         }
     }
 }
