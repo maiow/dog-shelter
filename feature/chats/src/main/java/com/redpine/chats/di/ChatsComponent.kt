@@ -2,7 +2,6 @@ package com.redpine.chats.di
 
 import androidx.lifecycle.ViewModelProvider
 import com.redpine.chats.di.module.Binds
-import com.redpine.chats.di.module.RepositoryModule
 import com.redpine.core.base.DiComponent
 import dagger.Component
 import javax.inject.Singleton
@@ -10,8 +9,8 @@ import javax.inject.Singleton
 @Component(
     dependencies = [
         ChatsDependencies::class
-    ], modules = [
-        RepositoryModule::class,
+    ],
+    modules = [
         Binds::class
     ]
 )

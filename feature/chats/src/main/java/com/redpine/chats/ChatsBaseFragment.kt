@@ -5,13 +5,10 @@ import androidx.viewbinding.ViewBinding
 import com.redpine.chats.di.ChatsComponentViewModel
 import com.redpine.core.base.BaseFragment
 
-
 abstract class ChatsBaseFragment<B : ViewBinding> : BaseFragment<B>() {
 
     override fun initViewModelFactory(): ViewModelProvider.Factory =
         ViewModelProvider(requireActivity())[ChatsComponentViewModel::class.java]
             .moduleComponent
             .viewModelFactory
-
-
 }

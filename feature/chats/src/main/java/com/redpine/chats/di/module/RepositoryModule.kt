@@ -1,14 +1,12 @@
 package com.redpine.chats.di.module
 
-import com.redpine.chats.data.ChatsRepositoryImpl
+import androidx.lifecycle.ViewModelProvider
+import com.redpine.chats.ChatsViewModelFactory
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 @Module
-object RepositoryModule {
+interface Binds {
 
-    @Provides
-    @Singleton
-    fun providesChatsRepository() = ChatsRepositoryImpl()
+    @dagger.Binds
+    fun bindsViewModelFactory(viewModelFactory: ChatsViewModelFactory): ViewModelProvider.Factory
 }

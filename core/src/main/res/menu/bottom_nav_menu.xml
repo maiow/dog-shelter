@@ -20,10 +20,10 @@
         android:title="@string/title_profile"
         app:showAsAction="ifRoom" />
 
-    <!--item
+    <item
         android:id="@+id/chats_nav_graph"
         android:icon="@drawable/ic_chats"
         android:title="@string/title_chats"
-        app:showAsAction="ifRoom" /-->
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Вход в чат</string>
+    <string name="your_name">Ваше имя</string>
+    <string name="username">Username (только латинские буквы!)</string>
+    <string name="channel_name">Название канала чата</string>
+    <string name="channel_created">Канал чата создан</string>
+    <string name="choose_channel_name">Выберите название канала чата</string>
+    <string name="error_username_too_short">Username должен быть минимум из %d символов и в нем не должно быть русских букв.</string>
+    <string name="create">Создать</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+</resources>

@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("app-android-convention")
     alias(libs.plugins.kotlinAndroid)
@@ -14,6 +16,8 @@ android {
         versionCode = 5
         versionName = "1.1.1"
 
+        val localProperties = gradleLocalProperties(rootDir)
+        buildConfigField("String", "API_KEY", "\"${localProperties.getProperty("API_KEY")}\"")
     }
 
     buildTypes {
@@ -41,7 +45,7 @@ dependencies {
     implementation(project(":feature:favorites"))
     implementation(project(":feature:profile"))
     implementation(project(":feature:auth"))
-    //implementation(project(":feature:chats"))
+    implementation(project(":feature:chats"))
     implementation(project(":core"))
 
     implementation(libs.core)
@@ -52,6 +56,13 @@ dependencies {
     implementation(libs.navigationFragment)
     implementation(libs.navigationUi)
     implementation(libs.splashScreen)
+
+    implementation(libs.streamChat)
+    implementation(libs.streamChatUi)
+    implementation(libs.streamChatOffline)
+
+    implementation(libs.lifecycle.runtime)
+    implementation(libs.coil)
 
     //debugImplementation(libs.leakCanary)
 
@@ -64,5 +75,4 @@ dependencies {
 
     implementation(libs.dagger)
     kapt(libs.daggerCompiler)
-
 }

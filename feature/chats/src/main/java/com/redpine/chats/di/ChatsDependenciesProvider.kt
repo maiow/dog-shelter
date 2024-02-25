@@ -1,7 +1,7 @@
 package com.redpine.chats.di
 
 interface ChatsDependenciesProvider {
-    var dependencies:ChatsDependencies
+    var dependencies: ChatsDependencies
 
-    companion object: ChatsDependenciesProvider by ChatsStore
+    companion object : ChatsDependenciesProvider by ChatsStore
 }

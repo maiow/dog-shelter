@@ -11,6 +11,7 @@ import com.redpine.core.domain.TokenProvider
 import com.redpine.dogshelter.presentation.MainViewModelFactory
 import com.redpine.home.domain.utils.CalendarInstance
 import dagger.Provides
+import io.getstream.chat.android.client.ChatClient
 import javax.inject.Singleton
 
 @dagger.Module
@@ -40,5 +41,8 @@ object Module {
     @Provides
     @Singleton
     fun providesCalendarInstance(): CalendarInstance = CalendarInstance()
-}
 
+    @Provides
+    @Singleton
+    fun providesChatClient() = ChatClient.instance()
+}

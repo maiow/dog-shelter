@@ -15,6 +15,7 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven { url = uri("https://www.jitpack.io") }
     }
 }
 rootProject.name = "DogShelter"
@@ -26,7 +27,7 @@ include(":feature:favorites")
 include(":feature:profile")
 include(":feature:home")
 include(":feature:auth")
-//include(":feature:chats")
+include(":feature:chats")
 include(":core")
 include(":api")
 include(":delegate")
