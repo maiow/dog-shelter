@@ -11,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId = "com.redpine.dogshelter"
-        versionCode = 5
-        versionName = "1.1.1"
+        versionCode = 6
+        versionName = "1.1.2"
 
     }
 
@@ -59,10 +59,10 @@ dependencies {
     implementation(platform(libs.firebaseBom))
     implementation(libs.firebaseAnalytics)
     implementation(libs.firebaseAuth)
+    implementation(libs.playServices)
     implementation(libs.firebaseDatabase)
     implementation(libs.firebaseCrashlytics)
 
     implementation(libs.dagger)
     kapt(libs.daggerCompiler)
-
 }

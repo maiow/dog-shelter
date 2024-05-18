@@ -1,19 +1,17 @@
 [versions]
-agp = "8.2.1"
-gradle = "8.2.1"
-kotlin = "1.9.10"
-google = "4.3.15"
+agp = "8.4.0"
+kotlin = "2.0.0-RC2"
+google = "4.4.1"
 coroutines = "1.7.3"
-safeArgs = "2.7.4"
+safeArgs = "2.7.7"
 appcompat = "1.6.1"
-navigation = "2.7.4"
-dagger = "2.48.1"
+navigation = "2.7.7"
+dagger = "2.51.1"
 
 [libraries]
 
-core = { module = "androidx.core:core-ktx", version = "1.12.0" }
+core = { module = "androidx.core:core-ktx", version = "1.13.1" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 material = { module = "com.google.android.material:material", version = "1.10.0" }
 constraint = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
 fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "appcompat" }
@@ -21,8 +19,8 @@ navigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", v
 navigationUi = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 splashScreen = { module = "androidx.core:core-splashscreen", version = "1.0.1" }
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" }
-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version = "2.6.2" }
-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version = "2.6.2" }
+lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version = "2.7.0" }
+lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version = "2.7.0" }
 paging = { module = "androidx.paging:paging-runtime", version = "3.2.1" }
 leakCanary = { module = "com.squareup.leakcanary:leakcanary-android", version = "2.10" }
 
@@ -30,12 +28,12 @@ dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 daggerCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 
 googleServices = { module = "com.google.gms:google-services", version.ref = "google" }
-firebaseBom = { module = "com.google.firebase:firebase-bom", version = "32.3.1" }
+firebaseBom = { module = "com.google.firebase:firebase-bom", version = "33.0.0" }
 firebaseAnalytics.module = "com.google.firebase:firebase-analytics-ktx"
 firebaseAuth.module = "com.google.firebase:firebase-auth-ktx"
 firebaseDatabase.module = "com.google.firebase:firebase-database-ktx"
 firebaseCrashlytics.module = "com.google.firebase:firebase-crashlytics-ktx"
-playServices = { module = "com.google.android.gms:play-services-auth", version = "20.6.0" }
+playServices = { module = "com.google.android.gms:play-services-auth", version = "21.1.1" }
 
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
