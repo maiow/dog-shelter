@@ -1,6 +1,5 @@
 plugins {
     id("lib-android-convention")
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kapt)
     alias(libs.plugins.safeArgs)
 }
