@@ -16,7 +16,7 @@ android {
         versionCode = 6
         versionName = "1.1.2"
 
-        val localProperties = gradleLocalProperties(rootDir)
+        val localProperties = gradleLocalProperties(rootDir, providers)
         buildConfigField("String", "API_KEY", "\"${localProperties.getProperty("API_KEY")}\"")
     }
 

@@ -1,3 +1,4 @@
+import com.android.SdkConstants.FN_LOCAL_PROPERTIES
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
@@ -10,7 +11,7 @@ android {
     namespace = "com.redpine.chats"
 
     defaultConfig {
-        val localProperties = gradleLocalProperties(rootDir)
+        val localProperties = gradleLocalProperties(rootDir, providers)
         buildConfigField("String", "API_KEY", "\"${localProperties.getProperty("API_KEY")}\"")
     }
 

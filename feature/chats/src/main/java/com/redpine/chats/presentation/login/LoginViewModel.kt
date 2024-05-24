@@ -58,6 +58,8 @@ class LoginViewModel @Inject constructor(
                 val channelClient = client.channel("messaging", "volunteers")
                 channelClient.addMembers(
                     listOf(trimmedUsername),
+                    //TODO: fix
+                    // This is internal API for the Stream Chat libraries. Do not depend on this API in your own client code.
                     Message(text = "$trimmedUsername вошёл в чат.")
                 ).enqueue { result ->
                     if (result.isSuccess) {
