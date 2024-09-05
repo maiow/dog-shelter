@@ -1,3 +1,6 @@
+import com.android.SdkConstants.FN_LOCAL_PROPERTIES
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("lib-android-convention")
     alias(libs.plugins.kapt)
@@ -7,13 +10,18 @@ plugins {
 android {
     namespace = "com.redpine.auth"
 
+//    defaultConfig {
+//        val localProperties = gradleLocalProperties(rootDir, providers)
+//        buildConfigField("String", "client", "\"${localProperties.getProperty("client")}\"")
+//    }
+
     buildFeatures {
         viewBinding = true
+//        buildConfig = true
     }
 
 }
 dependencies {
-    implementation(project(":api"))
     implementation(project(":core"))
 
     implementation(libs.core)

@@ -1,7 +1,6 @@
 package com.redpine.dogshelter.di
 
 import android.content.Context
-import com.redpine.api.Api
 import com.redpine.auth.di.deps.AuthDependencies
 import com.redpine.core.domain.AuthDialogPrefs
 import com.redpine.core.domain.OnBoardingPrefs
@@ -25,7 +24,6 @@ interface AppComponent : AuthDependencies, ProfileDependencies, FavoritesDepende
 
     fun inject(mainActivity: MainActivity)
 
-    override val api: Api
     override val tokenProvider: TokenProvider
     override val onBoardingPrefs: OnBoardingPrefs
     override val authDialogPrefs: AuthDialogPrefs

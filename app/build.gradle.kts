@@ -1,9 +1,12 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("app-android-convention")
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kapt)
     alias(libs.plugins.googleServices)
     alias(libs.plugins.crashlytics)
+    alias(libs.plugins.vkid)
 }
 
 android {
@@ -14,6 +17,8 @@ android {
         versionCode = 6
         versionName = "1.1.2"
 
+        val localProperties = gradleLocalProperties(rootDir, providers)
+        buildConfigField("String", "client", "\"${localProperties.getProperty("client")}\"")
     }
 
     buildTypes {
@@ -36,7 +41,6 @@ android {
 
 dependencies {
 
-    implementation(project(":api"))
     implementation(project(":feature:home"))
     implementation(project(":feature:favorites"))
     implementation(project(":feature:profile"))

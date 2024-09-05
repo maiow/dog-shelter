@@ -1,7 +1,6 @@
 package com.redpine.dogshelter.di
 
 import android.content.Context
-import com.redpine.api.Api
 import com.redpine.core.data.AuthDialogPrefsImpl
 import com.redpine.core.data.OnBoardingPrefsImpl
 import com.redpine.core.data.TokenProviderImpl
@@ -15,10 +14,6 @@ import javax.inject.Singleton
 
 @dagger.Module
 object Module {
-
-    @Provides
-    @Singleton
-    fun providesApi() = Api()
 
     @Provides
     @Singleton
@@ -41,4 +36,3 @@ object Module {
     @Singleton
     fun providesCalendarInstance(): CalendarInstance = CalendarInstance()
 }
-
