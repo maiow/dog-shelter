@@ -36,7 +36,7 @@ class AuthViewModel @Inject constructor(
     }
 
 
-    fun signIn() {
+    fun signInG() {
         viewModelScope.launch(Dispatchers.IO) {
             authGoogleRepository.signIn()
                 .onSuccess { intentSender ->
@@ -49,6 +49,13 @@ class AuthViewModel @Inject constructor(
                 }
         }
     }
+
+//    fun signInVk() {
+//        viewModelScope.launch(Dispatchers.IO) {
+//
+//            vkAuth.authorize()
+//        }
+//    }
 
     fun signWithIntentUseCase(intent: Intent) {
 

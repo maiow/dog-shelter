@@ -11,10 +11,12 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.redpine.auth.R
 import com.redpine.auth.databinding.FragmentAuthBinding
 import com.redpine.auth.presentation.AuthBaseFragment
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
+import com.vk.id.onetap.xml.OneTap
 import kotlinx.coroutines.launch
 
 class AuthFragment : AuthBaseFragment<FragmentAuthBinding>() {
@@ -41,8 +43,32 @@ class AuthFragment : AuthBaseFragment<FragmentAuthBinding>() {
         onClickAuthButton()
 
         binding.authButtonGoogle.setOnClickListener {
-            viewModel.signIn()
+            viewModel.signInG()
         }
+
+        //scopes & scenario нет в классе OneTap в версии 1.0.0, поднятие версии требует desugaring'а
+        val mview = view.findViewById<OneTap>(R.id.vkidButton)
+//        view.scopes = setOf("email")
+        //mview.scenario = OneTapTitleScenario.SignUp
+
+        mview.setCallbacks(
+            onAuth = {
+                Log.d("Kart", "Auth")
+            },
+            onFail = { fail ->
+//                onLoginFailed(fail)
+
+//                    when (fail) {
+//                        is VKIDAuthFail.Canceled -> TODO()
+//                        is VKIDAuthFail.FailedApiCall -> TODO()
+//                        is VKIDAuthFail.FailedOAuthState -> TODO()
+//                        is VKIDAuthFail.FailedRedirectActivity -> TODO()
+//                        is VKIDAuthFail.NoBrowserAvailable -> TODO()
+//                        is VKIDAuthFail.FailedOAuth -> TODO()
+//                    }
+                Log.d("Kart", "Fail is $fail")
+            }
+        )
 
         onClickNavigationButton(
             button = binding.resetPasswordButton,
@@ -63,6 +89,27 @@ class AuthFragment : AuthBaseFragment<FragmentAuthBinding>() {
             }
         }
     }
+
+    //TODO: rewrite with onetap
+
+//        private fun onLoginFailed(fail: VKIDAuthFail) {
+//        if (!fail.description.isNullOrEmpty()) {
+//            val descriptionResource =
+////                if (exception.webViewError == WebViewClient.ERROR_HOST_LOOKUP) "R.string.message_connection_error"
+//                /*else*/ "R.string.message_unknown_error"
+//            AlertDialog.Builder(requireActivity())
+//                .setMessage(descriptionResource)
+//                .setPositiveButton(
+//                    com.redpine.core.R.string.retry
+//                ) { _, _ ->
+//                    vkAuthLauncher.launch(arrayListOf(VKScope.EMAIL))
+//                }
+//                .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+//                    dialog.dismiss()
+//                }
+//                .show()
+//        }
+//    }
 
     private fun validationButton() = binding.editEmail.onTextChanged { email ->
         viewModel.validation(email)

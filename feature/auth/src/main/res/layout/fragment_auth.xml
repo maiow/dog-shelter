@@ -138,11 +138,22 @@
         style="@style/Widget.DogShelter.Button.OutlinedButton.WhiteButton"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/standard_margin"
+        android:layout_marginBottom="@dimen/standard_margin"
         android:text="@string/google_auth"
         app:icon="@drawable/ic_goo"
         app:iconTint="@android:color/transparent"
         app:iconTintMode="add" />
+
+    <com.vk.id.onetap.xml.OneTap
+        android:id="@+id/vkidButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="@dimen/standard_margin"
+        app:vkid_buttonsCornerRadius="16dp"
+        app:vkid_buttonsElevation="0dp"
+        app:vkid_buttonsSize="large48"
+        app:vkid_onetapStyle="light" />
 
     <Space
         android:layout_width="match_parent"

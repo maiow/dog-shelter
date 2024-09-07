@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     id("app-android-convention")
@@ -16,9 +15,6 @@ android {
         applicationId = "com.redpine.dogshelter"
         versionCode = 6
         versionName = "1.1.2"
-
-        val localProperties = gradleLocalProperties(rootDir, providers)
-        buildConfigField("String", "client", "\"${localProperties.getProperty("client")}\"")
     }
 
     buildTypes {
@@ -66,6 +62,8 @@ dependencies {
     implementation(libs.playServices)
     implementation(libs.firebaseDatabase)
     implementation(libs.firebaseCrashlytics)
+
+    implementation(libs.vkOnetap)
 
     implementation(libs.dagger)
     kapt(libs.daggerCompiler)
