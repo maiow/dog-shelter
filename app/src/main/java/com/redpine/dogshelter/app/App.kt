@@ -7,6 +7,7 @@ import com.redpine.dogshelter.di.DaggerAppComponent
 import com.redpine.favorites.di.FavoritesDependenciesProvider
 import com.redpine.home.di.deps.HomeDependenciesProvider
 import com.redpine.profile.di.ProfileDependenciesProvider
+import com.vk.id.VKID
 
 class App : Application() {
 
@@ -14,6 +15,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        VKID.init(this)
         //TODO: add token expiration handler
 //        VK.addTokenExpiredHandler(tokenTracker)
 

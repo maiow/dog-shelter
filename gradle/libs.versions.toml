@@ -7,7 +7,7 @@ appcompat = "1.7.0"
 navigation = "2.8.0"
 dagger = "2.52"
 vkSdk = "4.1.0"
-vk = "1.0.0"
+vk = "2.2.0"
 lifecycle = "2.8.5"
 
 [libraries]
@@ -40,6 +40,7 @@ playServices = { module = "com.google.android.gms:play-services-auth", version =
 #vkCore = { module = "com.vk:android-sdk-core", version.ref = "vkSdk" }
 #vkApi = { module = "com.vk:android-sdk-api", version.ref = "vkSdk" }
 vkOnetap = { module = "com.vk.id:onetap-xml", version.ref = "vk" }
+desugar = { module = "com.android.tools:desugar_jdk_libs", version = "2.1.2" }
 
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -56,4 +57,4 @@ safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgs
 crashlytics = { id = "com.google.firebase.crashlytics", version = "3.0.2" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-vkid = { id = "vkid.manifest.placeholders", version = "1.0.0" }
+#vkid = { id = "vkid.manifest.placeholders", version = "1.0.0" }

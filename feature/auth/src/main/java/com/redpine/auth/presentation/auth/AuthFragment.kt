@@ -16,6 +16,7 @@ import com.redpine.auth.databinding.FragmentAuthBinding
 import com.redpine.auth.presentation.AuthBaseFragment
 import com.redpine.core.extensions.onTextChanged
 import com.redpine.core.state.LoadState
+import com.vk.id.auth.VKIDAuthUiParams
 import com.vk.id.onetap.xml.OneTap
 import kotlinx.coroutines.launch
 
@@ -46,16 +47,14 @@ class AuthFragment : AuthBaseFragment<FragmentAuthBinding>() {
             viewModel.signInG()
         }
 
-        //scopes & scenario нет в классе OneTap в версии 1.0.0, поднятие версии требует desugaring'а
-        val mview = view.findViewById<OneTap>(R.id.vkidButton)
-//        view.scopes = setOf("email")
-        //mview.scenario = OneTapTitleScenario.SignUp
+        val vkidButton = view.findViewById<OneTap>(R.id.vkidButton)
+        vkidButton.authParams = VKIDAuthUiParams { scopes = setOf("email") }
 
-        mview.setCallbacks(
-            onAuth = {
+        vkidButton.setCallbacks(
+            onAuth = { _, _ ->
                 Log.d("Kart", "Auth")
             },
-            onFail = { fail ->
+            onFail = { _, fail ->
 //                onLoginFailed(fail)
 
 //                    when (fail) {

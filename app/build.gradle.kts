@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     id("app-android-convention")
@@ -5,7 +6,7 @@ plugins {
     alias(libs.plugins.kapt)
     alias(libs.plugins.googleServices)
     alias(libs.plugins.crashlytics)
-    alias(libs.plugins.vkid)
+    //alias(libs.plugins.vkid)
 }
 
 android {
@@ -13,8 +14,18 @@ android {
 
     defaultConfig {
         applicationId = "com.redpine.dogshelter"
-        versionCode = 6
-        versionName = "1.1.2"
+        versionCode = 7
+        versionName = "1.2"
+        //TODO: test instead with placeholder plugin & init in App
+        val localProperties = gradleLocalProperties(rootDir, providers)
+        addManifestPlaceholders(
+            mapOf(
+                "VKIDRedirectHost" to "vk.com",
+                "VKIDRedirectScheme" to localProperties.getProperty("redirect"),
+                "VKIDClientID" to localProperties.getProperty("client_id"),
+                "VKIDClientSecret" to localProperties.getProperty("client_sec")
+            )
+        )
     }
 
     buildTypes {
@@ -32,6 +43,9 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
     }
 }
 
@@ -64,6 +78,7 @@ dependencies {
     implementation(libs.firebaseCrashlytics)
 
     implementation(libs.vkOnetap)
+    coreLibraryDesugaring(libs.desugar)
 
     implementation(libs.dagger)
     kapt(libs.daggerCompiler)
