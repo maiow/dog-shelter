@@ -57,4 +57,3 @@ safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgs
 crashlytics = { id = "com.google.firebase.crashlytics", version = "3.0.2" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-#vkid = { id = "vkid.manifest.placeholders", version = "1.0.0" }

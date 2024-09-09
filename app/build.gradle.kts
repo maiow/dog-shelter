@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.kapt)
     alias(libs.plugins.googleServices)
     alias(libs.plugins.crashlytics)
-    //alias(libs.plugins.vkid)
 }
 
 android {
@@ -16,7 +15,7 @@ android {
         applicationId = "com.redpine.dogshelter"
         versionCode = 7
         versionName = "1.2"
-        //TODO: test instead with placeholder plugin & init in App
+
         val localProperties = gradleLocalProperties(rootDir, providers)
         addManifestPlaceholders(
             mapOf(
