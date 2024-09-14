@@ -1,10 +1,13 @@
 package com.redpine.auth.presentation.auth
 
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.redpine.auth.domain.AuthGoogleRepository
 import com.redpine.auth.domain.usecase.AuthEmailAndPasswordUseCase
 import com.redpine.auth.domain.usecase.AuthTokenUseCase
+import com.redpine.auth.domain.usecase.CheckIfNewUserUseCase
+import com.redpine.auth.domain.usecase.RegistrationUseCase
 import com.redpine.auth.presentation.state.AuthState
 import com.redpine.core.base.BaseViewModel
 import com.redpine.core.extensions.emailValidation
@@ -19,14 +22,16 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val authUseCase: AuthEmailAndPasswordUseCase,
     private val tokenProvider: AuthTokenUseCase,
-    private val authGoogleRepository: AuthGoogleRepository
+    private val authGoogleRepository: AuthGoogleRepository,
+    private val registrationUseCase: RegistrationUseCase,
+    private val checkIfNewUserUseCase: CheckIfNewUserUseCase
 ) : BaseViewModel() {
 
     private val _viewState: MutableStateFlow<AuthState> = MutableStateFlow(AuthState())
     val viewState = _viewState.asStateFlow()
 
-    fun startEmailAuth(email: String, password: String) = scopeLaunch {
-        val token = authUseCase.authEmail(email, password).toString()
+    fun startEmailAuth(email: String, password: String, isVk: Boolean) = scopeLaunch {
+        val token = authUseCase.authEmail(email, password, isVk).toString()
         tokenProvider.putToken(token)
     }
 
@@ -50,12 +55,29 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-//    fun signInVk() {
-//        viewModelScope.launch(Dispatchers.IO) {
-//
-//            vkAuth.authorize()
-//        }
-//    }
+    fun signInVk(email: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val isNewUser = checkIfNewUserUseCase.isNewUser(email)
+            if (isNewUser) {
+                createNewUser(
+                    email = email,
+                    password = password
+                )
+            } else {
+                startEmailAuth(
+                    email = email,
+                    password = password,
+                    isVk = true
+                )
+                Log.d("Kart", "Logged in Firebase with email & pass as existing user")
+            }
+        }
+    }
+
+    private fun createNewUser(email: String, password: String) =
+        scopeLaunch {
+            registrationUseCase.createUser(email, password)
+        }
 
     fun signWithIntentUseCase(intent: Intent) {
 

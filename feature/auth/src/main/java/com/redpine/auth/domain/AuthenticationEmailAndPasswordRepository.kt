@@ -11,5 +11,6 @@ interface AuthenticationEmailAndPasswordRepository {
 
     fun resetPassword(email: String): Task<Void>
 
-}
+    suspend fun checkIfNewUser(email: String): Boolean
 
+}

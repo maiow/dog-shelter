@@ -7,12 +7,9 @@ import kotlinx.coroutines.tasks.await
 class RegistrationUseCaseImpl(private val repository: AuthenticationEmailAndPasswordRepository) :
     RegistrationUseCase {
 
-    override suspend fun createUser(email: String, password: String): String? {
+    override suspend fun createUser(email: String, password: String) {
 
         val newUser = repository.createUser(email, password).await().user
-
         newUser?.sendEmailVerification()?.await()
-
-        return newUser?.email
     }
 }

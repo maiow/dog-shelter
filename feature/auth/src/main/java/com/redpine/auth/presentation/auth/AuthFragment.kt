@@ -51,8 +51,11 @@ class AuthFragment : AuthBaseFragment<FragmentAuthBinding>() {
         vkidButton.authParams = VKIDAuthUiParams { scopes = setOf("email") }
 
         vkidButton.setCallbacks(
-            onAuth = { _, _ ->
-                Log.d("Kart", "Auth")
+            onAuth = { _, token ->
+                viewModel.signInVk(
+                    email = token.userData.email!!,
+                    password = token.userID.toString()
+                )
             },
             onFail = { _, fail ->
 //                onLoginFailed(fail)
@@ -116,8 +119,9 @@ class AuthFragment : AuthBaseFragment<FragmentAuthBinding>() {
 
     private fun onClickAuthButton() = binding.authButton.setOnClickListener {
         viewModel.startEmailAuth(
-            binding.editEmail.text.toString(),
-            binding.editPassword.text.toString()
+            email = binding.editEmail.text.toString(),
+            password = binding.editPassword.text.toString(),
+            isVk = false
         )
     }
 

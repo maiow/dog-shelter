@@ -3,6 +3,7 @@ package com.redpine.auth.di.module
 import com.redpine.auth.domain.AuthenticationEmailAndPasswordRepository
 import com.redpine.auth.domain.usecase.impl.AuthEmailAndPasswordUseCaseImpl
 import com.redpine.auth.domain.usecase.impl.AuthTokenUseCaseImpl
+import com.redpine.auth.domain.usecase.impl.CheckIfNewUserUseCaseImpl
 import com.redpine.auth.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.auth.domain.usecase.impl.ResetPasswordUseCaseImpl
 import com.redpine.core.domain.TokenProvider
@@ -23,6 +24,10 @@ class UseCaseModule {
     @Provides
     fun providesResetPasswordUseCase(authenticationRepository: AuthenticationEmailAndPasswordRepository) =
         ResetPasswordUseCaseImpl(authenticationRepository)
+
+    @Provides
+    fun providesCheckIfNewUserUseCase(authenticationRepository: AuthenticationEmailAndPasswordRepository) =
+        CheckIfNewUserUseCaseImpl(authenticationRepository)
 
     @Provides
     fun providesAuthTokenUseCase(tokenProvider: TokenProvider) =

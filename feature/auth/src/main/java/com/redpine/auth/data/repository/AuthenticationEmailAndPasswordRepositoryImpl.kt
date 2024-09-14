@@ -2,17 +2,21 @@ package com.redpine.auth.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.redpine.auth.domain.AuthenticationEmailAndPasswordRepository
+import kotlinx.coroutines.tasks.await
 
 class AuthenticationEmailAndPasswordRepositoryImpl(
-    private val fireBaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth
 ) : AuthenticationEmailAndPasswordRepository {
 
     override fun authEmail(email: String, password: String) =
-        fireBaseAuth.signInWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
 
     override fun createUser(email: String, password: String) =
-        fireBaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
 
     override fun resetPassword(email: String) =
-        fireBaseAuth.sendPasswordResetEmail(email)
+        firebaseAuth.sendPasswordResetEmail(email)
+
+    override suspend fun checkIfNewUser(email: String): Boolean =
+        firebaseAuth.fetchSignInMethodsForEmail(email).await().signInMethods.isNullOrEmpty()
 }

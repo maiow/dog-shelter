@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.redpine.auth.domain.AuthGoogleRepository
 import com.redpine.auth.domain.usecase.AuthEmailAndPasswordUseCase
 import com.redpine.auth.domain.usecase.AuthTokenUseCase
+import com.redpine.auth.domain.usecase.CheckIfNewUserUseCase
 import com.redpine.auth.domain.usecase.RegistrationUseCase
 import com.redpine.auth.domain.usecase.ResetPasswordUseCase
 import com.redpine.auth.presentation.auth.AuthViewModel
@@ -18,14 +19,17 @@ class ViewModelFactory @Inject constructor(
     private val authUseCase: AuthEmailAndPasswordUseCase,
     private val registrationUseCase: RegistrationUseCase,
     private val resetPasswordUseCase: ResetPasswordUseCase,
-    private val authGoogleRepository: AuthGoogleRepository
+    private val authGoogleRepository: AuthGoogleRepository,
+    private val checkIfNewUserUseCase: CheckIfNewUserUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
         AuthViewModel::class.java -> AuthViewModel(
             authUseCase,
             authTokenUseCase,
-            authGoogleRepository
+            authGoogleRepository,
+            registrationUseCase,
+            checkIfNewUserUseCase
         ) as T
 
         RegistrationViewModel::class.java -> RegistrationViewModel(registrationUseCase) as T

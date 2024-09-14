@@ -9,10 +9,12 @@ import com.redpine.auth.domain.AuthenticationEmailAndPasswordRepository
 import com.redpine.auth.domain.GoogleAuthApi
 import com.redpine.auth.domain.usecase.AuthEmailAndPasswordUseCase
 import com.redpine.auth.domain.usecase.AuthTokenUseCase
+import com.redpine.auth.domain.usecase.CheckIfNewUserUseCase
 import com.redpine.auth.domain.usecase.RegistrationUseCase
 import com.redpine.auth.domain.usecase.ResetPasswordUseCase
 import com.redpine.auth.domain.usecase.impl.AuthEmailAndPasswordUseCaseImpl
 import com.redpine.auth.domain.usecase.impl.AuthTokenUseCaseImpl
+import com.redpine.auth.domain.usecase.impl.CheckIfNewUserUseCaseImpl
 import com.redpine.auth.domain.usecase.impl.RegistrationUseCaseImpl
 import com.redpine.auth.domain.usecase.impl.ResetPasswordUseCaseImpl
 import com.redpine.auth.presentation.ViewModelFactory
@@ -45,5 +47,8 @@ interface Binds {
 
     @Binds
     fun bindsAuthGoogleRepository(repository: AuthGoogleRepositoryImpl): AuthGoogleRepository
+
+    @Binds
+    fun bindsCheckIfNewUserUseCase(useCaseImpl: CheckIfNewUserUseCaseImpl): CheckIfNewUserUseCase
 
 }
