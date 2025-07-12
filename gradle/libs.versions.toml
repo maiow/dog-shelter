@@ -13,7 +13,7 @@ coroutines = "1.7.3"
 
 core = { module = "androidx.core:core-ktx", version = "1.13.1" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-material = { module = "com.google.android.material:material", version = "1.12.0" }
+material = { module = "com.google.android.material:material", version = "1.10.0" }
 constraint = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
 fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "appcompat" } #1.8.3
 navigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
