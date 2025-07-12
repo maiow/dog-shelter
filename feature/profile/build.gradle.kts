@@ -1,6 +1,6 @@
 plugins {
     id("lib-android-convention")
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -24,7 +24,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel)
 
     implementation(libs.dagger)
-    kapt(libs.daggerCompiler)
+    ksp(libs.daggerCompiler)
 
     implementation(libs.googleServices)
     implementation(platform(libs.firebaseBom))

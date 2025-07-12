@@ -1,7 +1,7 @@
 
 plugins {
     id("lib-android-convention")
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.safeArgs)
     alias(libs.plugins.parcelize)
 }
@@ -35,5 +35,5 @@ dependencies {
     implementation(libs.firebaseDatabase)
 
     implementation(libs.dagger)
-    kapt(libs.daggerCompiler)
+    ksp(libs.daggerCompiler)
 }

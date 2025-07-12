@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.DogShelter" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.DogShelter.Base" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -57,5 +57,7 @@
         <item name="android:textColor">@color/negative_alert</item>
     </style>
 
+    <!-- This is the main theme that inherits from the base -->
+    <style name="Theme.DogShelter" parent="Theme.DogShelter.Base"/>
 
 </resources>
