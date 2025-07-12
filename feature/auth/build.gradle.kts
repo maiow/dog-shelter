@@ -1,6 +1,6 @@
 plugins {
     id("lib-android-convention")
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.safeArgs)
 }
 
@@ -31,5 +31,5 @@ dependencies {
     implementation(libs.playServices)
 
     implementation(libs.dagger)
-    kapt(libs.daggerCompiler)
+    ksp(libs.daggerCompiler)
 }

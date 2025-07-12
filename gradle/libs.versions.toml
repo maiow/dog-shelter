@@ -49,5 +49,5 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safeArgs" }
 crashlytics = { id = "com.google.firebase.crashlytics", version = "3.0.2" }
-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version = "2.2.0-2.0.2" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

@@ -1,6 +1,6 @@
 plugins {
     id("lib-android-convention")
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -24,5 +24,5 @@ dependencies {
     implementation(libs.navigationUi)
 
     implementation(libs.dagger)
-    kapt(libs.daggerCompiler)
+    ksp(libs.daggerCompiler)
 }
