@@ -57,11 +57,7 @@ dependencies {
 
     implementation(libs.googleServices)
     implementation(platform(libs.firebaseBom))
-    implementation(libs.firebaseAnalytics)
-    implementation(libs.firebaseAuth)
-    implementation(libs.playServices)
-    implementation(libs.firebaseDatabase)
-    implementation(libs.firebaseCrashlytics)
+    implementation(libs.bundles.firebaseDeps)
 
     implementation(libs.dagger)
     kapt(libs.daggerCompiler)
