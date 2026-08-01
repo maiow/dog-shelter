@@ -1,11 +1,11 @@
 import com.android.build.gradle.BaseExtension
 
 configure<BaseExtension> {
-    compileSdkVersion(35)
+    compileSdkVersion(36)
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
     }
 
     compileOptions {

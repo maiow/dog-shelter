@@ -13,8 +13,8 @@ android {
 
     defaultConfig {
         applicationId = "com.redpine.dogshelter"
-        versionCode = 7
-        versionName = "1.1.3"
+        versionCode = 8
+        versionName = "1.1.4"
 
     }
 
@@ -56,8 +56,6 @@ dependencies {
     implementation(libs.navigationFragment)
     implementation(libs.navigationUi)
     implementation(libs.splashScreen)
-
-    //debugImplementation(libs.leakCanary)
 
     implementation(libs.googleServices)
     implementation(platform(libs.firebaseBom))
